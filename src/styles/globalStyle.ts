@@ -8,7 +8,10 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
   }
-`
+`;
 
-export default GlobalStyle
+export default GlobalStyle;
