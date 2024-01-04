@@ -28,6 +28,7 @@ import {
   MarketingContainer,
 } from "../styles/HomeStyle";
 import { BrandLankBox } from "../components/Home/BrandLank";
+import { MarketingBox } from "../components/MarketingBox";
 
 const Home = () => {
   return (
@@ -84,6 +85,21 @@ const Home = () => {
             <ArrowIcon />
           </BrandTitleRow>
         </MarketingTitleBox>
+        <MarketingBox
+          imgSrc="../assets/images/exemple.png"
+          type="PLACE"
+          title="더 현대를 밝히는 ‘해리의 꿈의 상점’"
+          expl="유럽 어느 골목을 들어와있는 듯한 착각"
+          read={727}
+        />
+        <MarketingBox
+          imgSrc="../assets/images/exemple.png"
+          type="PLACE"
+          title="신세계 백화점의 
+          ‘MAGIC WINTER FANTASY’"
+          expl="3분을 위한 9개월의 여정"
+          read={1928}
+        />
       </MarketingContainer>
     </HomeContainer>
   );
