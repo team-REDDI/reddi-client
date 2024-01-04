@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { colors } from "../styles/colors";
+import { useNavigate } from "react-router-dom";
 
 interface MarketingProps {
   imgSrc: string;
@@ -16,7 +17,12 @@ export const MarketingBox = ({
   expl,
   read,
 }: MarketingProps) => {
-  const goToBrandDetail = () => {};
+  const nav = useNavigate();
+
+  const goToBrandDetail = () => {
+    nav("/marketing-detail-0");
+  };
+
   return (
     <Container onClick={goToBrandDetail}>
       <MarketingImg src={require("../assets/images/exemple.png")} />
