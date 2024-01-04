@@ -18,7 +18,6 @@ export const HomeImage = styled.img`
   position: absolute;
   width: 100%;
   height: 49.5rem;
-  position: absolute;
 `;
 
 export const EventContainer = styled.div`
@@ -94,10 +93,10 @@ export const BrandTitleRow = styled.div`
 export const HomeTitleWeight = styled.div`
   color: ${colors.black};
   font-size: 3.125rem;
-  font-weight: 700;
+  font-weight: 800;
   line-height: 130%;
   width: fit-content;
-  margin-right: 0.5rem;
+  margin-right: 1.25rem;
 `;
 
 export const HomeTitle = styled.div`

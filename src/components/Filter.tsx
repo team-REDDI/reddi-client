@@ -135,6 +135,7 @@ const FilterTag = styled.div`
   margin: 1.25rem 0rem;
   margin-right: 0.63rem;
 `;
+
 const RemoveButton = styled.button`
   border: 0;
   background-color: transparent;
