@@ -61,6 +61,20 @@ const Filter: React.FC<FilterProps> = ({ dropdownItems }) => {
             onSelect={handleSelect}
           />
         )}
+        {dropdownItems?.brandcolor && (
+          <Dropdown
+            title="브랜드컬러"
+            items={dropdownItems.brandcolor}
+            onSelect={handleSelect}
+          />
+        )}
+        {dropdownItems?.atmosphere && (
+          <Dropdown
+            title="분위기"
+            items={dropdownItems.atmosphere}
+            onSelect={handleSelect}
+          />
+        )}
         {dropdownItems?.sort && (
           <DropdownSort
             title={selectedSort || "인기순"}
