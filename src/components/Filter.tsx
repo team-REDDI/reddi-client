@@ -2,31 +2,20 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Dropdown from "./Dropdown";
 
-const Filter: React.FC = () => {
+type FilterProps = {
+  dropdownItems: {
+    industry?: Array<{ name: string; value: string }>;
+    marketing?: Array<{ name: string; value: string }>;
+    target?: Array<{ name: string; value: string }>;
+    brandcolor?: Array<{ name: string; value: string }>;
+    atmosphere?: Array<{ name: string; value: string }>;
+    sort?: Array<{ name: string; value: string }>;
+  };
+};
+
+const Filter: React.FC<FilterProps> = ({ dropdownItems }) => {
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
   const [selectedSort, setSelectedSort] = useState<string>("");
-  // 각 카테고리별 드롭다운 dummy data
-  const dropdownItems = {
-    industry: [
-      { name: "뷰티", value: "뷰티" },
-      { name: "금융", value: "금융" },
-      { name: "F&B", value: "F&B" },
-      { name: "IT", value: "IT" },
-    ],
-    marketing: [
-      { name: "팝업스토어", value: "팝업스토어" },
-      { name: "콘텐츠 마케팅", value: "콘텐츠 마케팅" },
-    ],
-    target: [
-      { name: "10대", value: "10대" },
-      { name: "20대", value: "20대" },
-      { name: "30대", value: "30대" },
-    ],
-    sort: [
-      { name: "인기순", value: "인기순" },
-      { name: "추천순", value: "추천순" },
-    ],
-  };
 
   const handleSelectSort = (item: { name: string; value: string }) => {
     setSelectedSort(item.name); //인기순, 추천순 값 변경
@@ -51,26 +40,34 @@ const Filter: React.FC = () => {
     <FilterContainer>
       <Text>분류</Text>
       <DropdownsContainer>
-        <Dropdown
-          title="산업군"
-          items={dropdownItems.industry}
-          onSelect={handleSelect}
-        />
-        <Dropdown
-          title="마케팅"
-          items={dropdownItems.marketing}
-          onSelect={handleSelect}
-        />
-        <Dropdown
-          title="타겟층"
-          items={dropdownItems.target}
-          onSelect={handleSelect}
-        />
-        <DropdownSort
-          title={selectedSort || "인기순"}
-          items={dropdownItems.sort}
-          onSelect={handleSelectSort}
-        />
+        {dropdownItems?.industry && (
+          <Dropdown
+            title="산업군"
+            items={dropdownItems.industry}
+            onSelect={handleSelect}
+          />
+        )}
+        {dropdownItems?.marketing && (
+          <Dropdown
+            title="마케팅"
+            items={dropdownItems.marketing}
+            onSelect={handleSelect}
+          />
+        )}
+        {dropdownItems?.target && (
+          <Dropdown
+            title="타겟층"
+            items={dropdownItems.target}
+            onSelect={handleSelect}
+          />
+        )}
+        {dropdownItems?.sort && (
+          <DropdownSort
+            title={selectedSort || "인기순"}
+            items={dropdownItems.sort}
+            onSelect={handleSelectSort}
+          />
+        )}
       </DropdownsContainer>
 
       <SelectedFilters>
