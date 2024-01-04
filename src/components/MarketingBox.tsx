@@ -18,7 +18,7 @@ export const MarketingBox = ({
 }: MarketingProps) => {
   return (
     <Container>
-      <MarketingImg src={imgSrc} />
+      <MarketingImg src={require("../assets/images/exemple.png")} />
       <TypeText>{type}</TypeText>
       <Title>{title}</Title>
       <ExpText>{expl}</ExpText>
