@@ -16,8 +16,9 @@ export const MarketingBox = ({
   expl,
   read,
 }: MarketingProps) => {
+  const goToBrandDetail = () => {};
   return (
-    <Container>
+    <Container onClick={goToBrandDetail}>
       <MarketingImg src={require("../assets/images/exemple.png")} />
       <TypeText>{type}</TypeText>
       <Title>{title}</Title>
@@ -33,6 +34,7 @@ const Container = styled.div`
   width: 26.5625rem;
   height: fit-content;
   align-items: flex-start;
+  cursor: pointer;
 `;
 
 const MarketingImg = styled.img`
