@@ -15,6 +15,7 @@ const Header: React.FC<HeaderProps> = ({ title }) => {
 const HeaderContainer = styled.div`
   position: relative;
   height: 25rem;
+  width: 100vw;
   background-color: black;
   color: white;
 `;
