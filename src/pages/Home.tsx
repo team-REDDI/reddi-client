@@ -2,6 +2,11 @@ import NavBar from "../components/NavBar";
 import styled from "styled-components";
 import { colors } from "../styles/colors";
 import { ReactComponent as ArrowIcon } from "../assets/svgs/arrow.svg";
+import { ReactComponent as TossIcon } from "../assets/svgs/tossIcon.svg";
+import { ReactComponent as NaverIcon } from "../assets/svgs/naverIcon.svg";
+import { ReactComponent as HyundaiIcon } from "../assets/svgs/hyundaiIcon.svg";
+import { ReactComponent as GentleIcon } from "../assets/svgs/gentleIcon.svg";
+import { ReactComponent as NikeIcon } from "../assets/svgs/nikeIcon.svg";
 import {
   HomeContainer,
   ImageContainer,
@@ -17,12 +22,18 @@ import {
   BrandTitleRow,
   DateText,
   MarketingTitleBox,
+  GreyLine,
+  LankBox,
+  BrandLankContainer,
+  MarketingContainer,
 } from "../styles/HomeStyle";
+import { BrandLankBox } from "../components/Home/BrandLank";
 
 const Home = () => {
   return (
     <HomeContainer>
       <NavBar />
+
       <ImageContainer>
         <HomeImage src={require("../assets/images/background_home.png")} />
         <EventContainer>
@@ -43,22 +54,37 @@ const Home = () => {
         </EventContainer>
       </ImageContainer>
 
-      <BrandTitleBox>
-        <BrandTitleRow>
-          <HomeTitleWeight>HOT</HomeTitleWeight>
-          <HomeTitle>브랜드 순위</HomeTitle>
-          <ArrowIcon />
-        </BrandTitleRow>
-        <DateText>2024. 02</DateText>
-      </BrandTitleBox>
+      <BrandLankContainer>
+        <BrandTitleBox>
+          <BrandTitleRow>
+            <HomeTitleWeight>HOT</HomeTitleWeight>
+            <HomeTitle>브랜드 순위</HomeTitle>
+            <ArrowIcon />
+          </BrandTitleRow>
+          <DateText>2024. 02</DateText>
+        </BrandTitleBox>
+        <LankBox>
+          <BrandLankBox lank={1} name="토스 증권" Icon={TossIcon} />
+          <GreyLine />
+          <BrandLankBox lank={2} name="네이버" Icon={NaverIcon} />
+          <GreyLine />
+          <BrandLankBox lank={3} name="현대카드" Icon={HyundaiIcon} />
+          <GreyLine />
+          <BrandLankBox lank={4} name="젠틀몬스터" Icon={GentleIcon} />
+          <GreyLine />
+          <BrandLankBox lank={5} name="나이키" Icon={NikeIcon} />
+        </LankBox>
+      </BrandLankContainer>
 
-      <MarketingTitleBox>
-        <BrandTitleRow>
-          <HomeTitle>크리스마스에 눈이 온다면?</HomeTitle>
-          <HomeTitleWeight>크리스마스 공간 기획</HomeTitleWeight>
-          <ArrowIcon />
-        </BrandTitleRow>
-      </MarketingTitleBox>
+      <MarketingContainer>
+        <MarketingTitleBox>
+          <BrandTitleRow>
+            <HomeTitle>크리스마스에 눈이 온다면?</HomeTitle>
+            <HomeTitleWeight>크리스마스 공간 기획</HomeTitleWeight>
+            <ArrowIcon />
+          </BrandTitleRow>
+        </MarketingTitleBox>
+      </MarketingContainer>
     </HomeContainer>
   );
 };

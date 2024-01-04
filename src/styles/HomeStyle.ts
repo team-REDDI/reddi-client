@@ -10,7 +10,7 @@ export const HomeContainer = styled.div`
 export const ImageContainer = styled.div`
   position: relative;
   width: 100%;
-  height: 49.5625rem;
+  height: 53.9rem;
 `;
 
 export const HomeImage = styled.img`
@@ -68,12 +68,19 @@ export const EventButton = styled.div`
   cursor: pointer;
 `;
 
+export const BrandLankContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: fit-content;
+  margin: 7.12rem 0 0 18.75rem;
+`;
+
 export const BrandTitleBox = styled.div`
   display: flex;
   flex-direction: column;
   width: 25.68rem;
   height: 4.1rem;
-  margin: 7.12rem 0 0 18.75rem;
 `;
 
 export const BrandTitleRow = styled.div`
@@ -111,10 +118,34 @@ export const DateText = styled.span`
   letter-spacing: -0.0125rem;
 `;
 
+export const LankBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 41.5rem;
+  width: 82.7rem;
+  align-items: flex-start;
+  margin-top: 4.94rem;
+`;
+
+export const GreyLine = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 82.625rem;
+  height: 0.125rem;
+  background-color: #d6d7dc;
+`;
+
+export const MarketingContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: fit-content;
+  margin: 10.95rem 0 0 18.75rem;
+`;
+
 export const MarketingTitleBox = styled.div`
   display: flex;
   flex-direction: column;
   width: 65rem;
   height: 4.1rem;
-  margin: 7.12rem 0 0 18.75rem;
 `;
