@@ -4,6 +4,7 @@ import { colors } from "../styles/colors";
 export const HomeContainer = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   width: 100%;
 `;
 
@@ -73,7 +74,7 @@ export const BrandLankContainer = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   height: fit-content;
-  margin: 7.12rem 0 0 18.75rem;
+  margin-top: 7.12rem;
 `;
 
 export const BrandTitleBox = styled.div`
@@ -140,7 +141,7 @@ export const MarketingContainer = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   height: fit-content;
-  margin: 10.95rem 0 0 18.75rem;
+  margin-top: 10.95rem;
 `;
 
 export const MarketingTitleBox = styled.div`
@@ -148,4 +149,16 @@ export const MarketingTitleBox = styled.div`
   flex-direction: column;
   width: 65rem;
   height: 4.1rem;
+`;
+
+export const MarketingLine = styled.div`
+  display: flex;
+  width: 82.3rem;
+  gap: 1.25rem;
+  margin-top: 4.12rem;
+`;
+
+export const Blank = styled.div`
+  display: flex;
+  height: 27.7rem;
 `;
