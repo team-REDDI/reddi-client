@@ -5,6 +5,7 @@ const NavBar = () => {
     <NavigationWrapper>
       <NavSection>
         <div>REDDI</div>
+
         <StyledNavLink to="/">홈</StyledNavLink>
         <StyledNavLink to="/marketing">마케팅</StyledNavLink>
         <StyledNavLink to="/brand">브랜드</StyledNavLink>
@@ -26,13 +27,17 @@ const NavigationWrapper = styled.nav`
   z-index: 1;
   align-items: center;
   justify-content: space-between;
-  padding: 0px 50px;
+  padding: 0px 4rem;
   background-color: black;
   color: white;
-  height: 71px;
-  font-size: 20px;
+  height: 4.4375rem;
+  font-size: 1.25rem;
   font-style: normal;
   font-weight: 700;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  box-sizing: border-box;
 `;
 
 const StyledNavLink = styled(NavLink)`
@@ -44,14 +49,14 @@ const StyledNavLink = styled(NavLink)`
     content: "";
     position: absolute;
     width: 100%;
-    height: 2px;
+    height: 0.125rem;
     background-color: white;
-    bottom: -5px;
+    bottom: -0.321rem;
     left: 0;
   }
 `;
 const NavSection = styled.div`
   display: flex;
-  gap: 30px;
+  gap: 1.88rem;
 `;
 export default NavBar;
