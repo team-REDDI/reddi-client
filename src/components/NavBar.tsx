@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
+import { ReactComponent as LogoImage } from "../assets/svgs/REDDI.svg";
 const NavBar = () => {
   return (
     <NavigationWrapper>
       <NavSection>
-        <div>REDDI</div>
-
+        <StyledLogoImage />
         <StyledNavLink to="/">홈</StyledNavLink>
         <StyledNavLink to="/marketing">마케팅</StyledNavLink>
         <StyledNavLink to="/brand">브랜드</StyledNavLink>
@@ -39,7 +39,9 @@ const NavigationWrapper = styled.nav`
   width: 100vw;
   box-sizing: border-box;
 `;
-
+const StyledLogoImage = styled(LogoImage)`
+  margin-right: 12.38rem;
+`;
 const StyledNavLink = styled(NavLink)`
   color: white;
   text-decoration: none;
@@ -57,6 +59,7 @@ const StyledNavLink = styled(NavLink)`
 `;
 const NavSection = styled.div`
   display: flex;
+  align-items: center;
   gap: 1.88rem;
 `;
 export default NavBar;

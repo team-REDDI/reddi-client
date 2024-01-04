@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Dropdown from "./Dropdown";
-
+import { colors } from "../styles/colors";
 type FilterProps = {
   dropdownItems: {
     industry?: Array<{ name: string; value: string }>;
@@ -116,7 +116,7 @@ const SelectedFilters = styled.div`
   width: 82.5rem;
   height: 5.125rem;
   border-top: 1px solid #000;
-  background: var(--gray100, #f6f6f6);
+  background: ${colors.grey_100};
   padding-left: 1.75rem;
 `;
 
@@ -148,7 +148,7 @@ const RemoveButton = styled.button`
 
 const ResetButton = styled.button`
   background-color: transparent;
-  color: #6b6d71;
+  color: ${colors.grey_700};
   border: none;
   padding: 0rem 1.37rem;
   margin-left: auto;
