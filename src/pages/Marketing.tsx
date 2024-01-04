@@ -10,28 +10,8 @@ import {
   MarketingLine,
 } from "../styles/HomeStyle";
 import { MarketingBox } from "../components/MarketingBox";
+import dropdownDataMarketing from "../assets/datas/dropDownDataMarketing.json";
 
-const dropdownDataMarketing = {
-  industry: [
-    { name: "뷰티", value: "뷰티" },
-    { name: "금융", value: "금융" },
-    { name: "F&B", value: "F&B" },
-    { name: "IT", value: "IT" },
-  ],
-  marketing: [
-    { name: "팝업스토어", value: "팝업스토어" },
-    { name: "콘텐츠 마케팅", value: "콘텐츠 마케팅" },
-  ],
-  target: [
-    { name: "10대", value: "10대" },
-    { name: "20대", value: "20대" },
-    { name: "30대", value: "30대" },
-  ],
-  sort: [
-    { name: "인기순", value: "인기순" },
-    { name: "추천순", value: "추천순" },
-  ],
-};
 const Marketing = () => {
   return (
     <MarketingPageContainer>
