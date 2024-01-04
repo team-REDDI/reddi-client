@@ -42,6 +42,11 @@ const Filter: React.FC = () => {
     setSelectedFilters(selectedFilters.filter((f) => f !== filter));
   };
 
+  const handleReset = () => {
+    setSelectedFilters([]);
+    // setSelectedSort(""); 인기순 추천순도 바꿀지?
+  };
+
   return (
     <FilterContainer>
       <Text>분류</Text>
@@ -75,6 +80,7 @@ const Filter: React.FC = () => {
             <RemoveButton onClick={() => removeFilter(filter)}>X</RemoveButton>
           </FilterTag>
         ))}
+        <ResetButton onClick={handleReset}>초기화</ResetButton>
       </SelectedFilters>
     </FilterContainer>
   );
@@ -126,6 +132,21 @@ const RemoveButton = styled.button`
   font-style: normal;
   font-weight: 300;
   cursor: pointer;
+`;
+
+const ResetButton = styled.button`
+  background-color: transparent;
+  color: #6b6d71;
+  border: none;
+  padding: 0rem 1.37rem;
+  margin-left: auto;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 600;
+  cursor: pointer;
+  /* &:hover {
+    background-color: #c0c0c0;
+  } */
 `;
 //추천순, 인기순은 제일 오른쪽에
 const DropdownSort = styled(Dropdown)`

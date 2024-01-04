@@ -17,4 +17,5 @@ const MarketingPageContainer = styled.div`
   flex-direction: column;
   align-items: center;
 `;
+
 export default Marketing;
