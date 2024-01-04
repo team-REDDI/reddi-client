@@ -34,7 +34,7 @@ const NavigationWrapper = styled.nav`
   font-size: 1.25rem;
   font-style: normal;
   font-weight: 700;
-  position: fixed;
+  position: relative;
   top: 0;
   width: 100vw;
   box-sizing: border-box;
