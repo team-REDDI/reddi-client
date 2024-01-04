@@ -2,6 +2,22 @@ import NavBar from "../components/NavBar";
 import styled from "styled-components";
 import { colors } from "../styles/colors";
 import { ReactComponent as ArrowIcon } from "../assets/svgs/arrow.svg";
+import {
+  HomeContainer,
+  ImageContainer,
+  HomeImage,
+  EventContainer,
+  EventText,
+  EventTitle,
+  EventContent,
+  EventButton,
+  BrandTitleBox,
+  HomeTitleWeight,
+  HomeTitle,
+  BrandTitleRow,
+  DateText,
+  MarketingTitleBox,
+} from "../styles/HomeStyle";
 
 const Home = () => {
   return (
@@ -29,8 +45,8 @@ const Home = () => {
 
       <BrandTitleBox>
         <BrandTitleRow>
-          <BrandTitle1>HOT</BrandTitle1>
-          <BrandTitle2>브랜드 순위</BrandTitle2>
+          <HomeTitleWeight>HOT</HomeTitleWeight>
+          <HomeTitle>브랜드 순위</HomeTitle>
           <ArrowIcon />
         </BrandTitleRow>
         <DateText>2024. 02</DateText>
@@ -38,8 +54,8 @@ const Home = () => {
 
       <MarketingTitleBox>
         <BrandTitleRow>
-          <BrandTitle2>크리스마스에 눈이 온다면?</BrandTitle2>
-          <BrandTitle1>크리스마스 공간 기획</BrandTitle1>
+          <HomeTitle>크리스마스에 눈이 온다면?</HomeTitle>
+          <HomeTitleWeight>크리스마스 공간 기획</HomeTitleWeight>
           <ArrowIcon />
         </BrandTitleRow>
       </MarketingTitleBox>
@@ -48,119 +64,3 @@ const Home = () => {
 };
 
 export default Home;
-
-const HomeContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-`;
-
-const ImageContainer = styled.div`
-  position: relative;
-  width: 100%;
-  height: 49.5625rem;
-`;
-
-const HomeImage = styled.img`
-  position: absolute;
-  width: 100%;
-  height: 49.5rem;
-  position: absolute;
-  top: 4.4rem;
-`;
-
-const EventContainer = styled.div`
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin: 11.12rem 0 0 18.75rem;
-  gap: 1.5rem;
-`;
-
-const EventText = styled.span`
-  color: ${colors.white};
-  font-size: 0.95rem;
-  font-weight: 400;
-  line-height: 1.6rem;
-`;
-
-const EventTitle = styled.span`
-  color: ${colors.white};
-  font-size: 3.75rem;
-  font-style: normal;
-  font-weight: 800;
-  line-height: 6rem;
-`;
-
-const EventContent = styled.div`
-  color: ${colors.white};
-  width: 42.1rem;
-  font-size: 1rem;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 1.55rem;
-`;
-
-const EventButton = styled.div`
-  color: ${colors.white};
-  font-size: 0.95rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1.4rem;
-  margin-top: 0.1rem;
-  border-bottom: 1px solid currentColor; /* 밑줄처럼 보이게 함 */
-  padding-bottom: 0.001rem;
-  /* text-decoration: underline; */
-`;
-
-const BrandTitleBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 25.68rem;
-  height: 4.1rem;
-  margin: 7.12rem 0 0 18.75rem;
-`;
-
-const BrandTitleRow = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  width: fit-content;
-  height: 4.1rem;
-`;
-
-const BrandTitle1 = styled.div`
-  color: ${colors.black};
-  font-size: 3.125rem;
-  font-weight: 700;
-  line-height: 130%;
-  width: fit-content;
-  margin-right: 0.5rem;
-`;
-
-const BrandTitle2 = styled.div`
-  color: ${colors.black};
-  font-size: 3.125rem;
-  font-weight: 400;
-  line-height: 130%;
-  width: fit-content;
-  margin-right: 1.25rem;
-`;
-
-const DateText = styled.span`
-  color: ${colors.grey_500};
-  font-size: 1.25rem;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 150%;
-  letter-spacing: -0.0125rem;
-`;
-
-const MarketingTitleBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 65rem;
-  height: 4.1rem;
-  margin: 7.12rem 0 0 18.75rem;
-`;
