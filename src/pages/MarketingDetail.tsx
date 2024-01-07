@@ -23,12 +23,14 @@ import { useNavigate } from "react-router-dom";
 const MarketingDetail = () => {
   const nav = useNavigate();
 
-  const goToBrandDetail = () => {};
+  const goBack = () => {
+    nav(-1);
+  };
   return (
     <MarketingDetailContainer>
       <ImageContainer>
         <HomeImage src={require("../assets/images/background-marketing.png")} />
-        <GoBackButton>뒤로가기</GoBackButton>
+        <GoBackButton onClick={goBack}>뒤로가기</GoBackButton>
         <IntroBox>
           <TagBox>
             <FilterTag>뷰티</FilterTag>
