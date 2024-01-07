@@ -35,6 +35,7 @@ import {
 import { BrandLankBox } from "../components/Home/BrandLank";
 import { MarketingBox } from "../components/MarketingBox";
 import { MarketingBoxSmall } from "../components/Home/MarketingBoxSmall";
+import { Bottom } from "../components/Bottom";
 
 const Home = () => {
   return (
@@ -154,7 +155,7 @@ const Home = () => {
           />
         </MarketingLine>
       </MarketingContainer>
-      <Blank />
+      <Bottom />
     </HomeContainer>
   );
 };
