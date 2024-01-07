@@ -29,7 +29,6 @@ export const MarketingBox = ({
       <TypeText>{type}</TypeText>
       <Title>{title}</Title>
       <ExpText>{expl}</ExpText>
-      <ReadText>읽음 {read}</ReadText>
     </Container>
   );
 };
@@ -37,7 +36,7 @@ export const MarketingBox = ({
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  width: 26.5625rem;
+  width: 20.3125rem;
   height: fit-content;
   align-items: flex-start;
   cursor: pointer;
@@ -45,37 +44,33 @@ const Container = styled.div`
 
 const MarketingImg = styled.img`
   display: flex;
-  width: 26.5625rem;
-  height: 20.125rem;
-  margin-bottom: 2.5rem;
+  width: 20.3125rem;
+  height: 14.75rem;
+  margin-bottom: 1.5rem;
 `;
+
 const TypeText = styled.span`
   color: ${colors.grey_500};
-  font-size: 1.25rem;
-  font-weight: 600;
-  line-height: 1.6rem;
-  margin-bottom: 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+
+  letter-spacing: -0.00875rem;
+  margin-bottom: 0.75rem;
 `;
 
 const Title = styled.span`
   color: ${colors.black};
-  font-size: 1.875rem;
-  font-weight: 600;
+  font-size: 1.5rem;
+  font-weight: 700;
   line-height: 130%;
-  margin-bottom: 1.25rem;
+  letter-spacing: -0.015rem;
+  margin-bottom: 0.75rem;
 `;
 
 const ExpText = styled.span`
   color: ${colors.grey_600};
-  font-size: 1.5rem;
-  font-weight: 400;
-  line-height: 2.25rem;
-  margin-bottom: 1.25rem;
-`;
-
-const ReadText = styled.span`
-  color: ${colors.grey_700};
-  font-size: 0.9375rem;
-  font-weight: 400;
-  line-height: 1.6rem;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 130%;
+  letter-spacing: -0.01rem;
 `;

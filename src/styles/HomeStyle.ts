@@ -144,20 +144,21 @@ export const MarketingContainer = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   height: fit-content;
-  margin-top: 5rem;
+  width: 64rem;
+  margin-top: 6.25rem;
 `;
 
 export const MarketingTitleBox = styled.div`
   display: flex;
   flex-direction: column;
-  width: 65rem;
+  width: fit-content;
   height: 4.1rem;
 `;
 
 export const MarketingCol = styled.div`
   display: flex;
   flex-direction: column;
-  width: 63.25rem;
+  width: 64rem;
   height: 23.75rem;
   gap: 2.5rem;
   margin-top: 2.5rem;
@@ -167,8 +168,29 @@ export const MarketingCol = styled.div`
 export const MarketingLine = styled.div`
   display: flex;
   width: 64rem;
-  gap: 1.25rem;
-  margin-top: 4.12rem;
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+`;
+
+export const Banner = styled.div`
+  display: flex;
+  width: 64rem;
+  padding: 2.1875rem 4.6875rem;
+  justify-content: center;
+  box-sizing: border-box;
+  align-items: center;
+  gap: 0.625rem;
+  background-color: rgba(0, 0, 0, 0.1);
+  margin-top: 6.25rem;
+`;
+
+export const BannerText = styled.span`
+  color: ${colors.black};
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 130%;
+  letter-spacing: -0.0225rem;
+  width: 100%;
 `;
 
 export const Blank = styled.div`

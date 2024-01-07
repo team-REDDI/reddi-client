@@ -29,6 +29,8 @@ import {
   MarketingLine,
   Blank,
   MarketingCol,
+  Banner,
+  BannerText,
 } from "../styles/HomeStyle";
 import { BrandLankBox } from "../components/Home/BrandLank";
 import { MarketingBox } from "../components/MarketingBox";
@@ -114,6 +116,10 @@ const Home = () => {
           />
         </MarketingCol>
       </MarketingContainer>
+
+      <Banner>
+        <BannerText>지금을 넘어 내일까지, 지속 가능성을 생각하다.</BannerText>
+      </Banner>
 
       <MarketingContainer>
         <MarketingTitleBox>
