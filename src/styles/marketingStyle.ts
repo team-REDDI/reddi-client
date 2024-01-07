@@ -7,13 +7,32 @@ export const MarketingDetailContainer = styled.div`
   align-items: center;
 `;
 
+export const GoBackButton = styled.div`
+  display: flex;
+  position: relative;
+  top: 1.63rem;
+  left: 2.25rem;
+  color: ${colors.white};
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: -0.01rem;
+  cursor: pointer;
+`;
+
+export const ImageContainer = styled.div`
+  position: relative;
+  width: 100%;
+  height: 31.25rem;
+  background-color: rgba(0, 0, 0, 0.1);
+`;
+
 export const IntroBox = styled.div`
   position: absolute;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin: 15.63rem 0 0 18.75rem;
-  gap: 1.5rem;
+  margin: 8.63rem 0 0 10.69rem;
+  gap: 1.25rem;
 `;
 
 export const TagBox = styled.div`
@@ -27,9 +46,9 @@ export const FilterTag = styled.div`
   padding: 0.25rem 1.25rem;
   justify-content: center;
   align-items: center;
-  border: 1px solid #000;
+  border: 1px solid ${colors.black_f};
   color: ${colors.white};
-  background-color: #000;
+  background-color: ${colors.black_f};
   font-size: 1.25rem;
   font-style: normal;
   font-weight: 800;
@@ -37,9 +56,8 @@ export const FilterTag = styled.div`
 
 export const MarketingTitle = styled.div`
   color: ${colors.white};
-  font-size: 5rem;
+  font-size: 3rem;
   font-weight: 700;
-  line-height: 120%;
 `;
 
 export const DataTable = styled.div`
@@ -73,14 +91,13 @@ export const ExplBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: 82.375rem;
+  width: 63.903rem;
   margin-top: 5.88rem;
 `;
 
 export const BrandImage = styled.img`
   display: flex;
-  width: 82.375rem;
-  height: 106.96075rem;
+  width: 100%;
   margin-top: 3.12rem;
 `;
 
@@ -89,5 +106,16 @@ export const MarketingExplain = styled.span`
   font-size: 1.25rem;
   font-weight: 500;
   line-height: 170%;
-  margin-bottom: 6.25rem;
+  margin: 1.87rem 0 2.5rem 0;
+`;
+
+export const MarketingTags = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 1.5rem;
+  width: 64rem;
+  border-top: 0.03rem solid ${colors.black_f};
+  border-bottom: 0.1rem solid ${colors.black_f};
+  padding: 1.5rem 0;
 `;
