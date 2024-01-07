@@ -28,9 +28,11 @@ import {
   MarketingContainer,
   MarketingLine,
   Blank,
+  MarketingCol,
 } from "../styles/HomeStyle";
 import { BrandLankBox } from "../components/Home/BrandLank";
 import { MarketingBox } from "../components/MarketingBox";
+import { MarketingBoxSmall } from "../components/Home/MarketingBoxSmall";
 
 const Home = () => {
   return (
@@ -38,21 +40,11 @@ const Home = () => {
       <NavBar />
 
       <ImageContainer>
-        <HomeImage src={require("../assets/images/background_home.png")} />
+        {/* <HomeImage src={require("../assets/images/background_home.png")} /> */}
         <EventContainer>
           <EventText>EVENT</EventText>
-          <EventTitle>2023이 우리에게 남긴 의미들</EventTitle>
-          <EventContent>
-            으레 12월이 되면 SNS에는 '올해의 OO'을 뽑아본 사람들의 이야기가
-            하나둘 올라옵니다.
-            <br /> 올해의 책, 올해의 영화, 올해의 음식, 올해의 여행, 올해의
-            장소… 여러분의 한 해는 무슨 의미를 담고 있나요?
-            <br /> 힘들고 어려운 순간도 많았을 테지만, 2023년이라는 퍼즐에
-            들어갈 조각을 하나둘 골라내는 행위에는
-            <br /> 분명 '내가 보낸 시간을 의미 있게 해석하겠다'는 의지와 바람이
-            담겨 있는 게 사실입니다.
-            <br /> 레디가 선정한, 올해의 브랜드들의 키워드를 살펴보세요.
-          </EventContent>
+          <EventTitle>요즘 브랜드는 공간으로 말을 건다</EventTitle>
+          <EventContent>브랜드 경험의 정수, 요즘 브랜드의 공간은?</EventContent>
           <EventButton>자세히 보기</EventButton>
         </EventContainer>
       </ImageContainer>
@@ -60,9 +52,7 @@ const Home = () => {
       <BrandLankContainer>
         <BrandTitleBox>
           <BrandTitleRow>
-            <HomeTitleWeight>HOT</HomeTitleWeight>
-            <HomeTitle>브랜드 순위</HomeTitle>
-            <ArrowIcon />
+            <HomeTitle>HOT 브랜드 순위</HomeTitle>
           </BrandTitleRow>
           <DateText>2024. 02</DateText>
         </BrandTitleBox>
@@ -82,43 +72,55 @@ const Home = () => {
       <MarketingContainer>
         <MarketingTitleBox>
           <BrandTitleRow>
-            <HomeTitle>크리스마스에 눈이 온다면?</HomeTitle>
-            <HomeTitleWeight>크리스마스 공간 기획</HomeTitleWeight>
-            <ArrowIcon />
+            <HomeTitle>HOT 마케팅 순위</HomeTitle>
           </BrandTitleRow>
         </MarketingTitleBox>
-        <MarketingLine>
-          <MarketingBox
+        <MarketingCol>
+          <MarketingBoxSmall
+            lank={1}
             imgSrc="../assets/images/exemple.png"
-            type="PLACE"
             title="더 현대를 밝히는 ‘해리의 꿈의 상점’"
             expl="유럽 어느 골목을 들어와있는 듯한 착각"
-            read={727}
           />
-          <MarketingBox
+          <MarketingBoxSmall
+            lank={2}
             imgSrc="../assets/images/exemple.png"
-            type="PLACE"
-            title="신세계 백화점의 
-          ‘MAGIC WINTER FANTASY’"
-            expl="3분을 위한 9개월의 여정"
-            read={1928}
+            title="더 현대를 밝히는 ‘해리의 꿈의 상점’"
+            expl="유럽 어느 골목을 들어와있는 듯한 착각"
           />
-          <MarketingBox
+          <MarketingBoxSmall
+            lank={3}
             imgSrc="../assets/images/exemple.png"
-            type="PLACE"
-            title="시몬스테라스의 ‘크리스마스 일루미네이션"
-            expl="동화 속 마을로 단장한 시몬스"
-            read={567}
+            title="더 현대를 밝히는 ‘해리의 꿈의 상점’"
+            expl="유럽 어느 골목을 들어와있는 듯한 착각"
           />
-        </MarketingLine>
+          <MarketingBoxSmall
+            lank={4}
+            imgSrc="../assets/images/exemple.png"
+            title="더 현대를 밝히는 ‘해리의 꿈의 상점’"
+            expl="유럽 어느 골목을 들어와있는 듯한 착각"
+          />
+          <MarketingBoxSmall
+            lank={5}
+            imgSrc="../assets/images/exemple.png"
+            title="더 현대를 밝히는 ‘해리의 꿈의 상점’"
+            expl="유럽 어느 골목을 들어와있는 듯한 착각"
+          />
+          <MarketingBoxSmall
+            lank={6}
+            imgSrc="../assets/images/exemple.png"
+            title="더 현대를 밝히는 ‘해리의 꿈의 상점’"
+            expl="유럽 어느 골목을 들어와있는 듯한 착각"
+          />
+        </MarketingCol>
       </MarketingContainer>
 
       <MarketingContainer>
         <MarketingTitleBox>
           <BrandTitleRow>
-            <HomeTitle>크리스마스에 눈이 온다면?</HomeTitle>
-            <HomeTitleWeight>크리스마스 공간 기획</HomeTitleWeight>
-            <ArrowIcon />
+            <HomeTitle>
+              크리스마스에 눈이 온다면? 크리스마스 공간 기획
+            </HomeTitle>
           </BrandTitleRow>
         </MarketingTitleBox>
         <MarketingLine>

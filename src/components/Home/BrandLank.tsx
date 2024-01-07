@@ -24,8 +24,9 @@ const LankContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  height: 7.5rem;
-  margin-top: 1.62rem;
+  justify-content: center;
+  height: 3.75rem;
+  margin: 0.75rem 0 1.25rem 0;
 `;
 
 const LankLine = styled.div`
@@ -33,21 +34,23 @@ const LankLine = styled.div`
   flex-direction: row;
   align-items: flex-start;
   align-items: center;
-  height: 5rem;
+  height: 3.12rem;
 `;
 
 const LankNum = styled.span`
   color: ${colors.black};
-  font-size: 2.5rem;
-  font-weight: 600;
-  line-height: 3.25rem;
-  margin-right: 5.37rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 130%; /* 1.95rem */
+  letter-spacing: -0.015rem;
+  margin-right: 4.04rem;
 `;
 
 const BrandName = styled.span`
   color: ${colors.black};
-  font-size: 2.5rem;
-  font-weight: 600;
-  line-height: 3.25rem;
-  margin-right: 2.44rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 130%; /* 1.95rem */
+  letter-spacing: -0.015rem;
+  margin-right: 3.01rem;
 `;
