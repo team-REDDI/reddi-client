@@ -11,13 +11,14 @@ export const HomeContainer = styled.div`
 export const ImageContainer = styled.div`
   position: relative;
   width: 100%;
-  height: 49.5rem;
+  height: 28.125rem;
+  background-color: rgba(0, 0, 0, 0.1);
 `;
 
 export const HomeImage = styled.img`
   position: absolute;
   width: 100%;
-  height: 49.5rem;
+  height: 28.125rem;
 `;
 
 export const EventContainer = styled.div`
@@ -25,36 +26,39 @@ export const EventContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin: 11.12rem 0 0 18.75rem;
-  gap: 1.5rem;
+  margin: 11.62rem 0 0 10.69rem;
+  gap: 0.75rem;
 `;
 
 export const EventText = styled.span`
-  color: ${colors.white};
+  color: ${colors.black};
   font-size: 0.95rem;
   font-weight: 400;
   line-height: 1.6rem;
 `;
 
 export const EventTitle = styled.span`
-  color: ${colors.white};
+  color: ${colors.black};
   font-size: 3.75rem;
   font-style: normal;
   font-weight: 800;
-  line-height: 6rem;
 `;
 
 export const EventContent = styled.div`
-  color: ${colors.white};
-  width: 42.1rem;
+  color: ${colors.black};
+  /* width: 42.1rem;
   font-size: 1rem;
   font-style: normal;
   font-weight: 500;
-  line-height: 1.55rem;
+  line-height: 1.55rem; */
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 130%;
+  letter-spacing: -0.015rem;
 `;
 
 export const EventButton = styled.div`
-  color: ${colors.white};
+  color: ${colors.black};
   font-size: 0.95rem;
   font-style: normal;
   font-weight: 400;
@@ -72,7 +76,8 @@ export const BrandLankContainer = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   height: fit-content;
-  margin-top: 7.12rem;
+  margin-top: 6.25rem;
+  width: fit-content;
 `;
 
 export const BrandTitleBox = styled.div`
@@ -101,11 +106,11 @@ export const HomeTitleWeight = styled.div`
 
 export const HomeTitle = styled.div`
   color: ${colors.black};
-  font-size: 3.125rem;
-  font-weight: 400;
-  line-height: 130%;
-  width: fit-content;
-  margin-right: 1.25rem;
+  font-size: 2.25rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 130%; /* 2.925rem */
+  letter-spacing: -0.0225rem;
 `;
 
 export const DateText = styled.span`
@@ -120,17 +125,17 @@ export const DateText = styled.span`
 export const LankBox = styled.div`
   display: flex;
   flex-direction: column;
-  height: 41.5rem;
-  width: 82.7rem;
+  height: 26.15rem;
+  width: fit-content;
   align-items: flex-start;
-  margin-top: 4.94rem;
+  margin-top: 2.5rem;
 `;
 
 export const GreyLine = styled.div`
   display: flex;
   flex-direction: column;
-  width: 82.625rem;
-  height: 0.125rem;
+  width: 60.63194rem;
+  height: 0.09175rem;
   background-color: #d6d7dc;
 `;
 
@@ -139,21 +144,53 @@ export const MarketingContainer = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   height: fit-content;
-  margin-top: 10.95rem;
+  width: 64rem;
+  margin-top: 6.25rem;
 `;
 
 export const MarketingTitleBox = styled.div`
   display: flex;
   flex-direction: column;
-  width: 65rem;
+  width: fit-content;
   height: 4.1rem;
+`;
+
+export const MarketingCol = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 64rem;
+  height: 23.75rem;
+  gap: 2.5rem;
+  margin-top: 2.5rem;
+  flex-wrap: wrap;
 `;
 
 export const MarketingLine = styled.div`
   display: flex;
-  width: 82.3rem;
-  gap: 1.25rem;
-  margin-top: 4.12rem;
+  width: 64rem;
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+`;
+
+export const Banner = styled.div`
+  display: flex;
+  width: 64rem;
+  padding: 2.1875rem 4.6875rem;
+  justify-content: center;
+  box-sizing: border-box;
+  align-items: center;
+  gap: 0.625rem;
+  background-color: rgba(0, 0, 0, 0.1);
+  margin-top: 6.25rem;
+`;
+
+export const BannerText = styled.span`
+  color: ${colors.black};
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 130%;
+  letter-spacing: -0.0225rem;
+  width: 100%;
 `;
 
 export const Blank = styled.div`
