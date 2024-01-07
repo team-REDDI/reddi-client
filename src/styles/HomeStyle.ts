@@ -18,7 +18,7 @@ export const ImageContainer = styled.div`
 export const HomeImage = styled.img`
   position: absolute;
   width: 100%;
-  height: 28.125rem;
+  height: 100%;
 `;
 
 export const EventContainer = styled.div`

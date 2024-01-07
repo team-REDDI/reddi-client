@@ -38,7 +38,6 @@ const REDDI = styled.span`
   font-size: 1.5rem;
   font-weight: 700;
   line-height: 130%;
-  letter-spacing: -0.015rem;
   margin-bottom: 1.5rem;
 `;
 
@@ -48,7 +47,6 @@ const ReddiExp = styled.div`
   font-size: 0.75rem;
   font-weight: 500;
   line-height: 130%;
-  letter-spacing: -0.0075rem;
   margin-bottom: 3.13rem;
 `;
 
@@ -60,10 +58,9 @@ const ReddiButtonRow = styled.div`
 
 const ReddiButton = styled.span`
   color: ${colors.black_f};
-  font-family: SUIT;
   font-size: 0.75rem;
   font-style: normal;
   font-weight: 500;
-  line-height: 130%; /* 0.975rem */
+  line-height: 130%;
   letter-spacing: -0.0075rem;
 `;
