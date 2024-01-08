@@ -46,9 +46,9 @@ export const FilterTag = styled.div`
   padding: 0.25rem 1.25rem;
   justify-content: center;
   align-items: center;
-  border: 1px solid ${colors.black_f};
+  border: 1px solid ${colors.black_CTA};
   color: ${colors.white};
-  background-color: ${colors.black_f};
+  background-color: ${colors.black_CTA};
   font-size: 1.25rem;
   font-style: normal;
   font-weight: 800;
@@ -115,7 +115,7 @@ export const MarketingTags = styled.div`
   align-items: flex-start;
   gap: 1.5rem;
   width: 64rem;
-  border-top: 0.03rem solid ${colors.black_f};
-  border-bottom: 0.1rem solid ${colors.black_f};
+  border-top: 0.03rem solid ${colors.black_CTA};
+  border-bottom: 0.1rem solid ${colors.black_CTA};
   padding: 1.5rem 0;
 `;
