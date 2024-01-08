@@ -15,7 +15,6 @@ import {
   ImageContainer,
   MarketingTags,
 } from "../styles/marketingStyle";
-import { ReactComponent as ArrowIcon } from "../assets/svgs/arrow.svg";
 import { BrandTitleRow, HomeImage, HomeTitle } from "../styles/HomeStyle";
 import { Footer } from "../components/Footer";
 import { useNavigate } from "react-router-dom";
