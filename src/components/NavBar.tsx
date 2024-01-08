@@ -12,9 +12,9 @@ const NavBar = () => {
         <StyledNavLink to="/mypage">마이페이지</StyledNavLink>
       </NavSection>
       <NavSection>
-        <StyledNavLink to="/search">검색</StyledNavLink>
-        <StyledNavLink to="/login">로그인</StyledNavLink>
-        <StyledNavLink to="/signup">회원가입</StyledNavLink>
+        <UserNavLink to="/search">검색</UserNavLink>
+        <UserNavLink to="/login">로그인</UserNavLink>
+        <UserNavLink to="/signup">회원가입</UserNavLink>
       </NavSection>
     </NavigationWrapper>
   );
@@ -41,20 +41,19 @@ const NavigationWrapper = styled.nav`
 `;
 
 const StyledNavLink = styled(NavLink)`
+  color: #595959;
+  text-decoration: none;
+  position: relative;
+  &.active {
+    color: white;
+  }
+`;
+const UserNavLink = styled(NavLink)`
   color: white;
   text-decoration: none;
   position: relative;
-
-  &.active::after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 0.125rem;
-    background-color: white;
-    bottom: -0.321rem;
-    left: 0;
-  }
 `;
+
 const NavSection = styled.div`
   display: flex;
   align-items: center;
