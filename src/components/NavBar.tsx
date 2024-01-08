@@ -1,11 +1,10 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
-import { ReactComponent as LogoImage } from "../assets/svgs/REDDI.svg";
+
 const NavBar = () => {
   return (
     <NavigationWrapper>
       <NavSection>
-        <StyledLogoImage />
         <StyledNavLink to="/">홈</StyledNavLink>
         <StyledNavLink to="/marketing">마케팅</StyledNavLink>
         <StyledNavLink to="/brand">브랜드</StyledNavLink>
@@ -13,9 +12,9 @@ const NavBar = () => {
         <StyledNavLink to="/mypage">마이페이지</StyledNavLink>
       </NavSection>
       <NavSection>
-        <StyledNavLink to="/search">검색</StyledNavLink>
-        <StyledNavLink to="/login">로그인</StyledNavLink>
-        <StyledNavLink to="/signup">회원가입</StyledNavLink>
+        <UserNavLink to="/search">검색</UserNavLink>
+        <UserNavLink to="/login">로그인</UserNavLink>
+        <UserNavLink to="/signup">회원가입</UserNavLink>
       </NavSection>
     </NavigationWrapper>
   );
@@ -27,11 +26,12 @@ const NavigationWrapper = styled.nav`
   z-index: 1;
   align-items: center;
   justify-content: space-between;
-  padding: 0px 4rem;
+  padding-left: 10.69rem;
+  padding-right: 4.44rem;
   background-color: black;
   color: white;
-  height: 4.4375rem;
-  font-size: 1.25rem;
+  height: 3.125rem;
+  font-size: 0.91725rem;
   font-style: normal;
   font-weight: 700;
   position: relative;
@@ -39,27 +39,24 @@ const NavigationWrapper = styled.nav`
   width: 100vw;
   box-sizing: border-box;
 `;
-const StyledLogoImage = styled(LogoImage)`
-  margin-right: 12.38rem;
-`;
+
 const StyledNavLink = styled(NavLink)`
+  color: #595959;
+  text-decoration: none;
+  position: relative;
+  &.active {
+    color: white;
+  }
+`;
+const UserNavLink = styled(NavLink)`
   color: white;
   text-decoration: none;
   position: relative;
-
-  &.active::after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 0.125rem;
-    background-color: white;
-    bottom: -0.321rem;
-    left: 0;
-  }
 `;
+
 const NavSection = styled.div`
   display: flex;
   align-items: center;
-  gap: 1.88rem;
+  gap: 1.5rem;
 `;
 export default NavBar;
