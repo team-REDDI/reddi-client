@@ -3,14 +3,14 @@ import { colors } from "../../styles/colors";
 import { useNavigate } from "react-router-dom";
 
 interface MarketingProps {
-  lank: number;
+  lank: number | null;
   imgSrc: string;
   title: string;
   expl: string;
 }
 
 export const MarketingBoxSmall = ({
-  lank,
+  lank = null,
   imgSrc,
   title,
   expl,
@@ -23,7 +23,7 @@ export const MarketingBoxSmall = ({
 
   return (
     <Container onClick={goToBrandDetail}>
-      <LankNum>{lank}</LankNum>
+      {lank ? <LankNum>{lank}</LankNum> : null}
       <MarketingImg src={require("../../assets/images/exemple.png")} />
       <TextBox>
         <Title>{title}</Title>

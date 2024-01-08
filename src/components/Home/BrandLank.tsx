@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { colors } from "../../styles/colors";
+import { useNavigate } from "react-router-dom";
 
 interface BrandLankProps {
   lank: number;
@@ -8,8 +9,13 @@ interface BrandLankProps {
 }
 
 export const BrandLankBox = ({ lank, name, Icon }: BrandLankProps) => {
+  const nav = useNavigate();
+
+  const goToBrandDetail = () => {
+    nav("/brand-detail-0");
+  };
   return (
-    <LankContainer>
+    <LankContainer onClick={goToBrandDetail}>
       <LankLine>
         <LankNum>{lank}</LankNum>
         <BrandName>{name}</BrandName>
@@ -27,6 +33,7 @@ const LankContainer = styled.div`
   justify-content: center;
   height: 3.75rem;
   margin: 0.75rem 0 1.25rem 0;
+  cursor: pointer;
 `;
 
 const LankLine = styled.div`

@@ -15,9 +15,8 @@ import {
   ImageContainer,
   MarketingTags,
 } from "../styles/marketingStyle";
-import { ReactComponent as ArrowIcon } from "../assets/svgs/arrow.svg";
 import { BrandTitleRow, HomeImage, HomeTitle } from "../styles/HomeStyle";
-import { Bottom } from "../components/Bottom";
+import { Footer } from "../components/Footer";
 import { useNavigate } from "react-router-dom";
 
 const MarketingDetail = () => {
@@ -93,7 +92,7 @@ const MarketingDetail = () => {
         <FilterTag>팝업스토어</FilterTag>
         <FilterTag>콘텐츠마케팅</FilterTag>
       </MarketingTags>
-      <Bottom />
+      <Footer />
     </MarketingDetailContainer>
   );
 };

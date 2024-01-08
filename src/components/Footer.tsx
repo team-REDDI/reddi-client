@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { colors } from "../styles/colors";
 
-export const Bottom = () => {
+export const Footer = () => {
   return (
     <Container>
       <REDDI>REDDI</REDDI>
@@ -27,14 +27,16 @@ const Container = styled.div`
   padding: 4.375rem 12rem;
   flex-direction: column;
   align-items: flex-start;
-  border-top: 0.5px solid ${colors.black_f};
-  background-color: #f4f4f4;
+  border-top: 0.5px solid ${colors.black_CTA};
+  background-color: ${colors.black};
   margin-top: 6.26rem;
   box-sizing: border-box;
+  /* bottom: 0px;
+  position: absolute; */
 `;
 
 const REDDI = styled.span`
-  color: ${colors.black_f};
+  color: ${colors.white};
   font-size: 1.5rem;
   font-weight: 700;
   line-height: 130%;
@@ -43,7 +45,7 @@ const REDDI = styled.span`
 
 const ReddiExp = styled.div`
   width: 25.25rem;
-  color: #5f5f5f;
+  color: ${colors.white};
   font-size: 0.75rem;
   font-weight: 500;
   line-height: 130%;
@@ -57,7 +59,7 @@ const ReddiButtonRow = styled.div`
 `;
 
 const ReddiButton = styled.span`
-  color: ${colors.black_f};
+  color: #ccc;
   font-size: 0.75rem;
   font-style: normal;
   font-weight: 500;
