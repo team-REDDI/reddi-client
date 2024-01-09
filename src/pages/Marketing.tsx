@@ -5,6 +5,7 @@ import Filter from "../components/Filter";
 import { BrandTitleRow, HomeTitle, MarketingLine } from "../styles/HomeStyle";
 import { MarketingBox } from "../components/MarketingBox";
 import dropdownDataMarketing from "../assets/datas/dropDownDataMarketing.json";
+import { Footer } from "../components/Footer";
 
 const Marketing = () => {
   return (
@@ -116,6 +117,7 @@ const Marketing = () => {
           />
         </MarketingLine>
       </ReferenceBox>
+      <Footer />
     </MarketingPageContainer>
   );
 };
