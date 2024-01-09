@@ -1,21 +1,24 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
-
+import { ReactComponent as ReddiLogo } from "../assets/svgs/ReddiLogo.svg";
 const NavBar = () => {
   return (
     <NavigationWrapper>
-      <NavSection>
-        <StyledNavLink to="/">홈</StyledNavLink>
-        <StyledNavLink to="/marketing">마케팅</StyledNavLink>
-        <StyledNavLink to="/brand">브랜드</StyledNavLink>
-        <StyledNavLink to="/ai-branding">AI 브랜딩</StyledNavLink>
-        <StyledNavLink to="/mypage">마이페이지</StyledNavLink>
-      </NavSection>
-      <NavSection>
-        <UserNavLink to="/search">검색</UserNavLink>
-        <UserNavLink to="/login">로그인</UserNavLink>
-        <UserNavLink to="/signup">회원가입</UserNavLink>
-      </NavSection>
+      <StyledLogo />
+      <NavLinks>
+        <NavSection>
+          <StyledNavLink to="/">홈</StyledNavLink>
+          <StyledNavLink to="/marketing">마케팅</StyledNavLink>
+          <StyledNavLink to="/brand">브랜드</StyledNavLink>
+          <StyledNavLink to="/ai-branding">AI 브랜딩</StyledNavLink>
+          <StyledNavLink to="/mypage">마이페이지</StyledNavLink>
+        </NavSection>
+        <NavSection>
+          <UserNavLink to="/search">검색</UserNavLink>
+          <UserNavLink to="/login">로그인</UserNavLink>
+          <UserNavLink to="/signup">회원가입</UserNavLink>
+        </NavSection>
+      </NavLinks>
     </NavigationWrapper>
   );
 };
@@ -25,8 +28,7 @@ const NavigationWrapper = styled.nav`
   flex-direction: row;
   z-index: 1;
   align-items: center;
-  justify-content: space-between;
-  padding-left: 10.69rem;
+  padding-left: 3.94rem;
   padding-right: 4.44rem;
   background-color: black;
   color: white;
@@ -59,4 +61,14 @@ const NavSection = styled.div`
   align-items: center;
   gap: 1.5rem;
 `;
+
+const StyledLogo = styled(ReddiLogo)`
+  margin-right: 2.44rem;
+`;
+const NavLinks = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+`;
+
 export default NavBar;
