@@ -17,6 +17,7 @@ export const RefBox = styled.div`
   align-items: flex-start;
   justify-content: center;
   box-sizing: border-box;
+  cursor: pointer;
 `;
 
 export const BrandLogoImg = styled.img`
