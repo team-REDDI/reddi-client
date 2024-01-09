@@ -12,7 +12,15 @@
     "target": [
       { "name": "10대", "value": "10대" },
       { "name": "20대", "value": "20대" },
-      { "name": "30대", "value": "30대" }
+      { "name": "30대", "value": "30대" },
+      { "name": "40대", "value": "40대" },
+      { "name": "50대", "value": "50대" },
+      { "name": "60대", "value": "60대" },
+      { "name": "MZ", "value": "MZ" },
+      { "name": "GenZ", "value": "GenZ" },
+      { "name": "2030", "value": "2030" }
+      
+      
     ],
     "sort": [
       { "name": "인기순", "value": "인기순" },

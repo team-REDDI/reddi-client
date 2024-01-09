@@ -16,7 +16,10 @@ const Marketing = () => {
   return (
     <MarketingPageContainer>
       <NavBar />
-      <Header title="마케팅" />
+      <Header
+        title="마케팅"
+        subtitle="마케팅 레퍼런스들을 보여주는 페이지입니다. (짧은 페이지 설명)"
+      />
       <Filter dropdownItems={dropdownDataMarketing} />
       <ReferenceBox>
         <BrandTitleRow>

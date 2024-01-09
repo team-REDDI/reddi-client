@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Dropdown from "./Dropdown";
 import { colors } from "../styles/colors";
+import CheckboxGroup from "./CheckBox";
 type FilterProps = {
   dropdownItems: {
     industry?: Array<{ name: string; value: string }>;
@@ -9,131 +10,183 @@ type FilterProps = {
     target?: Array<{ name: string; value: string }>;
     brandcolor?: Array<{ name: string; value: string }>;
     atmosphere?: Array<{ name: string; value: string }>;
-    sort?: Array<{ name: string; value: string }>;
   };
 };
 
-const Filter: React.FC<FilterProps> = ({ dropdownItems }) => {
-  const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
-  const [selectedSort, setSelectedSort] = useState<string>("");
+interface Item {
+  name: string;
+  value: string;
+}
 
-  const handleSelectSort = (item: { name: string; value: string }) => {
-    setSelectedSort(item.name); //인기순, 추천순 값 변경
+const Filter: React.FC<FilterProps> = ({ dropdownItems }) => {
+  const [selectedFilters, setSelectedFilters] = useState<Set<string>>(
+    new Set(),
+  );
+  const [activeCategory, setActiveCategory] = useState<string | null>(null);
+
+  const handleSelect = (item: Item, isChecked: boolean) => {
+    setSelectedFilters((prevFilters) => {
+      const newFilters = new Set(prevFilters);
+      if (isChecked) {
+        newFilters.add(item.value);
+      } else {
+        newFilters.delete(item.value);
+      }
+      return newFilters;
+    });
   };
 
-  const handleSelect = (item: { name: string; value: string }) => {
-    if (!selectedFilters.includes(item.value)) {
-      setSelectedFilters([...selectedFilters, item.value]);
-    }
+  const toggleCategory = (category: string) => {
+    setActiveCategory((prevActiveCategory) =>
+      prevActiveCategory === category ? null : category,
+    );
   };
 
   const removeFilter = (filter: string) => {
-    setSelectedFilters(selectedFilters.filter((f) => f !== filter));
-  };
-
-  const handleReset = () => {
-    setSelectedFilters([]);
-    // setSelectedSort(""); 인기순 추천순도 바꿀지?
+    setSelectedFilters((prevFilters) => {
+      const newFilters = new Set(prevFilters);
+      newFilters.delete(filter);
+      return newFilters;
+    });
   };
 
   return (
     <FilterContainer>
       <Text>분류</Text>
-      <DropdownsContainer>
+      <ButtonsContainer>
         {dropdownItems?.industry && (
-          <Dropdown
-            title="산업군"
-            items={dropdownItems.industry}
-            onSelect={handleSelect}
-          />
+          <CategoryButton
+            onClick={() => toggleCategory("industry")}
+            isActive={activeCategory === "industry"}
+          >
+            산업군
+          </CategoryButton>
         )}
         {dropdownItems?.marketing && (
-          <Dropdown
-            title="마케팅"
-            items={dropdownItems.marketing}
-            onSelect={handleSelect}
-          />
+          <CategoryButton
+            onClick={() => toggleCategory("marketing")}
+            isActive={activeCategory === "marketing"}
+          >
+            마케팅
+          </CategoryButton>
         )}
         {dropdownItems?.target && (
-          <Dropdown
-            title="타겟층"
-            items={dropdownItems.target}
-            onSelect={handleSelect}
-          />
-        )}
-        {dropdownItems?.brandcolor && (
-          <Dropdown
-            title="브랜드컬러"
-            items={dropdownItems.brandcolor}
-            onSelect={handleSelect}
-          />
+          <CategoryButton
+            onClick={() => toggleCategory("target")}
+            isActive={activeCategory === "target"}
+          >
+            타겟층
+          </CategoryButton>
         )}
         {dropdownItems?.atmosphere && (
-          <Dropdown
-            title="분위기"
-            items={dropdownItems.atmosphere}
-            onSelect={handleSelect}
-          />
+          <CategoryButton
+            onClick={() => toggleCategory("atmosphere")}
+            isActive={activeCategory === "atmosphere"}
+          >
+            분위기
+          </CategoryButton>
         )}
-        {dropdownItems?.sort && (
-          <DropdownSort
-            title={selectedSort || "인기순"}
-            items={dropdownItems.sort}
-            onSelect={handleSelectSort}
-          />
+        {dropdownItems?.brandcolor && (
+          <CategoryButton
+            onClick={() => toggleCategory("brandcolor")}
+            isActive={activeCategory === "brandcolor"}
+          >
+            브랜드컬러
+          </CategoryButton>
         )}
-      </DropdownsContainer>
+      </ButtonsContainer>
+
+      {activeCategory === "industry" && (
+        <CheckboxGroup
+          items={dropdownItems.industry || []}
+          selectedFilters={selectedFilters}
+          onSelect={handleSelect}
+        />
+      )}
+      {activeCategory === "marketing" && (
+        <CheckboxGroup
+          items={dropdownItems.marketing || []}
+          selectedFilters={selectedFilters}
+          onSelect={handleSelect}
+        />
+      )}
+      {activeCategory === "target" && (
+        <CheckboxGroup
+          items={dropdownItems.target || []}
+          selectedFilters={selectedFilters}
+          onSelect={handleSelect}
+        />
+      )}
+      {activeCategory === "atmosphere" && (
+        <CheckboxGroup
+          items={dropdownItems.atmosphere || []}
+          selectedFilters={selectedFilters}
+          onSelect={handleSelect}
+        />
+      )}
+      {activeCategory === "brandcolor" && (
+        <CheckboxGroup
+          items={dropdownItems.brandcolor || []}
+          selectedFilters={selectedFilters}
+          onSelect={handleSelect}
+        />
+      )}
 
       <SelectedFilters>
-        {selectedFilters.map((filter, index) => (
+        {Array.from(selectedFilters).map((filter: string, index: number) => (
           <FilterTag key={index}>
             {filter}
             <RemoveButton onClick={() => removeFilter(filter)}>X</RemoveButton>
           </FilterTag>
         ))}
-        <ResetButton onClick={handleReset}>초기화</ResetButton>
       </SelectedFilters>
     </FilterContainer>
   );
 };
 
-const Text = styled.div`
-  margin-top: 4.81rem;
-  margin-bottom: 1.63rem;
-  font-size: 1.875rem;
-  font-style: normal;
-  font-weight: 800;
-`;
-const FilterContainer = styled.div``;
-
-const DropdownsContainer = styled.div`
+const FilterContainer = styled.div`
   display: flex;
-  margin-bottom: 10px;
+  width: 100vw;
+  box-sizing: border-box;
+  padding-left: 10.69rem;
+  padding-right: 10.69rem;
+  padding-top: 6.25rem;
+  flex-direction: column;
+  gap: 1.5rem;
+`;
+
+const Text = styled.div`
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 130%;
 `;
 
 const SelectedFilters = styled.div`
   display: flex;
-  width: 82.5rem;
-  height: 5.125rem;
-  border-top: 1px solid #000;
-  background: ${colors.grey_100};
+  flex-wrap: wrap;
+  min-height: 2.5rem;
+  padding: 0.625rem;
+  align-items: center;
+  gap: 0.625rem;
+  background: ${colors.light_red};
+  border-bottom: 1px solid ${colors.red};
   padding-left: 1.75rem;
 `;
 
 const FilterTag = styled.div`
-  margin-right: 0.62rem;
+  margin-right: 0.5rem;
   display: flex;
-  padding: 0.25rem 1.25rem;
+  height: 2.035rem;
+  padding: 0.25rem 1rem;
   justify-content: center;
   align-items: center;
-  border: 1px solid #000;
   color: white;
-  background-color: #000;
-  font-size: 1.25rem;
+  background-color: ${colors.red};
+  font-size: 1.125rem;
   font-style: normal;
-  font-weight: 800;
-  margin: 1.25rem 0rem;
-  margin-right: 0.63rem;
+  font-weight: 500;
+  line-height: 130%;
 `;
 
 const RemoveButton = styled.button`
@@ -146,23 +199,27 @@ const RemoveButton = styled.button`
   cursor: pointer;
 `;
 
-const ResetButton = styled.button`
-  background-color: transparent;
-  color: ${colors.grey_700};
-  border: none;
-  padding: 0rem 1.37rem;
-  margin-left: auto;
-  font-size: 1.25rem;
-  font-style: normal;
-  font-weight: 600;
-  cursor: pointer;
-  /* &:hover {
-    background-color: #c0c0c0;
-  } */
+const ButtonsContainer = styled.div`
+  display: flex;
 `;
-//추천순, 인기순은 제일 오른쪽에
-const DropdownSort = styled(Dropdown)`
-  margin-left: auto;
+
+const CategoryButton = styled.button<{ isActive: boolean }>`
+  width: fit-content;
+  cursor: pointer;
+  display: flex;
+  padding: 0.19381rem 0.77519rem;
+  height: 2.035rem;
+  justify-content: center;
+  align-items: center;
+  border: 0.388px solid #000;
+  gap: 0.62rem;
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 130%;
+  margin-right: 0.97rem;
+  background-color: ${(props) => (props.isActive ? "#000" : "transparent")};
+  color: ${(props) => (props.isActive ? "#fff" : "#000")};
 `;
 
 export default Filter;
