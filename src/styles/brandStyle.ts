@@ -1,6 +1,69 @@
 import styled from "styled-components";
 import { colors } from "../styles/colors";
 
+export const BrandContainer = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-top: 5.03rem;
+`;
+
+export const RefBox = styled.div`
+  display: flex;
+  width: 31.25rem;
+  height: 9.0625rem;
+  padding: 1.56rem 2.25rem;
+  align-items: flex-start;
+  justify-content: center;
+  box-sizing: border-box;
+  cursor: pointer;
+`;
+
+export const BrandLogoImg = styled.img`
+  width: 6.8125rem;
+  height: 5.9375rem;
+`;
+
+export const BrandTextBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-left: 1.87rem;
+`;
+
+export const BrandNameText = styled.span`
+  color: ${colors.black};
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 130%;
+  letter-spacing: -0.015rem;
+  margin-bottom: 0.19rem;
+`;
+
+export const BrandLocation = styled.span`
+  color: ${colors.black};
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 150%;
+  letter-spacing: -0.00875rem;
+  margin-bottom: 0.69rem;
+`;
+
+export const BrandTags = styled.div`
+  display: flex;
+  padding: 0.25rem 0.5rem;
+  justify-content: center;
+  align-items: center;
+  margin-right: 0.5rem;
+  color: var(--red, var(--red, #f53b36));
+  background-color: ${colors.light_red};
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 130%;
+  letter-spacing: -0.01rem;
+  box-sizing: border-box;
+`;
+
 export const BrandDetailContainer = styled.div`
   display: flex;
   flex-direction: column;
