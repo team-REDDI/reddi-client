@@ -91,7 +91,7 @@ export const BrandTitleRow = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: fit-content;
+  width: 100%;
   height: 4.1rem;
 `;
 

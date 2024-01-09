@@ -2,13 +2,7 @@ import styled from "styled-components";
 import NavBar from "../components/NavBar";
 import Header from "../components/Header";
 import Filter from "../components/Filter";
-import { ReactComponent as ArrowIcon } from "../assets/svgs/arrow.svg";
-import {
-  Blank,
-  BrandTitleRow,
-  HomeTitleWeight,
-  MarketingLine,
-} from "../styles/HomeStyle";
+import { BrandTitleRow, HomeTitle, MarketingLine } from "../styles/HomeStyle";
 import { MarketingBox } from "../components/MarketingBox";
 import dropdownDataMarketing from "../assets/datas/dropDownDataMarketing.json";
 
@@ -23,8 +17,7 @@ const Marketing = () => {
       <Filter dropdownItems={dropdownDataMarketing} />
       <ReferenceBox>
         <BrandTitleRow>
-          <HomeTitleWeight>마케팅 레퍼런스</HomeTitleWeight>
-          <ArrowIcon />
+          <HomeTitle>마케팅 레퍼런스</HomeTitle>
         </BrandTitleRow>
         <MarketingLine>
           <MarketingBox
@@ -122,7 +115,6 @@ const Marketing = () => {
             read={567}
           />
         </MarketingLine>
-        <Blank />
       </ReferenceBox>
     </MarketingPageContainer>
   );
@@ -137,9 +129,9 @@ const MarketingPageContainer = styled.div`
 const ReferenceBox = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  width: 82.3rem;
-  margin-top: 10.6rem;
+  align-items: center;
+  width: 64rem;
+  margin-top: 6.25rem;
 `;
 
 export default Marketing;
