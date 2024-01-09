@@ -138,7 +138,7 @@ export const MarketingCol = styled.div`
   display: flex;
   flex-direction: column;
   width: 61rem;
-  height: 23.75rem;
+  height: 25rem;
   gap: 2.5rem;
   margin-top: 2.5rem;
   flex-wrap: wrap;
