@@ -13,6 +13,8 @@ export const ImageContainer = styled.div`
   width: 100%;
   height: 449px;
   background-color: rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
 `;
 
 export const HomeImage = styled.img`
@@ -28,7 +30,7 @@ export const EventContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin: 9.84rem 0 0 8.13rem;
+  margin-left: 8.13rem;
   gap: 0.75rem;
 `;
 
