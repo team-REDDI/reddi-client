@@ -19,6 +19,8 @@ export const HomeImage = styled.img`
   position: absolute;
   width: 100%;
   height: 100%;
+  object-fit: cover;
+  object-position: center;
 `;
 
 export const EventContainer = styled.div`
@@ -26,7 +28,7 @@ export const EventContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin: 11.62rem 0 0 10.69rem;
+  margin: 9.84rem 0 0 8.13rem;
   gap: 0.75rem;
 `;
 
@@ -38,35 +40,37 @@ export const EventText = styled.span`
 `;
 
 export const EventTitle = styled.span`
-  color: ${colors.black};
-  font-size: 3.75rem;
+  color: ${colors.white};
+  font-size: 2.25rem;
   font-style: normal;
-  font-weight: 800;
+  font-weight: 700;
+  line-height: 130%; /* 2.925rem */
+  letter-spacing: -0.0225rem;
 `;
 
 export const EventContent = styled.div`
-  color: ${colors.black};
-  /* width: 42.1rem;
+  color: #bdbdbd;
   font-size: 1rem;
-  font-style: normal;
   font-weight: 500;
-  line-height: 1.55rem; */
-  font-size: 1.5rem;
-  font-weight: 700;
   line-height: 130%;
-  letter-spacing: -0.015rem;
+  letter-spacing: -0.01rem;
+  margin-bottom: 0.75rem;
 `;
 
-export const EventButton = styled.div`
-  color: ${colors.black};
-  font-size: 0.95rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1.4rem;
-  margin-top: 0.1rem;
-  border-bottom: 1px solid currentColor; /* 밑줄처럼 보이게 함 */
-  padding-bottom: 0.001rem;
-  /* text-decoration: underline; */
+export const EventButton = styled.button`
+  color: ${colors.black_CTA};
+  background-color: ${colors.white};
+  border: none;
+  display: inline-flex;
+  padding: 0.25rem 0.625rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.625rem;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 130%;
+  letter-spacing: -0.01rem;
+  box-sizing: border-box;
 
   cursor: pointer;
 `;
@@ -175,13 +179,20 @@ export const MarketingLine = styled.div`
 export const Banner = styled.div`
   display: flex;
   width: 64rem;
-  padding: 2.1875rem 4.6875rem;
+  /* padding: 2.1875rem 4.6875rem; */
   justify-content: center;
   box-sizing: border-box;
   align-items: center;
   gap: 0.625rem;
   background-color: rgba(0, 0, 0, 0.1);
   margin-top: 6.25rem;
+`;
+
+export const BannerImg = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 `;
 
 export const BannerText = styled.span`
