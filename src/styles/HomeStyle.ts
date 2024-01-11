@@ -11,7 +11,7 @@ export const HomeContainer = styled.div`
 export const ImageContainer = styled.div`
   position: relative;
   width: 100%;
-  height: 28.125rem;
+  height: 449px;
   background-color: rgba(0, 0, 0, 0.1);
 `;
 
@@ -179,7 +179,6 @@ export const MarketingLine = styled.div`
 export const Banner = styled.div`
   display: flex;
   width: 64rem;
-  /* padding: 2.1875rem 4.6875rem; */
   justify-content: center;
   box-sizing: border-box;
   align-items: center;

@@ -14,9 +14,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/marketing" element={<Marketing />} />
-          <Route path="/marketing-detail-0" element={<MarketingDetail />} />
+          <Route path="/marketing/detail/0" element={<MarketingDetail />} />
           <Route path="/brand" element={<Brand />} />
-          <Route path="/brand-detail-0" element={<BrandDetail />} />
+          <Route path="/brand/detail/0" element={<BrandDetail />} />
         </Routes>
       </BrowserRouter>
     </>

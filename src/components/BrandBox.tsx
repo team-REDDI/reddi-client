@@ -21,7 +21,7 @@ export const BrandBox = ({ imgSrc, brandName, location, tag }: BrandProps) => {
   const nav = useNavigate();
 
   const goToBrandDetail = () => {
-    nav("/brand-detail-0");
+    nav("/brand/detail/0");
   };
 
   return (
