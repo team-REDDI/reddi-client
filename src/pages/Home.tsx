@@ -37,21 +37,15 @@ import { BrandLankBox } from "../components/Home/BrandLank";
 import { MarketingBox } from "../components/MarketingBox";
 import { MarketingBoxSmall } from "../components/Home/MarketingBoxSmall";
 import { Footer } from "../components/Footer";
+import RandomBanner from "../components/Home/RandomBanner";
+import RandomMainBanner from "../components/Home/RandomMainBanner";
 
 const Home = () => {
   return (
     <HomeContainer>
       <NavBar />
 
-      <ImageContainer>
-        <HomeImage src={require("../assets/images/Home_1.png")} />
-        <EventContainer>
-          {/* <EventText>EVENT</EventText> */}
-          <EventTitle>요즘 브랜드는 공간으로 말을 건다</EventTitle>
-          <EventContent>브랜드 경험의 정수, 요즘 브랜드의 공간은?</EventContent>
-          <EventButton>콘텐츠 보기</EventButton>
-        </EventContainer>
-      </ImageContainer>
+      <RandomMainBanner />
 
       <BrandLankContainer>
         <BrandTitleBox>
@@ -119,10 +113,7 @@ const Home = () => {
         </MarketingCol>
       </MarketingContainer>
 
-      <Banner>
-        {/* <BannerText>지금을 넘어 내일까지, 지속 가능성을 생각하다.</BannerText> */}
-        <BannerImg src={require("../assets/images/banner_1.png")} />
-      </Banner>
+      <RandomBanner />
 
       <MarketingContainer>
         <MarketingTitleBox>
