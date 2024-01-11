@@ -1,32 +1,44 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 import { ReactComponent as ReddiLogo } from "../assets/svgs/ReddiLogo.svg";
+import { useState } from "react";
+import { SearchBar } from "./SearchBar";
 const NavBar = () => {
+  const [isSearchBar, setSearchBar] = useState<boolean>(false);
+
+  const toggleSearchBar = () => {
+    setSearchBar(!isSearchBar);
+  };
+
   return (
-    <NavigationWrapper>
-      <StyledLogo />
-      <NavLinks>
-        <NavSection>
-          <StyledNavLink to="/">홈</StyledNavLink>
-          <StyledNavLink to="/marketing">마케팅</StyledNavLink>
-          <StyledNavLink to="/brand">브랜드</StyledNavLink>
-          <StyledNavLink to="/ai-branding">AI 브랜딩</StyledNavLink>
-          <StyledNavLink to="/mypage">마이페이지</StyledNavLink>
-        </NavSection>
-        <NavSection>
-          <UserNavLink to="/search">검색</UserNavLink>
-          <UserNavLink to="/login">로그인</UserNavLink>
-          <UserNavLink to="/signup">회원가입</UserNavLink>
-        </NavSection>
-      </NavLinks>
-    </NavigationWrapper>
+    <>
+      <NavigationWrapper>
+        <StyledLogo />
+        <NavLinks>
+          <NavSection>
+            <StyledNavLink to="/">홈</StyledNavLink>
+            <StyledNavLink to="/marketing">마케팅</StyledNavLink>
+            <StyledNavLink to="/brand">브랜드</StyledNavLink>
+            <StyledNavLink to="/ai-branding">AI 브랜딩</StyledNavLink>
+            <StyledNavLink to="/mypage">마이페이지</StyledNavLink>
+          </NavSection>
+          <NavSection>
+            {/* <UserNavLink to="/search">검색</UserNavLink> */}
+            <SearchBarLink onClick={toggleSearchBar}>검색</SearchBarLink>
+            <UserNavLink to="/login">로그인</UserNavLink>
+            <UserNavLink to="/signup">회원가입</UserNavLink>
+          </NavSection>
+        </NavLinks>
+      </NavigationWrapper>
+      {isSearchBar && <SearchBar show={isSearchBar} />}
+    </>
   );
 };
 
 const NavigationWrapper = styled.nav`
   display: flex;
   flex-direction: row;
-  z-index: 1;
+  z-index: 999;
   align-items: center;
   padding-left: 3.94rem;
   padding-right: 4.44rem;
@@ -50,10 +62,19 @@ const StyledNavLink = styled(NavLink)`
     color: white;
   }
 `;
+
 const UserNavLink = styled(NavLink)`
   color: white;
   text-decoration: none;
   position: relative;
+`;
+
+const SearchBarLink = styled.div`
+  color: white;
+  text-decoration: none;
+  position: relative;
+
+  cursor: pointer;
 `;
 
 const NavSection = styled.div`
