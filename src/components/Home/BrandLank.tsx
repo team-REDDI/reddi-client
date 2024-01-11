@@ -12,7 +12,7 @@ export const BrandLankBox = ({ lank, name, Icon }: BrandLankProps) => {
   const nav = useNavigate();
 
   const goToBrandDetail = () => {
-    nav("/brand-detail-0");
+    nav("/brand/detail/0");
   };
   return (
     <LankContainer onClick={goToBrandDetail}>

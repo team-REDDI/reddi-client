@@ -38,7 +38,7 @@ const NavigationWrapper = styled.nav`
   font-weight: 700;
   position: relative;
   top: 0;
-  width: 100vw;
+  width: 100%;
   box-sizing: border-box;
 `;
 
@@ -65,6 +65,7 @@ const NavSection = styled.div`
 const StyledLogo = styled(ReddiLogo)`
   margin-right: 2.44rem;
 `;
+
 const NavLinks = styled.div`
   display: flex;
   justify-content: space-between;

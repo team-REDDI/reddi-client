@@ -20,7 +20,7 @@ export const MarketingBox = ({
   const nav = useNavigate();
 
   const goToBrandDetail = () => {
-    nav("/marketing-detail-0");
+    nav("/marketing/detail/0");
   };
 
   return (
