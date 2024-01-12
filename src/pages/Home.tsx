@@ -36,7 +36,7 @@ import {
 import { BrandLankBox } from "../components/Home/BrandLank";
 import { MarketingBox } from "../components/MarketingBox";
 import { MarketingBoxSmall } from "../components/Home/MarketingBoxSmall";
-import { Footer } from "../components/Footer";
+import Footer from "../components/Footer";
 import RandomBanner from "../components/Home/RandomBanner";
 import RandomMainBanner from "../components/Home/RandomMainBanner";
 

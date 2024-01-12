@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { colors } from "../styles/colors";
 
-export const Footer = () => {
+const Footer = () => {
   return (
     <Container>
       <REDDI>REDDI</REDDI>
@@ -19,6 +19,8 @@ export const Footer = () => {
     </Container>
   );
 };
+
+export default Footer;
 
 const Container = styled.div`
   display: flex;

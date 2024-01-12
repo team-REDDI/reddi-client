@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import { ReactComponent as SearchIcon } from "../assets/svgs/searchIcon.svg";
 import { MarketingBoxSmall } from "./Home/MarketingBoxSmall";
 import dropdownDataMarketing from "../assets/datas/dropDownDataMarketing.json";
+import { useNavigate } from "react-router-dom";
 
 type SearchBarProps = {
   show: boolean;
@@ -14,19 +15,24 @@ export const SearchBar: React.FC<SearchBarProps> = (props) => {
   useEffect(() => {}, [props.show]);
 
   const [inputValue, setInputValue] = useState<string>("");
+  const nav = useNavigate();
+
+  const goToResult = () => {
+    nav("/search/result");
+  };
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
   const onSubmit = useCallback(
     (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-
+      goToResult();
       //입력한 값이 없을 때 alert 추가
-      if (inputValue.trim() === "") {
-        alert("입력해주세요.");
-      } else {
-        setInputValue("");
-      }
+      // if (inputValue.trim() === "") {
+      //   alert("입력해주세요.");
+      // } else {
+      //   setInputValue("");
+      // }
     },
     [inputValue],
   );
@@ -34,7 +40,7 @@ export const SearchBar: React.FC<SearchBarProps> = (props) => {
   return (
     <SearchContainer show={props.show}>
       <SearchInputContainer show={props.show}>
-        <InputContainer>
+        <InputContainer onSubmit={onSubmit}>
           <InputBar placeholder="검색"></InputBar>
           <SearchIcon />
           {/* <SearchImg src={require("../assets/images/Link.png")} /> */}
