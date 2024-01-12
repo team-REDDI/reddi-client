@@ -9,7 +9,10 @@ type HeaderProps = {
 const Header: React.FC<HeaderProps> = ({ title, subtitle }) => {
   return (
     <HeaderContainer>
-      <Title>{title}</Title>
+      <TitleWrapper>
+        <Title>{title} </Title>
+        <DivideLine>|</DivideLine>
+      </TitleWrapper>
       <SubTitle>{subtitle}</SubTitle>
     </HeaderContainer>
   );
@@ -19,19 +22,31 @@ const HeaderContainer = styled.div`
   display: flex;
   flex-direction: column;
   padding: 11.25rem 10.6875rem 4.375rem 10.6875rem;
-  gap: 0.625rem;
+  gap: 1.12rem;
   width: 100vw;
   background-color: black;
   color: white;
   box-sizing: border-box;
 `;
 
+const TitleWrapper = styled.div`
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+`;
 const Title = styled.div`
   color: ${colors.red};
   font-size: 3rem;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+`;
+const DivideLine = styled.div`
+  font-size: 3rem;
+  font-style: normal;
+  font-weight: 100;
+  color: ${colors.red};
+  height: 3.75rem;
 `;
 const SubTitle = styled.div`
   font-size: 1.5rem;

@@ -36,7 +36,8 @@ export const MarketingBox = ({
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  width: 20.3125rem;
+  width: calc(33.333% - 1.5rem);
+  /* width: 20.3125rem; */
   height: fit-content;
   align-items: flex-start;
   cursor: pointer;
