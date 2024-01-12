@@ -49,6 +49,7 @@ const LankNum = styled.span`
   line-height: 130%;
   letter-spacing: -0.015rem;
   margin-right: 1.5rem;
+  width: 0.93rem;
 `;
 
 const MarketingImg = styled.img`
