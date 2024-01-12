@@ -80,14 +80,21 @@ const ReferenceBox = styled.div`
   flex-direction: column;
   align-items: center;
   width: 64rem;
+  box-sizing: border-box;
+  padding-left: 10.69rem;
+  padding-right: 10.69rem;
+  width: 100%;
   margin-top: 6.25rem;
 `;
 const MarketingLines = styled.div`
   display: flex;
+  width: 100%;
+  /* width: 64rem; */
   flex-wrap: wrap;
   justify-content: flex-start;
   align-items: flex-start;
-  gap: 1.5rem;
+  gap: 2.5rem 1.5rem;
+  margin-top: 2.5rem;
 `;
 
 export default Marketing;

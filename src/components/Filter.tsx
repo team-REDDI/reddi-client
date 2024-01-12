@@ -146,7 +146,7 @@ const Filter: React.FC<FilterProps> = ({ dropdownItems }) => {
 
 const FilterContainer = styled.div`
   display: flex;
-  width: 100vw;
+  width: 100%;
   box-sizing: border-box;
   padding-left: 10.69rem;
   padding-right: 10.69rem;

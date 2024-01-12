@@ -23,7 +23,7 @@ const HeaderContainer = styled.div`
   flex-direction: column;
   padding: 11.25rem 10.6875rem 4.375rem 10.6875rem;
   gap: 1.12rem;
-  width: 100vw;
+  width: 100%;
   background-color: black;
   color: white;
   box-sizing: border-box;
