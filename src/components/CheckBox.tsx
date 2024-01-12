@@ -77,7 +77,7 @@ const CustomCheckbox = styled.div<{ checked: boolean }>`
   position: relative;
   border: 0.3px solid #000;
   &:after {
-    content: "✔";
+    content: "✓";
     font-size: 1rem;
     color: #fff;
     position: absolute;
