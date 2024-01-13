@@ -16,28 +16,40 @@ import {
 import { ReactComponent as Toss } from "../assets/svgs/toss_2.svg";
 import { BrandBox } from "../components/BrandBox";
 
+import { useRecoilValue } from "recoil";
+import { filteredBrand } from "../utils/atom";
+
 const dummyBrandBoxes = [
   {
     imgSrc: "/image.jpg", //나중에 이미지 여기다 넣으면 됨
     brandName: "토스증권",
     location: "대기업, 서울",
-    tags: ["IT/금융", "블루"],
+    tags: ["뷰티", "금융"],
   },
   {
     imgSrc: "/image.jpg",
     brandName: "토스증권",
     location: "대기업, 서울",
-    tags: ["IT/금융", "블루"],
+    tags: ["금융", "블루"],
   },
   {
     imgSrc: "/image.jpg",
     brandName: "토스증권",
     location: "대기업, 서울",
-    tags: ["IT/금융", "블루"],
+    tags: ["금융", "블루"],
   },
 ];
 
 const Brand = () => {
+  const selectedFilters = useRecoilValue(filteredBrand);
+
+  const filteredBoxes =
+    selectedFilters.size > 0
+      ? dummyBrandBoxes.filter((box) =>
+          box.tags.some((tag) => selectedFilters.has(tag)),
+        )
+      : dummyBrandBoxes;
+
   return (
     <BrandPageContainer>
       <NavBar />
@@ -51,7 +63,7 @@ const Brand = () => {
           <HomeTitle>브랜드 레퍼런스</HomeTitle>
         </BrandTitleRow>
         <BrandContainer>
-          {dummyBrandBoxes.map((box, index) => (
+          {filteredBoxes.map((box, index) => (
             <BrandBox
               key={index}
               imgSrc={box.imgSrc}

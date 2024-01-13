@@ -6,7 +6,7 @@ import { BrandTitleRow, HomeTitle, MarketingLine } from "../styles/HomeStyle";
 import { MarketingBox } from "../components/MarketingBox";
 import dropdownDataMarketing from "../assets/datas/dropDownDataMarketing.json";
 import Footer from "../components/Footer";
-
+import { filteredMarketing } from "../utils/atom";
 import { useRecoilValue } from "recoil";
 const dummyMarketingBoxes = [
   {
@@ -15,7 +15,7 @@ const dummyMarketingBoxes = [
     title: "더 현대를 밝히는 ‘해리의 꿈의 상점’",
     expl: "유럽 어느 골목을 들어와있는 듯한 착각",
     read: 727,
-    categories: ["부티크", "팝업스토어", "콘셉트마케팅"],
+    categories: ["부티크", "팝업스토어", "콘텐츠 마케팅"],
   },
   {
     imgSrc: "../assets/images/exemple.png",
@@ -23,7 +23,7 @@ const dummyMarketingBoxes = [
     title: "신세계 백화점의 ‘MAGIC WINTER FANTASY’",
     expl: "3분을 위한 9개월의 여정",
     read: 567,
-    categories: ["부티크", "팝업스토어", "콘셉트마케팅"],
+    categories: ["부티크", "팝업스토어", "10대"],
   },
   {
     imgSrc: "../assets/images/exemple.png",
@@ -44,6 +44,15 @@ const dummyMarketingBoxes = [
 ];
 
 const Marketing = () => {
+  const selectedFilters = useRecoilValue(filteredMarketing);
+
+  const filteredBoxes =
+    selectedFilters.size > 0
+      ? dummyMarketingBoxes.filter((box) =>
+          box.categories.some((category) => selectedFilters.has(category)),
+        )
+      : dummyMarketingBoxes;
+
   return (
     <MarketingPageContainer>
       <NavBar />
@@ -57,7 +66,7 @@ const Marketing = () => {
           <HomeTitle>마케팅 레퍼런스</HomeTitle>
         </BrandTitleRow>
         <MarketingLines>
-          {dummyMarketingBoxes.map((box, index) => (
+          {filteredBoxes.map((box, index) => (
             <MarketingBox
               key={index}
               imgSrc={box.imgSrc}
@@ -85,12 +94,12 @@ const ReferenceBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 6.25rem;
   /* width: 64rem; */
-  /* box-sizing: border-box; */
-  /* width: 100%; */
+  box-sizing: border-box;
+  width: 100%;
   padding-left: 10.69rem;
   padding-right: 10.69rem;
-  margin-top: 6.25rem;
 `;
 const MarketingLines = styled.div`
   display: flex;
