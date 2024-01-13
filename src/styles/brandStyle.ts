@@ -8,7 +8,7 @@ export const BrandContainer = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   margin-top: 5.03rem;
-
+  gap: 1.5rem 3.12rem;
 `;
 
 export const RefBox = styled.div`

@@ -16,6 +16,27 @@ import {
 import { ReactComponent as Toss } from "../assets/svgs/toss_2.svg";
 import { BrandBox } from "../components/BrandBox";
 
+const dummyBrandBoxes = [
+  {
+    imgSrc: "/image.jpg", //나중에 이미지 여기다 넣으면 됨
+    brandName: "토스증권",
+    location: "대기업, 서울",
+    tags: ["IT/금융", "블루"],
+  },
+  {
+    imgSrc: "/image.jpg",
+    brandName: "토스증권",
+    location: "대기업, 서울",
+    tags: ["IT/금융", "블루"],
+  },
+  {
+    imgSrc: "/image.jpg",
+    brandName: "토스증권",
+    location: "대기업, 서울",
+    tags: ["IT/금융", "블루"],
+  },
+];
+
 const Brand = () => {
   return (
     <BrandPageContainer>
@@ -30,24 +51,15 @@ const Brand = () => {
           <HomeTitle>브랜드 레퍼런스</HomeTitle>
         </BrandTitleRow>
         <BrandContainer>
-          <BrandBox
-            imgSrc=""
-            brandName="토스증권"
-            location="대기업, 서울"
-            tags={["IT/금융", "블루"]}
-          />
-          <BrandBox
-            imgSrc=""
-            brandName="토스증권"
-            location="대기업, 서울"
-            tags={["IT/금융"]}
-          />
-          <BrandBox
-            imgSrc=""
-            brandName="토스증권"
-            location="대기업, 서울"
-            tags={["IT/금융"]}
-          />
+          {dummyBrandBoxes.map((box, index) => (
+            <BrandBox
+              key={index}
+              imgSrc={box.imgSrc}
+              brandName={box.brandName}
+              location={box.location}
+              tags={box.tags}
+            />
+          ))}
         </BrandContainer>
       </ReferenceBox>
       <Footer />
@@ -65,10 +77,11 @@ const ReferenceBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   margin-top: 6.25rem;
   width: 100%;
   padding-left: 10.69rem;
-  padding-right: 10.69rem;
+  /* padding-right: 10.69rem; */
   box-sizing: border-box;
 `;
 
