@@ -15,7 +15,7 @@ import {
 } from "../styles/brandStyle";
 import { ReactComponent as Toss } from "../assets/svgs/toss_2.svg";
 import { BrandBox } from "../components/BrandBox";
-import { ReactComponent as BrandSVG } from "../assets/svgs/brand.svg"; // SVG 파일 임포트
+import { ReactComponent as BrandSVG } from "../assets/svgs/brand.svg";
 
 import { useRecoilValue } from "recoil";
 import { filteredBrand } from "../utils/atom";
@@ -38,6 +38,18 @@ const dummyBrandBoxes = [
     brandName: "토스증권",
     location: "대기업, 서울",
     tags: ["금융", "블루"],
+  },
+  {
+    imgSrc: "/image.jpg",
+    brandName: "토스증권",
+    location: "대기업, 서울",
+    tags: ["뷰티", "세련된"],
+  },
+  {
+    imgSrc: "/image.jpg",
+    brandName: "토스증권",
+    location: "대기업, 서울",
+    tags: ["뷰티", "깔끔한"],
   },
 ];
 
