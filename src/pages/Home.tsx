@@ -1,7 +1,4 @@
 import NavBar from "../components/NavBar";
-import styled from "styled-components";
-import { colors } from "../styles/colors";
-import { ReactComponent as ArrowIcon } from "../assets/svgs/arrow.svg";
 import { ReactComponent as TossIcon } from "../assets/svgs/tossIcon.svg";
 import { ReactComponent as NaverIcon } from "../assets/svgs/naverIcon.svg";
 import { ReactComponent as HyundaiIcon } from "../assets/svgs/hyundaiIcon.svg";
