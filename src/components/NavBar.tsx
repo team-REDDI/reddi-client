@@ -52,6 +52,9 @@ const NavigationWrapper = styled.nav`
   top: 0;
   width: 100%;
   box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  left: 0;
 `;
 
 const StyledNavLink = styled(NavLink)`
