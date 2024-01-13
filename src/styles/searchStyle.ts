@@ -23,12 +23,6 @@ export const ResultTitle = styled.span`
   letter-spacing: -0.0225rem;
 `;
 
-export const MarketingResultBox = styled.div`
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-`;
-
 export const ResultText = styled.span`
   color: ${colors.red};
   font-size: 1.5rem;
@@ -36,6 +30,19 @@ export const ResultText = styled.span`
   font-weight: 700;
   line-height: 130%;
   letter-spacing: -0.015rem;
+  margin-bottom: 2.06rem;
+`;
+
+export const MarketingResultBox = styled.div`
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+`;
+
+export const MarketingsBox = styled.div`
+  display: flex;
+  width: 100%;
+  gap: 1.5rem;
 `;
 
 export const BrandResultBox = styled.div`
@@ -47,4 +54,5 @@ export const BrandsBox = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  gap: 3.12rem 1.5rem;
 `;
