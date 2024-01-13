@@ -134,15 +134,18 @@ const Filter: React.FC<FilterProps> = ({ dropdownItems, pageType }) => {
           onSelect={handleSelect}
         />
       )}
-
-      <SelectedFilters>
-        {Array.from(selectedFilters).map((filter: string, index: number) => (
-          <FilterTag key={index}>
-            {filter}
-            <RemoveButton onClick={() => removeFilter(filter)}>X</RemoveButton>
-          </FilterTag>
-        ))}
-      </SelectedFilters>
+      {selectedFilters.size > 0 && (
+        <SelectedFilters>
+          {Array.from(selectedFilters).map((filter: string, index: number) => (
+            <FilterTag key={index}>
+              {filter}
+              <RemoveButton onClick={() => removeFilter(filter)}>
+                X
+              </RemoveButton>
+            </FilterTag>
+          ))}
+        </SelectedFilters>
+      )}
     </FilterContainer>
   );
 };
