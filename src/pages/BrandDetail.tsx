@@ -28,6 +28,7 @@ const BrandDetail = () => {
   const goBack = () => {
     nav(-1);
   };
+
   return (
     <BrandDetailContainer>
       <LogoContainer>
