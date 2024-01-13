@@ -8,6 +8,7 @@ interface MarketingProps {
   title: string;
   expl: string;
   read: number;
+  categories: string[];
 }
 
 export const MarketingBox = ({
@@ -16,6 +17,7 @@ export const MarketingBox = ({
   title,
   expl,
   read,
+  categories,
 }: MarketingProps) => {
   const nav = useNavigate();
 
@@ -29,6 +31,11 @@ export const MarketingBox = ({
       <TypeText>{type}</TypeText>
       <Title>{title}</Title>
       <ExpText>{expl}</ExpText>
+      <CategoryContainer>
+        {categories.map((category, index) => (
+          <Category key={index}>{category}</Category>
+        ))}
+      </CategoryContainer>
     </Container>
   );
 };
@@ -73,5 +80,23 @@ const ExpText = styled.span`
   font-size: 1rem;
   font-weight: 500;
   line-height: 130%;
+  letter-spacing: -0.01rem;
+`;
+const CategoryContainer = styled.div`
+  display: flex;
+  margin-top: 0.5rem;
+`;
+const Category = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: ${colors.red};
+  background-color: ${colors.light_red};
+  padding: 0.5rem 0.25rem;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 130%;
+  margin-right: 0.34rem;
   letter-spacing: -0.01rem;
 `;

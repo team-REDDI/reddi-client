@@ -14,6 +14,7 @@ const dummyMarketingBoxes = [
     title: "더 현대를 밝히는 ‘해리의 꿈의 상점’",
     expl: "유럽 어느 골목을 들어와있는 듯한 착각",
     read: 727,
+    categories: ["부티크", "팝업스토어", "콘셉트마케팅"],
   },
   {
     imgSrc: "../assets/images/exemple.png",
@@ -21,6 +22,7 @@ const dummyMarketingBoxes = [
     title: "신세계 백화점의 ‘MAGIC WINTER FANTASY’",
     expl: "3분을 위한 9개월의 여정",
     read: 567,
+    categories: ["부티크", "팝업스토어", "콘셉트마케팅"],
   },
   {
     imgSrc: "../assets/images/exemple.png",
@@ -28,6 +30,7 @@ const dummyMarketingBoxes = [
     title: "시몬스테라스의 ‘크리스마스 일루미네이션",
     expl: "동화 속 마을로 단장한 시몬스",
     read: 1218,
+    categories: ["부티크", "팝업스토어", "콘셉트마케팅"],
   },
   {
     imgSrc: "../assets/images/exemple.png",
@@ -35,6 +38,7 @@ const dummyMarketingBoxes = [
     title: "시몬스테라스의 ‘크리스마스 일루미네이션",
     expl: "동화 속 마을로 단장한 시몬스",
     read: 1218,
+    categories: ["부티크", "팝업스토어", "콘셉트마케팅"],
   },
 ];
 
@@ -60,6 +64,7 @@ const Marketing = () => {
               title={box.title}
               expl={box.expl}
               read={box.read}
+              categories={box.categories}
             />
           ))}
         </MarketingLines>
@@ -79,11 +84,11 @@ const ReferenceBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 64rem;
-  box-sizing: border-box;
+  /* width: 64rem; */
+  /* box-sizing: border-box; */
+  /* width: 100%; */
   padding-left: 10.69rem;
   padding-right: 10.69rem;
-  width: 100%;
   margin-top: 6.25rem;
 `;
 const MarketingLines = styled.div`
