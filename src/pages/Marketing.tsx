@@ -8,6 +8,8 @@ import dropdownDataMarketing from "../assets/datas/dropDownDataMarketing.json";
 import Footer from "../components/Footer";
 import { filteredMarketing } from "../utils/atom";
 import { useRecoilValue } from "recoil";
+import { ReactComponent as MarketingSVG } from "../assets/svgs/marketing.svg";
+
 const dummyMarketingBoxes = [
   {
     imgSrc: "../assets/images/exemple.png",
@@ -59,6 +61,7 @@ const Marketing = () => {
       <Header
         title="마케팅"
         subtitle="마케팅 레퍼런스들을 보여주는 페이지입니다. (짧은 페이지 설명)"
+        ImageComponent={MarketingSVG}
       />
       <Filter dropdownItems={dropdownDataMarketing} pageType="marketing" />
       <ReferenceBox>

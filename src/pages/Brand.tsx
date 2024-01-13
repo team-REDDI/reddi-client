@@ -15,6 +15,7 @@ import {
 } from "../styles/brandStyle";
 import { ReactComponent as Toss } from "../assets/svgs/toss_2.svg";
 import { BrandBox } from "../components/BrandBox";
+import { ReactComponent as BrandSVG } from "../assets/svgs/brand.svg"; // SVG 파일 임포트
 
 import { useRecoilValue } from "recoil";
 import { filteredBrand } from "../utils/atom";
@@ -56,6 +57,7 @@ const Brand = () => {
       <Header
         title="브랜드"
         subtitle="브랜드 레퍼런스들을 보여주는 페이지입니다. (짧은 페이지 설명)"
+        ImageComponent={BrandSVG}
       />
       <Filter dropdownItems={dropdownDataBrand} pageType="brand" />
       <ReferenceBox>
