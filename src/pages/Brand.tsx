@@ -3,7 +3,7 @@ import NavBar from "../components/NavBar";
 import Header from "../components/Header";
 import Filter from "../components/Filter";
 import dropdownDataBrand from "../assets/datas/dropDownDataBrand.json";
-import { Footer } from "../components/Footer";
+import Footer from "../components/Footer";
 import { BrandTitleRow, HomeTitle } from "../styles/HomeStyle";
 import {
   RefBox,

@@ -16,7 +16,7 @@ import {
   MarketingTags,
 } from "../styles/marketingStyle";
 import { BrandTitleRow, HomeImage, HomeTitle } from "../styles/HomeStyle";
-import { Footer } from "../components/Footer";
+import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
 
 const MarketingDetail = () => {
