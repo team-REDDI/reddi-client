@@ -59,25 +59,25 @@ const SearchResult = () => {
               imgSrc=""
               brandName="토스증권"
               location="대기업, 서울"
-              tag="IT/금융"
+              tags={["IT/금융"]}
             />
             <BrandBox
               imgSrc=""
               brandName="토스증권"
               location="대기업, 서울"
-              tag="IT/금융"
+              tags={["IT/금융"]}
             />
             <BrandBox
               imgSrc=""
               brandName="토스증권"
               location="대기업, 서울"
-              tag="IT/금융"
+              tags={["IT/금융"]}
             />
             <BrandBox
               imgSrc=""
               brandName="토스증권"
               location="대기업, 서울"
-              tag="IT/금융"
+              tags={["IT/금융"]}
             />
           </BrandsBox>
         </BrandResultBox>

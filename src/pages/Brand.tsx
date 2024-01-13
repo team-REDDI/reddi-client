@@ -15,27 +15,77 @@ import {
 } from "../styles/brandStyle";
 import { ReactComponent as Toss } from "../assets/svgs/toss_2.svg";
 import { BrandBox } from "../components/BrandBox";
+import { ReactComponent as BrandSVG } from "../assets/svgs/brand.svg";
+
+import { useRecoilValue } from "recoil";
+import { filteredBrand } from "../utils/atom";
+
+const dummyBrandBoxes = [
+  {
+    imgSrc: "/image.jpg", //나중에 이미지 여기다 넣으면 됨
+    brandName: "토스증권",
+    location: "대기업, 서울",
+    tags: ["뷰티", "금융"],
+  },
+  {
+    imgSrc: "/image.jpg",
+    brandName: "토스증권",
+    location: "대기업, 서울",
+    tags: ["금융", "블루"],
+  },
+  {
+    imgSrc: "/image.jpg",
+    brandName: "토스증권",
+    location: "대기업, 서울",
+    tags: ["금융", "블루"],
+  },
+  {
+    imgSrc: "/image.jpg",
+    brandName: "토스증권",
+    location: "대기업, 서울",
+    tags: ["뷰티", "세련된"],
+  },
+  {
+    imgSrc: "/image.jpg",
+    brandName: "토스증권",
+    location: "대기업, 서울",
+    tags: ["뷰티", "깔끔한"],
+  },
+];
 
 const Brand = () => {
+  const selectedFilters = useRecoilValue(filteredBrand);
+
+  const filteredBoxes =
+    selectedFilters.size > 0
+      ? dummyBrandBoxes.filter((box) =>
+          box.tags.some((tag) => selectedFilters.has(tag)),
+        )
+      : dummyBrandBoxes;
+
   return (
     <BrandPageContainer>
       <NavBar />
       <Header
         title="브랜드"
         subtitle="브랜드 레퍼런스들을 보여주는 페이지입니다. (짧은 페이지 설명)"
+        ImageComponent={BrandSVG}
       />
-      <Filter dropdownItems={dropdownDataBrand} />
+      <Filter dropdownItems={dropdownDataBrand} pageType="brand" />
       <ReferenceBox>
         <BrandTitleRow>
           <HomeTitle>브랜드 레퍼런스</HomeTitle>
         </BrandTitleRow>
         <BrandContainer>
-          <BrandBox
-            imgSrc=""
-            brandName="토스증권"
-            location="대기업, 서울"
-            tag="IT/금융"
-          />
+          {filteredBoxes.map((box, index) => (
+            <BrandBox
+              key={index}
+              imgSrc={box.imgSrc}
+              brandName={box.brandName}
+              location={box.location}
+              tags={box.tags}
+            />
+          ))}
         </BrandContainer>
       </ReferenceBox>
       <Footer />
@@ -53,8 +103,12 @@ const ReferenceBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 64rem;
+  justify-content: center;
   margin-top: 6.25rem;
+  width: 100%;
+  padding-left: 10.69rem;
+  /* padding-right: 10.69rem; */
+  box-sizing: border-box;
 `;
 
 export default Brand;

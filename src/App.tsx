@@ -8,21 +8,24 @@ import MarketingDetail from "./pages/MarketingDetail";
 import BrandDetail from "./pages/BrandDetail";
 import SearchResult from "./pages/SearchResult";
 import AIBranding from "./pages/AIBranding";
+import { RecoilRoot } from "recoil";
 
 function App() {
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/marketing" element={<Marketing />} />
-          <Route path="/marketing/detail/0" element={<MarketingDetail />} />
-          <Route path="/brand" element={<Brand />} />
-          <Route path="/brand/detail/0" element={<BrandDetail />} />
-          <Route path="/search/result" element={<SearchResult />} />
-          <Route path="/ai-branding" element={<AIBranding />} />
-        </Routes>
-      </BrowserRouter>
+      <RecoilRoot>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/marketing" element={<Marketing />} />
+            <Route path="/marketing/detail/0" element={<MarketingDetail />} />
+            <Route path="/brand" element={<Brand />} />
+            <Route path="/brand/detail/0" element={<BrandDetail />} />
+            <Route path="/search/result" element={<SearchResult />} />
+            <Route path="/ai-branding" element={<AIBranding />} />
+          </Routes>
+        </BrowserRouter>
+      </RecoilRoot>
     </>
   );
 }

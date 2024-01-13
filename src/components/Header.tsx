@@ -1,17 +1,20 @@
 import styled from "styled-components";
 import { colors } from "../styles/colors";
+import { ReactComponent as DivideBar } from "../assets/svgs/dividebar.svg";
 //marketing, brand GNB title 로 사용될 Header component
 type HeaderProps = {
   title: string;
   subtitle: string;
+  ImageComponent: React.FC<React.SVGProps<SVGSVGElement>>;
 };
 
-const Header: React.FC<HeaderProps> = ({ title, subtitle }) => {
+const Header: React.FC<HeaderProps> = ({ title, subtitle, ImageComponent }) => {
   return (
     <HeaderContainer>
       <TitleWrapper>
         <Title>{title} </Title>
-        <DivideLine>|</DivideLine>
+        <DivideBar />
+        <ImageComponent />
       </TitleWrapper>
       <SubTitle>{subtitle}</SubTitle>
     </HeaderContainer>
@@ -40,13 +43,6 @@ const Title = styled.div`
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-`;
-const DivideLine = styled.div`
-  font-size: 3rem;
-  font-style: normal;
-  font-weight: 100;
-  color: ${colors.red};
-  height: 3.75rem;
 `;
 const SubTitle = styled.div`
   font-size: 1.5rem;
