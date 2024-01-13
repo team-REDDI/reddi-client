@@ -1,4 +1,6 @@
 import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
+import { colors } from "../styles/colors";
 import { ReactComponent as Toss } from "../assets/svgs/toss_2.svg";
 import {
   BrandLocation,
@@ -12,10 +14,10 @@ interface BrandProps {
   imgSrc: string;
   brandName: string;
   location: string;
-  tag: string;
+  tags: string[];
 }
 
-export const BrandBox = ({ imgSrc, brandName, location, tag }: BrandProps) => {
+export const BrandBox = ({ imgSrc, brandName, location, tags }: BrandProps) => {
   const nav = useNavigate();
 
   const goToBrandDetail = () => {
@@ -28,8 +30,25 @@ export const BrandBox = ({ imgSrc, brandName, location, tag }: BrandProps) => {
       <BrandTextBox>
         <BrandNameText>{brandName}</BrandNameText>
         <BrandLocation>{location}</BrandLocation>
-        <BrandTags>{tag}</BrandTags>
+        <BrandTagsContainer>
+          {tags.map((tag, index) => (
+            <BrandTag key={index}>{tag}</BrandTag>
+          ))}
+        </BrandTagsContainer>
       </BrandTextBox>
     </RefBox>
   );
 };
+const BrandTagsContainer = styled.div`
+  display: flex;
+  margin-top: 0.5rem;
+`;
+
+const BrandTag = styled.div`
+  color: ${colors.red};
+  background-color: ${colors.light_red};
+  padding: 0.5rem 0.25rem;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-right: 0.34rem;
+`;

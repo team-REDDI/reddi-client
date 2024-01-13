@@ -34,7 +34,19 @@ const Brand = () => {
             imgSrc=""
             brandName="토스증권"
             location="대기업, 서울"
-            tag="IT/금융"
+            tags={["IT/금융", "블루"]}
+          />
+          <BrandBox
+            imgSrc=""
+            brandName="토스증권"
+            location="대기업, 서울"
+            tags={["IT/금융"]}
+          />
+          <BrandBox
+            imgSrc=""
+            brandName="토스증권"
+            location="대기업, 서울"
+            tags={["IT/금융"]}
           />
         </BrandContainer>
       </ReferenceBox>
@@ -53,8 +65,11 @@ const ReferenceBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 64rem;
   margin-top: 6.25rem;
+  width: 100%;
+  padding-left: 10.69rem;
+  padding-right: 10.69rem;
+  box-sizing: border-box;
 `;
 
 export default Brand;
