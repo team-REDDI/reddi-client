@@ -3,6 +3,9 @@ import styled from "styled-components";
 import Dropdown from "./Dropdown";
 import { colors } from "../styles/colors";
 import CheckboxGroup from "./CheckBox";
+import { useRecoilState } from "recoil";
+import { filteredBrand } from "../utils/atom";
+import { filteredMarketing } from "../utils/atom";
 type FilterProps = {
   dropdownItems: {
     industry?: Array<{ name: string; value: string }>;
@@ -11,6 +14,7 @@ type FilterProps = {
     brandcolor?: Array<{ name: string; value: string }>;
     atmosphere?: Array<{ name: string; value: string }>;
   };
+  pageType: "marketing" | "brand";
 };
 
 interface Item {
@@ -18,10 +22,9 @@ interface Item {
   value: string;
 }
 
-const Filter: React.FC<FilterProps> = ({ dropdownItems }) => {
-  const [selectedFilters, setSelectedFilters] = useState<Set<string>>(
-    new Set(),
-  );
+const Filter: React.FC<FilterProps> = ({ dropdownItems, pageType }) => {
+  const state = pageType === "marketing" ? filteredMarketing : filteredBrand;
+  const [selectedFilters, setSelectedFilters] = useRecoilState(state);
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
 
   const handleSelect = (item: Item, isChecked: boolean) => {

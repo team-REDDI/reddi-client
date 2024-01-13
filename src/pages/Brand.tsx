@@ -24,7 +24,7 @@ const Brand = () => {
         title="브랜드"
         subtitle="브랜드 레퍼런스들을 보여주는 페이지입니다. (짧은 페이지 설명)"
       />
-      <Filter dropdownItems={dropdownDataBrand} />
+      <Filter dropdownItems={dropdownDataBrand} pageType="brand" />
       <ReferenceBox>
         <BrandTitleRow>
           <HomeTitle>브랜드 레퍼런스</HomeTitle>

@@ -7,6 +7,7 @@ import { MarketingBox } from "../components/MarketingBox";
 import dropdownDataMarketing from "../assets/datas/dropDownDataMarketing.json";
 import Footer from "../components/Footer";
 
+import { useRecoilValue } from "recoil";
 const dummyMarketingBoxes = [
   {
     imgSrc: "../assets/images/exemple.png",
@@ -50,7 +51,7 @@ const Marketing = () => {
         title="마케팅"
         subtitle="마케팅 레퍼런스들을 보여주는 페이지입니다. (짧은 페이지 설명)"
       />
-      <Filter dropdownItems={dropdownDataMarketing} />
+      <Filter dropdownItems={dropdownDataMarketing} pageType="marketing" />
       <ReferenceBox>
         <BrandTitleRow>
           <HomeTitle>마케팅 레퍼런스</HomeTitle>
