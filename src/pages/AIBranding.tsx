@@ -3,9 +3,6 @@ import NavBar from "../components/NavBar";
 import {
   AIResultBox,
   AIResultContanier,
-  BeforeOrderLine,
-  BeforeOrderNumber,
-  BeforeOrderText,
   ButtonBox,
   CompleteButton,
   Container,
@@ -28,7 +25,6 @@ import {
   TypeText,
   WantBox,
   WantTags,
-  WantTagsClicked,
   WantTagsInput,
   WantTagsInputBox,
   WantText,
@@ -36,9 +32,11 @@ import {
 import { ReactComponent as SearchIcon } from "../assets/svgs/searchSmall.svg";
 import { useState } from "react";
 import AIResult from "../components/AIBranding/AIResult";
+import { colors } from "../styles/colors";
 
 const AIBranding = () => {
   const [isResult, setIsResult] = useState<boolean>(false);
+  const [isNow, setIsNow] = useState<boolean>(true);
 
   return (
     <Container>
@@ -70,47 +68,49 @@ const AIBranding = () => {
             <TagsContainer>
               <OrderContaniner>
                 <OrderBox>
-                  <OrderNumber>1</OrderNumber>
-                  <OrderText>브랜드 요소</OrderText>
+                  <OrderNumber now={isNow}>1</OrderNumber>
+                  <OrderText now={isNow}>브랜드 요소</OrderText>
                 </OrderBox>
-                <OrderLine />
+                <OrderLine now={isNow} />
                 <OrderBox>
-                  <OrderNumber>2</OrderNumber>
-                  <OrderText>분위기</OrderText>
+                  <OrderNumber now={isNow}>2</OrderNumber>
+                  <OrderText now={isNow}>분위기</OrderText>
                 </OrderBox>
-                <OrderLine />
+                <OrderLine now={isNow} />
                 <OrderBox>
-                  <OrderNumber>3</OrderNumber>
-                  <OrderText>산업군</OrderText>
+                  <OrderNumber now={isNow}>3</OrderNumber>
+                  <OrderText now={isNow}>산업군</OrderText>
                 </OrderBox>
                 <OrderLine />
                 <OrderBox>
                   <OrderNumber>4</OrderNumber>
                   <OrderText>타깃</OrderText>
                 </OrderBox>
-                <BeforeOrderLine />
+                <OrderLine />
                 <OrderBox>
-                  <BeforeOrderNumber>5</BeforeOrderNumber>
-                  <BeforeOrderText>유사 서비스</BeforeOrderText>
+                  <OrderNumber>5</OrderNumber>
+                  <OrderText>유사 서비스</OrderText>
                 </OrderBox>
               </OrderContaniner>
 
-              <WantBox>
-                <WantText>어떤 브랜드 요소를 생성하고 싶나요?</WantText>
+              <WantBox now={isNow}>
+                <WantText now={isNow}>
+                  어떤 브랜드 요소를 생성하고 싶나요?
+                </WantText>
                 <TagsBox>
-                  <WantTags>네이밍</WantTags>
+                  <WantTags isClicked={true}>네이밍</WantTags>
                   <WantTags>네이밍</WantTags>
                   <WantTags>네이밍</WantTags>
                   <WantTags>브랜드 에센스</WantTags>
                   <WantTags>브랜드 에센스</WantTags>
-                  <WantTagsClicked>브랜드 에센스</WantTagsClicked>
+                  <WantTags>브랜드 에센스</WantTags>
                   <WantTags>브랜드 에센스</WantTags>
                   <WantTags>네이밍</WantTags>
                   <WantTags>브랜드 에센스</WantTags>
                 </TagsBox>
               </WantBox>
-              <WantBox>
-                <WantText>어떤 분위기를 원하나요?</WantText>
+              <WantBox now={isNow}>
+                <WantText now={isNow}>어떤 분위기를 원하나요?</WantText>
                 <TagsBox>
                   <WantTags>네이밍</WantTags>
                   <WantTags>네이밍</WantTags>
@@ -139,6 +139,10 @@ const AIBranding = () => {
                   <WantTags>브랜드 에센스</WantTags>
                   <WantTags>브랜드 에센스</WantTags>
                   <WantTags>브랜드 에센스</WantTags>
+                  <WantTagsInputBox>
+                    <SearchIcon />
+                    <WantTagsInput placeholder="검색하기" />
+                  </WantTagsInputBox>
                 </TagsBox>
               </WantBox>
               <WantBox>
@@ -153,6 +157,10 @@ const AIBranding = () => {
                   <WantTags>브랜드 에센스</WantTags>
                   <WantTags>브랜드 에센스</WantTags>
                   <WantTags>브랜드 에센스</WantTags>
+                  <WantTagsInputBox>
+                    <SearchIcon />
+                    <WantTagsInput placeholder="검색하기" />
+                  </WantTagsInputBox>
                 </TagsBox>
               </WantBox>
               <WantBox>
@@ -169,6 +177,10 @@ const AIBranding = () => {
                   <WantTags>브랜드 에센스</WantTags>
                   <WantTags>브랜드 에센스</WantTags>
                   <WantTags>브랜드 에센스</WantTags>
+                  <WantTagsInputBox>
+                    <SearchIcon />
+                    <WantTagsInput placeholder="검색하기" />
+                  </WantTagsInputBox>
                 </TagsBox>
               </WantBox>
             </TagsContainer>

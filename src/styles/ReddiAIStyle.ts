@@ -77,11 +77,11 @@ export const OrderBox = styled.div`
   box-sizing: border-box;
 `;
 
-export const OrderNumber = styled.div`
+export const OrderNumber = styled.div<{ now?: boolean }>`
   display: flex;
   width: 1.25rem;
   height: 1.25rem;
-  background-color: ${colors.black};
+  background-color: ${(props) => (props.now ? colors.black : "#ccc")};
   border-radius: 100%;
   font-size: 13px;
   font-weight: 700;
@@ -92,64 +92,34 @@ export const OrderNumber = styled.div`
   align-items: center;
 `;
 
-export const OrderText = styled.div`
+export const OrderText = styled.div<{ now?: boolean }>`
   display: flex;
-  color: ${colors.black};
+  color: ${(props) => (props.now ? colors.black : "#ccc")};
   font-size: 1.125rem;
   font-weight: 500;
   line-height: 130%;
   letter-spacing: -0.18px;
 `;
 
-export const OrderLine = styled.div`
+export const OrderLine = styled.div<{ now?: boolean }>`
   width: 3.625rem;
   height: 1px;
-  background-color: ${colors.black};
+  background-color: ${(props) => (props.now ? colors.black : "#ccc")};
 `;
 
-export const BeforeOrderNumber = styled.div`
-  display: flex;
-  width: 1.25rem;
-  height: 1.25rem;
-  background-color: #ccc;
-  border-radius: 100%;
-  font-size: 13px;
-  font-weight: 700;
-  line-height: 130%;
-  letter-spacing: -0.13px;
-  color: ${colors.white};
-  justify-content: center;
-  align-items: center;
-`;
-
-export const BeforeOrderText = styled.div`
-  display: flex;
-  color: #ccc;
-  font-size: 1.125rem;
-  font-weight: 500;
-  line-height: 130%;
-  letter-spacing: -0.18px;
-`;
-
-export const BeforeOrderLine = styled.div`
-  width: 3.625rem;
-  height: 1px;
-  background-color: #ccc;
-`;
-
-export const WantBox = styled.div`
+export const WantBox = styled.div<{ now?: boolean }>`
   display: flex;
   flex-direction: column;
   width: 100%;
   justify-content: center;
-  background-color: ${colors.light_red};
+  background-color: ${(props) => (props.now ? colors.light_red : "#f3f3f3")};
   padding: 2.6rem 2.31rem;
   box-sizing: border-box;
   gap: 1.5rem;
 `;
 
-export const WantText = styled.div`
-  color: ${colors.black_CTA};
+export const WantText = styled.div<{ now?: boolean }>`
+  color: ${(props) => (props.now ? colors.black_CTA : "#8f8f8f")};
   font-size: 1.125rem;
   font-style: normal;
   font-weight: 500;
@@ -166,28 +136,17 @@ export const TagsBox = styled.div`
   flex-wrap: wrap;
 `;
 
-export const WantTags = styled.div`
+export const WantTags = styled.div<{ isClicked?: boolean }>`
   display: flex;
   padding: 0.5rem 1.25rem;
   justify-content: center;
   align-items: center;
 
   border-radius: 4.46rem;
-  border: 0.714px solid #8f8f8f;
-  background-color: ${colors.white};
-  color: #8f8f8f;
-`;
-
-export const WantTagsClicked = styled.div`
-  display: flex;
-  padding: 0.5rem 1.25rem;
-  justify-content: center;
-  align-items: center;
-
-  border-radius: 4.46rem;
-  border: 0.714px solid ${colors.black_CTA};
-  background-color: #2e2e2e;
-  color: ${colors.white};
+  border: 0.714px solid
+    ${(props) => (props.isClicked ? colors.black_CTA : "#8f8f8f")};
+  background-color: ${(props) => (props.isClicked ? "#2e2e2e" : colors.white)};
+  color: ${(props) => (props.isClicked ? colors.white : "#8f8f8f")};
 `;
 
 export const WantTagsInputBox = styled.form`
