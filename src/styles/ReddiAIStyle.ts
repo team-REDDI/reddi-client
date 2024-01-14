@@ -12,7 +12,6 @@ export const ReddiAIContainer = styled.div`
   flex-direction: column;
   align-items: center;
   width: 64rem;
-  gap: 6.25rem;
 `;
 
 export const ReddiAITitleBox = styled.div`
@@ -53,19 +52,70 @@ export const ReddiAIExp = styled.span`
   letter-spacing: -0.01125rem;
 `;
 
-export const WantTypeBox = styled.div`
+export const TagsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1.69rem;
+  align-items: flex-start;
+  width: 100%;
+  margin-top: 5.12rem;
+`;
+
+export const OrderContaniner = styled.div`
+  display: flex;
+  width: 100%;
+  height: 3.5rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.7rem;
+  background-color: ${colors.light_red};
+`;
+
+export const OrderBox = styled.div`
+  display: flex;
+  gap: 0.5rem;
+  box-sizing: border-box;
+`;
+
+export const OrderNumber = styled.div`
+  display: flex;
+  width: 1.25rem;
+  height: 1.25rem;
+  background-color: ${colors.black};
+  border-radius: 100%;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 130%;
+  letter-spacing: -0.13px;
+  color: ${colors.white};
+  justify-content: center;
+  align-items: center;
+`;
+
+export const OrderText = styled.div`
+  display: flex;
+  color: ${colors.black};
+  font-size: 1.125rem;
+  font-weight: 500;
+  line-height: 130%;
+  letter-spacing: -0.18px;
+`;
+
+export const OrderLine = styled.div`
+  width: 3.625rem;
+  height: 1px;
+  background-color: ${colors.black};
+`;
+
+export const WantBox = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-`;
-
-export const QText = styled.div`
-  color: ${colors.red};
-  font-size: 1.5rem;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 130%;
-  letter-spacing: -0.015rem;
+  justify-content: center;
+  background-color: ${colors.light_red};
+  padding: 2.6rem 2.31rem;
+  box-sizing: border-box;
+  gap: 1.5rem;
 `;
 
 export const WantText = styled.div`
@@ -75,15 +125,7 @@ export const WantText = styled.div`
   font-weight: 500;
   line-height: 130%;
   letter-spacing: -0.01125rem;
-`;
-
-export const TagsContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 4.38rem;
-  align-items: flex-start;
-  width: 100%;
-  //margin-top: 6.25rem;
+  box-sizing: border-box;
 `;
 
 export const TagsBox = styled.div`
@@ -108,16 +150,17 @@ export const WantTags = styled.div`
 
 export const ButtonBox = styled.div`
   display: flex;
-  right: 0;
+  width: 100%;
+  justify-content: flex-end;
   gap: 0.75rem;
+  margin-top: 2.06rem;
+  margin-bottom: 3rem;
 `;
 
 export const DeleteButton = styled.div`
   display: flex;
   width: 16.3125rem;
   height: 2.5rem;
-  box-sizing: border-box;
-  padding: 1rem 13.125rem;
   justify-content: center;
   align-items: center;
 
@@ -127,10 +170,9 @@ export const DeleteButton = styled.div`
 
 export const CompleteButton = styled.div`
   display: flex;
+  flex-direction: column;
   width: 16.3125rem;
   height: 2.5rem;
-  padding: 1rem 13.125rem;
-  box-sizing: border-box;
   justify-content: center;
   align-items: center;
   gap: 0.446rem;
@@ -152,6 +194,14 @@ export const AIResultBox = styled.div`
   width: 100%;
   gap: 1.5rem;
   padding: 1.4375rem 1.875rem;
+`;
+
+export const ResultText = styled.div`
+  color: ${colors.red};
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 130%;
+  letter-spacing: -0.24px;
 `;
 
 export const ResultLine = styled.div`
