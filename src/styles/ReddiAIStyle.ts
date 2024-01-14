@@ -107,6 +107,36 @@ export const OrderLine = styled.div`
   background-color: ${colors.black};
 `;
 
+export const BeforeOrderNumber = styled.div`
+  display: flex;
+  width: 1.25rem;
+  height: 1.25rem;
+  background-color: #ccc;
+  border-radius: 100%;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 130%;
+  letter-spacing: -0.13px;
+  color: ${colors.white};
+  justify-content: center;
+  align-items: center;
+`;
+
+export const BeforeOrderText = styled.div`
+  display: flex;
+  color: #ccc;
+  font-size: 1.125rem;
+  font-weight: 500;
+  line-height: 130%;
+  letter-spacing: -0.18px;
+`;
+
+export const BeforeOrderLine = styled.div`
+  width: 3.625rem;
+  height: 1px;
+  background-color: #ccc;
+`;
+
 export const WantBox = styled.div`
   display: flex;
   flex-direction: column;
@@ -142,10 +172,56 @@ export const WantTags = styled.div`
   justify-content: center;
   align-items: center;
 
-  border-radius: 4.45988rem;
-  border: 1.427px solid ${colors.black_CTA};
+  border-radius: 4.46rem;
+  border: 0.714px solid #8f8f8f;
+  background-color: ${colors.white};
+  color: #8f8f8f;
+`;
+
+export const WantTagsClicked = styled.div`
+  display: flex;
+  padding: 0.5rem 1.25rem;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 4.46rem;
+  border: 0.714px solid ${colors.black_CTA};
   background-color: #2e2e2e;
   color: ${colors.white};
+`;
+
+export const WantTagsInputBox = styled.form`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.31rem;
+  gap: 0.5rem;
+  background-color: ${colors.white};
+  width: fit-content;
+  padding: 0.5rem 1.25rem;
+  border-radius: 6.25rem;
+  box-sizing: border-box;
+`;
+
+export const WantTagsInput = styled.input`
+  width: 3.5rem;
+  outline: none;
+  border: none;
+  color: ${colors.black_CTA};
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 130%;
+  letter-spacing: -0.01rem;
+
+  background-color: transparent;
+
+  &::placeholder {
+    /* Chrome, Firefox, Opera, Safari */
+    color: #8f8f8f;
+    font-size: 1rem;
+    font-weight: 500;
+  }
 `;
 
 export const ButtonBox = styled.div`
@@ -186,6 +262,7 @@ export const AIResultContanier = styled.div`
   gap: 2.06rem;
   width: 100%;
   height: fit-content;
+  margin-top: 5.3rem;
 `;
 
 export const AIResultBox = styled.div`
