@@ -190,6 +190,7 @@ export const ButtonBox = styled.div`
   gap: 0.75rem;
   margin-top: 2.06rem;
   margin-bottom: 3rem;
+  cursor: pointer;
 `;
 
 export const DeleteButton = styled.div`
@@ -201,6 +202,7 @@ export const DeleteButton = styled.div`
 
   background-color: #eaeaea;
   color: ${colors.black_CTA};
+  cursor: pointer;
 `;
 
 export const CompleteButton = styled.div`
