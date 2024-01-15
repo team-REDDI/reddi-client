@@ -8,6 +8,7 @@ import MarketingDetail from "./pages/MarketingDetail";
 import BrandDetail from "./pages/BrandDetail";
 import SearchResult from "./pages/SearchResult";
 import AIBranding from "./pages/AIBranding";
+import Mypage from "./pages/Mypage";
 import { RecoilRoot } from "recoil";
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
             <Route path="/brand/detail/0" element={<BrandDetail />} />
             <Route path="/search/result" element={<SearchResult />} />
             <Route path="/ai-branding" element={<AIBranding />} />
+            <Route path="/mypage" element={<Mypage />} />
           </Routes>
         </BrowserRouter>
       </RecoilRoot>
