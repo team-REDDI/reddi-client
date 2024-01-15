@@ -24,7 +24,7 @@ const AIBox = ({ title, options }: AIBoxProps) => {
 const Box = styled.div`
   border: 0.5px solid #ececec;
   padding: 2.5rem;
-  /* text-align: center; */
+  text-align: center;
 `;
 
 const Title = styled.div`
@@ -51,6 +51,7 @@ const OptionsContainer = styled.div`
   display: flex;
   margin-bottom: 1.5rem;
   gap: 0.5rem;
+  flex-wrap: wrap;
 `;
 
 const Option = styled.span`
