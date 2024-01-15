@@ -1,6 +1,26 @@
 import styled from "styled-components";
 import { colors } from "../styles/colors";
 
+interface AIBoxProps {
+  title: string;
+  options: string[];
+}
+
+const AIBox = ({ title, options }: AIBoxProps) => {
+  return (
+    <Box>
+      <Title>{title}</Title>
+      <ExplText>생성한 브랜드 요소</ExplText>
+      <OptionsContainer>
+        {options.map((option, index) => (
+          <Option key={index}>{option}</Option>
+        ))}
+      </OptionsContainer>
+      <AIBoxButton>프롬프트 불러오기</AIBoxButton>
+    </Box>
+  );
+};
+
 const Box = styled.div`
   border: 0.5px solid #ececec;
   padding: 2.5rem;
@@ -43,7 +63,7 @@ const Option = styled.span`
   display: inline-block;
 `;
 
-const BriefingButton = styled.button`
+const AIBoxButton = styled.button`
   display: flex;
   width: 16.3125rem;
   height: 2.5rem;
@@ -60,21 +80,5 @@ const BriefingButton = styled.button`
   background-color: black;
   color: ${colors.white};
 `;
-
-const AIBox = () => {
-  return (
-    <Box>
-      <Title>생성한 브랜드명</Title>
-      <ExplText>생성한 브랜드요소</ExplText>
-      <OptionsContainer>
-        <Option>네이밍</Option>
-        <Option>로고</Option>
-        <Option>슬로건</Option>
-        <Option>비지미션</Option>
-      </OptionsContainer>
-      <BriefingButton>프롬프트 불러오기</BriefingButton>
-    </Box>
-  );
-};
 
 export default AIBox;
