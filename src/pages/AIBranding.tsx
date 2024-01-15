@@ -37,6 +37,34 @@ import { colors } from "../styles/colors";
 const AIBranding = () => {
   const [isResult, setIsResult] = useState<boolean>(false);
   const [isNow, setIsNow] = useState<boolean>(true);
+  const tagsList = [
+    { id: 1, contents: "네이밍", isClicked: false },
+    { id: 2, contents: "슬로건", isClicked: false },
+    { id: 3, contents: "로고", isClicked: false },
+    { id: 4, contents: "버전 미션", isClicked: false },
+    { id: 5, contents: "브랜드 에센스", isClicked: false },
+    { id: 6, contents: "키워드", isClicked: false },
+    { id: 7, contents: "메니페스토", isClicked: false },
+  ];
+
+  const [isClicked, setIsClicked] =
+    useState<{ id: number; contents: string; isClicked: boolean }[]>(tagsList);
+
+  const handleClick = (id: number) => {
+    setIsClicked(
+      isClicked.map((isClicked) =>
+        isClicked.id === id
+          ? { ...isClicked, isClicked: !isClicked.isClicked }
+          : isClicked,
+      ),
+    );
+    console.log(isClicked);
+  };
+
+  const handleSubmit = () => {
+    const clickedTags = isClicked.filter((tag) => tag.isClicked);
+    //서버로 전송
+  };
 
   return (
     <Container>
@@ -98,15 +126,15 @@ const AIBranding = () => {
                   어떤 브랜드 요소를 생성하고 싶나요?
                 </WantText>
                 <TagsBox>
-                  <WantTags isClicked={true}>네이밍</WantTags>
-                  <WantTags>네이밍</WantTags>
-                  <WantTags>네이밍</WantTags>
-                  <WantTags>브랜드 에센스</WantTags>
-                  <WantTags>브랜드 에센스</WantTags>
-                  <WantTags>브랜드 에센스</WantTags>
-                  <WantTags>브랜드 에센스</WantTags>
-                  <WantTags>네이밍</WantTags>
-                  <WantTags>브랜드 에센스</WantTags>
+                  {isClicked.map((tag) => (
+                    <WantTags
+                      key={tag.id}
+                      isClicked={tag.isClicked}
+                      onClick={() => handleClick(tag.id)}
+                    >
+                      {tag.contents}
+                    </WantTags>
+                  ))}
                 </TagsBox>
               </WantBox>
               <WantBox now={isNow}>

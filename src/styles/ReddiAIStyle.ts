@@ -116,6 +116,8 @@ export const WantBox = styled.div<{ now?: boolean }>`
   padding: 2.6rem 2.31rem;
   box-sizing: border-box;
   gap: 1.5rem;
+
+  cursor: pointer;
 `;
 
 export const WantText = styled.div<{ now?: boolean }>`
