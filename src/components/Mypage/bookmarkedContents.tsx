@@ -1,3 +1,4 @@
+// 북마크 된 마케팅, 브랜드 컨텐츠 저장
 import { colors } from "../../styles/colors";
 import { SmallMarketingBox } from "../SmallMarketingBox";
 import { BrandBox } from "../BrandBox";

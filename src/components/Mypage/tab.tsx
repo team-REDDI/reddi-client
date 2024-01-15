@@ -2,6 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import { colors } from "../../styles/colors";
 import { BookmarkedContent } from "./bookmarkedContents";
+import { CreatedContents } from "./createdContents";
 
 const TabMenu = styled.ul`
   width: 64rem;
@@ -49,7 +50,7 @@ const Tab = () => {
     { name: "북마크(56)", content: <BookmarkedContent /> },
     {
       name: "REDDIAI로 생성한 브랜드 (12)",
-      content: "여기에 생성된 브랜드 컨텐츠들",
+      content: <CreatedContents />,
     },
   ];
 
@@ -63,7 +64,7 @@ const Tab = () => {
         <TabMenu>
           {menuArr.map((el, index) => (
             <li
-              key={index} // It's important to have a unique key for each child in a list
+              key={index}
               className={index === currentTab ? "submenu focused" : "submenu"}
               onClick={() => selectMenuHandler(index)}
             >
@@ -71,10 +72,7 @@ const Tab = () => {
             </li>
           ))}
         </TabMenu>
-        <Desc>
-          {/* Render the component associated with the current tab */}
-          {menuArr[currentTab].content}
-        </Desc>
+        <Desc>{menuArr[currentTab].content}</Desc>
       </div>
     </>
   );
