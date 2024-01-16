@@ -28,6 +28,13 @@ const NavBar = () => {
       setSearchBar(false);
     }
   };
+
+  const switchToLogin = () => {
+    // SignUp 컴포넌트를 닫고 Login 컴포넌트를 여는 함수
+    setIsLogin(true);
+    setIsSignUp(false);
+  };
+
   const toggleLogin = () => {
     setIsLogin(!isLogin);
     if (isSignUp) {
@@ -57,7 +64,13 @@ const NavBar = () => {
         </NavLinks>
       </NavigationWrapper>
       {isSearchBar && <SearchBar show={isSearchBar} />}
-      {isSignUp && <SignUp show={isSignUp} setShow={setIsSignUp} />}
+      {isSignUp && (
+        <SignUp
+          show={isSignUp}
+          setShow={setIsSignUp}
+          onSwitchLogin={switchToLogin}
+        />
+      )}
       {isLogin && <Login show={isLogin} setShow={setIsLogin} />}
     </>
   );

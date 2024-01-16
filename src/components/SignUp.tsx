@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { ReactComponent as SignUpPeople } from "../assets/svgs/signupPeopleImage.svg";
 import { ReactComponent as GoogleLogo } from "../assets/svgs/googleLogo.svg";
 import { ReactComponent as CloseIcon } from "../assets/svgs/closeButton.svg";
+import Login from "./Login";
 
 type SignUpProps = {
   show: boolean;
@@ -14,50 +15,58 @@ type ShowSignUpProps = {
   show: boolean;
 };
 
-const SignUp: React.FC<SignUpProps> = (props) => {
-  const [isLogin, setIsLogin] = useState<boolean>(false);
-  const { show, setShow } = props;
+const SignUp: React.FC<SignUpProps & { onSwitchLogin: () => void }> = (
+  props,
+) => {
+  const { show, setShow, onSwitchLogin } = props;
 
   const closeSignUp = () => {
     setShow(false);
   };
 
-  const toggleLogin = () => {
-    setIsLogin(!isLogin);
+  const handleLoginOpenClick = () => {
+    onSwitchLogin();
   };
 
   useEffect(() => {}, [props.show]);
 
   return (
-    <SignUpContainer show={props.show}>
-      <SignUpWrapper show={props.show}>
-        <CloseButton onClick={closeSignUp}>
-          <CloseIcon />
-        </CloseButton>
-        <InfoSection>
-          <SignUpPeople />
-          <InfoBigText>수많은 브랜딩 레퍼런스 중 내게 딱 맞는 건? </InfoBigText>
-          <InfoSmallText>
-            레디는 당신에게 딱 맞는 레퍼런스와 AI를 통한 브랜딩까지 제안합니다.
-          </InfoSmallText>
-        </InfoSection>
-        <InfoSection>
-          <SignUpBigText>1초만에 레디 시작하기</SignUpBigText>
-          <SignUpSmallText>
-            아이디, 비밀번호, 이름, 휴대번호를 입력하지 않고도 간편하게 시작할
-            수 있어요!
-          </SignUpSmallText>
-          <GoogleSignBtn>
-            <GoogleLogo />
-            구글 계정으로 시작하기
-          </GoogleSignBtn>
-          <LoginText>
-            이미 회원가입하셨나요?{" "}
-            <LoginOpen onClick={toggleLogin}>간편 로그인하기</LoginOpen>
-          </LoginText>
-        </InfoSection>
-      </SignUpWrapper>
-    </SignUpContainer>
+    <>
+      <SignUpContainer show={props.show}>
+        <SignUpWrapper show={props.show}>
+          <CloseButton onClick={closeSignUp}>
+            <CloseIcon />
+          </CloseButton>
+          <InfoSection>
+            <SignUpPeople />
+            <InfoBigText>
+              수많은 브랜딩 레퍼런스 중 내게 딱 맞는 건?{" "}
+            </InfoBigText>
+            <InfoSmallText>
+              레디는 당신에게 딱 맞는 레퍼런스와 AI를 통한 브랜딩까지
+              제안합니다.
+            </InfoSmallText>
+          </InfoSection>
+          <InfoSection>
+            <SignUpBigText>1초만에 레디 시작하기</SignUpBigText>
+            <SignUpSmallText>
+              아이디, 비밀번호, 이름, 휴대번호를 입력하지 않고도 간편하게 시작할
+              수 있어요!
+            </SignUpSmallText>
+            <GoogleSignBtn>
+              <GoogleLogo />
+              구글 계정으로 시작하기
+            </GoogleSignBtn>
+            <LoginText>
+              이미 회원가입하셨나요?{" "}
+              <LoginOpen onClick={handleLoginOpenClick}>
+                간편 로그인하기
+              </LoginOpen>
+            </LoginText>
+          </InfoSection>
+        </SignUpWrapper>
+      </SignUpContainer>
+    </>
   );
 };
 
@@ -169,6 +178,7 @@ const GoogleSignBtn = styled.button`
 `;
 const LoginText = styled.div`
   color: #ccc;
+  width: 100%;
   text-align: center;
   font-size: 0.625rem;
   font-style: normal;
@@ -177,7 +187,8 @@ const LoginText = styled.div`
   letter-spacing: -0.00625rem;
 `;
 const LoginOpen = styled.div`
-  text-decoration: none;
+  text-decoration: underline;
+  text-underline-position: under;
   cursor: pointer;
 `;
 export default SignUp;

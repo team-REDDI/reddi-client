@@ -23,24 +23,24 @@ const Login: React.FC<LoginProps> = (props) => {
   useEffect(() => {}, [props.show]);
 
   return (
-    <SignUpContainer show={props.show}>
-      <SignUpWrapper show={props.show}>
+    <LoginContainer show={props.show}>
+      <LoginWrapper show={props.show}>
         <CloseButton onClick={closeLogin}>
           <CloseIcon />
         </CloseButton>
         <InfoSection>
           <ReddiLogo />
-          <GoogleSignBtn>
+          <GoogleLoginBtn>
             <GoogleLogo />
             구글 계정으로 로그인
-          </GoogleSignBtn>
+          </GoogleLoginBtn>
         </InfoSection>
-      </SignUpWrapper>
-    </SignUpContainer>
+      </LoginWrapper>
+    </LoginContainer>
   );
 };
 
-const SignUpContainer = styled.div<ShowLoginProps>`
+const LoginContainer = styled.div<ShowLoginProps>`
   position: fixed;
   display: flex;
   flex-direction: column;
@@ -54,7 +54,7 @@ const SignUpContainer = styled.div<ShowLoginProps>`
   transition: transform 10.3s ease-in;
 `;
 
-const SignUpWrapper = styled.div<ShowLoginProps>`
+const LoginWrapper = styled.div<ShowLoginProps>`
   display: flex;
   width: 47.5625rem;
   height: 29.3125rem;
@@ -84,7 +84,7 @@ const InfoSection = styled.div`
   align-items: center;
 `;
 
-const GoogleSignBtn = styled.button`
+const GoogleLoginBtn = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -103,7 +103,7 @@ const GoogleSignBtn = styled.button`
   margin-top: 2rem;
   margin-bottom: 1.5rem;
 `;
-const LoginText = styled.div`
+const SignUpText = styled.div`
   color: #ccc;
   text-align: center;
   font-size: 0.625rem;
