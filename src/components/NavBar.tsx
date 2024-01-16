@@ -3,13 +3,52 @@ import { NavLink } from "react-router-dom";
 import { ReactComponent as ReddiLogo } from "../assets/svgs/ReddiLogo.svg";
 import { useState } from "react";
 import { SearchBar } from "./SearchBar";
+import SignUp from "./SignUp";
+import Login from "./Login";
 const NavBar = () => {
   const [isSearchBar, setSearchBar] = useState<boolean>(false);
+  const [isSignUp, setIsSignUp] = useState<boolean>(false);
+  const [isLogin, setIsLogin] = useState<boolean>(false);
 
   const toggleSearchBar = () => {
     setSearchBar(!isSearchBar);
+    if (isLogin) {
+      setIsLogin(false);
+    }
+    if (isSignUp) {
+      setIsSignUp(false);
+    }
+  };
+  const toggleSignUp = () => {
+    setIsSignUp(!isSignUp);
+    if (isLogin) {
+      setIsLogin(false);
+    }
+    if (isSearchBar) {
+      setSearchBar(false);
+    }
   };
 
+  const switchToLogin = () => {
+    // SignUp 컴포넌트를 닫고 Login 컴포넌트 여는 핸들러
+    setIsLogin(true);
+    setIsSignUp(false);
+  };
+
+  const switchToSignUp = () => {
+    // Login 컴포넌트를 닫고 Signup 컴포넌트 여는 핸들러
+    setIsLogin(false);
+    setIsSignUp(true);
+  };
+  const toggleLogin = () => {
+    setIsLogin(!isLogin);
+    if (isSignUp) {
+      setIsSignUp(false);
+    }
+    if (isSearchBar) {
+      setSearchBar(false);
+    }
+  };
   return (
     <>
       <NavigationWrapper>
@@ -23,14 +62,27 @@ const NavBar = () => {
             <StyledNavLink to="/mypage">마이페이지</StyledNavLink>
           </NavSection>
           <NavSection>
-            {/* <UserNavLink to="/search">검색</UserNavLink> */}
             <SearchBarLink onClick={toggleSearchBar}>검색</SearchBarLink>
-            <UserNavLink to="/login">로그인</UserNavLink>
-            <UserNavLink to="/signup">회원가입</UserNavLink>
+            <SignUpLink onClick={toggleLogin}>로그인</SignUpLink>
+            <SignUpLink onClick={toggleSignUp}>회원가입</SignUpLink>
           </NavSection>
         </NavLinks>
       </NavigationWrapper>
       {isSearchBar && <SearchBar show={isSearchBar} />}
+      {isSignUp && (
+        <SignUp
+          show={isSignUp}
+          setShow={setIsSignUp}
+          onSwitchLogin={switchToLogin}
+        />
+      )}
+      {isLogin && (
+        <Login
+          show={isLogin}
+          setShow={setIsLogin}
+          onSwitchSignUp={switchToSignUp}
+        />
+      )}
     </>
   );
 };
@@ -80,6 +132,11 @@ const SearchBarLink = styled.div`
   cursor: pointer;
 `;
 
+const SignUpLink = styled.div`
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+`;
 const NavSection = styled.div`
   display: flex;
   align-items: center;
