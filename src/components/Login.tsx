@@ -13,11 +13,17 @@ type ShowLoginProps = {
   show: boolean;
 };
 
-const Login: React.FC<LoginProps> = (props) => {
-  const { show, setShow } = props;
+const Login: React.FC<LoginProps & { onSwitchSignUp: () => void }> = (
+  props,
+) => {
+  const { show, setShow, onSwitchSignUp } = props;
 
   const closeLogin = () => {
     setShow(false);
+  };
+
+  const handleSignUpOpenClick = () => {
+    onSwitchSignUp();
   };
 
   useEffect(() => {}, [props.show]);
@@ -34,6 +40,12 @@ const Login: React.FC<LoginProps> = (props) => {
             <GoogleLogo />
             구글 계정으로 로그인
           </GoogleLoginBtn>
+          <SignUpText>
+            아직 회원가입을 하지 않으셨나요?
+            <SignupOpen onClick={handleSignUpOpenClick}>
+              1초 회원가입하기
+            </SignupOpen>
+          </SignUpText>
         </InfoSection>
       </LoginWrapper>
     </LoginContainer>
@@ -112,8 +124,9 @@ const SignUpText = styled.div`
   line-height: 150%;
   letter-spacing: -0.00625rem;
 `;
-const LoginOpen = styled.div`
-  text-decoration: none;
+const SignupOpen = styled.div`
+  text-decoration: underline;
+  text-underline-position: under;
   cursor: pointer;
 `;
 export default Login;
