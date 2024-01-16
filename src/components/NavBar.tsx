@@ -12,17 +12,29 @@ const NavBar = () => {
 
   const toggleSearchBar = () => {
     setSearchBar(!isSearchBar);
+    if (isLogin) {
+      setIsLogin(false);
+    }
+    if (isSignUp) {
+      setIsSignUp(false);
+    }
   };
   const toggleSignUp = () => {
     setIsSignUp(!isSignUp);
     if (isLogin) {
       setIsLogin(false);
     }
+    if (isSearchBar) {
+      setSearchBar(false);
+    }
   };
   const toggleLogin = () => {
     setIsLogin(!isLogin);
     if (isSignUp) {
       setIsSignUp(false);
+    }
+    if (isSearchBar) {
+      setSearchBar(false);
     }
   };
   return (
@@ -38,7 +50,6 @@ const NavBar = () => {
             <StyledNavLink to="/mypage">마이페이지</StyledNavLink>
           </NavSection>
           <NavSection>
-            {/* <UserNavLink to="/search">검색</UserNavLink> */}
             <SearchBarLink onClick={toggleSearchBar}>검색</SearchBarLink>
             <SignUpLink onClick={toggleLogin}>로그인</SignUpLink>
             <SignUpLink onClick={toggleSignUp}>회원가입</SignUpLink>
