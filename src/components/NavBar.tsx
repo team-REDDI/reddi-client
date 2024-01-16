@@ -4,15 +4,26 @@ import { ReactComponent as ReddiLogo } from "../assets/svgs/ReddiLogo.svg";
 import { useState } from "react";
 import { SearchBar } from "./SearchBar";
 import SignUp from "./SignUp";
+import Login from "./Login";
 const NavBar = () => {
   const [isSearchBar, setSearchBar] = useState<boolean>(false);
-  const [isSignUp, setSignUp] = useState<boolean>(false);
+  const [isSignUp, setIsSignUp] = useState<boolean>(false);
+  const [isLogin, setIsLogin] = useState<boolean>(false);
 
   const toggleSearchBar = () => {
     setSearchBar(!isSearchBar);
   };
   const toggleSignUp = () => {
-    setSignUp(!isSignUp);
+    setIsSignUp(!isSignUp);
+    if (isLogin) {
+      setIsLogin(false);
+    }
+  };
+  const toggleLogin = () => {
+    setIsLogin(!isLogin);
+    if (isSignUp) {
+      setIsSignUp(false);
+    }
   };
   return (
     <>
@@ -29,13 +40,14 @@ const NavBar = () => {
           <NavSection>
             {/* <UserNavLink to="/search">검색</UserNavLink> */}
             <SearchBarLink onClick={toggleSearchBar}>검색</SearchBarLink>
-            <UserNavLink to="/login">로그인</UserNavLink>
+            <SignUpLink onClick={toggleLogin}>로그인</SignUpLink>
             <SignUpLink onClick={toggleSignUp}>회원가입</SignUpLink>
           </NavSection>
         </NavLinks>
       </NavigationWrapper>
       {isSearchBar && <SearchBar show={isSearchBar} />}
-      {isSignUp && <SignUp show={isSignUp} />}
+      {isSignUp && <SignUp show={isSignUp} setShow={setIsSignUp} />}
+      {isLogin && <Login show={isLogin} setShow={setIsLogin} />}
     </>
   );
 };

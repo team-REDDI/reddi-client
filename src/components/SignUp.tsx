@@ -3,17 +3,37 @@ import { colors } from "../styles/colors";
 import { useEffect, useState } from "react";
 import { ReactComponent as SignUpPeople } from "../assets/svgs/signupPeopleImage.svg";
 import { ReactComponent as GoogleLogo } from "../assets/svgs/googleLogo.svg";
+import { ReactComponent as CloseIcon } from "../assets/svgs/closeButton.svg";
 
 type SignUpProps = {
+  show: boolean;
+  setShow: (show: boolean) => void;
+};
+
+type ShowSignUpProps = {
   show: boolean;
 };
 
 const SignUp: React.FC<SignUpProps> = (props) => {
+  const [isLogin, setIsLogin] = useState<boolean>(false);
+  const { show, setShow } = props;
+
+  const closeSignUp = () => {
+    setShow(false);
+  };
+
+  const toggleLogin = () => {
+    setIsLogin(!isLogin);
+  };
+
   useEffect(() => {}, [props.show]);
 
   return (
     <SignUpContainer show={props.show}>
       <SignUpWrapper show={props.show}>
+        <CloseButton onClick={closeSignUp}>
+          <CloseIcon />
+        </CloseButton>
         <InfoSection>
           <SignUpPeople />
           <InfoBigText>수많은 브랜딩 레퍼런스 중 내게 딱 맞는 건? </InfoBigText>
@@ -31,14 +51,17 @@ const SignUp: React.FC<SignUpProps> = (props) => {
             <GoogleLogo />
             구글 계정으로 시작하기
           </GoogleSignBtn>
-          <LoginText>이미 회원가입하셨나요? 간편 로그인하기</LoginText>
+          <LoginText>
+            이미 회원가입하셨나요?{" "}
+            <LoginOpen onClick={toggleLogin}>간편 로그인하기</LoginOpen>
+          </LoginText>
         </InfoSection>
       </SignUpWrapper>
     </SignUpContainer>
   );
 };
 
-const SignUpContainer = styled.div<SignUpProps>`
+const SignUpContainer = styled.div<ShowSignUpProps>`
   position: fixed;
   display: flex;
   flex-direction: column;
@@ -52,7 +75,7 @@ const SignUpContainer = styled.div<SignUpProps>`
   transition: transform 10.3s ease-in;
 `;
 
-const SignUpWrapper = styled.div<SignUpProps>`
+const SignUpWrapper = styled.div<ShowSignUpProps>`
   display: flex;
   width: 47.5625rem;
   height: 29.3125rem;
@@ -64,6 +87,17 @@ const SignUpWrapper = styled.div<SignUpProps>`
   justify-content: center;
   align-items: center;
 `;
+const CloseButton = styled.button`
+  position: absolute;
+  top: 1.75rem;
+  right: 1.63rem;
+  background: transparent;
+  border: none;
+  width: 1.25rem;
+  height: 1.25rem;
+  cursor: pointer;
+`;
+
 const InfoSection = styled.div`
   display: flex;
   flex-direction: column;
@@ -141,5 +175,9 @@ const LoginText = styled.div`
   font-weight: 500;
   line-height: 150%;
   letter-spacing: -0.00625rem;
+`;
+const LoginOpen = styled.div`
+  text-decoration: none;
+  cursor: pointer;
 `;
 export default SignUp;
