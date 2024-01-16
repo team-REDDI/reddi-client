@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { ReactComponent as SignUpPeople } from "../assets/svgs/signupPeopleImage.svg";
 import { ReactComponent as GoogleLogo } from "../assets/svgs/googleLogo.svg";
 import { ReactComponent as CloseIcon } from "../assets/svgs/closeButton.svg";
-import Login from "./Login";
+import { ReactComponent as RLogoIcon } from "../assets/svgs/RIcon.svg";
 
 type SignUpProps = {
   show: boolean;
@@ -34,6 +34,7 @@ const SignUp: React.FC<SignUpProps & { onSwitchLogin: () => void }> = (
     <>
       <SignUpContainer show={props.show}>
         <SignUpWrapper show={props.show}>
+          <FixedRLogoIcon />
           <CloseButton onClick={closeSignUp}>
             <CloseIcon />
           </CloseButton>
@@ -105,6 +106,11 @@ const CloseButton = styled.button`
   width: 1.25rem;
   height: 1.25rem;
   cursor: pointer;
+`;
+const FixedRLogoIcon = styled(RLogoIcon)`
+  position: absolute;
+  top: 2.12rem;
+  left: 2.44rem; // 피그마랑 다르게 수정했음
 `;
 
 const InfoSection = styled.div`
