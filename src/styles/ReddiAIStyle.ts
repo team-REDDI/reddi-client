@@ -107,7 +107,7 @@ export const OrderLine = styled.div<{ now?: boolean }>`
   background-color: ${(props) => (props.now ? colors.black : "#ccc")};
 `;
 
-export const WantBox = styled.div<{ now?: boolean }>`
+export const WantBox = styled.div<{ now?: boolean; index?: number }>`
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -120,7 +120,7 @@ export const WantBox = styled.div<{ now?: boolean }>`
   cursor: pointer;
 `;
 
-export const WantText = styled.div<{ now?: boolean }>`
+export const WantText = styled.div<{ now?: boolean; index?: number }>`
   color: ${(props) => (props.now ? colors.black_CTA : "#8f8f8f")};
   font-size: 1.125rem;
   font-style: normal;
