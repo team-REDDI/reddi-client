@@ -3,13 +3,17 @@ import { NavLink } from "react-router-dom";
 import { ReactComponent as ReddiLogo } from "../assets/svgs/ReddiLogo.svg";
 import { useState } from "react";
 import { SearchBar } from "./SearchBar";
+import SignUp from "./SignUp";
 const NavBar = () => {
   const [isSearchBar, setSearchBar] = useState<boolean>(false);
+  const [isSignUp, setSignUp] = useState<boolean>(false);
 
   const toggleSearchBar = () => {
     setSearchBar(!isSearchBar);
   };
-
+  const toggleSignUp = () => {
+    setSignUp(!isSignUp);
+  };
   return (
     <>
       <NavigationWrapper>
@@ -26,11 +30,12 @@ const NavBar = () => {
             {/* <UserNavLink to="/search">검색</UserNavLink> */}
             <SearchBarLink onClick={toggleSearchBar}>검색</SearchBarLink>
             <UserNavLink to="/login">로그인</UserNavLink>
-            <UserNavLink to="/signup">회원가입</UserNavLink>
+            <SignUpLink onClick={toggleSignUp}>회원가입</SignUpLink>
           </NavSection>
         </NavLinks>
       </NavigationWrapper>
       {isSearchBar && <SearchBar show={isSearchBar} />}
+      {isSignUp && <SignUp show={isSignUp} />}
     </>
   );
 };
@@ -80,6 +85,11 @@ const SearchBarLink = styled.div`
   cursor: pointer;
 `;
 
+const SignUpLink = styled.div`
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+`;
 const NavSection = styled.div`
   display: flex;
   align-items: center;
