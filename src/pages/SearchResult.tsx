@@ -12,12 +12,16 @@ import {
 } from "../styles/searchStyle";
 import { MarketingBox } from "../components/MarketingBox";
 import { BrandBox } from "../components/BrandBox";
-import { useLocation, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
+import { useEffect } from "react";
 
 const SearchResult = () => {
-  const location = useLocation();
   const [params, setParams] = useSearchParams();
   const inputValue = params.get("input");
+
+  useEffect(() => {
+    // updateSearchResult(inputValue);
+  }, [inputValue]);
 
   return (
     <ResultContainer>

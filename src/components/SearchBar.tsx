@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 type SearchBarProps = {
   show: boolean;
+  toggleSearchBar: () => void;
 };
 
 export const SearchBar: React.FC<SearchBarProps> = (props) => {
@@ -16,13 +17,16 @@ export const SearchBar: React.FC<SearchBarProps> = (props) => {
 
   const [inputValue, setInputValue] = useState<string>("");
   const nav = useNavigate();
+  const [searchBarOpen, setSearchBarOpen] = useState<boolean>(false);
 
-  const goToResult = () => {
+  const goToResult = useCallback(() => {
     nav({
       pathname: "/search/result",
       search: `?input=${inputValue}`,
     });
-  };
+    props.toggleSearchBar();
+  }, [inputValue]);
+
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
@@ -38,7 +42,7 @@ export const SearchBar: React.FC<SearchBarProps> = (props) => {
       //   setInputValue("");
       // }
     },
-    [inputValue],
+    [inputValue, goToResult],
   );
 
   return (
