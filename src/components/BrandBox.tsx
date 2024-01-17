@@ -47,7 +47,7 @@ const BrandTagsContainer = styled.div`
 const BrandTag = styled.div`
   color: ${colors.red};
   background-color: ${colors.light_red};
-  padding: 0.5rem 0.25rem;
+  padding: 0.25rem 0.5rem;
   font-size: 1rem;
   font-weight: 500;
   margin-right: 0.34rem;

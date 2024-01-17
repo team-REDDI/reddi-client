@@ -90,7 +90,7 @@ export const BrandTitleBox = styled.div`
   display: flex;
   flex-direction: column;
   width: 25.68rem;
-  height: 4.1rem;
+  /* height: 4.1rem; */
 `;
 
 export const BrandTitleRow = styled.div`
@@ -98,7 +98,7 @@ export const BrandTitleRow = styled.div`
   flex-direction: row;
   align-items: center;
   width: 100%;
-  height: 4.1rem;
+  /* height: 4.1rem; */
 `;
 
 export const HomeTitleWeight = styled.div`
@@ -112,11 +112,11 @@ export const HomeTitleWeight = styled.div`
 
 export const HomeTitle = styled.div`
   color: ${colors.black};
-  font-size: 2.25rem;
+  font-size: 1.5rem;
   font-style: normal;
   font-weight: 700;
-  line-height: 130%; /* 2.925rem */
-  letter-spacing: -0.0225rem;
+  line-height: 130%;
+  letter-spacing: -0.015rem;
 `;
 
 export const DateText = styled.span`
@@ -158,7 +158,7 @@ export const MarketingTitleBox = styled.div`
   display: flex;
   flex-direction: column;
   width: fit-content;
-  height: 4.1rem;
+  /* height: 4.1rem; */
 `;
 
 export const MarketingCol = styled.div`
