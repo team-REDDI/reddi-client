@@ -56,6 +56,7 @@ const StyledLabel = styled.label`
   font-weight: 300;
   line-height: 130%;
   color: #000;
+  width: 7.7875rem;
 `;
 
 const CheckBoxInput = styled.input`
@@ -77,7 +78,7 @@ const CustomCheckbox = styled.div<{ checked: boolean }>`
   position: relative;
   border: 0.3px solid #000;
   &:after {
-    content: "✔";
+    content: "✓";
     font-size: 1rem;
     color: #fff;
     position: absolute;

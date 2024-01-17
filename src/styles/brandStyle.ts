@@ -2,16 +2,19 @@ import styled from "styled-components";
 import { colors } from "../styles/colors";
 
 export const BrandContainer = styled.div`
-  display: flex;
-  width: 100%;
+  width: 64rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   justify-content: flex-start;
   align-items: flex-start;
   margin-top: 5.03rem;
+  gap: 3.12rem 1.5rem ;
 `;
 
 export const RefBox = styled.div`
   display: flex;
   width: 31.25rem;
+  /* width: 50%; */
   height: 9.0625rem;
   padding: 1.56rem 2.25rem;
   align-items: center;
