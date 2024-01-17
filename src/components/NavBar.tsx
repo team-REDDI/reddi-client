@@ -1,14 +1,33 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 import { ReactComponent as ReddiLogo } from "../assets/svgs/ReddiLogo.svg";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { SearchBar } from "./SearchBar";
 import SignUp from "./SignUp";
 import Login from "./Login";
+
+interface NavigationWrapperProps {
+  isTransparent: boolean;
+}
+
 const NavBar = () => {
   const [isSearchBar, setSearchBar] = useState<boolean>(false);
   const [isSignUp, setIsSignUp] = useState<boolean>(false);
   const [isLogin, setIsLogin] = useState<boolean>(false);
+  const [isTransparent, setIsTransparent] = useState(false);
+
+  const handleScroll = () => {
+    if (window.scrollY > 449) {
+      setIsTransparent(true);
+    } else {
+      setIsTransparent(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const toggleSearchBar = () => {
     setSearchBar(!isSearchBar);
@@ -49,9 +68,10 @@ const NavBar = () => {
       setSearchBar(false);
     }
   };
+
   return (
     <>
-      <NavigationWrapper>
+      <NavigationWrapper isTransparent={isTransparent}>
         <StyledLogo />
         <NavLinks>
           <NavSection>
@@ -87,15 +107,15 @@ const NavBar = () => {
   );
 };
 
-const NavigationWrapper = styled.nav`
+const NavigationWrapper = styled.nav<NavigationWrapperProps>`
+  /* 그때 나왔던 얘기: 스크롤 내리면 navbar 투명하게 할지 말지? */
+  background-color: ${(props) => (props.isTransparent ? "#242526" : "black")};
   display: flex;
   flex-direction: row;
   z-index: 999;
   align-items: center;
   padding-left: 3.94rem;
   padding-right: 4.44rem;
-  background-color: black;
-  color: white;
   height: 3.125rem;
   font-size: 0.91725rem;
   font-style: normal;
@@ -128,7 +148,6 @@ const SearchBarLink = styled.div`
   color: white;
   text-decoration: none;
   position: relative;
-
   cursor: pointer;
 `;
 
