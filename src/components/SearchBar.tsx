@@ -18,11 +18,15 @@ export const SearchBar: React.FC<SearchBarProps> = (props) => {
   const nav = useNavigate();
 
   const goToResult = () => {
-    nav("/search/result");
+    nav({
+      pathname: "/search/result",
+      search: `?input=${inputValue}`,
+    });
   };
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
+
   const onSubmit = useCallback(
     (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
@@ -41,7 +45,7 @@ export const SearchBar: React.FC<SearchBarProps> = (props) => {
     <SearchContainer show={props.show}>
       <SearchInputContainer show={props.show}>
         <InputContainer onSubmit={onSubmit}>
-          <InputBar placeholder="검색"></InputBar>
+          <InputBar placeholder="검색" onChange={onChange}></InputBar>
           <SearchIcon />
           {/* <SearchImg src={require("../assets/images/Link.png")} /> */}
         </InputContainer>
