@@ -36,7 +36,7 @@ import AIResult from "../components/AIBranding/AIResult";
 const AIBranding = () => {
   const [isResult, setIsResult] = useState<boolean>(false);
   const [isNow, setIsNow] = useState<boolean[]>([
-    false,
+    true,
     false,
     false,
     false,
@@ -75,12 +75,10 @@ const AIBranding = () => {
       const newIsNow = [...isNow];
       newIsNow[boxIndex] = true;
       setIsNow(newIsNow);
-      console.log(isNow);
     } else {
       const newIsNow = [...isNow];
       newIsNow[boxIndex] = false;
       setIsNow(newIsNow);
-      console.log(isNow);
     }
   };
 
@@ -90,9 +88,8 @@ const AIBranding = () => {
   };
 
   useEffect(() => {
-    // isNow 상태가 변경될 때마다 이 코드가 실행됩니다.
     console.log(isNow);
-  }, [isNow]); // 의존성 배열에 isNow를 추가합니다.
+  }, [isNow]);
 
   return (
     <Container>
@@ -149,8 +146,8 @@ const AIBranding = () => {
                 </OrderBox>
               </OrderContaniner>
 
-              <WantBox now={true} index={1}>
-                <WantText now={true} index={1}>
+              <WantBox now={isNow[0]} index={1}>
+                <WantText now={isNow[0]} index={1}>
                   어떤 브랜드 요소를 생성하고 싶나요?
                 </WantText>
                 <TagsBox>
