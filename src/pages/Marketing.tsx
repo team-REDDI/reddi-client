@@ -8,7 +8,7 @@ import dropdownDataMarketing from "../assets/datas/dropDownDataMarketing.json";
 import Footer from "../components/Footer";
 import { filteredMarketing } from "../utils/atom";
 import { useRecoilValue } from "recoil";
-import { ReactComponent as MarketingSVG } from "../assets/svgs/marketing.svg";
+import { ReactComponent as MarketingSVG } from "../assets/svgs/MarketingSVG.svg";
 
 const dummyMarketingBoxes = [
   {

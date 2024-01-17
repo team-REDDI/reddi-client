@@ -15,7 +15,7 @@ import {
 } from "../styles/brandStyle";
 import { ReactComponent as Toss } from "../assets/svgs/toss_2.svg";
 import { BrandBox } from "../components/BrandBox";
-import { ReactComponent as BrandSVG } from "../assets/svgs/brand.svg";
+import { ReactComponent as BrandSVG } from "../assets/svgs/BrandSVG.svg";
 
 import { useRecoilValue } from "recoil";
 import { filteredBrand } from "../utils/atom";
