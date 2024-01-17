@@ -105,8 +105,9 @@ const ReferenceBox = styled.div`
   align-items: center;
   justify-content: center;
   margin-top: 6.25rem;
-  width: 100%;
-  padding-left: 10.69rem;
+  width: 64rem;
+  /* width: 100%; */
+  /* padding-left: 10.69rem; */
   /* padding-right: 10.69rem; */
   box-sizing: border-box;
 `;

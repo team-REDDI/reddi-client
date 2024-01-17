@@ -2,13 +2,13 @@ import styled from "styled-components";
 import { colors } from "../styles/colors";
 
 export const BrandContainer = styled.div`
-  display: flex;
-  width: 100%;
-  flex-wrap: wrap;
+  width: 64rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   justify-content: flex-start;
   align-items: flex-start;
   margin-top: 5.03rem;
-  gap: 1.5rem 3.12rem;
+  gap: 3.12rem 1.5rem ;
 `;
 
 export const RefBox = styled.div`
