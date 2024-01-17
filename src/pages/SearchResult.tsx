@@ -12,16 +12,21 @@ import {
 } from "../styles/searchStyle";
 import { MarketingBox } from "../components/MarketingBox";
 import { BrandBox } from "../components/BrandBox";
+import { useLocation, useSearchParams } from "react-router-dom";
 
 const SearchResult = () => {
+  const location = useLocation();
+  const [params, setParams] = useSearchParams();
+  const inputValue = params.get("input");
+
   return (
     <ResultContainer>
       <NavBar />
       <ResultBox>
-        <ResultTitle>'공간마케팅' 검색 결과</ResultTitle>
+        <ResultTitle>'{inputValue}' 검색 결과</ResultTitle>
         <MarketingResultBox>
           <ResultText>
-            ‘공간마케팅’이(가) 본문/제목에 언급된 마케팅 콘텐츠입니다. (3)
+            ‘{inputValue}’이(가) 본문/제목에 언급된 마케팅 콘텐츠입니다. (3)
           </ResultText>
           <MarketingsBox>
             <MarketingBox
@@ -49,7 +54,7 @@ const SearchResult = () => {
         </MarketingResultBox>
         <BrandResultBox>
           <ResultText>
-            ‘공간마케팅’이(가) 본문/제목에 언급된 브랜드입니다. (4)
+            ‘{inputValue}’이(가) 본문/제목에 언급된 브랜드입니다. (4)
           </ResultText>
           <BrandsBox>
             <BrandBox
