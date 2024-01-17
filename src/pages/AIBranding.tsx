@@ -30,27 +30,35 @@ import {
   WantText,
 } from "../styles/ReddiAIStyle";
 import { ReactComponent as SearchIcon } from "../assets/svgs/searchSmall.svg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AIResult from "../components/AIBranding/AIResult";
-import { colors } from "../styles/colors";
 
 const AIBranding = () => {
   const [isResult, setIsResult] = useState<boolean>(false);
-  const [isNow, setIsNow] = useState<boolean>(true);
-  const tagsList = [
-    { id: 1, contents: "네이밍", isClicked: false },
-    { id: 2, contents: "슬로건", isClicked: false },
-    { id: 3, contents: "로고", isClicked: false },
-    { id: 4, contents: "버전 미션", isClicked: false },
-    { id: 5, contents: "브랜드 에센스", isClicked: false },
-    { id: 6, contents: "키워드", isClicked: false },
-    { id: 7, contents: "메니페스토", isClicked: false },
+  const [isNow, setIsNow] = useState<boolean[]>([
+    true,
+    false,
+    false,
+    false,
+    false,
+  ]);
+
+  const tagsList1 = [
+    { id: 1, boxId: 1, contents: "네이밍", isClicked: false },
+    { id: 2, boxId: 1, contents: "슬로건", isClicked: false },
+    { id: 3, boxId: 1, contents: "로고", isClicked: false },
+    { id: 4, boxId: 1, contents: "버전 미션", isClicked: false },
+    { id: 5, boxId: 1, contents: "브랜드 에센스", isClicked: false },
+    { id: 6, boxId: 1, contents: "키워드", isClicked: false },
+    { id: 7, boxId: 1, contents: "메니페스토", isClicked: false },
   ];
 
   const [isClicked, setIsClicked] =
-    useState<{ id: number; contents: string; isClicked: boolean }[]>(tagsList);
+    useState<
+      { id: number; boxId: number; contents: string; isClicked: boolean }[]
+    >(tagsList1);
 
-  const handleClick = (id: number) => {
+  const handleClick = (id: number, boxIndex: number) => {
     setIsClicked(
       isClicked.map((isClicked) =>
         isClicked.id === id
@@ -59,12 +67,29 @@ const AIBranding = () => {
       ),
     );
     console.log(isClicked);
+
+    const clickedTagExists = isClicked.some(
+      (tag) => tag.isClicked && tag.boxId === boxIndex,
+    );
+    if (clickedTagExists) {
+      const newIsNow = [...isNow];
+      newIsNow[boxIndex] = true;
+      setIsNow(newIsNow);
+    } else {
+      const newIsNow = [...isNow];
+      newIsNow[boxIndex] = false;
+      setIsNow(newIsNow);
+    }
   };
 
   const handleSubmit = () => {
     const clickedTags = isClicked.filter((tag) => tag.isClicked);
     //서버로 전송
   };
+
+  useEffect(() => {
+    console.log(isNow);
+  }, [isNow]);
 
   return (
     <Container>
@@ -96,18 +121,18 @@ const AIBranding = () => {
             <TagsContainer>
               <OrderContaniner>
                 <OrderBox>
-                  <OrderNumber now={isNow}>1</OrderNumber>
-                  <OrderText now={isNow}>브랜드 요소</OrderText>
+                  <OrderNumber now={true}>1</OrderNumber>
+                  <OrderText now={true}>브랜드 요소</OrderText>
                 </OrderBox>
-                <OrderLine now={isNow} />
+                <OrderLine />
                 <OrderBox>
-                  <OrderNumber now={isNow}>2</OrderNumber>
-                  <OrderText now={isNow}>분위기</OrderText>
+                  <OrderNumber>2</OrderNumber>
+                  <OrderText>분위기</OrderText>
                 </OrderBox>
-                <OrderLine now={isNow} />
+                <OrderLine />
                 <OrderBox>
-                  <OrderNumber now={isNow}>3</OrderNumber>
-                  <OrderText now={isNow}>산업군</OrderText>
+                  <OrderNumber>3</OrderNumber>
+                  <OrderText>산업군</OrderText>
                 </OrderBox>
                 <OrderLine />
                 <OrderBox>
@@ -121,8 +146,8 @@ const AIBranding = () => {
                 </OrderBox>
               </OrderContaniner>
 
-              <WantBox now={isNow}>
-                <WantText now={isNow}>
+              <WantBox now={isNow[0]} index={1}>
+                <WantText now={isNow[0]} index={1}>
                   어떤 브랜드 요소를 생성하고 싶나요?
                 </WantText>
                 <TagsBox>
@@ -130,15 +155,17 @@ const AIBranding = () => {
                     <WantTags
                       key={tag.id}
                       isClicked={tag.isClicked}
-                      onClick={() => handleClick(tag.id)}
+                      onClick={() => handleClick(tag.id, tag.boxId)}
                     >
                       {tag.contents}
                     </WantTags>
                   ))}
                 </TagsBox>
               </WantBox>
-              <WantBox now={isNow}>
-                <WantText now={isNow}>어떤 분위기를 원하나요?</WantText>
+              <WantBox now={isNow[1]} index={2}>
+                <WantText now={isNow[1]} index={2}>
+                  어떤 분위기를 원하나요?
+                </WantText>
                 <TagsBox>
                   <WantTags>네이밍</WantTags>
                   <WantTags>네이밍</WantTags>
@@ -155,8 +182,10 @@ const AIBranding = () => {
                   </WantTagsInputBox>
                 </TagsBox>
               </WantBox>
-              <WantBox>
-                <WantText>어떤 산업군에 종사하나요?</WantText>
+              <WantBox now={isNow[2]} index={3}>
+                <WantText now={isNow[2]} index={3}>
+                  어떤 산업군에 종사하나요?
+                </WantText>
                 <TagsBox>
                   <WantTags>네이밍</WantTags>
                   <WantTags>네이밍</WantTags>
@@ -173,8 +202,10 @@ const AIBranding = () => {
                   </WantTagsInputBox>
                 </TagsBox>
               </WantBox>
-              <WantBox>
-                <WantText>이런 고객을 타깃으로 해요.</WantText>
+              <WantBox now={isNow[3]} index={4}>
+                <WantText now={isNow[3]} index={4}>
+                  이런 고객을 타깃으로 해요.
+                </WantText>
                 <TagsBox>
                   <WantTags>네이밍</WantTags>
                   <WantTags>네이밍</WantTags>
@@ -191,8 +222,8 @@ const AIBranding = () => {
                   </WantTagsInputBox>
                 </TagsBox>
               </WantBox>
-              <WantBox>
-                <WantText>
+              <WantBox index={5}>
+                <WantText index={5}>
                   내 브랜드와의 유사 서비스에는 이런 것들이 있어요.
                 </WantText>
                 <TagsBox>
