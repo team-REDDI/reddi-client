@@ -15,7 +15,7 @@ import {
 } from "../styles/brandStyle";
 import { ReactComponent as Toss } from "../assets/svgs/toss_2.svg";
 import { BrandBox } from "../components/BrandBox";
-import { ReactComponent as BrandSVG } from "../assets/svgs/brand.svg";
+import { ReactComponent as BrandSVG } from "../assets/svgs/BrandSVG.svg";
 
 import { useRecoilValue } from "recoil";
 import { filteredBrand } from "../utils/atom";
@@ -105,8 +105,9 @@ const ReferenceBox = styled.div`
   align-items: center;
   justify-content: center;
   margin-top: 6.25rem;
-  width: 100%;
-  padding-left: 10.69rem;
+  width: 64rem;
+  /* width: 100%; */
+  /* padding-left: 10.69rem; */
   /* padding-right: 10.69rem; */
   box-sizing: border-box;
 `;

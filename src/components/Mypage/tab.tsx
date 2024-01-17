@@ -5,7 +5,6 @@ import { BookmarkedContent } from "./bookmarkedContents";
 import { CreatedContents } from "./createdContents";
 
 const TabMenu = styled.ul`
-  width: 64rem;
   justify-content: center;
   color: ${colors.black_CTA};
   display: flex;
@@ -15,6 +14,7 @@ const TabMenu = styled.ul`
   margin-bottom: 6.25rem;
   margin-top: 3.12rem;
   cursor: pointer;
+
   .submenu {
     display: flex;
     white-space: nowrap;
@@ -25,17 +25,10 @@ const TabMenu = styled.ul`
     font-style: normal;
     font-weight: 500;
     line-height: 150%;
-    transition: 0.5s;
-    border-radius: 10px 10px 0px 0px;
   }
-
   .focused {
     color: ${colors.red};
     border-bottom: 2px solid ${colors.red};
-  }
-
-  & div.desc {
-    text-align: center;
   }
 `;
 

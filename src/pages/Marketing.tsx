@@ -8,7 +8,7 @@ import dropdownDataMarketing from "../assets/datas/dropDownDataMarketing.json";
 import Footer from "../components/Footer";
 import { filteredMarketing } from "../utils/atom";
 import { useRecoilValue } from "recoil";
-import { ReactComponent as MarketingSVG } from "../assets/svgs/marketing.svg";
+import { ReactComponent as MarketingSVG } from "../assets/svgs/MarketingSVG.svg";
 
 const dummyMarketingBoxes = [
   {
@@ -98,19 +98,20 @@ const ReferenceBox = styled.div`
   flex-direction: column;
   align-items: center;
   margin-top: 6.25rem;
-  /* width: 64rem; */
+  width: 64rem;
   box-sizing: border-box;
-  width: 100%;
+  /* width: 100%;
   padding-left: 10.69rem;
-  padding-right: 10.69rem;
+  padding-right: 10.69rem; */
 `;
 const MarketingLines = styled.div`
-  display: flex;
-  width: 100%;
-  /* width: 64rem; */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /* width: 100%; */
+  width: 64rem;
   flex-wrap: wrap;
-  justify-content: flex-start;
-  align-items: flex-start;
+  /* justify-content: flex-start; */
+  /* align-items: flex-start; */
   gap: 2.5rem 1.5rem;
   margin-top: 2.5rem;
 `;

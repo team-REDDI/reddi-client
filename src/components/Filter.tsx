@@ -25,7 +25,11 @@ interface Item {
 const Filter: React.FC<FilterProps> = ({ dropdownItems, pageType }) => {
   const state = pageType === "marketing" ? filteredMarketing : filteredBrand;
   const [selectedFilters, setSelectedFilters] = useRecoilState(state);
-  const [activeCategory, setActiveCategory] = useState<string | null>(null);
+
+  const defaultActive = Object.keys(dropdownItems)[0] || null;
+  const [activeCategory, setActiveCategory] = useState<string | null>(
+    defaultActive,
+  );
 
   const handleSelect = (item: Item, isChecked: boolean) => {
     setSelectedFilters((prevFilters) => {
@@ -152,10 +156,11 @@ const Filter: React.FC<FilterProps> = ({ dropdownItems, pageType }) => {
 
 const FilterContainer = styled.div`
   display: flex;
-  width: 100%;
+  /* width: 100%; */
+  /* padding-left: 10.69rem; */
+  /* padding-right: 10.69rem; */
+  width: 64rem;
   box-sizing: border-box;
-  padding-left: 10.69rem;
-  padding-right: 10.69rem;
   padding-top: 6.25rem;
   flex-direction: column;
   gap: 1.5rem;

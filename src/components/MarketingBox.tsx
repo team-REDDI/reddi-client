@@ -43,8 +43,8 @@ export const MarketingBox = ({
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  width: calc(33.333% - 1.5rem);
-  /* width: 20.3125rem; */
+  /* width: calc(33.333% - 1.5rem); */
+  width: 20.3125rem;
   height: fit-content;
   align-items: flex-start;
   cursor: pointer;
@@ -92,7 +92,7 @@ const Category = styled.div`
   align-items: center;
   color: ${colors.red};
   background-color: ${colors.light_red};
-  padding: 0.5rem 0.25rem;
+  padding: 0.25rem 0.5rem;
   font-size: 1rem;
   font-style: normal;
   font-weight: 500;

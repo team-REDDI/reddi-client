@@ -39,15 +39,17 @@ const TitleWrapper = styled.div`
 `;
 const Title = styled.div`
   color: ${colors.red};
-  font-size: 3rem;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-`;
-const SubTitle = styled.div`
-  font-size: 1.5rem;
+  font-size: 2.25rem;
   font-style: normal;
   font-weight: 700;
   line-height: 130%;
+  letter-spacing: -0.0225rem;
+`;
+const SubTitle = styled.div`
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 130%;
+  letter-spacing: -0.01rem;
 `;
 export default Header;
