@@ -92,7 +92,7 @@ const NavBar = () => {
           </NavSection>
         </NavLinks>
       </NavigationWrapper>
-      {isSearchBar && <SearchBar show={isSearchBar} />}
+      {isSearchBar && <SearchBar show={isSearchBar} toggleSearchBar={toggleSearchBar} />}
       {isSignUp && (
         <SignUp
           show={isSignUp}

@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 type SearchBarProps = {
   show: boolean;
+  toggleSearchBar: () => void;
 };
 
 export const SearchBar: React.FC<SearchBarProps> = (props) => {
@@ -16,13 +17,20 @@ export const SearchBar: React.FC<SearchBarProps> = (props) => {
 
   const [inputValue, setInputValue] = useState<string>("");
   const nav = useNavigate();
+  const [searchBarOpen, setSearchBarOpen] = useState<boolean>(false);
 
-  const goToResult = () => {
-    nav("/search/result");
-  };
+  const goToResult = useCallback(() => {
+    nav({
+      pathname: "/search/result",
+      search: `?input=${inputValue}`,
+    });
+    props.toggleSearchBar();
+  }, [inputValue]);
+
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
   };
+
   const onSubmit = useCallback(
     (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
@@ -34,14 +42,14 @@ export const SearchBar: React.FC<SearchBarProps> = (props) => {
       //   setInputValue("");
       // }
     },
-    [inputValue],
+    [inputValue, goToResult],
   );
 
   return (
     <SearchContainer show={props.show}>
       <SearchInputContainer show={props.show}>
         <InputContainer onSubmit={onSubmit}>
-          <InputBar placeholder="검색"></InputBar>
+          <InputBar placeholder="검색" onChange={onChange}></InputBar>
           <SearchIcon />
           {/* <SearchImg src={require("../assets/images/Link.png")} /> */}
         </InputContainer>
