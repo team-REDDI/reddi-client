@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { SearchBar } from "./SearchBar";
 import SignUp from "./SignUp";
 import Login from "./Login";
-
+import { colors } from "../styles/colors";
 interface NavigationWrapperProps {
   isTransparent: boolean;
 }
@@ -71,7 +71,7 @@ const NavBar = () => {
 
   return (
     <>
-      <NavigationWrapper isTransparent={isTransparent}>
+      <NavigationWrapper isTransparent={isTransparent || isLogin || isSignUp}>
         <StyledLogo />
         <NavLinks>
           <NavSection>
@@ -83,8 +83,12 @@ const NavBar = () => {
           </NavSection>
           <NavSection>
             <SearchBarLink onClick={toggleSearchBar}>검색</SearchBarLink>
-            <SignUpLink onClick={toggleLogin}>로그인</SignUpLink>
-            <SignUpLink onClick={toggleSignUp}>회원가입</SignUpLink>
+            <SignUpLink onClick={toggleLogin} isActive={isLogin}>
+              로그인
+            </SignUpLink>
+            <SignUpLink onClick={toggleSignUp} isActive={isSignUp}>
+              회원가입
+            </SignUpLink>
           </NavSection>
         </NavLinks>
       </NavigationWrapper>
@@ -109,7 +113,9 @@ const NavBar = () => {
 
 const NavigationWrapper = styled.nav<NavigationWrapperProps>`
   /* 그때 나왔던 얘기: 스크롤 내리면 navbar 투명하게 할지 말지? */
-  background-color: ${(props) => (props.isTransparent ? "#242526" : "black")};
+  background-color: ${(props) =>
+    props.isTransparent ? "rgba(0,0,0,0.8)" : "black"};
+  transition: background-color 0.3s ease;
   display: flex;
   flex-direction: row;
   z-index: 999;
@@ -151,8 +157,8 @@ const SearchBarLink = styled.div`
   cursor: pointer;
 `;
 
-const SignUpLink = styled.div`
-  color: white;
+const SignUpLink = styled.div<{ isActive: boolean }>`
+  color: ${(props) => (props.isActive ? "#F53B36" : "white")};
   text-decoration: none;
   cursor: pointer;
 `;
