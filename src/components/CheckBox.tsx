@@ -56,6 +56,7 @@ const StyledLabel = styled.label`
   font-weight: 300;
   line-height: 130%;
   color: #000;
+  width: 7.7875rem;
 `;
 
 const CheckBoxInput = styled.input`
