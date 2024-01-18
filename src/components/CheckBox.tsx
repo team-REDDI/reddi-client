@@ -37,8 +37,6 @@ const CheckboxGroup: React.FC<CheckboxGroupProps> = ({
 const CheckboxContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  /* display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); */
   gap: 0.75rem 5rem;
   font-size: 1rem;
   font-style: normal;
