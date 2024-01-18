@@ -82,7 +82,9 @@ const NavBar = () => {
             <StyledNavLink to="/mypage">마이페이지</StyledNavLink>
           </NavSection>
           <NavSection>
-            <SearchBarLink onClick={toggleSearchBar}>검색</SearchBarLink>
+            <SearchBarLink onClick={toggleSearchBar} isActive={isSearchBar}>
+              검색
+            </SearchBarLink>
             <SignUpLink onClick={toggleLogin} isActive={isLogin}>
               로그인
             </SignUpLink>
@@ -92,7 +94,9 @@ const NavBar = () => {
           </NavSection>
         </NavLinks>
       </NavigationWrapper>
-      {isSearchBar && <SearchBar show={isSearchBar} toggleSearchBar={toggleSearchBar} />}
+      {isSearchBar && (
+        <SearchBar show={isSearchBar} toggleSearchBar={toggleSearchBar} />
+      )}
       {isSignUp && (
         <SignUp
           show={isSignUp}
@@ -150,8 +154,8 @@ const UserNavLink = styled(NavLink)`
   position: relative;
 `;
 
-const SearchBarLink = styled.div`
-  color: white;
+const SearchBarLink = styled.div<{ isActive: boolean }>`
+  color: ${(props) => (props.isActive ? "#F53B36" : "white")};
   text-decoration: none;
   position: relative;
   cursor: pointer;
