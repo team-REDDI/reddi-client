@@ -115,6 +115,7 @@ const Filter: React.FC<FilterProps> = ({ dropdownItems, pageType }) => {
           items={dropdownItems.marketing || []}
           selectedFilters={selectedFilters}
           onSelect={handleSelect}
+          width="8.8875rem"
         />
       )}
       {activeCategory === "target" && (
@@ -122,6 +123,7 @@ const Filter: React.FC<FilterProps> = ({ dropdownItems, pageType }) => {
           items={dropdownItems.target || []}
           selectedFilters={selectedFilters}
           onSelect={handleSelect}
+          width="8.8875rem"
         />
       )}
       {activeCategory === "atmosphere" && (

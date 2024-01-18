@@ -9,17 +9,22 @@ interface CheckboxGroupProps {
   items: Item[];
   selectedFilters: Set<string>;
   onSelect: (item: Item, isChecked: boolean) => void;
+  width?: string;
+}
+interface StyledLabelProps {
+  width: string; // 이제 string 타입의 width를 받음
 }
 
 const CheckboxGroup: React.FC<CheckboxGroupProps> = ({
   items,
   selectedFilters,
   onSelect,
+  width = "6.1875rem",
 }) => {
   return (
     <CheckboxContainer>
       {items.map((item) => (
-        <StyledLabel key={item.value}>
+        <StyledLabel key={item.value} width={width}>
           <CheckBoxInput
             type="checkbox"
             checked={selectedFilters.has(item.value)}
@@ -45,7 +50,7 @@ const CheckboxContainer = styled.div`
   background: #f8f8f8;
 `;
 
-const StyledLabel = styled.label`
+const StyledLabel = styled.label<StyledLabelProps>`
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -54,7 +59,7 @@ const StyledLabel = styled.label`
   font-weight: 300;
   line-height: 130%;
   color: #000;
-  width: 7.7875rem;
+  width: ${({ width }) => width};
 `;
 
 const CheckBoxInput = styled.input`
