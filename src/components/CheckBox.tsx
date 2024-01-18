@@ -11,8 +11,9 @@ interface CheckboxGroupProps {
   onSelect: (item: Item, isChecked: boolean) => void;
   width?: string;
 }
+// label 값이 긴 경우, width를 Props 로 넘겨서 긴 width로 조정
 interface StyledLabelProps {
-  width: string; // 이제 string 타입의 width를 받음
+  width: string;
 }
 
 const CheckboxGroup: React.FC<CheckboxGroupProps> = ({
