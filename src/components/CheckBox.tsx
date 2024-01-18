@@ -9,17 +9,23 @@ interface CheckboxGroupProps {
   items: Item[];
   selectedFilters: Set<string>;
   onSelect: (item: Item, isChecked: boolean) => void;
+  width?: string;
+}
+// label 값이 긴 경우, width를 Props 로 넘겨서 긴 width로 조정
+interface StyledLabelProps {
+  width: string;
 }
 
 const CheckboxGroup: React.FC<CheckboxGroupProps> = ({
   items,
   selectedFilters,
   onSelect,
+  width = "6.1875rem",
 }) => {
   return (
     <CheckboxContainer>
       {items.map((item) => (
-        <StyledLabel key={item.value}>
+        <StyledLabel key={item.value} width={width}>
           <CheckBoxInput
             type="checkbox"
             checked={selectedFilters.has(item.value)}
@@ -37,8 +43,6 @@ const CheckboxGroup: React.FC<CheckboxGroupProps> = ({
 const CheckboxContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  /* display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); */
   gap: 0.75rem 5rem;
   font-size: 1rem;
   font-style: normal;
@@ -47,7 +51,7 @@ const CheckboxContainer = styled.div`
   background: #f8f8f8;
 `;
 
-const StyledLabel = styled.label`
+const StyledLabel = styled.label<StyledLabelProps>`
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -56,7 +60,7 @@ const StyledLabel = styled.label`
   font-weight: 300;
   line-height: 130%;
   color: #000;
-  width: 7.7875rem;
+  width: ${({ width }) => width};
 `;
 
 const CheckBoxInput = styled.input`

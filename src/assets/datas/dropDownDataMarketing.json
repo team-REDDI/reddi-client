@@ -1,30 +1,30 @@
 {
-    "industry": [
-      { "name": "뷰티", "value": "뷰티" },
-      { "name": "금융", "value": "금융" },
-      { "name": "F&B", "value": "F&B" },
-      { "name": "IT", "value": "IT" }
-    ],
-    "marketing": [
-      { "name": "팝업스토어", "value": "팝업스토어" },
-      { "name": "콘텐츠 마케팅", "value": "콘텐츠 마케팅" }
-    ],
-    "target": [
-      { "name": "10대", "value": "10대" },
-      { "name": "20대", "value": "20대" },
-      { "name": "30대", "value": "30대" },
-      { "name": "40대", "value": "40대" },
-      { "name": "50대", "value": "50대" },
-      { "name": "60대", "value": "60대" },
-      { "name": "MZ", "value": "MZ" },
-      { "name": "GenZ", "value": "GenZ" },
-      { "name": "2030", "value": "2030" }
-      
-      
-    ],
-    "sort": [
-      { "name": "인기순", "value": "인기순" },
-      { "name": "추천순", "value": "추천순" }
-    ]
-  }
-  
+  "industry": [
+    { "name": "F&B", "value": "F&B" },
+    { "name": "패션", "value": "패션" },
+    { "name": "금융", "value": "금융" },
+    { "name": "뷰티", "value": "뷰티" }
+  ],
+  "marketing": [
+    { "name": "콘텐츠 마케팅", "value": "콘텐츠 마케팅" },
+    { "name": "조직문화", "value": "조직문화" },
+    { "name": "브랜디드 유튜브", "value": "브랜디드 유튜브" },
+    { "name": "캐릭터 마케팅", "value": "캐릭터 마케팅" },
+    { "name": "팝업스토어", "value": "팝업스토어" },
+    { "name": "콜라보 마케팅", "value": "콜라보 마케팅" },
+    { "name": "커뮤니티 마케팅", "value": "커뮤니티 마케팅" },
+    { "name": "이벤트 마케팅", "value": "이벤트 마케팅" }
+  ],
+  "target": [
+    { "name": "MZ세대", "value": "MZ세대" },
+    { "name": "여성", "value": "여성" },
+    { "name": "그린슈머", "value": "그린슈머" },
+    { "name": "헬시 플레저", "value": "헬시 플레저" },
+    { "name": "갓생러", "value": "갓생러" },
+    { "name": "직장인", "value": "직장인" },
+    { "name": "1・2인가구", "value": "1・2인가구" },
+    { "name": "초보 투자자", "value": "초보 투자자" },
+    { "name": "사회초년생", "value": "사회초년생" },
+    { "name": "시니어", "value": "시니어" }
+  ]
+}

@@ -1,21 +1,42 @@
 {
-    "industry": [
-      { "name": "뷰티", "value": "뷰티" },
-      { "name": "금융", "value": "금융" },
-      { "name": "F&B", "value": "F&B" },
-      { "name": "IT", "value": "IT" }
-    ],
-    "brandcolor": [
-      { "name": "블루", "value": "블루" },
-      { "name": "그레이", "value": "그레이" }
-    ],
-    "atmosphere": [
-      { "name": "깔끔한", "value": "깔끔한" },
-      { "name": "세련된", "value": "세련된" }
-    ],
-    "sort": [
-      { "name": "인기순", "value": "인기순" },
-      { "name": "추천순", "value": "추천순" }
-    ]
-  }
-  
+  "industry": [
+    { "name": "F&B", "value": "F&B" },
+    { "name": "패션", "value": "패션" },
+    { "name": "금융", "value": "금융" },
+    { "name": "뷰티", "value": "뷰티" }
+  ],
+  "atmosphere": [
+    { "name": "빈티지", "value": "빈티지" },
+    { "name": "차분함", "value": "차분함" },
+    { "name": "따뜻함", "value": "따뜻함" },
+    { "name": "단정함", "value": "단정함" },
+    { "name": "유니크", "value": "유니크" },
+    { "name": "친근함", "value": "친근함" },
+    { "name": "세련됨", "value": "세련됨" },
+    { "name": "귀여움", "value": "귀여움" },
+    { "name": "아날로그", "value": "아날로그" },
+    { "name": "클래식", "value": "클래식" },
+    { "name": "심플함", "value": "심플함" },
+    { "name": "캐주얼", "value": "캐주얼" },
+    { "name": "스트리트", "value": "스트리트" },
+    { "name": "영함", "value": "영함" },
+    { "name": "키치함", "value": "키치함" },
+    { "name": "힙함", "value": "힙함" }
+  ],
+  "brandcolor": [
+    { "name": "노란색", "value": "노란색" },
+    { "name": "주황색", "value": "주황색" },
+    { "name": "흰색", "value": "흰색" },
+    { "name": "검은색", "value": "검은색" },
+    { "name": "연두색", "value": "연두색" },
+    { "name": "민트색", "value": "민트색" },
+    { "name": "분홍색", "value": "분홍색" },
+    { "name": "남색", "value": "남색" },
+    { "name": "실버", "value": "실버" },
+    { "name": "갈색", "value": "갈색" },
+    { "name": "초록색", "value": "초록색" },
+    { "name": "빨간색", "value": "빨간색" },
+    { "name": "보라색", "value": "보라색" },
+    { "name": "푸른색", "value": "푸른색" }
+  ]
+}
