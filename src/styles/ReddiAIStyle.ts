@@ -68,7 +68,7 @@ export const OrderContaniner = styled.div`
   justify-content: center;
   align-items: center;
   gap: 0.7rem;
-  background-color: ${colors.light_red};
+  background-color: ${colors.black};
 `;
 
 export const OrderBox = styled.div`
@@ -81,7 +81,7 @@ export const OrderNumber = styled.div<{ now?: boolean }>`
   display: flex;
   width: 1.25rem;
   height: 1.25rem;
-  background-color: ${(props) => (props.now ? colors.black : "#ccc")};
+  background-color: ${(props) => (props.now ? colors.red : "#626262")};
   border-radius: 100%;
   font-size: 13px;
   font-weight: 700;
@@ -94,7 +94,7 @@ export const OrderNumber = styled.div<{ now?: boolean }>`
 
 export const OrderText = styled.div<{ now?: boolean }>`
   display: flex;
-  color: ${(props) => (props.now ? colors.black : "#ccc")};
+  color: ${(props) => (props.now ? colors.white : "#626262")};
   font-size: 1.125rem;
   font-weight: 500;
   line-height: 130%;
@@ -104,7 +104,7 @@ export const OrderText = styled.div<{ now?: boolean }>`
 export const OrderLine = styled.div<{ now?: boolean }>`
   width: 3.625rem;
   height: 1px;
-  background-color: ${(props) => (props.now ? colors.black : "#ccc")};
+  background-color: ${(props) => (props.now ? colors.white : "#626262")};
 `;
 
 export const WantBox = styled.div<{ now?: boolean; index?: number }>`
@@ -112,10 +112,12 @@ export const WantBox = styled.div<{ now?: boolean; index?: number }>`
   flex-direction: column;
   width: 100%;
   justify-content: center;
-  background-color: ${(props) => (props.now ? colors.light_red : "#f3f3f3")};
-  padding: 2.6rem 2.31rem;
+  padding: 2.62rem 2.38rem;
   box-sizing: border-box;
   gap: 1.5rem;
+  border: 0.3px solid #000;
+  background-color: ${colors.white};
+  box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.25);
 
   cursor: pointer;
 `;
