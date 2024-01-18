@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import { ReactComponent as SearchIcon } from "../assets/svgs/searchIcon.svg";
 import { MarketingBoxSmall } from "./Home/MarketingBoxSmall";
 import dropdownDataMarketing from "../assets/datas/dropDownDataMarketing.json";
+import dropdownDataBrand from "../assets/datas/dropDownDataBrand.json";
 import { useNavigate } from "react-router-dom";
 
 type SearchBarProps = {
@@ -49,7 +50,11 @@ export const SearchBar: React.FC<SearchBarProps> = (props) => {
     <SearchContainer show={props.show}>
       <SearchInputContainer show={props.show}>
         <InputContainer onSubmit={onSubmit}>
-          <InputBar placeholder="검색" onChange={onChange}></InputBar>
+          <InputBar
+            placeholder="검색"
+            onChange={onChange}
+            value={inputValue}
+          ></InputBar>
           <SearchIcon />
           {/* <SearchImg src={require("../assets/images/Link.png")} /> */}
         </InputContainer>
@@ -58,7 +63,7 @@ export const SearchBar: React.FC<SearchBarProps> = (props) => {
         <WordsListBox>
           <SearchTitle>인기 검색어</SearchTitle>
           <WordsList>
-            {Object.values(dropdownDataMarketing)
+            {Object.values(dropdownDataBrand)
               .flat()
               .map((item) => (
                 <WordBox>
@@ -174,8 +179,14 @@ const WordsListBox = styled.div`
 const WordsList = styled.div`
   display: flex;
   width: 28.5rem;
+  height: 13.75rem;
   flex-wrap: wrap;
   gap: 1.5rem 3.12rem;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const WordBox = styled.div`
