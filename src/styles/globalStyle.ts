@@ -4,6 +4,8 @@ const GlobalStyle = createGlobalStyle`
   * {
     margin: 0;
     padding: 0;  
+    font-family: "SUIT", sans-serif;
+    box-sizing: border-box;
   }
 
   body {
@@ -12,6 +14,7 @@ const GlobalStyle = createGlobalStyle`
     height: 100%;
     background-color: #fff;
   }
+
 `;
 
 export default GlobalStyle;
