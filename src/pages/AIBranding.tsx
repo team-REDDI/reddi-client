@@ -34,18 +34,7 @@ import { useEffect, useState } from "react";
 import AIResult from "../components/AIBranding/AIResult";
 
 const AIBranding = () => {
-  const [isResult, setIsResult] = useState<boolean>(false);
-  const [isNow, setIsNow] = useState<boolean[]>([
-    true,
-    false,
-    false,
-    false,
-    false,
-  ]);
-
-  const [isNow2, setIsNow2] = useState<boolean>(false);
-
-  const tagsList = [
+  const tagsList1 = [
     //tags1
     { id: 1, boxId: 1, contents: "네이밍", isClicked: false },
     { id: 2, boxId: 1, contents: "슬로건", isClicked: false },
@@ -54,7 +43,9 @@ const AIBranding = () => {
     { id: 5, boxId: 1, contents: "브랜드 에센스", isClicked: false },
     { id: 6, boxId: 1, contents: "키워드", isClicked: false },
     { id: 7, boxId: 1, contents: "메니페스토", isClicked: false },
+  ];
 
+  const tagsList2 = [
     //tags2
     { id: 8, boxId: 2, contents: "역동적인", isClicked: false },
     { id: 9, boxId: 2, contents: "엣지있는", isClicked: false },
@@ -65,20 +56,39 @@ const AIBranding = () => {
     { id: 14, boxId: 2, contents: "엣지있는", isClicked: false },
   ];
 
-  const [isClicked, setIsClicked] =
-    useState<
-      { id: number; boxId: number; contents: string; isClicked: boolean }[]
-    >(tagsList);
+  const [isResult, setIsResult] = useState<boolean>(false);
+  const [isNow, setIsNow] = useState<boolean[]>([
+    true,
+    false,
+    false,
+    false,
+    false,
+  ]);
 
-  const handleClick = (id: number, boxIndex: number) => {
-    setIsClicked(
-      isClicked.map((isClicked) =>
-        isClicked.id === id
-          ? { ...isClicked, isClicked: !isClicked.isClicked }
-          : isClicked,
+  const [inputValue, setInputValue] = useState<string>("");
+
+  interface TagType {
+    id: number;
+    boxId: number;
+    contents: string;
+    isClicked: boolean;
+  }
+
+  const [isClicked, setIsClicked] = useState<TagType[]>(tagsList1);
+  const [tag2, setTag2] = useState<TagType[]>(tagsList2);
+  type SetListFunction = React.Dispatch<React.SetStateAction<TagType[]>>;
+
+  const handleClick = (
+    id: number,
+    boxIndex: number,
+    setList: SetListFunction,
+  ) => {
+    setList((prevList) =>
+      prevList.map((tag) =>
+        tag.id === id ? { ...tag, isClicked: !tag.isClicked } : tag,
       ),
     );
-    console.log(isClicked);
+    console.log(tag2);
 
     const clickedTagExists = isClicked.some(
       (tag) => tag.isClicked && tag.boxId === boxIndex,
@@ -99,8 +109,39 @@ const AIBranding = () => {
     //서버로 전송
   };
 
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(e.target.value);
+  };
+
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setTag2((prev) => [
+      ...prev,
+      {
+        id: prev.length + 8,
+        contents: inputValue,
+        isClicked: true,
+        boxId: 2,
+      },
+    ]);
+    console.log(isClicked);
+    setInputValue("");
+  };
+
+  // const createTag = (inputValue:string): void => {
+  //   setTag2((prevLists) => {
+  //     const newTag = {
+  //       id: prevLists.length + 1,
+  //       contents: inputValue,
+  //       isClicked: true,
+  //       boxId: 2,
+  //     }
+  //   })
+  // }
+
   useEffect(() => {
     console.log(isNow);
+    console.log(tag2);
   }, [isNow]);
 
   return (
@@ -169,7 +210,9 @@ const AIBranding = () => {
                         <WantTags
                           key={tag.id}
                           isClicked={tag.isClicked}
-                          onClick={() => handleClick(tag.id, tag.boxId)}
+                          onClick={() =>
+                            handleClick(tag.id, tag.boxId, setIsClicked)
+                          }
                         >
                           {tag.contents}
                         </WantTags>
@@ -184,22 +227,23 @@ const AIBranding = () => {
                     어떤 분위기를 원하나요?
                   </WantText>
                   <TagsBox>
-                    {isClicked.map(
-                      (tag) =>
-                        tag.id > 8 && (
-                          <WantTags
-                            key={tag.id}
-                            isClicked={tag.isClicked}
-                            onClick={() => handleClick(tag.id, tag.boxId)}
-                          >
-                            {tag.contents}
-                          </WantTags>
-                        ),
-                    )}
+                    {tag2.map((tag) => (
+                      <WantTags
+                        key={tag.id}
+                        isClicked={tag.isClicked}
+                        onClick={() => handleClick(tag.id, tag.boxId, setTag2)}
+                      >
+                        {tag.contents}
+                      </WantTags>
+                    ))}
 
-                    <WantTagsInputBox>
+                    <WantTagsInputBox onSubmit={onSubmit}>
                       <SearchIcon />
-                      <WantTagsInput placeholder="검색하기" />
+                      <WantTagsInput
+                        placeholder="검색하기"
+                        onChange={onChange}
+                        value={inputValue}
+                      />
                     </WantTagsInputBox>
                   </TagsBox>
                 </WantBox>

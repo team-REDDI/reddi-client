@@ -50,7 +50,11 @@ export const SearchBar: React.FC<SearchBarProps> = (props) => {
     <SearchContainer show={props.show}>
       <SearchInputContainer show={props.show}>
         <InputContainer onSubmit={onSubmit}>
-          <InputBar placeholder="검색" onChange={onChange}></InputBar>
+          <InputBar
+            placeholder="검색"
+            onChange={onChange}
+            value={inputValue}
+          ></InputBar>
           <SearchIcon />
           {/* <SearchImg src={require("../assets/images/Link.png")} /> */}
         </InputContainer>
