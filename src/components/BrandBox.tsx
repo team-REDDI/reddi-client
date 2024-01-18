@@ -26,7 +26,7 @@ export const BrandBox = ({ imgSrc, brandName, location, tags }: BrandProps) => {
 
   return (
     <RefBox onClick={goToBrandDetail}>
-      <Toss />
+      <BrandImage src={imgSrc} alt={brandName} />
       <BrandTextBox>
         <BrandNameText>{brandName}</BrandNameText>
         <BrandLocation>{location}</BrandLocation>
@@ -51,4 +51,9 @@ const BrandTag = styled.div`
   font-size: 1rem;
   font-weight: 500;
   margin-right: 0.34rem;
+`;
+
+const BrandImage = styled.img`
+  width: 6.8125rem;
+  height: 5.9375rem;
 `;
