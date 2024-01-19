@@ -106,7 +106,7 @@ const AIBranding = () => {
   const handleClick = (
     id: number,
     boxIndex: number,
-    List: TagType[],
+    tagList: TagType[],
     setList: SetListFunction,
   ) => {
     setList((prevList) =>
@@ -114,9 +114,9 @@ const AIBranding = () => {
         tag.id === id ? { ...tag, isClicked: !tag.isClicked } : tag,
       ),
     );
-    console.log(tags2);
+    console.log(tagList);
 
-    const clickedTagExists = List.some((tag) => tag.isClicked);
+    const clickedTagExists = tagList.some((tag) => tag.isClicked);
 
     if (clickedTagExists) {
       const newIsNow = [...isNow];

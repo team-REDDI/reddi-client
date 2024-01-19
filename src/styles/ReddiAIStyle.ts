@@ -58,6 +58,7 @@ export const TagsContainer = styled.div`
   gap: 1.69rem;
   align-items: flex-start;
   width: 100%;
+  height: 69rem;
   margin-top: 5.12rem;
 `;
 
