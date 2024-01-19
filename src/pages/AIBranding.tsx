@@ -174,28 +174,28 @@ const AIBranding = () => {
             <TagsContainer>
               <OrderContaniner>
                 <OrderBox>
-                  <OrderNumber now={true}>1</OrderNumber>
-                  <OrderText now={true}>브랜드 요소</OrderText>
+                  <OrderNumber now={isNow[0]}>1</OrderNumber>
+                  <OrderText now={isNow[0]}>브랜드 요소</OrderText>
                 </OrderBox>
-                <OrderLine />
+                <OrderLine now={isNow[1]} />
                 <OrderBox>
-                  <OrderNumber>2</OrderNumber>
-                  <OrderText>분위기</OrderText>
+                  <OrderNumber now={isNow[1]}>2</OrderNumber>
+                  <OrderText now={isNow[1]}>분위기</OrderText>
                 </OrderBox>
-                <OrderLine />
+                <OrderLine now={isNow[2]} />
                 <OrderBox>
-                  <OrderNumber>3</OrderNumber>
-                  <OrderText>산업군</OrderText>
+                  <OrderNumber now={isNow[2]}>3</OrderNumber>
+                  <OrderText now={isNow[2]}>산업군</OrderText>
                 </OrderBox>
-                <OrderLine />
+                <OrderLine now={isNow[3]} />
                 <OrderBox>
-                  <OrderNumber>4</OrderNumber>
-                  <OrderText>타깃</OrderText>
+                  <OrderNumber now={isNow[3]}>4</OrderNumber>
+                  <OrderText now={isNow[3]}>타깃</OrderText>
                 </OrderBox>
-                <OrderLine />
+                <OrderLine now={isNow[4]} />
                 <OrderBox>
-                  <OrderNumber>5</OrderNumber>
-                  <OrderText>유사 서비스</OrderText>
+                  <OrderNumber now={isNow[4]}>5</OrderNumber>
+                  <OrderText now={isNow[4]}>유사 서비스</OrderText>
                 </OrderBox>
               </OrderContaniner>
 
