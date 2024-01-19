@@ -47,13 +47,35 @@ const AIBranding = () => {
 
   const tagsList2 = [
     //tags2
-    { id: 8, boxId: 2, contents: "역동적인", isClicked: false },
-    { id: 9, boxId: 2, contents: "엣지있는", isClicked: false },
-    { id: 10, boxId: 2, contents: "즐거운", isClicked: false },
-    { id: 11, boxId: 2, contents: "즐거운", isClicked: false },
-    { id: 12, boxId: 2, contents: "역동적인", isClicked: false },
-    { id: 13, boxId: 2, contents: "키워드", isClicked: false },
-    { id: 14, boxId: 2, contents: "엣지있는", isClicked: false },
+    { id: 1, boxId: 2, contents: "역동적인", isClicked: false },
+    { id: 2, boxId: 2, contents: "엣지있는", isClicked: false },
+    { id: 3, boxId: 2, contents: "즐거운", isClicked: false },
+    { id: 4, boxId: 2, contents: "즐거운", isClicked: false },
+    { id: 5, boxId: 2, contents: "역동적인", isClicked: false },
+    { id: 6, boxId: 2, contents: "키워드", isClicked: false },
+    { id: 7, boxId: 2, contents: "엣지있는", isClicked: false },
+  ];
+
+  const tagsList3 = [
+    //tags3
+    { id: 1, boxId: 3, contents: "금융", isClicked: false },
+    { id: 2, boxId: 3, contents: "F&B", isClicked: false },
+    { id: 3, boxId: 3, contents: "산업군", isClicked: false },
+    { id: 4, boxId: 3, contents: "산업군", isClicked: false },
+    { id: 5, boxId: 3, contents: "역동적인", isClicked: false },
+    { id: 6, boxId: 3, contents: "키워드", isClicked: false },
+    { id: 7, boxId: 3, contents: "엣지있는", isClicked: false },
+  ];
+
+  const tagsList4 = [
+    //tags3
+    { id: 1, boxId: 4, contents: "gen Z", isClicked: false },
+    { id: 2, boxId: 4, contents: "시니어", isClicked: false },
+    { id: 3, boxId: 4, contents: "고객층", isClicked: false },
+    { id: 4, boxId: 4, contents: "고객층", isClicked: false },
+    { id: 5, boxId: 4, contents: "역동적인", isClicked: false },
+    { id: 6, boxId: 4, contents: "키워드", isClicked: false },
+    { id: 7, boxId: 4, contents: "엣지있는", isClicked: false },
   ];
 
   const [isResult, setIsResult] = useState<boolean>(false);
@@ -75,12 +97,16 @@ const AIBranding = () => {
   }
 
   const [isClicked, setIsClicked] = useState<TagType[]>(tagsList1);
-  const [tag2, setTag2] = useState<TagType[]>(tagsList2);
+  const [tags1, setTags1] = useState<TagType[]>(tagsList1);
+  const [tags2, setTags2] = useState<TagType[]>(tagsList2);
+  const [tags3, setTags3] = useState<TagType[]>(tagsList3);
+  const [tags4, setTags4] = useState<TagType[]>(tagsList4);
   type SetListFunction = React.Dispatch<React.SetStateAction<TagType[]>>;
 
   const handleClick = (
     id: number,
     boxIndex: number,
+    List: TagType[],
     setList: SetListFunction,
   ) => {
     setList((prevList) =>
@@ -88,11 +114,10 @@ const AIBranding = () => {
         tag.id === id ? { ...tag, isClicked: !tag.isClicked } : tag,
       ),
     );
-    console.log(tag2);
+    console.log(tags2);
 
-    const clickedTagExists = isClicked.some(
-      (tag) => tag.isClicked && tag.boxId === boxIndex,
-    );
+    const clickedTagExists = List.some((tag) => tag.isClicked);
+
     if (clickedTagExists) {
       const newIsNow = [...isNow];
       newIsNow[boxIndex] = true;
@@ -115,10 +140,10 @@ const AIBranding = () => {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setTag2((prev) => [
+    setTags2((prev) => [
       ...prev,
       {
-        id: prev.length + 8,
+        id: prev.length + 1,
         contents: inputValue,
         isClicked: true,
         boxId: 2,
@@ -141,7 +166,7 @@ const AIBranding = () => {
 
   useEffect(() => {
     console.log(isNow);
-    console.log(tag2);
+    console.log(tags2);
   }, [isNow]);
 
   return (
@@ -204,14 +229,14 @@ const AIBranding = () => {
                   어떤 브랜드 요소를 생성하고 싶나요?
                 </WantText>
                 <TagsBox>
-                  {isClicked.map(
+                  {tags1.map(
                     (tag) =>
                       tag.id < 8 && (
                         <WantTags
                           key={tag.id}
                           isClicked={tag.isClicked}
                           onClick={() =>
-                            handleClick(tag.id, tag.boxId, setIsClicked)
+                            handleClick(tag.id, tag.boxId, tags1, setTags1)
                           }
                         >
                           {tag.contents}
@@ -227,11 +252,13 @@ const AIBranding = () => {
                     어떤 분위기를 원하나요?
                   </WantText>
                   <TagsBox>
-                    {tag2.map((tag) => (
+                    {tags2.map((tag) => (
                       <WantTags
                         key={tag.id}
                         isClicked={tag.isClicked}
-                        onClick={() => handleClick(tag.id, tag.boxId, setTag2)}
+                        onClick={() =>
+                          handleClick(tag.id, tag.boxId, tags2, setTags2)
+                        }
                       >
                         {tag.contents}
                       </WantTags>
@@ -254,15 +281,17 @@ const AIBranding = () => {
                     어떤 산업군에 종사하나요?
                   </WantText>
                   <TagsBox>
-                    <WantTags>네이밍</WantTags>
-                    <WantTags>네이밍</WantTags>
-                    <WantTags>네이밍</WantTags>
-                    <WantTags>브랜드 에센스</WantTags>
-                    <WantTags>브랜드 에센스</WantTags>
-                    <WantTags>브랜드 에센스</WantTags>
-                    <WantTags>브랜드 에센스</WantTags>
-                    <WantTags>브랜드 에센스</WantTags>
-                    <WantTags>브랜드 에센스</WantTags>
+                    {tags3.map((tag) => (
+                      <WantTags
+                        key={tag.id}
+                        isClicked={tag.isClicked}
+                        onClick={() =>
+                          handleClick(tag.id, tag.boxId, tags3, setTags3)
+                        }
+                      >
+                        {tag.contents}
+                      </WantTags>
+                    ))}
                     <WantTagsInputBox>
                       <SearchIcon />
                       <WantTagsInput placeholder="검색하기" />
@@ -276,15 +305,17 @@ const AIBranding = () => {
                     이런 고객을 타깃으로 해요.
                   </WantText>
                   <TagsBox>
-                    <WantTags>네이밍</WantTags>
-                    <WantTags>네이밍</WantTags>
-                    <WantTags>네이밍</WantTags>
-                    <WantTags>브랜드 에센스</WantTags>
-                    <WantTags>브랜드 에센스</WantTags>
-                    <WantTags>브랜드 에센스</WantTags>
-                    <WantTags>브랜드 에센스</WantTags>
-                    <WantTags>브랜드 에센스</WantTags>
-                    <WantTags>브랜드 에센스</WantTags>
+                    {tags4.map((tag) => (
+                      <WantTags
+                        key={tag.id}
+                        isClicked={tag.isClicked}
+                        onClick={() =>
+                          handleClick(tag.id, tag.boxId, tags4, setTags4)
+                        }
+                      >
+                        {tag.contents}
+                      </WantTags>
+                    ))}
                     <WantTagsInputBox>
                       <SearchIcon />
                       <WantTagsInput placeholder="검색하기" />
