@@ -7,6 +7,13 @@ import {
   CompleteButton,
   Container,
   DeleteButton,
+  LoadingBox,
+  LoadingContainer,
+  LoadingDots,
+  LoadingImg,
+  LoadingImgBox,
+  LoadingText,
+  LoadingTitle,
   OrderBox,
   OrderContaniner,
   OrderLine,
@@ -68,7 +75,7 @@ const AIBranding = () => {
   ];
 
   const tagsList4 = [
-    //tags3
+    //tags4
     { id: 1, boxId: 4, contents: "gen Z", isClicked: false },
     { id: 2, boxId: 4, contents: "시니어", isClicked: false },
     { id: 3, boxId: 4, contents: "고객층", isClicked: false },
@@ -76,6 +83,17 @@ const AIBranding = () => {
     { id: 5, boxId: 4, contents: "역동적인", isClicked: false },
     { id: 6, boxId: 4, contents: "키워드", isClicked: false },
     { id: 7, boxId: 4, contents: "엣지있는", isClicked: false },
+  ];
+
+  const tagsList5 = [
+    //tags5
+    { id: 1, boxId: 5, contents: "gen Z", isClicked: false },
+    { id: 2, boxId: 5, contents: "시니어", isClicked: false },
+    { id: 3, boxId: 5, contents: "고객층", isClicked: false },
+    { id: 4, boxId: 5, contents: "고객층", isClicked: false },
+    { id: 5, boxId: 5, contents: "역동적인", isClicked: false },
+    { id: 6, boxId: 5, contents: "키워드", isClicked: false },
+    { id: 7, boxId: 5, contents: "엣지있는", isClicked: false },
   ];
 
   const [isResult, setIsResult] = useState<boolean>(false);
@@ -101,8 +119,11 @@ const AIBranding = () => {
   const [tags2, setTags2] = useState<TagType[]>(tagsList2);
   const [tags3, setTags3] = useState<TagType[]>(tagsList3);
   const [tags4, setTags4] = useState<TagType[]>(tagsList4);
-  type SetListFunction = React.Dispatch<React.SetStateAction<TagType[]>>;
+  const [tags5, setTags5] = useState<TagType[]>(tagsList5);
 
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  type SetListFunction = React.Dispatch<React.SetStateAction<TagType[]>>;
   const handleClick = (
     id: number,
     boxIndex: number,
@@ -171,6 +192,24 @@ const AIBranding = () => {
 
   return (
     <Container>
+      {isLoading && (
+        <LoadingContainer>
+          <LoadingBox>
+            <LoadingImgBox>
+              <LoadingTitle>
+                내게 꼭 맞는
+                <br />
+                브랜드를 만들고 있어요!
+              </LoadingTitle>
+              <LoadingText>잠시만 기다려주세요!</LoadingText>
+              <LoadingImg src={require("../assets/images/Loading.png")} />
+              <LoadingDots
+                src={require("../assets/images/Loading-Animation.png")}
+              />
+            </LoadingImgBox>
+          </LoadingBox>
+        </LoadingContainer>
+      )}
       <NavBar />
       <ReddiAIContainer>
         <ReddiAITitleBox>
@@ -329,15 +368,17 @@ const AIBranding = () => {
                     내 브랜드와의 유사 서비스에는 이런 것들이 있어요.
                   </WantText>
                   <TagsBox>
-                    <WantTags>네이밍</WantTags>
-                    <WantTags>네이밍</WantTags>
-                    <WantTags>네이밍</WantTags>
-                    <WantTags>브랜드 에센스</WantTags>
-                    <WantTags>브랜드 에센스</WantTags>
-                    <WantTags>브랜드 에센스</WantTags>
-                    <WantTags>브랜드 에센스</WantTags>
-                    <WantTags>브랜드 에센스</WantTags>
-                    <WantTags>브랜드 에센스</WantTags>
+                    {tags5.map((tag) => (
+                      <WantTags
+                        key={tag.id}
+                        isClicked={tag.isClicked}
+                        onClick={() =>
+                          handleClick(tag.id, tag.boxId, tags5, setTags5)
+                        }
+                      >
+                        {tag.contents}
+                      </WantTags>
+                    ))}
                     <WantTagsInputBox>
                       <SearchIcon />
                       <WantTagsInput placeholder="검색하기" />
