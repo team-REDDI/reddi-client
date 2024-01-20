@@ -389,7 +389,15 @@ const AIBranding = () => {
             </TagsContainer>
             <ButtonBox>
               <DeleteButton>전체 삭제</DeleteButton>
-              <CompleteButton onClick={() => setIsResult(true)}>
+              <CompleteButton
+                onClick={() => {
+                  setIsLoading(true);
+                  setTimeout(() => {
+                    setIsResult(true);
+                    setIsLoading(false);
+                  }, 1500);
+                }}
+              >
                 완료
               </CompleteButton>
             </ButtonBox>
