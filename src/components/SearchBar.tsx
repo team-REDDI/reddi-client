@@ -55,7 +55,9 @@ export const SearchBar: React.FC<SearchBarProps> = (props) => {
             onChange={onChange}
             value={inputValue}
           ></InputBar>
-          <SearchIcon />
+          <SearchButton type="submit">
+            <SearchIcon />
+          </SearchButton>
           {/* <SearchImg src={require("../assets/images/Link.png")} /> */}
         </InputContainer>
       </SearchInputContainer>
@@ -66,7 +68,7 @@ export const SearchBar: React.FC<SearchBarProps> = (props) => {
             {Object.values(dropdownDataBrand)
               .flat()
               .map((item) => (
-                <WordBox>
+                <WordBox onClick={() => setInputValue(item.value)}>
                   <Word>{item.value}</Word>
                   <WordNum>91</WordNum>
                 </WordBox>
@@ -95,11 +97,9 @@ export const SearchBar: React.FC<SearchBarProps> = (props) => {
   );
 };
 
-type SearchContainerProps = {
+const SearchContainer = styled.div<{
   show: boolean;
-};
-
-const SearchContainer = styled.div<SearchContainerProps>`
+}>`
   position: fixed;
   display: flex;
   flex-direction: column;
@@ -111,7 +111,9 @@ const SearchContainer = styled.div<SearchContainerProps>`
   transition: transform 10.3s ease-in;
 `;
 
-const SearchInputContainer = styled.div<SearchContainerProps>`
+const SearchInputContainer = styled.div<{
+  show: boolean;
+}>`
   display: flex;
   width: 100%;
   height: 13.75rem;
@@ -155,7 +157,18 @@ const SearchImg = styled.img`
   height: 1.8125rem;
 `;
 
-const SearchListBox = styled.div<SearchContainerProps>`
+const SearchButton = styled.button`
+  display: flex;
+  /* width: 1.8125rem;
+  height: 1.8125rem; */
+  background-color: transparent;
+  border: none;
+  outline: none;
+`;
+
+const SearchListBox = styled.div<{
+  show: boolean;
+}>`
   display: flex;
   justify-content: center;
   padding-top: 3rem;
@@ -192,6 +205,8 @@ const WordsList = styled.div`
 const WordBox = styled.div`
   display: flex;
   justify-content: start;
+
+  cursor: pointer;
 `;
 
 const Word = styled.div`
