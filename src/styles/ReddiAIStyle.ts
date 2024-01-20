@@ -58,6 +58,7 @@ export const TagsContainer = styled.div`
   gap: 1.69rem;
   align-items: flex-start;
   width: 100%;
+  height: 69rem;
   margin-top: 5.12rem;
 `;
 
@@ -260,4 +261,68 @@ export const TypeText = styled.span`
   line-height: 150%;
   letter-spacing: -0.00875rem;
   width: 2.4rem;
+`;
+
+export const LoadingContainer = styled.div`
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1;
+`;
+
+export const LoadingBox = styled.div`
+  display: flex;
+  /* padding: 1.875rem 6.5rem; */
+  justify-content: center;
+  align-items: center;
+  z-index: 99;
+  border-radius: 0.625rem;
+  background-color: ${colors.white};
+  width: 27.2rem;
+  height: 26.44rem;
+`;
+
+export const LoadingImgBox = styled.div`
+  display: flex;
+  height: 22.6875rem;
+  width: 14.2rem;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+`;
+
+export const LoadingTitle = styled.span`
+  color: ${colors.black};
+  text-align: center;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%;
+  letter-spacing: -0.015rem;
+`;
+
+export const LoadingText = styled.span`
+  color: #ccc;
+  text-align: center;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%;
+  letter-spacing: -0.01rem;
+`;
+
+export const LoadingImg = styled.img`
+  width: 100%;
+`;
+
+export const LoadingDots = styled.img`
+  width: 5.25rem;
+  height: 5.25rem;
+  //얘는 라이브러리 쓰거나..!? 하나 만들거나 하려고 합니다..~!!
 `;
