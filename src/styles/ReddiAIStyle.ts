@@ -20,7 +20,7 @@ export const ReddiAITitleBox = styled.div`
   gap: 0.75rem;
   justify-content: center;
   align-items: center;
-  margin-top: 6.25rem;
+  margin-top: 9.375rem;
 `;
 
 export const ReddiAILine = styled.div`

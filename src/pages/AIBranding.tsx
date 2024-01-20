@@ -190,6 +190,10 @@ const AIBranding = () => {
     console.log(tags2);
   }, [isNow]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <Container>
       {isLoading && (
@@ -226,7 +230,12 @@ const AIBranding = () => {
           <>
             <AIResult />
             <ButtonBox>
-              <DeleteButton onClick={() => setIsResult(false)}>
+              <DeleteButton
+                onClick={() => {
+                  window.location.reload();
+                  // setIsResult(false);
+                }}
+              >
                 다시 생성하기
               </DeleteButton>
               <CompleteButton>저장하기</CompleteButton>
