@@ -12,6 +12,9 @@ export const colors = {
   grey_700: "#6B6D71",
   grey_800: "#46484A",
   grey_900: "#242526",
+
   red: "#F53B36",
   light_red: "#FFF4F4",
+
+  tag_grey: "#F1F1F1",
 };
