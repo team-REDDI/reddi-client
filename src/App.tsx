@@ -1,6 +1,5 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import "./App.css";
 import Home from "./pages/Home";
 import Marketing from "./pages/Marketing";
 import Brand from "./pages/Brand";
@@ -10,10 +9,11 @@ import SearchResult from "./pages/SearchResult";
 import AIBranding from "./pages/AIBranding";
 import Mypage from "./pages/Mypage";
 import { RecoilRoot } from "recoil";
-
+import GlobalStyle from "./styles/globalStyle";
 function App() {
   return (
     <>
+      <GlobalStyle />
       <RecoilRoot>
         <BrowserRouter>
           <Routes>
