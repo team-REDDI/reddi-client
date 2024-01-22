@@ -415,7 +415,7 @@ const AIBranding = () => {
               {isNow[1] ? (
                 <DeleteButton
                   onClick={() => {
-                    setCurrentBoxId((prev) => prev - 1);
+                    // setCurrentBoxId((prev) => prev - 1);
                   }}
                 >
                   이전

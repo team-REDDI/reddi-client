@@ -23,6 +23,10 @@ const SearchResult = () => {
     // updateSearchResult(inputValue);
   }, [inputValue]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <ResultContainer>
       <NavBar />
