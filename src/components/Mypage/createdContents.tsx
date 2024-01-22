@@ -1,6 +1,6 @@
 // reddiAI 를 통해 생성된 컨텐츠들
 import styled from "styled-components";
-import AIBox from "../AIBox";
+import AIBox from "./AIBox";
 
 const createdBrandData = [
   {
