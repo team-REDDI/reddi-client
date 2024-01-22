@@ -13,12 +13,25 @@ import {
   BrandTags,
   BrandTextBox,
 } from "../styles/brandStyle";
-import { ReactComponent as Toss } from "../assets/svgs/toss_2.svg";
+import axios from "axios";
 import { BrandBox } from "../components/BrandBox";
 import { ReactComponent as BrandSVG } from "../assets/svgs/BrandSVG.svg";
-
 import { useRecoilValue } from "recoil";
+import { useEffect, useState } from "react";
 import { filteredBrand } from "../utils/atom";
+import { getBrandList } from "../apis/brand";
+interface Brand {
+  id: number;
+  name: string;
+  brandTags: {
+    brandTagType: string;
+    tag: string;
+  }[];
+  cover_url: string;
+  notion_page_url: string;
+  notion_page_created_time: string;
+  notion_page_last_edited_time: string;
+}
 
 const brandData = [
   [
@@ -123,21 +136,38 @@ const dummyBrandBoxes = [
 
 const Brand = () => {
   const selectedFilters = useRecoilValue(filteredBrand);
+  const [brandInfo, setBrandInfo] = useState([]);
 
-  const brandBoxes = brandData[0].map((brand) => ({
-    imgSrc: brand.cover,
-    brandName: brand.properties.이름,
-    tags: [
-      ...brand.properties["브랜드 색감"],
-      ...brand.properties["브랜드 분위기"],
-      ...brand.properties["산업군"],
-    ].filter((tag) => tag),
-    location: "대기업, 서울", // 없어서 일단 임의로 추가
+  const getBrandInfo = async () => {
+    await axios
+      .get(process.env.REACT_APP_DB_HOST + "api/brand/")
+      .then((response) => {
+        console.log("BrandInfo : ", response.data);
+        setBrandInfo(response.data.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  useEffect(() => {
+    getBrandInfo();
+  }, []);
+
+  useEffect(() => {
+    console.log(brandInfo);
+  }, [brandInfo]);
+
+  const brandBoxes = brandInfo.map((brand: Brand) => ({
+    imgSrc: brand.cover_url,
+    brandName: brand.name,
+    tags: brand.brandTags.map((brandTag) => brandTag.tag),
+    location: "대기업, 서울",
   }));
 
   const filteredBoxes =
     selectedFilters.size > 0
-      ? brandBoxes.filter((box) =>
+      ? brandBoxes.filter((box: { tags: string[] }) =>
           box.tags.some((tag) => selectedFilters.has(tag)),
         )
       : brandBoxes;
