@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { colors } from "../styles/colors";
-import { ReactComponent as Toss } from "../assets/svgs/toss_2.svg";
 import {
   BrandLocation,
   BrandNameText,
