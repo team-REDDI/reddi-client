@@ -35,6 +35,7 @@ import {
   WantTagsInput,
   WantTagsInputBox,
   WantText,
+  Blank,
 } from "../styles/ReddiAIStyle";
 import { ReactComponent as SearchIcon } from "../assets/svgs/searchSmall.svg";
 import { useEffect, useState } from "react";
@@ -122,6 +123,7 @@ const AIBranding = () => {
   const [tags5, setTags5] = useState<TagType[]>(tagsList5);
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [currentBoxId, setCurrentBoxId] = useState<number>(1);
 
   type SetListFunction = React.Dispatch<React.SetStateAction<TagType[]>>;
   const handleClick = (
@@ -137,17 +139,18 @@ const AIBranding = () => {
     );
     console.log(tagList);
 
-    const clickedTagExists = tagList.some((tag) => tag.isClicked);
+    // setCurrentBoxId(boxIndex);
+    // const clickedTagExists = tagList.some((tag) => tag.isClicked);
 
-    if (clickedTagExists) {
-      const newIsNow = [...isNow];
-      newIsNow[boxIndex] = true;
-      setIsNow(newIsNow);
-    } else {
-      const newIsNow = [...isNow];
-      newIsNow[boxIndex] = false;
-      setIsNow(newIsNow);
-    }
+    // if (clickedTagExists) {
+    //   const newIsNow = [...isNow];
+    //   newIsNow[boxIndex] = true;
+    //   setIsNow(newIsNow);
+    // } else {
+    //   const newIsNow = [...isNow];
+    //   newIsNow[boxIndex] = false;
+    //   setIsNow(newIsNow);
+    // }
   };
 
   const handleSubmit = () => {
@@ -172,6 +175,21 @@ const AIBranding = () => {
     ]);
     console.log(isClicked);
     setInputValue("");
+  };
+
+  const handleButtonClicked = (boxIndex: number) => {
+    if (isNow[4]) {
+      setIsLoading(true);
+      setTimeout(() => {
+        setIsResult(true);
+        setIsLoading(false);
+      }, 1500);
+    } else {
+      setCurrentBoxId((prev) => prev + 1);
+      const newIsNow = [...isNow];
+      newIsNow[boxIndex] = true;
+      setIsNow(newIsNow);
+    }
   };
 
   // const createTag = (inputValue:string): void => {
@@ -240,7 +258,7 @@ const AIBranding = () => {
               </DeleteButton>
               <CompleteButton>저장하기</CompleteButton>
             </ButtonBox>
-            <div style={{ height: 200 }} />
+            <Blank />
           </>
         ) : (
           <>
@@ -277,20 +295,17 @@ const AIBranding = () => {
                   어떤 브랜드 요소를 생성하고 싶나요?
                 </WantText>
                 <TagsBox>
-                  {tags1.map(
-                    (tag) =>
-                      tag.id < 8 && (
-                        <WantTags
-                          key={tag.id}
-                          isClicked={tag.isClicked}
-                          onClick={() =>
-                            handleClick(tag.id, tag.boxId, tags1, setTags1)
-                          }
-                        >
-                          {tag.contents}
-                        </WantTags>
-                      ),
-                  )}
+                  {tags1.map((tag) => (
+                    <WantTags
+                      key={tag.id}
+                      isClicked={tag.isClicked}
+                      onClick={() =>
+                        handleClick(tag.id, tag.boxId, tags1, setTags1)
+                      }
+                    >
+                      {tag.contents}
+                    </WantTags>
+                  ))}
                 </TagsBox>
               </WantBox>
 
@@ -397,17 +412,22 @@ const AIBranding = () => {
               ) : null}
             </TagsContainer>
             <ButtonBox>
-              <DeleteButton>전체 삭제</DeleteButton>
+              {isNow[1] ? (
+                <DeleteButton
+                  onClick={() => {
+                    setCurrentBoxId((prev) => prev - 1);
+                  }}
+                >
+                  이전
+                </DeleteButton>
+              ) : null}
+
               <CompleteButton
                 onClick={() => {
-                  setIsLoading(true);
-                  setTimeout(() => {
-                    setIsResult(true);
-                    setIsLoading(false);
-                  }, 1500);
+                  handleButtonClicked(currentBoxId);
                 }}
               >
-                완료
+                {isNow[4] ? "생성하기" : "다음"}
               </CompleteButton>
             </ButtonBox>
           </>

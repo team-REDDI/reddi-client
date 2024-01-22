@@ -58,7 +58,6 @@ export const TagsContainer = styled.div`
   gap: 1.69rem;
   align-items: flex-start;
   width: 100%;
-  height: 69rem;
   margin-top: 5.12rem;
 `;
 
@@ -76,6 +75,8 @@ export const OrderBox = styled.div`
   display: flex;
   gap: 0.5rem;
   box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const OrderNumber = styled.div<{ now?: boolean }>`
@@ -86,8 +87,6 @@ export const OrderNumber = styled.div<{ now?: boolean }>`
   border-radius: 100%;
   font-size: 13px;
   font-weight: 700;
-  line-height: 130%;
-  letter-spacing: -0.13px;
   color: ${colors.white};
   justify-content: center;
   align-items: center;
@@ -98,7 +97,6 @@ export const OrderText = styled.div<{ now?: boolean }>`
   color: ${(props) => (props.now ? colors.white : "#626262")};
   font-size: 1.125rem;
   font-weight: 500;
-  line-height: 130%;
   letter-spacing: -0.18px;
 `;
 
@@ -325,4 +323,9 @@ export const LoadingDots = styled.img`
   width: 5.25rem;
   height: 5.25rem;
   //얘는 라이브러리 쓰거나..!? 하나 만들거나 하려고 합니다..~!!
+`;
+
+export const Blank = styled.div`
+  display: flex;
+  height: 3.13rem;
 `;
