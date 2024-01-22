@@ -13,11 +13,10 @@ import {
 interface BrandProps {
   imgSrc: string;
   brandName: string;
-  location: string;
   tags: string[];
 }
 
-export const BrandBox = ({ imgSrc, brandName, location, tags }: BrandProps) => {
+export const BrandBox = ({ imgSrc, brandName, tags }: BrandProps) => {
   const nav = useNavigate();
 
   const goToBrandDetail = () => {
@@ -29,7 +28,6 @@ export const BrandBox = ({ imgSrc, brandName, location, tags }: BrandProps) => {
       <BrandImage src={imgSrc} alt={brandName} />
       <BrandTextBox>
         <BrandNameText>{brandName}</BrandNameText>
-        <BrandLocation>{location}</BrandLocation>
         <BrandTagsContainer>
           {tags.map((tag, index) => (
             <BrandTag key={index}>{tag}</BrandTag>

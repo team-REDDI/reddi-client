@@ -162,7 +162,6 @@ const Brand = () => {
     imgSrc: brand.cover_url,
     brandName: brand.name,
     tags: brand.brandTags.map((brandTag) => brandTag.tag),
-    location: "대기업, 서울",
   }));
 
   const filteredBoxes =
@@ -191,7 +190,6 @@ const Brand = () => {
               key={index}
               imgSrc={box.imgSrc}
               brandName={box.brandName}
-              location={box.location}
               tags={box.tags}
             />
           ))}
