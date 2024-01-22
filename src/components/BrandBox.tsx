@@ -39,7 +39,9 @@ export const BrandBox = ({ imgSrc, brandName, tags }: BrandProps) => {
 };
 const BrandTagsContainer = styled.div`
   display: flex;
+  flex-wrap: wrap;
   margin-top: 0.5rem;
+  gap: 0.34rem;
 `;
 
 const BrandTag = styled.div`
@@ -50,7 +52,6 @@ const BrandTag = styled.div`
   padding: 0.25rem 0.5rem;
   font-size: 1rem;
   font-weight: 500;
-  margin-right: 0.34rem;
 `;
 
 const BrandImage = styled.img`
