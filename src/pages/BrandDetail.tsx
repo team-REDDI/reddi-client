@@ -21,7 +21,12 @@ import {
   ContentBoxCol,
   MarketingCol,
 } from "../styles/brandStyle";
+
 import { MarketingBoxSmall } from "../components/Home/MarketingBoxSmall";
+import { getBrandDetail } from "../apis/brand";
+import { QueryClient, QueryClientProvider, useQuery } from "react-query";
+
+const queryClient = new QueryClient();
 
 const BrandDetail = () => {
   const nav = useNavigate();
@@ -32,6 +37,12 @@ const BrandDetail = () => {
   const goBack = () => {
     nav(-1);
   };
+
+  const {
+    data: brandDetailData,
+    isLoading,
+    isError,
+  } = useQuery("brandDetail", () => getBrandDetail(1));
 
   return (
     <BrandDetailContainer>
@@ -139,4 +150,8 @@ const BrandDetail = () => {
   );
 };
 
-export default BrandDetail;
+export default () => (
+  <QueryClientProvider client={queryClient}>
+    <BrandDetail />
+  </QueryClientProvider>
+);

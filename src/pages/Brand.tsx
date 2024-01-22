@@ -19,7 +19,12 @@ import { ReactComponent as BrandSVG } from "../assets/svgs/BrandSVG.svg";
 import { useRecoilValue } from "recoil";
 import { filteredBrand } from "../utils/atom";
 import { getBrandList } from "../apis/brand";
-import { QueryClient, QueryClientProvider, useQuery } from "react-query";
+import {
+  QueryClient,
+  QueryClientProvider,
+  useQuery,
+  UseQueryResult,
+} from "react-query";
 
 interface Brand {
   id: number;
@@ -43,10 +48,11 @@ const Brand = () => {
     data: brandInfo,
     isLoading,
     isError,
-  } = useQuery("brandInfo", getBrandList);
-
+  }: UseQueryResult<Brand[], unknown> = useQuery("brandInfo", () =>
+    getBrandList({ page: 2, size: 10 }),
+  );
   const brandBoxes =
-    brandInfo?.data?.map((brand: Brand) => ({
+    brandInfo?.map((brand: Brand) => ({
       imgSrc: brand.cover_url,
       brandName: brand.name,
       tags: brand.brandTags.map((brandTag) => brandTag.tag),
