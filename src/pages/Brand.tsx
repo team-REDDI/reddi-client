@@ -56,6 +56,10 @@ const Brand = () => {
     ["brandInfo", currentPage - 1],
     () => getBrandList({ page: currentPage - 1, size: 10 }),
   );
+  const { data: allBrandInfo }: UseQueryResult<Brand[], unknown> = useQuery(
+    ["allBrandInfo"],
+    () => getBrandList({ page: 0, size: 100 }),
+  );
 
   const brandBoxes =
     brandInfo?.map((brand: Brand) => ({
@@ -64,9 +68,16 @@ const Brand = () => {
       tags: brand.brandTags.map((brandTag) => brandTag.tag),
     })) || [];
 
+  const allBrandBoxes =
+    allBrandInfo?.map((brand: Brand) => ({
+      imgSrc: brand.cover_url,
+      brandName: brand.name,
+      tags: brand.brandTags.map((brandTag) => brandTag.tag),
+    })) || [];
+
   const filteredBoxes =
     selectedFilters.size > 0
-      ? brandBoxes.filter((box: { tags: string[] }) =>
+      ? allBrandBoxes.filter((box: { tags: string[] }) =>
           box.tags.some((tag) => selectedFilters.has(tag)),
         )
       : brandBoxes;
