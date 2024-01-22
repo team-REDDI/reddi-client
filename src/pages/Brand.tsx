@@ -13,7 +13,7 @@ import {
   BrandTags,
   BrandTextBox,
 } from "../styles/brandStyle";
-
+import { useState, useEffect } from "react";
 import { BrandBox } from "../components/BrandBox";
 import { ReactComponent as BrandSVG } from "../assets/svgs/BrandSVG.svg";
 import { useRecoilValue } from "recoil";
@@ -43,14 +43,20 @@ const queryClient = new QueryClient();
 
 const Brand = () => {
   const selectedFilters = useRecoilValue(filteredBrand);
+  const [currentPage, setCurrentPage] = useState(1);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [currentPage]);
 
   const {
     data: brandInfo,
     isLoading,
     isError,
-  }: UseQueryResult<Brand[], unknown> = useQuery("brandInfo", () =>
-    getBrandList({ page: 2, size: 10 }),
+  }: UseQueryResult<Brand[], unknown> = useQuery(
+    ["brandInfo", currentPage - 1],
+    () => getBrandList({ page: currentPage - 1, size: 10 }),
   );
+
   const brandBoxes =
     brandInfo?.map((brand: Brand) => ({
       imgSrc: brand.cover_url,
@@ -64,6 +70,8 @@ const Brand = () => {
           box.tags.some((tag) => selectedFilters.has(tag)),
         )
       : brandBoxes;
+
+  const totalPageNum = 3; //일단 임시로
 
   return (
     <BrandPageContainer>
@@ -94,6 +102,24 @@ const Brand = () => {
           )}
         </BrandContainer>
       </ReferenceBox>
+      <PageButtonContainer>
+        {Array.from({ length: totalPageNum }, (_, index) => index + 1).map(
+          (page) => (
+            <PageButton
+              key={page}
+              onClick={() => setCurrentPage(page)}
+              isCurrent={page === currentPage}
+            >
+              {page}
+            </PageButton>
+          ),
+        )}
+        {currentPage < totalPageNum && (
+          <NextPageButton onClick={() => setCurrentPage(currentPage + 1)}>
+            다음
+          </NextPageButton>
+        )}
+      </PageButtonContainer>
       <Footer />
     </BrandPageContainer>
   );
@@ -118,6 +144,38 @@ const ReferenceBox = styled.div`
   box-sizing: border-box;
 `;
 
+interface pageButtonProps {
+  isCurrent: boolean;
+}
+const PageButtonContainer = styled.div`
+  display: flex;
+  gap: 1.56rem;
+  margin-top: 6.25rem;
+`;
+
+const PageButton = styled.button<pageButtonProps>`
+  background: none;
+  cursor: pointer;
+  border: none;
+  color: ${(props) => (props.isCurrent ? "#000" : "#bbb")};
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 130%; /* 1.3rem */
+  letter-spacing: -0.01rem;
+`;
+
+const NextPageButton = styled.button`
+  background: none;
+  cursor: pointer;
+  border: none;
+  color: #bbb;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 130%; /* 1.3rem */
+  letter-spacing: -0.01rem;
+`;
 export default () => (
   <QueryClientProvider client={queryClient}>
     <Brand />

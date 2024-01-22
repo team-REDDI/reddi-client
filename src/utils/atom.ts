@@ -1,5 +1,4 @@
-import {atom} from "recoil";
-
+import {atom, selector} from "recoil";
 
 export const filteredMarketing = atom<Set<string>>({
     key: 'filteredMarketing',
@@ -10,3 +9,4 @@ export const filteredMarketing = atom<Set<string>>({
     key: 'filteredBrand',
     default: new Set(),
   });
+
