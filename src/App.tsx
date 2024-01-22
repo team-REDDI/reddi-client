@@ -30,6 +30,7 @@ function App() {
               <Route path="/marketing/detail/0" element={<MarketingDetail />} />
               <Route path="/brand" element={<Brand />} />
               <Route path="/brand/detail/0" element={<BrandDetail />} />
+              <Route path="/brand/detail/:id" element={<BrandDetail />} />
               <Route path="/search/result" element={<SearchResult />} />
               <Route path="/ai-branding" element={<AIBranding />} />
               <Route path="/mypage" element={<Mypage />} />

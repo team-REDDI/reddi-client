@@ -1,5 +1,6 @@
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 import {
   BrandDetailContainer,
   BrandStory,
@@ -24,6 +25,9 @@ import { MarketingBoxSmall } from "../components/Home/MarketingBoxSmall";
 
 const BrandDetail = () => {
   const nav = useNavigate();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const goBack = () => {
     nav(-1);
