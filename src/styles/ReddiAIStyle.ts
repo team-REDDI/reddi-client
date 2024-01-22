@@ -58,7 +58,6 @@ export const TagsContainer = styled.div`
   gap: 1.69rem;
   align-items: flex-start;
   width: 100%;
-  height: 69rem;
   margin-top: 5.12rem;
 `;
 
@@ -325,4 +324,9 @@ export const LoadingDots = styled.img`
   width: 5.25rem;
   height: 5.25rem;
   //얘는 라이브러리 쓰거나..!? 하나 만들거나 하려고 합니다..~!!
+`;
+
+export const Blank = styled.div`
+  display: flex;
+  height: 3.13rem;
 `;
