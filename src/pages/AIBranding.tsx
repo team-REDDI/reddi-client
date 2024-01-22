@@ -123,7 +123,7 @@ const AIBranding = () => {
   const [tags5, setTags5] = useState<TagType[]>(tagsList5);
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [currentBoxId, setCurrentBoxId] = useState<number>(0);
+  const [currentBoxId, setCurrentBoxId] = useState<number>(1);
 
   type SetListFunction = React.Dispatch<React.SetStateAction<TagType[]>>;
   const handleClick = (
@@ -412,7 +412,15 @@ const AIBranding = () => {
               ) : null}
             </TagsContainer>
             <ButtonBox>
-              {isNow[1] ? <DeleteButton>이전</DeleteButton> : null}
+              {isNow[1] ? (
+                <DeleteButton
+                  onClick={() => {
+                    setCurrentBoxId((prev) => prev - 1);
+                  }}
+                >
+                  이전
+                </DeleteButton>
+              ) : null}
 
               <CompleteButton
                 onClick={() => {

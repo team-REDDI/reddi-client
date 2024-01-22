@@ -75,6 +75,8 @@ export const OrderBox = styled.div`
   display: flex;
   gap: 0.5rem;
   box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const OrderNumber = styled.div<{ now?: boolean }>`
@@ -85,8 +87,6 @@ export const OrderNumber = styled.div<{ now?: boolean }>`
   border-radius: 100%;
   font-size: 13px;
   font-weight: 700;
-  line-height: 130%;
-  letter-spacing: -0.13px;
   color: ${colors.white};
   justify-content: center;
   align-items: center;
@@ -97,7 +97,6 @@ export const OrderText = styled.div<{ now?: boolean }>`
   color: ${(props) => (props.now ? colors.white : "#626262")};
   font-size: 1.125rem;
   font-weight: 500;
-  line-height: 130%;
   letter-spacing: -0.18px;
 `;
 
