@@ -1,6 +1,11 @@
 import client from "./client";
 
 export const getBrandList = async () => {
-  const response = await client.get(`/api/brand`);
-  return response.data;
+  try {
+    const response = await client.get("api/brand/");
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
 };

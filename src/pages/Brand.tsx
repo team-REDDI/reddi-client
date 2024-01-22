@@ -13,13 +13,14 @@ import {
   BrandTags,
   BrandTextBox,
 } from "../styles/brandStyle";
-import axios from "axios";
+
 import { BrandBox } from "../components/BrandBox";
 import { ReactComponent as BrandSVG } from "../assets/svgs/BrandSVG.svg";
 import { useRecoilValue } from "recoil";
-import { useEffect, useState } from "react";
 import { filteredBrand } from "../utils/atom";
 import { getBrandList } from "../apis/brand";
+import { QueryClient, QueryClientProvider, useQuery } from "react-query";
+
 interface Brand {
   id: number;
   name: string;
@@ -33,35 +34,23 @@ interface Brand {
   notion_page_last_edited_time: string;
 }
 
+const queryClient = new QueryClient();
+
 const Brand = () => {
   const selectedFilters = useRecoilValue(filteredBrand);
-  const [brandInfo, setBrandInfo] = useState([]);
 
-  const getBrandInfo = async () => {
-    await axios
-      .get(process.env.REACT_APP_DB_HOST + "api/brand/")
-      .then((response) => {
-        console.log("BrandInfo : ", response.data);
-        setBrandInfo(response.data.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+  const {
+    data: brandInfo,
+    isLoading,
+    isError,
+  } = useQuery("brandInfo", getBrandList);
 
-  useEffect(() => {
-    getBrandInfo();
-  }, []);
-
-  useEffect(() => {
-    console.log(brandInfo);
-  }, [brandInfo]);
-
-  const brandBoxes = brandInfo.map((brand: Brand) => ({
-    imgSrc: brand.cover_url,
-    brandName: brand.name,
-    tags: brand.brandTags.map((brandTag) => brandTag.tag),
-  }));
+  const brandBoxes =
+    brandInfo?.data?.map((brand: Brand) => ({
+      imgSrc: brand.cover_url,
+      brandName: brand.name,
+      tags: brand.brandTags.map((brandTag) => brandTag.tag),
+    })) || [];
 
   const filteredBoxes =
     selectedFilters.size > 0
@@ -84,14 +73,19 @@ const Brand = () => {
           <HomeTitle>브랜드 레퍼런스</HomeTitle>
         </BrandTitleRow>
         <BrandContainer>
-          {filteredBoxes.map((box, index) => (
-            <BrandBox
-              key={index}
-              imgSrc={box.imgSrc}
-              brandName={box.brandName}
-              tags={box.tags}
-            />
-          ))}
+          {filteredBoxes.map(
+            (
+              box: { imgSrc: string; brandName: string; tags: string[] },
+              index: number,
+            ) => (
+              <BrandBox
+                key={index}
+                imgSrc={box.imgSrc}
+                brandName={box.brandName}
+                tags={box.tags}
+              />
+            ),
+          )}
         </BrandContainer>
       </ReferenceBox>
       <Footer />
@@ -118,4 +112,8 @@ const ReferenceBox = styled.div`
   box-sizing: border-box;
 `;
 
-export default Brand;
+export default () => (
+  <QueryClientProvider client={queryClient}>
+    <Brand />
+  </QueryClientProvider>
+);
