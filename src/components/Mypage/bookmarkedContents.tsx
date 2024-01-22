@@ -88,7 +88,6 @@ export const BookmarkedContent = () => {
             key={index}
             imgSrc={box.imgSrc}
             brandName={box.brandName}
-            location={box.location}
             tags={box.tags}
           />
         ))}

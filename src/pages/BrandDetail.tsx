@@ -1,5 +1,6 @@
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 import {
   BrandDetailContainer,
   BrandStory,
@@ -20,14 +21,28 @@ import {
   ContentBoxCol,
   MarketingCol,
 } from "../styles/brandStyle";
+
 import { MarketingBoxSmall } from "../components/Home/MarketingBoxSmall";
+import { getBrandDetail } from "../apis/brand";
+import { QueryClient, QueryClientProvider, useQuery } from "react-query";
+
+const queryClient = new QueryClient();
 
 const BrandDetail = () => {
   const nav = useNavigate();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const goBack = () => {
     nav(-1);
   };
+
+  const {
+    data: brandDetailData,
+    isLoading,
+    isError,
+  } = useQuery("brandDetail", () => getBrandDetail(1));
 
   return (
     <BrandDetailContainer>
@@ -135,4 +150,8 @@ const BrandDetail = () => {
   );
 };
 
-export default BrandDetail;
+export default () => (
+  <QueryClientProvider client={queryClient}>
+    <BrandDetail />
+  </QueryClientProvider>
+);

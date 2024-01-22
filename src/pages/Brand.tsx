@@ -13,134 +13,76 @@ import {
   BrandTags,
   BrandTextBox,
 } from "../styles/brandStyle";
-import { ReactComponent as Toss } from "../assets/svgs/toss_2.svg";
+import { useState, useEffect } from "react";
 import { BrandBox } from "../components/BrandBox";
 import { ReactComponent as BrandSVG } from "../assets/svgs/BrandSVG.svg";
-
 import { useRecoilValue } from "recoil";
 import { filteredBrand } from "../utils/atom";
+import { getBrandList } from "../apis/brand";
+import {
+  QueryClient,
+  QueryClientProvider,
+  useQuery,
+  UseQueryResult,
+} from "react-query";
 
-const brandData = [
-  [
-    {
-      id: 1,
-      page_id: "8932a421-560d-448a-9c31-c5233bd7765c",
-      created_time: "2023-11-22T06:09:00.000Z",
-      last_edited_time: "2024-01-17T01:37:00.000Z",
-      cover:
-        "https://www.notion.so/images/page-cover/met_terracotta_funerary_plaque.jpg",
-      properties: {
-        "브랜드 분위기": ["키치함", "귀여움"],
-        "MKT 종류": [],
-        "MKT 타겟층": [],
-        산업군: ["IT"],
-        "브랜드 색감": [],
-        이름: "어글리어스",
-      },
-    },
-    {
-      id: 2,
-      page_id: "8932a421-560d-448a-9c31-c5233bd7765c",
-      created_time: "2023-11-22T06:09:00.000Z",
-      last_edited_time: "2024-01-17T01:37:00.000Z",
-      cover: "https://www.notion.so/images/page-cover/webb1.jpg",
-      properties: {
-        "브랜드 분위기": ["키치함", "귀여움"],
-        "MKT 종류": [],
-        "MKT 타겟층": [],
-        산업군: ["F&B"],
-        "브랜드 색감": ["블루"],
-        이름: "어글리어스2",
-      },
-    },
-    {
-      id: 3,
-      page_id: "8932a421-560d-448a-9c31-c5233bd7765c",
-      created_time: "2023-11-22T06:09:00.000Z",
-      last_edited_time: "2024-01-17T01:37:00.000Z",
-      cover:
-        "https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F245b7cab-78ce-4eca-ad7c-a658eb996c42%2Fc890b16d-662a-4b8a-a39a-c0b6c474901e%2FUntitled.jpeg?id=64efd15a-de2e-4924-8db7-fbe2c42c2336&table=block&spaceId=245b7cab-78ce-4eca-ad7c-a658eb996c42&width=2000&userId=f28e53ed-2327-4a11-81df-a53a318cec36&cache=v2",
-      properties: {
-        "브랜드 분위기": ["세련된"],
-        "MKT 종류": [],
-        "MKT 타겟층": [],
-        산업군: ["금융"],
-        "브랜드 색감": ["노랑"],
-        이름: "어글리어스3",
-      },
-    },
-    {
-      id: 4,
-      page_id: "8932a421-560d-448a-9c31-c5233bd7765c",
-      created_time: "2023-11-22T06:09:00.000Z",
-      last_edited_time: "2024-01-17T01:37:00.000Z",
-      cover:
-        "https://glowing-novel-3e6.notion.site/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2Fa40970fa-0e5a-48e1-84e4-1da7cb5d21d8%2F1fa72401-7bcd-4cae-96e5-3090336f58ae%2FUntitled.jpeg?table=block&id=6933e525-85bf-4fc5-9841-dd7aef8fd617&spaceId=a40970fa-0e5a-48e1-84e4-1da7cb5d21d8&width=2000&userId=&cache=v2",
-      properties: {
-        "브랜드 분위기": ["세련된"],
-        "MKT 종류": [],
-        "MKT 타겟층": [],
-        산업군: ["금융"],
-        "브랜드 색감": ["노랑"],
-        이름: "어글리어스3",
-      },
-    },
-  ],
-];
+interface Brand {
+  id: number;
+  name: string;
+  brandTags: {
+    brandTagType: string;
+    tag: string;
+  }[];
+  cover_url: string;
+  notion_page_url: string;
+  notion_page_created_time: string;
+  notion_page_last_edited_time: string;
+}
 
-const dummyBrandBoxes = [
-  {
-    imgSrc: "/image.jpg", //나중에 이미지 여기다 넣으면 됨
-    brandName: "토스증권",
-    location: "대기업, 서울",
-    tags: ["뷰티", "금융"],
-  },
-  {
-    imgSrc: "/image.jpg",
-    brandName: "토스증권",
-    location: "대기업, 서울",
-    tags: ["금융", "블루"],
-  },
-  {
-    imgSrc: "/image.jpg",
-    brandName: "토스증권",
-    location: "대기업, 서울",
-    tags: ["금융", "블루"],
-  },
-  {
-    imgSrc: "/image.jpg",
-    brandName: "토스증권",
-    location: "대기업, 서울",
-    tags: ["뷰티", "세련된"],
-  },
-  {
-    imgSrc: "/image.jpg",
-    brandName: "토스증권",
-    location: "대기업, 서울",
-    tags: ["뷰티", "깔끔한"],
-  },
-];
+const queryClient = new QueryClient();
 
 const Brand = () => {
   const selectedFilters = useRecoilValue(filteredBrand);
+  const [currentPage, setCurrentPage] = useState(1);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [currentPage]);
 
-  const brandBoxes = brandData[0].map((brand) => ({
-    imgSrc: brand.cover,
-    brandName: brand.properties.이름,
-    tags: [
-      ...brand.properties["브랜드 색감"],
-      ...brand.properties["브랜드 분위기"],
-      ...brand.properties["산업군"],
-    ].filter((tag) => tag),
-    location: "대기업, 서울", // 없어서 일단 임의로 추가
-  }));
+  const {
+    data: brandInfo,
+    isLoading,
+    isError,
+  }: UseQueryResult<Brand[], unknown> = useQuery(
+    ["brandInfo", currentPage - 1],
+    () => getBrandList({ page: currentPage - 1, size: 10 }),
+  );
+  const { data: allBrandInfo }: UseQueryResult<Brand[], unknown> = useQuery(
+    ["allBrandInfo"],
+    () => getBrandList({ page: 0, size: 100 }),
+  );
+
+  const brandBoxes =
+    brandInfo?.map((brand: Brand) => ({
+      imgSrc: brand.cover_url,
+      brandName: brand.name,
+      tags: brand.brandTags.map((brandTag) => brandTag.tag),
+    })) || [];
+
+  const allBrandBoxes =
+    allBrandInfo?.map((brand: Brand) => ({
+      imgSrc: brand.cover_url,
+      brandName: brand.name,
+      tags: brand.brandTags.map((brandTag) => brandTag.tag),
+    })) || [];
 
   const filteredBoxes =
     selectedFilters.size > 0
-      ? brandBoxes.filter((box) =>
+      ? allBrandBoxes.filter((box: { tags: string[] }) =>
           box.tags.some((tag) => selectedFilters.has(tag)),
         )
       : brandBoxes;
+
+  const totalPageNum = 3; //일단 임시로
 
   return (
     <BrandPageContainer>
@@ -156,17 +98,39 @@ const Brand = () => {
           <HomeTitle>브랜드 레퍼런스</HomeTitle>
         </BrandTitleRow>
         <BrandContainer>
-          {filteredBoxes.map((box, index) => (
-            <BrandBox
-              key={index}
-              imgSrc={box.imgSrc}
-              brandName={box.brandName}
-              location={box.location}
-              tags={box.tags}
-            />
-          ))}
+          {filteredBoxes.map(
+            (
+              box: { imgSrc: string; brandName: string; tags: string[] },
+              index: number,
+            ) => (
+              <BrandBox
+                key={index}
+                imgSrc={box.imgSrc}
+                brandName={box.brandName}
+                tags={box.tags}
+              />
+            ),
+          )}
         </BrandContainer>
       </ReferenceBox>
+      <PageButtonContainer>
+        {Array.from({ length: totalPageNum }, (_, index) => index + 1).map(
+          (page) => (
+            <PageButton
+              key={page}
+              onClick={() => setCurrentPage(page)}
+              isCurrent={page === currentPage}
+            >
+              {page}
+            </PageButton>
+          ),
+        )}
+        {currentPage < totalPageNum && (
+          <NextPageButton onClick={() => setCurrentPage(currentPage + 1)}>
+            다음
+          </NextPageButton>
+        )}
+      </PageButtonContainer>
       <Footer />
     </BrandPageContainer>
   );
@@ -191,4 +155,40 @@ const ReferenceBox = styled.div`
   box-sizing: border-box;
 `;
 
-export default Brand;
+interface pageButtonProps {
+  isCurrent: boolean;
+}
+const PageButtonContainer = styled.div`
+  display: flex;
+  gap: 1.56rem;
+  margin-top: 6.25rem;
+`;
+
+const PageButton = styled.button<pageButtonProps>`
+  background: none;
+  cursor: pointer;
+  border: none;
+  color: ${(props) => (props.isCurrent ? "#000" : "#bbb")};
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 130%; /* 1.3rem */
+  letter-spacing: -0.01rem;
+`;
+
+const NextPageButton = styled.button`
+  background: none;
+  cursor: pointer;
+  border: none;
+  color: #bbb;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 130%; /* 1.3rem */
+  letter-spacing: -0.01rem;
+`;
+export default () => (
+  <QueryClientProvider client={queryClient}>
+    <Brand />
+  </QueryClientProvider>
+);

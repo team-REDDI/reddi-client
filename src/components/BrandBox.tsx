@@ -13,11 +13,10 @@ import {
 interface BrandProps {
   imgSrc: string;
   brandName: string;
-  location: string;
   tags: string[];
 }
 
-export const BrandBox = ({ imgSrc, brandName, location, tags }: BrandProps) => {
+export const BrandBox = ({ imgSrc, brandName, tags }: BrandProps) => {
   const nav = useNavigate();
 
   const goToBrandDetail = () => {
@@ -29,7 +28,6 @@ export const BrandBox = ({ imgSrc, brandName, location, tags }: BrandProps) => {
       <BrandImage src={imgSrc} alt={brandName} />
       <BrandTextBox>
         <BrandNameText>{brandName}</BrandNameText>
-        <BrandLocation>{location}</BrandLocation>
         <BrandTagsContainer>
           {tags.map((tag, index) => (
             <BrandTag key={index}>{tag}</BrandTag>
@@ -41,7 +39,9 @@ export const BrandBox = ({ imgSrc, brandName, location, tags }: BrandProps) => {
 };
 const BrandTagsContainer = styled.div`
   display: flex;
+  flex-wrap: wrap;
   margin-top: 0.5rem;
+  gap: 0.34rem;
 `;
 
 const BrandTag = styled.div`
@@ -52,7 +52,6 @@ const BrandTag = styled.div`
   padding: 0.25rem 0.5rem;
   font-size: 1rem;
   font-weight: 500;
-  margin-right: 0.34rem;
 `;
 
 const BrandImage = styled.img`
