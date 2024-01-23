@@ -251,7 +251,6 @@ const AIBranding = () => {
               <DeleteButton
                 onClick={() => {
                   window.location.reload();
-                  // setIsResult(false);
                 }}
               >
                 다시 생성하기
@@ -387,8 +386,8 @@ const AIBranding = () => {
                 </WantBox>
               ) : null}
               {isNow[4] ? (
-                <WantBox index={5}>
-                  <WantText index={5}>
+                <WantBox now={isNow[4]} index={5}>
+                  <WantText now={isNow[4]} index={5}>
                     내 브랜드와의 유사 서비스에는 이런 것들이 있어요.
                   </WantText>
                   <TagsBox>
@@ -415,7 +414,10 @@ const AIBranding = () => {
               {isNow[1] ? (
                 <DeleteButton
                   onClick={() => {
-                    // setCurrentBoxId((prev) => prev - 1);
+                    setCurrentBoxId((prev) => prev - 1);
+                    const newIsNow = [...isNow];
+                    newIsNow[currentBoxId] = false;
+                    setIsNow(newIsNow);
                   }}
                 >
                   이전
