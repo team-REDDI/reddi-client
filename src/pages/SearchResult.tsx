@@ -38,6 +38,7 @@ const SearchResult = () => {
           </ResultText>
           <MarketingsBox>
             <MarketingBox
+              id={1}
               imgSrc="../assets/images/exemple.png"
               type="PLACE"
               title="더 현대를 밝히는 ‘해리의 꿈의 상점’"
@@ -46,6 +47,7 @@ const SearchResult = () => {
               categories={["부티크", "팝업스토어", "콘셉트마케팅"]}
             />
             <MarketingBox
+              id={1}
               imgSrc="../assets/images/exemple.png"
               type="PLACE"
               title="신세계 백화점의 ‘MAGIC WINTER FANTASY’"
@@ -54,6 +56,7 @@ const SearchResult = () => {
               categories={["부티크", "팝업스토어", "콘셉트마케팅"]}
             />
             <MarketingBox
+              id={1}
               imgSrc="../assets/images/exemple.png"
               type="PLACE"
               title="시몬스테라스의 ‘크리스마스 일루미네이션"
