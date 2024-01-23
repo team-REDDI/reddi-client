@@ -53,10 +53,8 @@ const Home = () => {
         </BrandTitleBox>
         <LankBox>
           <BrandLankBox lank={1} name="토스 증권" Icon={TossIcon} />
-
           <GreyLine />
           <BrandLankBox lank={2} name="네이버" Icon={NaverIcon} />
-
           <GreyLine />
           <BrandLankBox lank={3} name="현대카드" Icon={HyundaiIcon} />
           <GreyLine />
