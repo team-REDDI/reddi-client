@@ -23,8 +23,8 @@ export const getBrandDetail = async (pageId: number) => {
         id: pageId,
       },
     });
-
-    return response.data;
+    console.log(response.data);
+    return response.data.data.content;
   } catch (error) {
     console.error("Error:", error);
     throw error;
