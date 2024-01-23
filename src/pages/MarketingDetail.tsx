@@ -24,6 +24,30 @@ import { getMarketingDetail, getMarketingDetailInfo } from "../apis/marketing";
 import { useEffect } from "react";
 import { formatDate } from "../utils/dateFunction";
 
+interface ContentBlock {
+  type: string;
+  heading_1?: {
+    rich_text: { plain_text: string }[];
+  };
+  heading_2?: {
+    rich_text: { plain_text: string }[];
+  };
+  paragraph?: {
+    rich_text: { plain_text: string }[];
+  };
+  image?: {
+    file: {
+      url: string;
+      expiry_time: string;
+    };
+    caption: string;
+  };
+  bookmark?: {
+    url: string[];
+  };
+  child_database?: {};
+}
+
 const queryClient = new QueryClient();
 
 const MarketingDetail = () => {
@@ -48,30 +72,6 @@ const MarketingDetail = () => {
     ["marketingDetailInfo", marketingId],
     () => getMarketingDetailInfo(marketingId),
   );
-
-  interface ContentBlock {
-    type: string;
-    heading_1?: {
-      rich_text: { plain_text: string }[];
-    };
-    heading_2?: {
-      rich_text: { plain_text: string }[];
-    };
-    paragraph?: {
-      rich_text: { plain_text: string }[];
-    };
-    image?: {
-      file: {
-        url: string;
-        expiry_time: string;
-      };
-      caption: string;
-    };
-    bookmark?: {
-      url: string[];
-    };
-    child_database?: {};
-  }
 
   const renderContent = (content: ContentBlock, index: number) => {
     switch (content.type) {

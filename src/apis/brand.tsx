@@ -30,3 +30,19 @@ export const getBrandDetail = async (pageId: number) => {
     throw error;
   }
 };
+
+//brand/detail 페이지 상단 정보
+export const getBrandDetailInfo = async (pageId: number) => {
+  try {
+    const response = await client.get(`/api/brand/${pageId}`, {
+      params: {
+        id: pageId,
+      },
+    });
+
+    return response.data.data.brand;
+  } catch (error) {
+    console.error("Error:", error);
+    throw error;
+  }
+};

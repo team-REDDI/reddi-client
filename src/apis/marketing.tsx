@@ -33,6 +33,8 @@ export const getMarketingDetail = async (pageId: number) => {
     throw error;
   }
 };
+
+//marketing/detail 상단 & 하단 정보
 export const getMarketingDetailInfo = async (pageId: number) => {
   try {
     const response = await client.get(`/api/post/${pageId}`, {
