@@ -26,6 +26,7 @@ import { MarketingBoxSmall } from "../components/Home/MarketingBoxSmall";
 import { getBrandDetail } from "../apis/brand";
 import { QueryClient, QueryClientProvider, useQuery } from "react-query";
 import { ReactComponent as Aesop } from "../assets/svgs/aesopSVG.svg";
+import styled from "styled-components";
 
 const queryClient = new QueryClient();
 
@@ -69,54 +70,119 @@ const BrandDetail = () => {
     child_database?: {};
   }
 
-  interface ContentBlock {}
+  // 콘텐츠를 그룹화하는 로직
+  // 각 'heading_1' 컨텐츠를 기준으로 그룹을 형성-> 배열 반환
+  const groupedBlocks = (): ContentBlock[][] => {
+    const groups: ContentBlock[][] = [];
+    let currentGroup: ContentBlock[] = [];
 
-  const renderContent = (content: ContentBlock, index: number) => {
-    switch (content.type) {
-      case "heading_1":
-        return (
-          <ContentBox key={index}>
-            <ContentType>
-              {content.heading_1?.rich_text[0].plain_text}
-            </ContentType>
-          </ContentBox>
-        );
-      case "heading_2":
-        return (
-          <BrandExpTitle key={index}>
-            {content.heading_2?.rich_text[0].plain_text}
-          </BrandExpTitle>
-        );
-      case "paragraph":
-        if (content.paragraph && content.paragraph.rich_text.length > 0) {
-          return (
-            <BrandExpText key={index}>
-              {content.paragraph.rich_text[0].plain_text}
-            </BrandExpText>
-          );
-        } else {
-          return <BrandExpText key={index}>Paragraph 없음</BrandExpText>;
-        }
-      case "image":
-        if (content.image && content.image.file && content.image.file.url) {
-          console.log("image: ", content.image.file.url);
-          return (
-            <img
-              key={index}
-              src={content.image.file.url}
-              width="449.4"
-              alt="브랜드 디테일 이미지"
-            />
-          );
-        } else {
-          return <div key={index}>Image 없음</div>;
-        }
+    brandDetailData?.forEach((block: ContentBlock) => {
+      if (block.type === "heading_1") {
+        if (currentGroup.length) groups.push(currentGroup);
+        currentGroup = [block];
+      } else {
+        currentGroup.push(block);
+      }
+    });
 
-      case "child_database":
-        return <div key={index}></div>;
-      default:
-        return null;
-    }
+    if (currentGroup.length) groups.push(currentGroup);
+    return groups;
+  };
+
+  //이제 그룹화된 부분에서 -> heading_1은 따로 빼고,
+  // 그 외의 데이터들을 하나의 <div>로 넣어줌
+  const renderGroupedContent = (group: ContentBlock[]): JSX.Element => {
+    let groupedContents: JSX.Element[] = [];
+    let isHeading1 = false;
+
+    return (
+      <ContentBoxWrapper>
+        {group.map((content, index) => {
+          if (content.type === "heading_1") {
+            if (isHeading1) {
+              const renderedGroup = (
+                <ContextTextGroup key={index} className="grouped-content">
+                  {groupedContents}
+                </ContextTextGroup>
+              );
+              groupedContents = [];
+              isHeading1 = false;
+              return (
+                <>
+                  {renderedGroup}
+                  <ContentBox key={index}>
+                    <ContentType>
+                      {content.heading_1?.rich_text[0].plain_text}
+                    </ContentType>
+                  </ContentBox>
+                </>
+              );
+            } else {
+              isHeading1 = true;
+              return (
+                <ContentBox key={index}>
+                  <ContentType>
+                    {content.heading_1?.rich_text[0].plain_text}
+                  </ContentType>
+                </ContentBox>
+              );
+            }
+          } else if (isHeading1) {
+            switch (content.type) {
+              case "heading_2":
+                groupedContents.push(
+                  <BrandExpTitle key={index}>
+                    {content.heading_2?.rich_text[0].plain_text}
+                  </BrandExpTitle>,
+                );
+                break;
+              case "paragraph":
+                groupedContents.push(
+                  content.paragraph &&
+                    content.paragraph.rich_text.length > 0 ? (
+                    <BrandExpText key={index}>
+                      {content.paragraph.rich_text[0].plain_text}
+                    </BrandExpText>
+                  ) : (
+                    <div key={index}>Paragraph 없음</div> //이거 나온 부분은 나중에 노션에서 paragraph 삭제
+                  ),
+                );
+                break;
+              case "image":
+                groupedContents.push(
+                  content.image &&
+                    content.image.file &&
+                    content.image.file.url ? (
+                    <img
+                      key={index}
+                      src={content.image.file.url}
+                      width="449.4"
+                      alt="브랜드 디테일 이미지"
+                      style={{ marginBottom: "0.5rem" }} //임의로 추가
+                    />
+                  ) : (
+                    <div key={index}>Image 없음</div>
+                  ),
+                );
+                break;
+              case "child_database":
+                groupedContents.push(<div key={index}></div>);
+                break;
+            }
+          }
+          return null;
+        })}
+        {groupedContents.length > 0 && (
+          <div className="grouped-content">{groupedContents}</div>
+        )}
+      </ContentBoxWrapper>
+    );
+  };
+
+  // 전체 콘텐츠를 렌더링
+  const renderAllContent = () => {
+    const groups = groupedBlocks();
+    return groups.map((group, index) => renderGroupedContent(group));
   };
 
   return (
@@ -126,7 +192,6 @@ const BrandDetail = () => {
         <LogoBox>
           {/* <AesopLogo /> */}
           <LogoImg src={require("../assets/images/AesopLogo.png")} />
-          {/* <Aesop /> */}
           <NameBox>
             <BrandName>Aesop</BrandName>
             <BrandType>코스메틱</BrandType>
@@ -134,12 +199,8 @@ const BrandDetail = () => {
         </LogoBox>
       </LogoContainer>
       <DetailContainer>
-        {brandDetailData?.map((contentBlock: ContentBlock, index: number) => {
-          const content = renderContent(contentBlock, index);
-          return content;
-        })}
-
-        <ContentBox>
+        {renderAllContent()}
+        {/* <ContentBox>
           <ContentType>로고</ContentType>
           <LogoImg2 src={require("../assets/images/AesopLogoB.png")} />
         </ContentBox>
@@ -160,7 +221,6 @@ const BrandDetail = () => {
             소비자에게 다가가고 있습니다.
           </BrandStory>
         </ContentBox>
-
         <ContentBox>
           <ContentType>브랜드 철학</ContentType>
           <BrandExpBox>
@@ -173,7 +233,6 @@ const BrandDetail = () => {
             </BrandExpText>
           </BrandExpBox>
         </ContentBox>
-
         <ContentBox>
           <ContentType>슬로건</ContentType>
           <BrandExpBox>
@@ -182,10 +241,9 @@ const BrandDetail = () => {
               핸즈의 시작부터 지금까지 변하지 않는 가치를 중시합니다.
             </BrandExpText>
           </BrandExpBox>
-        </ContentBox>
-
+        </ContentBox> */}
         <ContentBoxCol>
-          <ContentType>마케팅 레퍼런스</ContentType>
+          {/* <ContentType>마케팅 레퍼런스</ContentType> */}
           <MarketingCol>
             <MarketingBoxSmall
               lank={null}
@@ -230,6 +288,14 @@ const BrandDetail = () => {
     </BrandDetailContainer>
   );
 };
+const ContentBoxWrapper = styled.div`
+  display: flex;
+`;
+const ContextTextGroup = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`;
 
 export default () => (
   <QueryClientProvider client={queryClient}>

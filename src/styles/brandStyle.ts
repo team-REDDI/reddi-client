@@ -141,7 +141,7 @@ export const DetailContainer = styled.div`
 export const ContentBox = styled.div`
   display: flex;
   flex-direction: row;
-  width: 100%;
+  /* width: 100%; */
   height: fit-content;
 `;
 
@@ -184,22 +184,25 @@ export const BrandExpBox = styled.div`
   gap: 1.875rem;
 `;
 
-export const BrandExpTitle = styled.span`
+export const BrandExpTitle = styled.div`
   color: ${colors.black_CTA};
   font-size: 1.125rem;
   font-style: normal;
   font-weight: 500;
   line-height: 130%;
   letter-spacing: -0.01125rem;
+  margin-bottom:1.88rem;
 `;
 
 export const BrandExpText = styled.div`
-  color: #5f5f5f;
+  /* color: #5f5f5f; */
+  color: ${colors.black_CTA};
   font-size: 0.875rem;
   font-style: normal;
   font-weight: 500;
   line-height: 150%;
   letter-spacing: -0.00875rem;
+  margin-bottom: 0.3rem;
 `;
 
 export const MarketingCol = styled.div`
