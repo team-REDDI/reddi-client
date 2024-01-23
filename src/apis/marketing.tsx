@@ -33,3 +33,17 @@ export const getMarketingDetail = async (pageId: number) => {
     throw error;
   }
 };
+export const getMarketingDetailInfo = async (pageId: number) => {
+  try {
+    const response = await client.get(`/api/post/${pageId}`, {
+      params: {
+        id: pageId,
+      },
+    });
+    console.log("DETAIL", response.data);
+    return response.data.data.post;
+  } catch (error) {
+    console.error("Error:", error);
+    throw error;
+  }
+};

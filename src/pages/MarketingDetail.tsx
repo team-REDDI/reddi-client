@@ -15,29 +15,38 @@ import {
   ImageContainer,
   MarketingTags,
 } from "../styles/marketingStyle";
+
 import { BrandTitleRow, HomeImage, HomeTitle } from "../styles/HomeStyle";
 import Footer from "../components/Footer";
 import { useNavigate, useParams } from "react-router-dom";
 import { QueryClient, QueryClientProvider, useQuery } from "react-query";
-import { getMarketingDetail } from "../apis/marketing";
+import { getMarketingDetail, getMarketingDetailInfo } from "../apis/marketing";
+import { useEffect } from "react";
+import { formatDate } from "../utils/dateFunction";
 
 const queryClient = new QueryClient();
 
 const MarketingDetail = () => {
   const nav = useNavigate();
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const goBack = () => {
     nav(-1);
   };
+
   const { id } = useParams<{ id: string }>();
   const marketingId = id ? parseInt(id, 10) : 1;
 
-  const {
-    data: marketingDetailData,
-    isLoading,
-    isError,
-  } = useQuery(["marketingDetail", marketingId], () =>
-    getMarketingDetail(marketingId),
+  const { data: marketingDetailData } = useQuery(
+    ["marketingDetail", marketingId],
+    () => getMarketingDetail(marketingId),
+  );
+  const { data: marketingDetailInfo } = useQuery(
+    ["marketingDetailInfo", marketingId],
+    () => getMarketingDetailInfo(marketingId),
   );
 
   interface ContentBlock {
@@ -120,17 +129,17 @@ const MarketingDetail = () => {
   return (
     <MarketingDetailContainer>
       <ImageContainer>
-        <HomeImage src={require("../assets/images/background-marketing.png")} />
+        <HomeImage src={marketingDetailInfo?.cover_url} />
         <GoBackButton onClick={goBack}>뒤로가기</GoBackButton>
         <IntroBox>
           <TagBox>
-            <FilterTag>뷰티</FilterTag>
-            <FilterTag>팝업스토어</FilterTag>
-            <FilterTag>콘텐츠마케팅</FilterTag>
+            {marketingDetailInfo?.postTags.map(
+              (tag: { tag: string }, index: number) => (
+                <FilterTag key={index}>{tag.tag}</FilterTag>
+              ),
+            )}
           </TagBox>
-          <MarketingTitle>
-            탬버린즈 <br /> “solace: 한 줌의 위안”
-          </MarketingTitle>
+          <MarketingTitle>{marketingDetailInfo?.title}</MarketingTitle>
           <DataTable>
             <DataColumn>
               <DataType>작성자</DataType>
@@ -142,7 +151,9 @@ const MarketingDetail = () => {
             </DataColumn>
             <DataColumn>
               <DataType>작성일자</DataType>
-              <DataText>2023.12.31</DataText>
+              <DataText>
+                {formatDate(marketingDetailInfo?.notion_page_created_time)}
+              </DataText>
             </DataColumn>
           </DataTable>
         </IntroBox>
@@ -187,9 +198,11 @@ const MarketingDetail = () => {
         </MarketingExplain> */}
       </ExplBox>
       <MarketingTags>
-        <FilterTag>뷰티</FilterTag>
-        <FilterTag>팝업스토어</FilterTag>
-        <FilterTag>콘텐츠마케팅</FilterTag>
+        {marketingDetailInfo?.postTags.map(
+          (tag: { tag: string }, index: number) => (
+            <FilterTag key={index}>{tag.tag}</FilterTag>
+          ),
+        )}
       </MarketingTags>
       <Footer />
     </MarketingDetailContainer>
