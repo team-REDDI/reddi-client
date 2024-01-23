@@ -1,5 +1,5 @@
 import Footer from "../components/Footer";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import {
   BrandDetailContainer,
@@ -30,6 +30,9 @@ const queryClient = new QueryClient();
 
 const BrandDetail = () => {
   const nav = useNavigate();
+  const { id } = useParams<{ id: string }>();
+  const brandId = id ? parseInt(id, 10) : 1;
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -42,7 +45,78 @@ const BrandDetail = () => {
     data: brandDetailData,
     isLoading,
     isError,
-  } = useQuery("brandDetail", () => getBrandDetail(1));
+  } = useQuery(["brandDetail", brandId], () => getBrandDetail(brandId));
+
+  interface ContentBlock {
+    type: string;
+    heading_1?: {
+      rich_text: { plain_text: string }[];
+    };
+    heading_2?: {
+      rich_text: { plain_text: string }[];
+    };
+    paragraph?: {
+      rich_text: { plain_text: string }[];
+    };
+    image?: {
+      file: {
+        url: string;
+        expiry_time: string;
+      };
+      caption: string;
+    };
+    child_database?: {};
+  }
+
+  interface ContentBlock {}
+
+  const renderContent = (content: ContentBlock, index: number) => {
+    switch (content.type) {
+      case "heading_1":
+        return (
+          <ContentBox key={index}>
+            <ContentType>
+              {content.heading_1?.rich_text[0].plain_text}
+            </ContentType>
+          </ContentBox>
+        );
+      case "heading_2":
+        return (
+          <BrandExpTitle key={index}>
+            {content.heading_2?.rich_text[0].plain_text}
+          </BrandExpTitle>
+        );
+      case "paragraph":
+        if (content.paragraph && content.paragraph.rich_text.length > 0) {
+          return (
+            <BrandExpText key={index}>
+              {content.paragraph.rich_text[0].plain_text}
+            </BrandExpText>
+          );
+        } else {
+          return <BrandExpText key={index}>Paragraph 없음</BrandExpText>;
+        }
+      case "image":
+        if (content.image && content.image.file && content.image.file.url) {
+          console.log("image: ", content.image.file.url);
+          return (
+            <img
+              key={index}
+              src={content.image.file.url}
+              width="449.4"
+              alt="브랜드 디테일 이미지"
+            />
+          );
+        } else {
+          return <div key={index}>Image 없음</div>;
+        }
+
+      case "child_database":
+        return <div key={index}></div>;
+      default:
+        return null;
+    }
+  };
 
   return (
     <BrandDetailContainer>
@@ -58,6 +132,11 @@ const BrandDetail = () => {
         </LogoBox>
       </LogoContainer>
       <DetailContainer>
+        {/* {brandDetailData?.map((contentBlock: ContentBlock, index: number) => {
+          const content = renderContent(contentBlock, index);
+          return content;
+        })} */}
+
         <ContentBox>
           <ContentType>로고</ContentType>
           <LogoImg2 src={require("../assets/images/AesopLogoB.png")} />

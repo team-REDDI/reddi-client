@@ -10,16 +10,17 @@ import {
 } from "../styles/brandStyle";
 
 interface BrandProps {
+  id: number;
   imgSrc: string;
   brandName: string;
   tags: string[];
 }
 
-export const BrandBox = ({ imgSrc, brandName, tags }: BrandProps) => {
+export const BrandBox = ({ id, imgSrc, brandName, tags }: BrandProps) => {
   const nav = useNavigate();
 
   const goToBrandDetail = () => {
-    nav("/brand/detail/0");
+    nav(`/brand/detail/${id}`);
   };
 
   return (
@@ -54,6 +55,11 @@ const BrandTag = styled.div`
 `;
 
 const BrandImage = styled.img`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 6.8125rem;
   height: 5.9375rem;
+  object-fit: cover;
+  object-position: center;
 `;
