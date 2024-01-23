@@ -106,8 +106,6 @@ const AIBranding = () => {
     false,
   ]);
 
-  const [inputValue, setInputValue] = useState<string>("");
-
   interface TagType {
     id: number;
     boxId: number;
@@ -124,6 +122,12 @@ const AIBranding = () => {
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [currentBoxId, setCurrentBoxId] = useState<number>(1);
+  const [inputValues, setInputValues] = useState({
+    input2: "",
+    input3: "",
+    input4: "",
+    input5: "",
+  });
 
   type SetListFunction = React.Dispatch<React.SetStateAction<TagType[]>>;
   const handleClick = (
@@ -159,22 +163,66 @@ const AIBranding = () => {
   };
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
+    const { name, value } = e.target;
+
+    // 해당 입력 필드의 값을 업데이트
+    setInputValues({
+      ...inputValues,
+      [name]: value,
+    });
   };
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setTags2((prev) => [
-      ...prev,
-      {
-        id: prev.length + 1,
-        contents: inputValue,
-        isClicked: true,
-        boxId: 2,
-      },
-    ]);
-    console.log(isClicked);
-    setInputValue("");
+
+    const form = e.target as HTMLFormElement;
+
+    const input2 = form.elements.namedItem("input2") as HTMLInputElement;
+    const input3 = form.elements.namedItem("input3") as HTMLInputElement;
+    const input4 = form.elements.namedItem("input4") as HTMLInputElement;
+    const input5 = form.elements.namedItem("input5") as HTMLInputElement;
+
+    if (input2 && input2.value) {
+      setTags2((prev) => [
+        ...prev,
+        {
+          id: prev.length + 1,
+          contents: input2.value,
+          isClicked: true,
+          boxId: 2,
+        },
+      ]);
+    } else if (input3 && input3.value) {
+      setTags3((prev) => [
+        ...prev,
+        {
+          id: prev.length + 1,
+          contents: input3.value,
+          isClicked: true,
+          boxId: 3,
+        },
+      ]);
+    } else if (input4 && input4.value) {
+      setTags4((prev) => [
+        ...prev,
+        {
+          id: prev.length + 1,
+          contents: input4.value,
+          isClicked: true,
+          boxId: 4,
+        },
+      ]);
+    } else if (input5 && input5.value) {
+      setTags5((prev) => [
+        ...prev,
+        {
+          id: prev.length + 1,
+          contents: input5.value,
+          isClicked: true,
+          boxId: 5,
+        },
+      ]);
+    }
   };
 
   const handleButtonClicked = (boxIndex: number) => {
@@ -330,8 +378,9 @@ const AIBranding = () => {
                       <SearchIcon />
                       <WantTagsInput
                         placeholder="검색하기"
+                        name="input2"
+                        value={inputValues.input2}
                         onChange={onChange}
-                        value={inputValue}
                       />
                     </WantTagsInputBox>
                   </TagsBox>
@@ -354,9 +403,14 @@ const AIBranding = () => {
                         {tag.contents}
                       </WantTags>
                     ))}
-                    <WantTagsInputBox>
+                    <WantTagsInputBox onSubmit={onSubmit}>
                       <SearchIcon />
-                      <WantTagsInput placeholder="검색하기" />
+                      <WantTagsInput
+                        placeholder="검색하기"
+                        name="input3"
+                        value={inputValues.input3}
+                        onChange={onChange}
+                      />
                     </WantTagsInputBox>
                   </TagsBox>
                 </WantBox>
@@ -378,9 +432,14 @@ const AIBranding = () => {
                         {tag.contents}
                       </WantTags>
                     ))}
-                    <WantTagsInputBox>
+                    <WantTagsInputBox onSubmit={onSubmit}>
                       <SearchIcon />
-                      <WantTagsInput placeholder="검색하기" />
+                      <WantTagsInput
+                        placeholder="검색하기"
+                        name="input4"
+                        value={inputValues.input4}
+                        onChange={onChange}
+                      />
                     </WantTagsInputBox>
                   </TagsBox>
                 </WantBox>
@@ -402,9 +461,14 @@ const AIBranding = () => {
                         {tag.contents}
                       </WantTags>
                     ))}
-                    <WantTagsInputBox>
+                    <WantTagsInputBox onSubmit={onSubmit}>
                       <SearchIcon />
-                      <WantTagsInput placeholder="검색하기" />
+                      <WantTagsInput
+                        placeholder="검색하기"
+                        name="input5"
+                        value={inputValues.input5}
+                        onChange={onChange}
+                      />
                     </WantTagsInputBox>
                   </TagsBox>
                 </WantBox>
