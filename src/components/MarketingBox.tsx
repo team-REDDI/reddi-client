@@ -27,7 +27,7 @@ export const MarketingBox = ({
 
   return (
     <Container onClick={goToBrandDetail}>
-      <MarketingImg src={require("../assets/images/exemple.png")} />
+      <MarketingImg src={imgSrc} />
       <TypeText>{type}</TypeText>
       <Title>{title}</Title>
       <ExpText>{expl}</ExpText>
@@ -85,6 +85,8 @@ const ExpText = styled.span`
 const CategoryContainer = styled.div`
   display: flex;
   margin-top: 0.5rem;
+  flex-wrap: wrap;
+  gap: 0.34rem;
 `;
 const Category = styled.div`
   display: flex;
@@ -99,6 +101,6 @@ const Category = styled.div`
   font-style: normal;
   font-weight: 500;
   line-height: 130%;
-  margin-right: 0.34rem;
+
   letter-spacing: -0.01rem;
 `;
