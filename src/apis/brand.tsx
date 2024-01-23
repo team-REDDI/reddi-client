@@ -8,7 +8,7 @@ export const getBrandList = async (params: { page: number; size: number }) => {
         size: params.size,
       },
     });
-    console.log("data", response.data);
+    console.log("brand list data", response.data);
     return response.data.data.content;
   } catch (error) {
     console.error(error);

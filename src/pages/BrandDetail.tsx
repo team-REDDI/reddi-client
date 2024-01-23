@@ -59,7 +59,11 @@ const BrandDetail = () => {
       rich_text: { plain_text: string }[];
     };
     image?: {
-      file: { url: string }[];
+      file: {
+        url: string;
+        expiry_time: string;
+      };
+      caption: string;
     };
     child_database?: {};
   }
@@ -90,12 +94,23 @@ const BrandDetail = () => {
         } else {
           return <BrandExpText key={index}>Paragraph 없음</BrandExpText>;
         }
+
       case "image":
-        if (content.image && content.image.file.length > 0) {
-          return <img key={index} src={content.image.file[0].url} alt="" />;
+        if (content.image && content.image.file && content.image.file.url) {
+          console.log("image: ", content.image.file.url);
+          return (
+            <img
+              key={index}
+              src={content.image.file.url}
+              width="449.4"
+              alt="브랜드 디테일 이미지"
+            />
+          );
         } else {
+          console.log("No image found for: ", content);
           return <div key={index}>Image 없음</div>;
         }
+
       case "child_database":
         return <div key={index}></div>;
       default:
