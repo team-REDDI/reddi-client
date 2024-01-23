@@ -1,10 +1,12 @@
 import styled from "styled-components";
 import { colors } from "../styles/colors";
+import { ReactComponent as ReddiIcon } from "../assets/svgs/reddiFooter.svg";
 
 const Footer = () => {
   return (
     <Container>
-      <REDDI>REDDI</REDDI>
+      {/* <REDDI>REDDI</REDDI> */}
+      <Reddi />
       <ReddiExp>
         레디는 성공적인 브랜딩을 위한 브랜딩 레퍼런스 아카이빙 서비스입니다.
         <br />
@@ -37,11 +39,15 @@ const Container = styled.div`
   position: absolute; */
 `;
 
-const REDDI = styled.span`
-  color: ${colors.white};
-  font-size: 1.5rem;
-  font-weight: 700;
-  line-height: 130%;
+// const REDDI = styled.span`
+//   color: ${colors.white};
+//   font-size: 1.5rem;
+//   font-weight: 700;
+//   line-height: 130%;
+//   margin-bottom: 1.5rem;
+// `;
+
+const Reddi = styled(ReddiIcon)`
   margin-bottom: 1.5rem;
 `;
 
