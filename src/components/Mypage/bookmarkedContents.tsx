@@ -37,30 +37,35 @@ const dummyBrandBoxes = [
     brandName: "토스증권",
     location: "대기업, 서울",
     tags: ["뷰티", "금융"],
+    id: 2,
   },
   {
     imgSrc: "/image.jpg",
     brandName: "토스증권",
     location: "대기업, 서울",
     tags: ["금융", "블루"],
+    id: 2,
   },
   {
     imgSrc: "/image.jpg",
     brandName: "토스증권",
     location: "대기업, 서울",
     tags: ["금융", "블루"],
+    id: 2,
   },
   {
     imgSrc: "/image.jpg",
     brandName: "토스증권",
     location: "대기업, 서울",
     tags: ["뷰티", "세련된"],
+    id: 2,
   },
   {
     imgSrc: "/image.jpg",
     brandName: "토스증권",
     location: "대기업, 서울",
     tags: ["뷰티", "깔끔한"],
+    id: 2,
   },
 ];
 
@@ -85,6 +90,7 @@ export const BookmarkedContent = () => {
       <BoxContainer>
         {dummyBrandBoxes.map((box, index) => (
           <BrandBox
+            id={box.id}
             key={index}
             imgSrc={box.imgSrc}
             brandName={box.brandName}

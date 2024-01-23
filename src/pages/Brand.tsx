@@ -63,6 +63,7 @@ const Brand = () => {
 
   const brandBoxes =
     brandInfo?.map((brand: Brand) => ({
+      id: brand.id,
       imgSrc: brand.cover_url,
       brandName: brand.name,
       tags: brand.brandTags.map((brandTag) => brandTag.tag),
@@ -70,6 +71,7 @@ const Brand = () => {
 
   const allBrandBoxes =
     allBrandInfo?.map((brand: Brand) => ({
+      id: brand.id,
       imgSrc: brand.cover_url,
       brandName: brand.name,
       tags: brand.brandTags.map((brandTag) => brandTag.tag),
@@ -100,11 +102,17 @@ const Brand = () => {
         <BrandContainer>
           {filteredBoxes.map(
             (
-              box: { imgSrc: string; brandName: string; tags: string[] },
+              box: {
+                id: number;
+                imgSrc: string;
+                brandName: string;
+                tags: string[];
+              },
               index: number,
             ) => (
               <BrandBox
                 key={index}
+                id={box.id}
                 imgSrc={box.imgSrc}
                 brandName={box.brandName}
                 tags={box.tags}

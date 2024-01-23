@@ -11,16 +11,17 @@ import {
 } from "../styles/brandStyle";
 
 interface BrandProps {
+  id: number;
   imgSrc: string;
   brandName: string;
   tags: string[];
 }
 
-export const BrandBox = ({ imgSrc, brandName, tags }: BrandProps) => {
+export const BrandBox = ({ id, imgSrc, brandName, tags }: BrandProps) => {
   const nav = useNavigate();
 
   const goToBrandDetail = () => {
-    nav("/brand/detail/0");
+    nav(`/brand/detail/${id}`);
   };
 
   return (
