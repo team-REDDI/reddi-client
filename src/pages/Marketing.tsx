@@ -19,41 +19,6 @@ import {
 import { useState, useEffect } from "react";
 import { getMarketingList } from "../apis/marketing";
 
-const dummyMarketingBoxes = [
-  {
-    imgSrc: "../assets/images/exemple.png",
-    type: "PLACE",
-    title: "더 현대를 밝히는 ‘해리의 꿈의 상점’",
-    expl: "유럽 어느 골목을 들어와있는 듯한 착각",
-    read: 727,
-    categories: ["F&B", "팝업스토어", "여성"],
-  },
-  {
-    imgSrc: "../assets/images/exemple.png",
-    type: "PLACE",
-    title: "신세계 백화점의 ‘MAGIC WINTER FANTASY’",
-    expl: "3분을 위한 9개월의 여정",
-    read: 567,
-    categories: ["부티크", "팝업스토어", "직장인"],
-  },
-  {
-    imgSrc: "../assets/images/exemple.png",
-    type: "PLACE",
-    title: "시몬스테라스의 ‘크리스마스 일루미네이션",
-    expl: "동화 속 마을로 단장한 시몬스",
-    read: 1218,
-    categories: ["부티크", "이벤트 마케팅", "사회초년생"],
-  },
-  {
-    imgSrc: "../assets/images/exemple.png",
-    type: "PLACE",
-    title: "시몬스테라스의 ‘크리스마스 일루미네이션",
-    expl: "동화 속 마을로 단장한 시몬스",
-    read: 1218,
-    categories: ["패션", "콜라보 마케팅", "콘텐츠 마케팅"],
-  },
-];
-
 interface Marketing {
   id: number;
   name: string;
@@ -80,15 +45,10 @@ const Marketing = () => {
     window.scrollTo(0, 0);
   }, [currentPage]);
 
-  const {
-    data: marketingInfo,
-    isLoading,
-    isError,
-  }: UseQueryResult<Marketing[], unknown> = useQuery(
-    ["marketingInfo", currentPage - 1],
-    () => getMarketingList({ page: currentPage - 1, size: 9 }),
-  );
-  console.log("MarketingInfo:", marketingInfo);
+  const { data: marketingInfo }: UseQueryResult<Marketing[], unknown> =
+    useQuery(["marketingInfo", currentPage - 1], () =>
+      getMarketingList({ page: currentPage - 1, size: 9 }),
+    );
 
   const marketingBoxes =
     marketingInfo?.map((marketing: Marketing) => ({
@@ -101,9 +61,26 @@ const Marketing = () => {
       categories: marketing.postTags.map((postTag) => postTag.tag),
     })) || [];
 
+  //필터링에 사용되기 위한 모든 info 가져오는 쿼리 추가
+  const { data: allMarketingInfo }: UseQueryResult<Marketing[], unknown> =
+    useQuery(["allMarketingInfo"], () =>
+      getMarketingList({ page: 0, size: 100 }),
+    );
+
+  const allMarketingBoxes =
+    allMarketingInfo?.map((marketing: Marketing) => ({
+      id: marketing.id,
+      imgSrc: marketing.cover_url,
+      title: marketing.title,
+      read: 124,
+      type: marketing.description,
+      expl: marketing.subtitle,
+      categories: marketing.postTags.map((postTag) => postTag.tag),
+    })) || [];
+
   const filteredBoxes =
     selectedFilters.size > 0
-      ? marketingBoxes.filter((box) =>
+      ? allMarketingBoxes.filter((box) =>
           box.categories.some((category) => selectedFilters.has(category)),
         )
       : marketingBoxes;
