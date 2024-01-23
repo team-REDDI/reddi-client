@@ -8,7 +8,7 @@ export const BrandContainer = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   margin-top: 5.03rem;
-  gap: 3.12rem 1.5rem ;
+  gap: 3.12rem 1.5rem;
 `;
 
 export const RefBox = styled.div`
@@ -103,6 +103,8 @@ export const LogoBox = styled.div`
 
 export const LogoImg = styled.img`
   width: 10.0625rem;
+  object-fit: contain;
+  object-position: center;
 `;
 
 export const NameBox = styled.div`

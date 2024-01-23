@@ -25,6 +25,7 @@ import {
 import { MarketingBoxSmall } from "../components/Home/MarketingBoxSmall";
 import { getBrandDetail } from "../apis/brand";
 import { QueryClient, QueryClientProvider, useQuery } from "react-query";
+import { ReactComponent as Aesop } from "../assets/svgs/aesopSVG.svg";
 
 const queryClient = new QueryClient();
 
@@ -125,6 +126,7 @@ const BrandDetail = () => {
         <LogoBox>
           {/* <AesopLogo /> */}
           <LogoImg src={require("../assets/images/AesopLogo.png")} />
+          {/* <Aesop /> */}
           <NameBox>
             <BrandName>Aesop</BrandName>
             <BrandType>코스메틱</BrandType>
