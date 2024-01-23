@@ -88,8 +88,8 @@ const AIBranding = () => {
 
   const tagsList5 = [
     //tags5
-    { id: 1, boxId: 5, contents: "gen Z", isClicked: false },
-    { id: 2, boxId: 5, contents: "시니어", isClicked: false },
+    { id: 1, boxId: 5, contents: "토스", isClicked: false },
+    { id: 2, boxId: 5, contents: "카카오톡", isClicked: false },
     { id: 3, boxId: 5, contents: "고객층", isClicked: false },
     { id: 4, boxId: 5, contents: "고객층", isClicked: false },
     { id: 5, boxId: 5, contents: "역동적인", isClicked: false },
@@ -192,6 +192,10 @@ const AIBranding = () => {
           boxId: 2,
         },
       ]);
+      setInputValues({
+        ...inputValues,
+        input2: "",
+      });
     } else if (input3 && input3.value) {
       setTags3((prev) => [
         ...prev,
@@ -202,6 +206,10 @@ const AIBranding = () => {
           boxId: 3,
         },
       ]);
+      setInputValues({
+        ...inputValues,
+        input3: "",
+      });
     } else if (input4 && input4.value) {
       setTags4((prev) => [
         ...prev,
@@ -212,6 +220,10 @@ const AIBranding = () => {
           boxId: 4,
         },
       ]);
+      setInputValues({
+        ...inputValues,
+        input4: "",
+      });
     } else if (input5 && input5.value) {
       setTags5((prev) => [
         ...prev,
@@ -222,6 +234,10 @@ const AIBranding = () => {
           boxId: 5,
         },
       ]);
+      setInputValues({
+        ...inputValues,
+        input5: "",
+      });
     }
   };
 
