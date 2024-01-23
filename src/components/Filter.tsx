@@ -206,10 +206,13 @@ const RemoveButton = styled.button`
   border: 0;
   background-color: transparent;
   color: white;
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   font-style: normal;
-  font-weight: 300;
+  font-weight: 500;
+  line-height: 130%; /* 1.4625rem */
+  letter-spacing: -0.01125rem;
   cursor: pointer;
+  margin-left: 0.5rem;
 `;
 
 const ButtonsContainer = styled.div`
