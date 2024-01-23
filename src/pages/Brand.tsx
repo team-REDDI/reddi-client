@@ -80,7 +80,9 @@ const Brand = () => {
   const filteredBoxes =
     selectedFilters.size > 0
       ? allBrandBoxes.filter((box: { tags: string[] }) =>
-          box.tags.some((tag) => selectedFilters.has(tag)),
+          Array.from(selectedFilters).every((filter) =>
+            box.tags.includes(filter),
+          ),
         )
       : brandBoxes;
 

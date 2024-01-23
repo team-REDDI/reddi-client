@@ -134,10 +134,10 @@ const BrandDetail = () => {
         </LogoBox>
       </LogoContainer>
       <DetailContainer>
-        {/* {brandDetailData?.map((contentBlock: ContentBlock, index: number) => {
+        {brandDetailData?.map((contentBlock: ContentBlock, index: number) => {
           const content = renderContent(contentBlock, index);
           return content;
-        })} */}
+        })}
 
         <ContentBox>
           <ContentType>로고</ContentType>
