@@ -103,6 +103,7 @@ const Marketing = () => {
         <MarketingLines>
           {filteredBoxes.map((box, index) => (
             <MarketingBox
+              id={box.id}
               key={index}
               imgSrc={box.imgSrc}
               type={box.type}

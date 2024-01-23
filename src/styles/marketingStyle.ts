@@ -37,7 +37,8 @@ export const IntroBox = styled.div`
 
 export const TagBox = styled.div`
   display: flex;
-  width: 22.5rem;
+  /* width: 22.5rem; */
+  gap: 0.38rem;
   justify-content: space-between;
 `;
 

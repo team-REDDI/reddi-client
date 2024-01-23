@@ -18,3 +18,34 @@ export const getMarketingList = async (params: {
     throw error;
   }
 };
+
+export const getMarketingDetail = async (pageId: number) => {
+  try {
+    const response = await client.get(`/api/post/${pageId}`, {
+      params: {
+        id: pageId,
+      },
+    });
+    console.log(response.data);
+    return response.data.data.content;
+  } catch (error) {
+    console.error("Error:", error);
+    throw error;
+  }
+};
+
+//marketing/detail 상단 & 하단 정보
+export const getMarketingDetailInfo = async (pageId: number) => {
+  try {
+    const response = await client.get(`/api/post/${pageId}`, {
+      params: {
+        id: pageId,
+      },
+    });
+    console.log("DETAIL", response.data);
+    return response.data.data.post;
+  } catch (error) {
+    console.error("Error:", error);
+    throw error;
+  }
+};

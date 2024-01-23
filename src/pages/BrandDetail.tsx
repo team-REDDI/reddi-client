@@ -23,10 +23,31 @@ import {
 } from "../styles/brandStyle";
 
 import { MarketingBoxSmall } from "../components/Home/MarketingBoxSmall";
-import { getBrandDetail } from "../apis/brand";
+import { getBrandDetail, getBrandDetailInfo } from "../apis/brand";
 import { QueryClient, QueryClientProvider, useQuery } from "react-query";
 import { ReactComponent as Aesop } from "../assets/svgs/aesopSVG.svg";
 import styled from "styled-components";
+
+interface ContentBlock {
+  type: string;
+  heading_1?: {
+    rich_text: { plain_text: string }[];
+  };
+  heading_2?: {
+    rich_text: { plain_text: string }[];
+  };
+  paragraph?: {
+    rich_text: { plain_text: string }[];
+  };
+  image?: {
+    file: {
+      url: string;
+      expiry_time: string;
+    };
+    caption: string;
+  };
+  child_database?: {};
+}
 
 const queryClient = new QueryClient();
 
@@ -43,32 +64,18 @@ const BrandDetail = () => {
     nav(-1);
   };
 
-  const {
-    data: brandDetailData,
-    isLoading,
-    isError,
-  } = useQuery(["brandDetail", brandId], () => getBrandDetail(brandId));
+  const { data: brandDetailData } = useQuery(["brandDetail", brandId], () =>
+    getBrandDetail(brandId),
+  );
 
-  interface ContentBlock {
-    type: string;
-    heading_1?: {
-      rich_text: { plain_text: string }[];
-    };
-    heading_2?: {
-      rich_text: { plain_text: string }[];
-    };
-    paragraph?: {
-      rich_text: { plain_text: string }[];
-    };
-    image?: {
-      file: {
-        url: string;
-        expiry_time: string;
-      };
-      caption: string;
-    };
-    child_database?: {};
-  }
+  const { data: brandDetailInfo } = useQuery(["brandDetailInfo", brandId], () =>
+    getBrandDetailInfo(brandId),
+  );
+
+  const industryTag = brandDetailInfo?.brandTags.find(
+    (tag: { brandTagType: string; tag: string }) =>
+      tag.brandTagType === "산업군",
+  )?.tag;
 
   // 콘텐츠를 그룹화하는 로직
   // 각 'heading_1' 컨텐츠를 기준으로 그룹을 형성-> 배열 반환
@@ -191,10 +198,11 @@ const BrandDetail = () => {
         <GoBackButton onClick={goBack}>뒤로가기</GoBackButton>
         <LogoBox>
           {/* <AesopLogo /> */}
-          <LogoImg src={require("../assets/images/AesopLogo.png")} />
+          <LogoImg src={brandDetailInfo?.cover_url} />
+          {/* <LogoImg src={require("../assets/images/AesopLogo.png")} /> */}
           <NameBox>
-            <BrandName>Aesop</BrandName>
-            <BrandType>코스메틱</BrandType>
+            <BrandName>{brandDetailInfo?.name}</BrandName>
+            <BrandType>{industryTag}</BrandType>
           </NameBox>
         </LogoBox>
       </LogoContainer>
