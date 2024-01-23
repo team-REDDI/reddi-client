@@ -56,6 +56,11 @@ const BrandTag = styled.div`
 `;
 
 const BrandImage = styled.img`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 6.8125rem;
   height: 5.9375rem;
+  object-fit: cover;
+  object-position: center;
 `;

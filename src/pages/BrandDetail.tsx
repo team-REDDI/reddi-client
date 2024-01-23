@@ -68,6 +68,8 @@ const BrandDetail = () => {
     child_database?: {};
   }
 
+  interface ContentBlock {}
+
   const renderContent = (content: ContentBlock, index: number) => {
     switch (content.type) {
       case "heading_1":
@@ -94,7 +96,6 @@ const BrandDetail = () => {
         } else {
           return <BrandExpText key={index}>Paragraph 없음</BrandExpText>;
         }
-
       case "image":
         if (content.image && content.image.file && content.image.file.url) {
           console.log("image: ", content.image.file.url);
@@ -107,7 +108,6 @@ const BrandDetail = () => {
             />
           );
         } else {
-          console.log("No image found for: ", content);
           return <div key={index}>Image 없음</div>;
         }
 
@@ -132,10 +132,10 @@ const BrandDetail = () => {
         </LogoBox>
       </LogoContainer>
       <DetailContainer>
-        {brandDetailData?.map((contentBlock: ContentBlock, index: number) => {
+        {/* {brandDetailData?.map((contentBlock: ContentBlock, index: number) => {
           const content = renderContent(contentBlock, index);
           return content;
-        })}
+        })} */}
 
         <ContentBox>
           <ContentType>로고</ContentType>
