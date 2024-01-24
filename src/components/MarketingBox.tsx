@@ -57,6 +57,8 @@ const MarketingImg = styled.img`
   width: 20.3125rem;
   height: 14.75rem;
   margin-bottom: 1.5rem;
+  object-fit: cover;
+  object-position: center;
 `;
 
 const TypeText = styled.span`
