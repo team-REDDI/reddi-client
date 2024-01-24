@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { ReactComponent as ReddiLogo } from "../assets/svgs/ReddiLogo.svg";
 import { useState, useEffect } from "react";
 import { SearchBar } from "./SearchBar";
@@ -72,7 +72,9 @@ const NavBar = () => {
   return (
     <>
       <NavigationWrapper isTransparent={isTransparent || isLogin || isSignUp}>
-        <StyledLogo />
+        <Link to="/">
+          <StyledLogo />
+        </Link>
         <NavLinks>
           <NavSection>
             <StyledNavLink to="/">홈</StyledNavLink>
