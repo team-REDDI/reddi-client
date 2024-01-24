@@ -80,7 +80,7 @@ const MarketingDetail = () => {
           <BrandTitleRow>
             <HomeTitle key={index}>
               {content.heading_1?.rich_text[0].plain_text}
-            </HomeTitle>{" "}
+            </HomeTitle>
           </BrandTitleRow>
         );
       case "heading_2":

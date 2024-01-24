@@ -276,6 +276,10 @@ const AIBranding = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [isResult]);
+
   return (
     <Container>
       {isLoading && (
@@ -491,7 +495,7 @@ const AIBranding = () => {
               ) : null}
             </TagsContainer>
             <ButtonBox>
-              {isNow[1] ? (
+              {/* {isNow[1] ? (
                 <DeleteButton
                   onClick={() => {
                     setCurrentBoxId((prev) => prev - 1);
@@ -502,7 +506,7 @@ const AIBranding = () => {
                 >
                   이전
                 </DeleteButton>
-              ) : null}
+              ) : null} */}
 
               <CompleteButton
                 onClick={() => {
