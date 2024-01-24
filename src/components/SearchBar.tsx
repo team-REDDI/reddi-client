@@ -79,12 +79,14 @@ export const SearchBar: React.FC<SearchBarProps> = (props) => {
           <SearchTitle>인기 마케팅 레퍼런스</SearchTitle>
           <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
             <MarketingBoxSmall
+              id={1}
               lank={1}
               imgSrc="../assets/images/exemple.png"
               title="더 현대를 밝히는 ‘해리의 꿈의 상점’"
               expl="유럽 어느 골목을 들어와있는 듯한 착각"
             />
             <MarketingBoxSmall
+              id={2}
               lank={2}
               imgSrc="../assets/images/exemple.png"
               title="더 현대를 밝히는 ‘해리의 꿈의 상점’"

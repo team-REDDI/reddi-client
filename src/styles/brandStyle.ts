@@ -207,10 +207,7 @@ export const BrandExpText = styled.div`
 
 export const MarketingCol = styled.div`
   display: flex;
-  flex-direction: column;
-  width: 61rem;
-  height: 25rem;
+  /* width: 61rem; */
   gap: 2.5rem;
-  margin-top: 2.5rem;
-  flex-wrap: wrap;
+  margin-top: -4rem; // 상단에 6.5rem 이미 있어서 margin 없앰
 `;
