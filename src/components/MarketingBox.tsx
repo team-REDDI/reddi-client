@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 interface MarketingProps {
   id: number;
   imgSrc: string;
-  type: string;
+  type: string | undefined;
   title: string;
   expl: string;
   read: number;
