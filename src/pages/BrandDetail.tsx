@@ -41,6 +41,7 @@ import styled from "styled-components";
 import { findIndustryTag } from "../utils/detailTagFunction";
 import { findTagByType } from "../utils/detailTagFunction";
 import NavBar from "../components/NavBar";
+import BookmarkFloating from "../components/BookmarkFloating";
 interface ContentBlock {
   type: string;
   heading_1?: {
@@ -249,6 +250,7 @@ const BrandDetail = () => {
           </NameBox>
         </LogoBox>
       </LogoContainer>
+      <BookmarkFloating />
       <DetailContainer>
         {renderAllContent()}
         <ContentBoxCol>
