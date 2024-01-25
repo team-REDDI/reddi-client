@@ -5,6 +5,7 @@ export const MarketingDetailContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 3.125rem;
 `;
 
 export const GoBackButton = styled.div`
