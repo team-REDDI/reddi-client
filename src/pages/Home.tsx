@@ -36,8 +36,33 @@ import { MarketingBoxSmall } from "../components/Home/MarketingBoxSmall";
 import Footer from "../components/Footer";
 import RandomBanner from "../components/Home/RandomBanner";
 import RandomMainBanner from "../components/Home/RandomMainBanner";
+import { useEffect, useState } from "react";
+import { getHomePost, getHotBrand, getHotPost } from "../apis/homeAPI";
+import { QueryClient, QueryClientProvider, useQuery } from "react-query";
+
+const queryClient = new QueryClient();
 
 const Home = () => {
+  useEffect(() => {
+    getHotPost();
+    getHomePost();
+  }, []);
+
+  const [hotBrandList, setHotBrandList] = useState<{}>();
+  const { data: HotBrandList } = useQuery(
+    ["HotBrandList"],
+    () => getHotBrand({ n: 5 }),
+    {
+      onSuccess: (data) => {
+        setHotBrandList(data);
+        // console.log(data);
+      },
+      onError: (error) => {
+        console.log(error);
+      },
+    },
+  );
+
   return (
     <HomeContainer>
       <NavBar />
@@ -162,4 +187,8 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default () => (
+  <QueryClientProvider client={queryClient}>
+    <Home />
+  </QueryClientProvider>
+);
