@@ -11,9 +11,9 @@ import {
   DataColumn,
   DataType,
   DataText,
-  GoBackButton,
   ImageContainer,
   MarketingTags,
+  MarketingDetailTitle,
 } from "../styles/marketingStyle";
 
 import styled from "styled-components";
@@ -59,10 +59,6 @@ const MarketingDetail = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  const goBack = () => {
-    nav(-1);
-  };
-
   const { id } = useParams<{ id: string }>();
   const marketingId = id ? parseInt(id, 10) : 1;
 
@@ -80,9 +76,9 @@ const MarketingDetail = () => {
       case "heading_1":
         return (
           <BrandTitleRow>
-            <HomeTitle key={index}>
+            <MarketingDetailTitle key={index}>
               {content.heading_1?.rich_text[0].plain_text}
-            </HomeTitle>
+            </MarketingDetailTitle>
           </BrandTitleRow>
         );
       case "heading_2":
@@ -137,7 +133,6 @@ const MarketingDetail = () => {
       <NavBar />
       <ImageContainer>
         <CoverImage imageUrl={marketingDetailInfo?.cover_url} />
-        {/* <GoBackButton onClick={goBack}>뒤로가기</GoBackButton> */}
         <IntroBox>
           <TagBox>
             {marketingDetailInfo?.postTags.map(
@@ -177,7 +172,9 @@ const MarketingDetail = () => {
       <MarketingTags>
         {marketingDetailInfo?.postTags.map(
           (tag: { tag: string }, index: number) => (
-            <FilterTag key={index}>{tag.tag}</FilterTag>
+            <FilterTag key={index} weight={800}>
+              {tag.tag}
+            </FilterTag>
           ),
         )}
       </MarketingTags>

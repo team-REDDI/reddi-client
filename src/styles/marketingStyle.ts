@@ -38,22 +38,23 @@ export const IntroBox = styled.div`
 
 export const TagBox = styled.div`
   display: flex;
-  /* width: 22.5rem; */
+  width: fit-content;
   gap: 0.38rem;
   justify-content: space-between;
 `;
 
-export const FilterTag = styled.div`
+export const FilterTag = styled.div<{ weight?: number }>`
   display: flex;
   padding: 0.25rem 1.25rem;
   justify-content: center;
   align-items: center;
   border: 1px solid ${colors.black_CTA};
+  box-sizing: border-box;
   color: ${colors.white};
   background-color: ${colors.black_CTA};
   font-size: 1.25rem;
-  font-style: normal;
-  font-weight: 800;
+  text-align: center;
+  font-weight: ${(props) => (props.weight ? props.weight : 500)};
 `;
 
 export const MarketingTitle = styled.div`
@@ -95,13 +96,25 @@ export const ExplBox = styled.div`
   align-items: flex-start;
   width: 63.903rem;
   height: fit-content;
-  margin-top: 5.88rem;
+  margin-top: 2.38rem;
+  gap: 1.87rem;
+  margin-bottom: 2.5rem;
+`;
+
+export const MarketingDetailTitle = styled.div`
+  color: ${colors.black};
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 130%;
+  letter-spacing: -0.015rem;
+  margin-top: 2.5rem;
 `;
 
 export const BrandImage = styled.img`
   display: flex;
   width: 60%;
-  margin-top: 3.12rem;
+  /* margin-top: 1.88rem; */
 `;
 
 export const MarketingExplain = styled.span`
@@ -109,7 +122,7 @@ export const MarketingExplain = styled.span`
   font-size: 1.25rem;
   font-weight: 500;
   line-height: 170%;
-  margin: 1.87rem 0 2.5rem 0;
+  /* margin: 1.87rem 0 2.5rem 0; */
 `;
 
 export const MarketingTags = styled.div`
@@ -121,14 +134,4 @@ export const MarketingTags = styled.div`
   border-top: 0.03rem solid ${colors.black_CTA};
   border-bottom: 0.1rem solid ${colors.black_CTA};
   padding: 1.5rem 0;
-`;
-
-export const MarketingDetailTitle = styled.div`
-  color: ${colors.black};
-  font-size: 1.5rem;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 130%;
-  letter-spacing: -0.015rem;
-  margin-bottom: 1.87rem;
 `;
