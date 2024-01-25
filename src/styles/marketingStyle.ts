@@ -49,7 +49,6 @@ export const FilterTag = styled.div<{ weight?: number }>`
   justify-content: center;
   align-items: center;
   border: 1px solid ${colors.black_CTA};
-  box-sizing: border-box;
   color: ${colors.white};
   background-color: ${colors.black_CTA};
   font-size: 1.25rem;
@@ -96,9 +95,10 @@ export const ExplBox = styled.div`
   align-items: flex-start;
   width: 63.903rem;
   height: fit-content;
-  margin-top: 2.38rem;
-  gap: 1.87rem;
+  /* margin-top: 2.38rem; */
   margin-bottom: 2.5rem;
+  gap: 1.87rem;
+  padding-top: 6.25rem;
 `;
 
 export const MarketingDetailTitle = styled.div`
@@ -108,7 +108,7 @@ export const MarketingDetailTitle = styled.div`
   font-weight: 700;
   line-height: 130%;
   letter-spacing: -0.015rem;
-  margin-top: 2.5rem;
+  /* margin-top: 2.5rem; */
 `;
 
 export const BrandImage = styled.img`

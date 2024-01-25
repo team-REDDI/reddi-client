@@ -17,7 +17,7 @@ import {
 } from "../styles/marketingStyle";
 
 import styled from "styled-components";
-import { BrandTitleRow, HomeTitle } from "../styles/HomeStyle";
+import { BrandTitleRow } from "../styles/HomeStyle";
 import Footer from "../components/Footer";
 import { useNavigate, useParams } from "react-router-dom";
 import { QueryClient, QueryClientProvider, useQuery } from "react-query";
