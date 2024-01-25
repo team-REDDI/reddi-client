@@ -19,6 +19,7 @@ import {
 import { useState, useEffect } from "react";
 import { getMarketingList } from "../apis/marketing";
 import { findTagByType } from "../utils/detailTagFunction";
+import { useSearchParams } from "react-router-dom";
 
 interface Marketing {
   id: number;
@@ -41,10 +42,19 @@ const queryClient = new QueryClient();
 
 const Marketing = () => {
   const selectedFilters = useRecoilValue(filteredMarketing);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const pageFromUrl = Number(searchParams.get("page")) || 1;
+  const [currentPage, setCurrentPage] = useState(pageFromUrl);
+
   useEffect(() => {
+    setCurrentPage(pageFromUrl);
     window.scrollTo(0, 0);
-  }, [currentPage]);
+  }, [pageFromUrl]);
+
+  const changePage = (page: number) => {
+    setCurrentPage(page);
+    setSearchParams({ page: page.toString() });
+  };
 
   const { data: marketingInfo }: UseQueryResult<Marketing[], unknown> =
     useQuery(["marketingInfo", currentPage - 1], () =>
@@ -129,7 +139,7 @@ const Marketing = () => {
           (page) => (
             <PageButton
               key={page}
-              onClick={() => setCurrentPage(page)}
+              onClick={() => changePage(page)}
               isCurrent={page === currentPage}
             >
               {page}

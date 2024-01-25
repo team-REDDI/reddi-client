@@ -196,7 +196,7 @@ const BrandDetail = () => {
                       {content.paragraph.rich_text[0].plain_text}
                     </BrandExpText>
                   ) : (
-                    <div key={index}>Paragraph 없음</div> //이거 나온 부분은 나중에 노션에서 paragraph 삭제
+                    <div key={index}></div> //이거 나온 부분은 나중에 노션에서 paragraph 삭제
                   ),
                 );
                 break;

@@ -25,6 +25,7 @@ import {
   useQuery,
   UseQueryResult,
 } from "react-query";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 interface Brand {
   id: number;
@@ -42,11 +43,17 @@ interface Brand {
 const queryClient = new QueryClient();
 
 const Brand = () => {
+  const navigate = useNavigate();
   const selectedFilters = useRecoilValue(filteredBrand);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const pageFromUrl = Number(searchParams.get("page")) || 1;
+  const [currentPage, setCurrentPage] = useState(pageFromUrl);
+
   useEffect(() => {
+    setCurrentPage(pageFromUrl);
     window.scrollTo(0, 0);
-  }, [currentPage]);
+  }, [pageFromUrl]);
 
   const {
     data: brandInfo,
@@ -85,6 +92,11 @@ const Brand = () => {
           ),
         )
       : brandBoxes;
+
+  const changePage = (page: number) => {
+    setCurrentPage(page);
+    setSearchParams({ page: page.toString() });
+  };
 
   const totalPageNum = 3; //일단 임시로
 
@@ -128,7 +140,7 @@ const Brand = () => {
           (page) => (
             <PageButton
               key={page}
-              onClick={() => setCurrentPage(page)}
+              onClick={() => changePage(page)}
               isCurrent={page === currentPage}
             >
               {page}
