@@ -201,7 +201,7 @@ const CoverImage = styled.div<CoverImageProps>`
   height: 100%;
   background: linear-gradient(
       0deg,
-      rgba(0, 0, 0, 0.4) 0%,
+      rgba(0, 0, 0, 0.5) 0%,
       rgba(0, 0, 0, 0.7) 100%
     ),
     url(${(props) => props.imageUrl}) center/cover no-repeat;
