@@ -179,16 +179,16 @@ const SelectedFilters = styled.div`
   display: flex;
   flex-wrap: wrap;
   min-height: 2.5rem;
-  padding: 0.625rem;
+  padding: 1.335rem 1.56rem;
   align-items: center;
-  gap: 0.625rem;
+  gap: 0.5rem;
   background: ${colors.light_red};
   border-bottom: 1px solid ${colors.red};
-  padding-left: 1.75rem;
+  /* padding-left: 1.75rem; */
+  box-sizing: border-box;
 `;
 
 const FilterTag = styled.div`
-  margin-right: 0.5rem;
   display: flex;
   height: 2.035rem;
   padding: 0.25rem 1rem;

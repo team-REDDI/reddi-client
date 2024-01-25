@@ -25,6 +25,7 @@ import { getMarketingDetail, getMarketingDetailInfo } from "../apis/marketing";
 import { useEffect } from "react";
 import { formatDate } from "../utils/dateFunction";
 import NavBar from "../components/NavBar";
+import BookmarkFloating from "../components/BookmarkFloating";
 
 interface ContentBlock {
   type: string;
@@ -162,6 +163,7 @@ const MarketingDetail = () => {
       </ImageContainer>
 
       <ExplBox>
+        <BookmarkFloating />
         {marketingDetailData?.map(
           (contentBlock: ContentBlock, index: number) => {
             const content = renderContent(contentBlock, index);

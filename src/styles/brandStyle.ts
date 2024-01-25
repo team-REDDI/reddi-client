@@ -71,6 +71,7 @@ export const BrandDetailContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 3.125rem;
 `;
 
 export const LogoContainer = styled.div`
@@ -193,7 +194,6 @@ export const BrandExpTitle = styled.div<{ first?: boolean }>`
   letter-spacing: -0.01125rem;
   margin-bottom: 1.88rem;
   margin-top: ${(props) => (props.first ? '0' : '1.88rem')};
-   // 첫 번째 요소가 아닐 때 margin-top 주는 로직
 `;
 export const BrandExpText = styled.div`
   /* color: #5f5f5f; */
