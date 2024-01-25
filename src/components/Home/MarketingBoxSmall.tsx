@@ -58,6 +58,8 @@ const MarketingImg = styled.img`
   display: flex;
   width: 8.125rem;
   height: 6.25rem;
+  object-fit: cover;
+  object-position: center;
 `;
 
 const TextBox = styled.div`
