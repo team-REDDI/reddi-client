@@ -24,6 +24,7 @@ import { QueryClient, QueryClientProvider, useQuery } from "react-query";
 import { getMarketingDetail, getMarketingDetailInfo } from "../apis/marketing";
 import { useEffect } from "react";
 import { formatDate } from "../utils/dateFunction";
+import NavBar from "../components/NavBar";
 
 interface ContentBlock {
   type: string;
@@ -129,9 +130,10 @@ const MarketingDetail = () => {
 
   return (
     <MarketingDetailContainer>
+      <NavBar />
       <ImageContainer>
         <CoverImage imageUrl={marketingDetailInfo?.cover_url} />
-        <GoBackButton onClick={goBack}>뒤로가기</GoBackButton>
+        {/* <GoBackButton onClick={goBack}>뒤로가기</GoBackButton> */}
         <IntroBox>
           <TagBox>
             {marketingDetailInfo?.postTags.map(
