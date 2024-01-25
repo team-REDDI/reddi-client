@@ -104,7 +104,6 @@ const BrandDetail = () => {
     return marketingDetailQueries.map((query, index) => {
       if (!query.data) return <div key={index}></div>;
       const marketingDetail = query.data as any;
-      console.log("detail들:", marketingDetail);
       return (
         <MarketingBoxSmall
           key={index}
@@ -146,7 +145,7 @@ const BrandDetail = () => {
   const renderGroupedContent = (group: ContentBlock[]): JSX.Element => {
     let groupedContents: JSX.Element[] = [];
     let isHeading1 = false;
-
+    let firstHeading2 = true;
     return (
       <ContentBoxWrapper>
         {group.map((content, index) => {
@@ -183,10 +182,11 @@ const BrandDetail = () => {
             switch (content.type) {
               case "heading_2":
                 groupedContents.push(
-                  <BrandExpTitle key={index}>
+                  <BrandExpTitle key={index} first={firstHeading2}>
                     {content.heading_2?.rich_text[0].plain_text}
                   </BrandExpTitle>,
                 );
+                firstHeading2 = false;
                 break;
               case "paragraph":
                 groupedContents.push(
@@ -196,7 +196,7 @@ const BrandDetail = () => {
                       {content.paragraph.rich_text[0].plain_text}
                     </BrandExpText>
                   ) : (
-                    <div key={index}>Paragraph 없음</div> //이거 나온 부분은 나중에 노션에서 paragraph 삭제
+                    <div key={index}></div>
                   ),
                 );
                 break;
@@ -213,7 +213,7 @@ const BrandDetail = () => {
                       style={{ marginBottom: "0.5rem" }} //임의로 추가
                     />
                   ) : (
-                    <div key={index}>Image 없음</div>
+                    <div key={index}></div>
                   ),
                 );
                 break;
@@ -241,10 +241,8 @@ const BrandDetail = () => {
     <BrandDetailContainer>
       <NavBar />
       <LogoContainer>
-        {/* <GoBackButton onClick={goBack}>뒤로가기</GoBackButton> */}
         <LogoBox>
           <LogoImg src={brandDetailInfo?.cover_url} />
-          {/* <LogoImg src={require("../assets/images/AesopLogo.png")} /> */}
           <NameBox>
             <BrandName>{brandDetailInfo?.name}</BrandName>
             <BrandType>{industryTag}</BrandType>

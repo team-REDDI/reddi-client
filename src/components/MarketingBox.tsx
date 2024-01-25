@@ -96,10 +96,8 @@ const Category = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  /* color: ${colors.red};
-  background-color: ${colors.light_red}; */
-  color: ${colors.black_CTA};
-  background-color: ${colors.tag_grey};
+  color: ${colors.red};
+  background-color: ${colors.light_red};
   padding: 0.25rem 0.5rem;
   font-size: 1rem;
   font-style: normal;
