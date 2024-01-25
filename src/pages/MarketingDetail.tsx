@@ -110,7 +110,7 @@ const MarketingDetail = () => {
             <img
               key={index}
               src={content.image.file.url}
-              width="80%"
+              width="60%"
               alt="브랜드 디테일 이미지"
             />
           );

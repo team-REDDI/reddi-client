@@ -38,7 +38,8 @@ import {
 } from "react-query";
 import { ReactComponent as Aesop } from "../assets/svgs/aesopSVG.svg";
 import styled from "styled-components";
-
+import { findIndustryTag } from "../utils/detailTagFunction";
+import { findTagByType } from "../utils/detailTagFunction";
 interface ContentBlock {
   type: string;
   heading_1?: {
@@ -116,10 +117,9 @@ const BrandDetail = () => {
     });
   };
 
-  const industryTag = brandDetailInfo?.brandTags.find(
-    (tag: { brandTagType: string; tag: string }) =>
-      tag.brandTagType === "산업군",
-  )?.tag;
+  const industryTag = brandDetailInfo
+    ? findIndustryTag(brandDetailInfo)
+    : undefined;
 
   // 콘텐츠를 그룹화하는 로직
   // 각 'heading_1' 컨텐츠를 기준으로 그룹을 형성-> 배열 반환

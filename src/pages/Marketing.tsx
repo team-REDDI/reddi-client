@@ -18,6 +18,7 @@ import {
 } from "react-query";
 import { useState, useEffect } from "react";
 import { getMarketingList } from "../apis/marketing";
+import { findTagByType } from "../utils/detailTagFunction";
 
 interface Marketing {
   id: number;
@@ -51,15 +52,19 @@ const Marketing = () => {
     );
 
   const marketingBoxes =
-    marketingInfo?.map((marketing: Marketing) => ({
-      id: marketing.id,
-      imgSrc: marketing.cover_url,
-      title: marketing.title,
-      read: 124,
-      type: marketing.description,
-      expl: marketing.subtitle,
-      categories: marketing.postTags.map((postTag) => postTag.tag),
-    })) || [];
+    marketingInfo?.map((marketing: Marketing) => {
+      const tag = findTagByType(marketing.postTags, "산업");
+
+      return {
+        id: marketing.id,
+        imgSrc: marketing.cover_url,
+        title: marketing.title,
+        read: 124,
+        type: tag,
+        expl: marketing.subtitle,
+        categories: marketing.postTags.map((postTag) => postTag.tag),
+      };
+    }) || [];
 
   //필터링에 사용되기 위한 모든 info 가져오는 쿼리 추가
   const { data: allMarketingInfo }: UseQueryResult<Marketing[], unknown> =
@@ -68,16 +73,20 @@ const Marketing = () => {
     );
 
   const allMarketingBoxes =
-    allMarketingInfo?.map((marketing: Marketing) => ({
-      id: marketing.id,
-      imgSrc: marketing.cover_url,
-      title: marketing.title,
-      read: 124,
-      type: marketing.description,
-      expl: marketing.subtitle,
-      categories: marketing.postTags.map((postTag) => postTag.tag),
-    })) || [];
+    marketingInfo?.map((marketing: Marketing) => {
+      const tagType = "산업군";
+      const tag = findTagByType(marketing.postTags, tagType) || "Default Value";
 
+      return {
+        id: marketing.id,
+        imgSrc: marketing.cover_url,
+        title: marketing.title,
+        read: 124,
+        type: tag,
+        expl: marketing.subtitle,
+        categories: marketing.postTags.map((postTag) => postTag.tag),
+      };
+    }) || [];
   const filteredBoxes =
     selectedFilters.size > 0
       ? allMarketingBoxes.filter((box) =>
