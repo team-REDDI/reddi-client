@@ -93,12 +93,13 @@ export const ExplBox = styled.div`
   flex-direction: column;
   align-items: flex-start;
   width: 63.903rem;
+  height: fit-content;
   margin-top: 5.88rem;
 `;
 
 export const BrandImage = styled.img`
   display: flex;
-  width: 100%;
+  width: 60%;
   margin-top: 3.12rem;
 `;
 
@@ -119,4 +120,14 @@ export const MarketingTags = styled.div`
   border-top: 0.03rem solid ${colors.black_CTA};
   border-bottom: 0.1rem solid ${colors.black_CTA};
   padding: 1.5rem 0;
+`;
+
+export const MarketingDetailTitle = styled.div`
+  color: ${colors.black};
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 130%;
+  letter-spacing: -0.015rem;
+  margin-bottom: 1.87rem;
 `;

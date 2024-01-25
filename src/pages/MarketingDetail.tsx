@@ -99,20 +99,24 @@ const MarketingDetail = () => {
             </MarketingExplain>
           );
         } else {
-          return (
-            <MarketingExplain key={index}>
-              Paragraph 없음 = 노션에서 삭제
-            </MarketingExplain>
-          );
+          return null;
+          // <MarketingExplain key={index}>
+          //   Paragraph 없음 = 노션에서 삭제
+          // </MarketingExplain>
         }
       case "image":
         if (content.image && content.image.file && content.image.file.url) {
           console.log("image: ", content.image.file.url);
           return (
-            <img
+            // <img
+            //   key={index}
+            //   src={content.image.file.url}
+            //   width="60%"
+            //   alt="브랜드 디테일 이미지"
+            // />
+            <BrandImage
               key={index}
               src={content.image.file.url}
-              width="60%"
               alt="브랜드 디테일 이미지"
             />
           );
@@ -198,7 +202,7 @@ const CoverImage = styled.div<CoverImageProps>`
   background: linear-gradient(
       0deg,
       rgba(0, 0, 0, 0.4) 0%,
-      rgba(0, 0, 0, 0.4) 100%
+      rgba(0, 0, 0, 0.7) 100%
     ),
     url(${(props) => props.imageUrl}) center/cover no-repeat;
 `;
