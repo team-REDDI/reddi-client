@@ -208,7 +208,7 @@ const BrandDetail = () => {
                     <img
                       key={index}
                       src={content.image.file.url}
-                      width="449.4"
+                      width="267"
                       alt="브랜드 디테일 이미지"
                       style={{ marginBottom: "0.5rem" }} //임의로 추가
                     />
