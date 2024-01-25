@@ -8,6 +8,7 @@ import {
   BrandTextBox,
   RefBox,
 } from "../styles/brandStyle";
+import { useEffect, useState } from "react";
 
 interface BrandProps {
   id: number;
@@ -23,9 +24,19 @@ export const BrandBox = ({ id, imgSrc, brandName, tags }: BrandProps) => {
     nav(`/brand/detail/${id}`);
   };
 
+  const [isLandscape, setIsLandscape] = useState(false);
+
+  useEffect(() => {
+    const image = new Image();
+    image.src = imgSrc;
+    image.onload = () => {
+      setIsLandscape(image.width > image.height);
+    };
+  }, [imgSrc]);
+
   return (
     <RefBox onClick={goToBrandDetail}>
-      <BrandImage src={imgSrc} alt={brandName} />
+      <BrandImage src={imgSrc} alt={brandName} isLandscape={isLandscape} />
       <BrandTextBox>
         <BrandNameText>{brandName}</BrandNameText>
         <BrandTagsContainer>
@@ -52,12 +63,12 @@ const BrandTag = styled.div`
   font-weight: 500;
 `;
 
-const BrandImage = styled.img`
+const BrandImage = styled.img<{ isLandscape: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 6.8125rem;
-  height: 5.9375rem;
+  width: ${(props) => (props.isLandscape ? "6.8125rem" : "auto")};
+  height: ${(props) => (props.isLandscape ? "auto" : "5.9375rem")};
   object-fit: cover;
   object-position: center;
 `;
