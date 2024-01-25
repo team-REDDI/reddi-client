@@ -184,16 +184,17 @@ export const BrandExpBox = styled.div`
   gap: 1.875rem;
 `;
 
-export const BrandExpTitle = styled.div`
+export const BrandExpTitle = styled.div<{ first?: boolean }>`
   color: ${colors.black_CTA};
   font-size: 1.125rem;
   font-style: normal;
   font-weight: 500;
   line-height: 130%;
   letter-spacing: -0.01125rem;
-  margin-bottom:1.88rem;
+  margin-bottom: 1.88rem;
+  margin-top: ${(props) => (props.first ? '0' : '1.88rem')};
+   // 첫 번째 요소가 아닐 때 margin-top 주는 로직
 `;
-
 export const BrandExpText = styled.div`
   /* color: #5f5f5f; */
   color: ${colors.black_CTA};
