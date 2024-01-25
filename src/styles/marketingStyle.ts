@@ -5,6 +5,7 @@ export const MarketingDetailContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 3.125rem;
 `;
 
 export const GoBackButton = styled.div`
@@ -37,12 +38,12 @@ export const IntroBox = styled.div`
 
 export const TagBox = styled.div`
   display: flex;
-  /* width: 22.5rem; */
+  width: fit-content;
   gap: 0.38rem;
   justify-content: space-between;
 `;
 
-export const FilterTag = styled.div`
+export const FilterTag = styled.div<{ weight?: number }>`
   display: flex;
   padding: 0.25rem 1.25rem;
   justify-content: center;
@@ -51,8 +52,8 @@ export const FilterTag = styled.div`
   color: ${colors.white};
   background-color: ${colors.black_CTA};
   font-size: 1.25rem;
-  font-style: normal;
-  font-weight: 800;
+  text-align: center;
+  font-weight: ${(props) => (props.weight ? props.weight : 500)};
 `;
 
 export const MarketingTitle = styled.div`
@@ -93,13 +94,27 @@ export const ExplBox = styled.div`
   flex-direction: column;
   align-items: flex-start;
   width: 63.903rem;
-  margin-top: 5.88rem;
+  height: fit-content;
+  /* margin-top: 2.38rem; */
+  margin-bottom: 2.5rem;
+  gap: 1.87rem;
+  padding-top: 6.25rem;
+`;
+
+export const MarketingDetailTitle = styled.div`
+  color: ${colors.black};
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 130%;
+  letter-spacing: -0.015rem;
+  /* margin-top: 2.5rem; */
 `;
 
 export const BrandImage = styled.img`
   display: flex;
-  width: 100%;
-  margin-top: 3.12rem;
+  width: 60%;
+  /* margin-top: 1.88rem; */
 `;
 
 export const MarketingExplain = styled.span`
@@ -107,7 +122,7 @@ export const MarketingExplain = styled.span`
   font-size: 1.25rem;
   font-weight: 500;
   line-height: 170%;
-  margin: 1.87rem 0 2.5rem 0;
+  /* margin: 1.87rem 0 2.5rem 0; */
 `;
 
 export const MarketingTags = styled.div`

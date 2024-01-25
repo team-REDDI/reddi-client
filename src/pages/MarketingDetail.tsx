@@ -11,13 +11,13 @@ import {
   DataColumn,
   DataType,
   DataText,
-  GoBackButton,
   ImageContainer,
   MarketingTags,
+  MarketingDetailTitle,
 } from "../styles/marketingStyle";
 
 import styled from "styled-components";
-import { BrandTitleRow, HomeTitle } from "../styles/HomeStyle";
+import { BrandTitleRow } from "../styles/HomeStyle";
 import Footer from "../components/Footer";
 import { useNavigate, useParams } from "react-router-dom";
 import { QueryClient, QueryClientProvider, useQuery } from "react-query";
@@ -59,10 +59,6 @@ const MarketingDetail = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  const goBack = () => {
-    nav(-1);
-  };
-
   const { id } = useParams<{ id: string }>();
   const marketingId = id ? parseInt(id, 10) : 1;
 
@@ -80,9 +76,9 @@ const MarketingDetail = () => {
       case "heading_1":
         return (
           <BrandTitleRow>
-            <HomeTitle key={index}>
+            <MarketingDetailTitle key={index}>
               {content.heading_1?.rich_text[0].plain_text}
-            </HomeTitle>
+            </MarketingDetailTitle>
           </BrandTitleRow>
         );
       case "heading_2":
@@ -99,20 +95,24 @@ const MarketingDetail = () => {
             </MarketingExplain>
           );
         } else {
-          return (
-            <MarketingExplain key={index}>
-              Paragraph 없음 = 노션에서 삭제
-            </MarketingExplain>
-          );
+          return null;
+          // <MarketingExplain key={index}>
+          //   Paragraph 없음 = 노션에서 삭제
+          // </MarketingExplain>
         }
       case "image":
         if (content.image && content.image.file && content.image.file.url) {
           console.log("image: ", content.image.file.url);
           return (
-            <img
+            // <img
+            //   key={index}
+            //   src={content.image.file.url}
+            //   width="60%"
+            //   alt="브랜드 디테일 이미지"
+            // />
+            <BrandImage
               key={index}
               src={content.image.file.url}
-              width="60%"
               alt="브랜드 디테일 이미지"
             />
           );
@@ -133,7 +133,6 @@ const MarketingDetail = () => {
       <NavBar />
       <ImageContainer>
         <CoverImage imageUrl={marketingDetailInfo?.cover_url} />
-        {/* <GoBackButton onClick={goBack}>뒤로가기</GoBackButton> */}
         <IntroBox>
           <TagBox>
             {marketingDetailInfo?.postTags.map(
@@ -173,7 +172,9 @@ const MarketingDetail = () => {
       <MarketingTags>
         {marketingDetailInfo?.postTags.map(
           (tag: { tag: string }, index: number) => (
-            <FilterTag key={index}>{tag.tag}</FilterTag>
+            <FilterTag key={index} weight={800}>
+              {tag.tag}
+            </FilterTag>
           ),
         )}
       </MarketingTags>
@@ -197,8 +198,8 @@ const CoverImage = styled.div<CoverImageProps>`
   height: 100%;
   background: linear-gradient(
       0deg,
-      rgba(0, 0, 0, 0.4) 0%,
-      rgba(0, 0, 0, 0.4) 100%
+      rgba(0, 0, 0, 0.5) 0%,
+      rgba(0, 0, 0, 0.7) 100%
     ),
     url(${(props) => props.imageUrl}) center/cover no-repeat;
 `;
