@@ -71,6 +71,7 @@ export const BrandDetailContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 3.125rem;
 `;
 
 export const LogoContainer = styled.div`
@@ -191,7 +192,7 @@ export const BrandExpTitle = styled.div`
   font-weight: 500;
   line-height: 130%;
   letter-spacing: -0.01125rem;
-  margin-bottom:1.88rem;
+  margin-bottom: 1.88rem;
 `;
 
 export const BrandExpText = styled.div`
