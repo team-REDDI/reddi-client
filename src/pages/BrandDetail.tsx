@@ -40,6 +40,7 @@ import { ReactComponent as Aesop } from "../assets/svgs/aesopSVG.svg";
 import styled from "styled-components";
 import { findIndustryTag } from "../utils/detailTagFunction";
 import { findTagByType } from "../utils/detailTagFunction";
+import NavBar from "../components/NavBar";
 interface ContentBlock {
   type: string;
   heading_1?: {
@@ -238,8 +239,9 @@ const BrandDetail = () => {
 
   return (
     <BrandDetailContainer>
+      <NavBar />
       <LogoContainer>
-        <GoBackButton onClick={goBack}>뒤로가기</GoBackButton>
+        {/* <GoBackButton onClick={goBack}>뒤로가기</GoBackButton> */}
         <LogoBox>
           <LogoImg src={brandDetailInfo?.cover_url} />
           {/* <LogoImg src={require("../assets/images/AesopLogo.png")} /> */}
