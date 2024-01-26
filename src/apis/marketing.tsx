@@ -49,3 +49,18 @@ export const getMarketingDetailInfo = async (pageId: number) => {
     throw error;
   }
 };
+
+export const getMarketingViewCount = async (pageId: number) => {
+  try {
+    const response = await client.get(`/api/post/viewCount/${pageId}`, {
+      params: {
+        post_id: pageId,
+      },
+    });
+
+    return response.data;
+  } catch (error) {
+    console.error("Error:", error);
+    throw error;
+  }
+};

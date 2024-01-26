@@ -59,3 +59,16 @@ export const getBrandDetailMarketing = async (pageId: number) => {
     throw error;
   }
 };
+export const getBrandViewCount = async (pageId: number) => {
+  try {
+    const response = await client.get(`/api/brand/viewCount/${pageId}`, {
+      params: {
+        brand_id: pageId,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error:", error);
+    throw error;
+  }
+};

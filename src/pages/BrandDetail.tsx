@@ -27,6 +27,7 @@ import {
   getBrandDetail,
   getBrandDetailInfo,
   getBrandDetailMarketing,
+  getBrandViewCount,
 } from "../apis/brand";
 import { getMarketingDetailInfo } from "../apis/marketing";
 import {
@@ -84,6 +85,10 @@ const BrandDetail = () => {
 
   const { data: brandDetailInfo } = useQuery(["brandDetailInfo", brandId], () =>
     getBrandDetailInfo(brandId),
+  );
+
+  const { data: viewCount } = useQuery(["viewCount", brandId], () =>
+    getBrandViewCount(brandId),
   );
 
   //각 브랜드별 Marketing 레퍼런스 가져오기
@@ -250,6 +255,8 @@ const BrandDetail = () => {
           </NameBox>
         </LogoBox>
       </LogoContainer>
+      {/* <div>{brandDetailInfo?.view_count}</div> */}
+      {/* 나중에 viewCount 넣을거면 */}
       <BookmarkFloating />
       <DetailContainer>
         {renderAllContent()}

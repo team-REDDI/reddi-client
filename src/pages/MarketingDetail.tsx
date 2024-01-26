@@ -21,7 +21,11 @@ import { BrandTitleRow } from "../styles/HomeStyle";
 import Footer from "../components/Footer";
 import { useNavigate, useParams } from "react-router-dom";
 import { QueryClient, QueryClientProvider, useQuery } from "react-query";
-import { getMarketingDetail, getMarketingDetailInfo } from "../apis/marketing";
+import {
+  getMarketingDetail,
+  getMarketingDetailInfo,
+  getMarketingViewCount,
+} from "../apis/marketing";
 import { useEffect } from "react";
 import { formatDate } from "../utils/dateFunction";
 import NavBar from "../components/NavBar";
@@ -70,6 +74,10 @@ const MarketingDetail = () => {
   const { data: marketingDetailInfo } = useQuery(
     ["marketingDetailInfo", marketingId],
     () => getMarketingDetailInfo(marketingId),
+  );
+
+  const { data: viewCount } = useQuery(["viewCount", marketingId], () =>
+    getMarketingViewCount(marketingId),
   );
 
   const renderContent = (content: ContentBlock, index: number) => {
