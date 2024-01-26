@@ -75,10 +75,6 @@ const Home = () => {
     ];
   }
 
-  useEffect(() => {
-    getHomePost();
-  }, []);
-
   const [hotBrand, setHotBrand] = useState<TopBrand[]>([]);
 
   const { data: HotBrandList } = useQuery(
