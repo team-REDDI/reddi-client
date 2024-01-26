@@ -56,6 +56,25 @@ const Home = () => {
     notion_page_laseted_edited_time: string;
   }
 
+  interface HomePost {
+    curation_title: string;
+    posts: [
+      {
+        id: number;
+        brand_id: number;
+        title: string;
+        subtitle: string;
+        descriptioin: string;
+        view_count: number;
+        postTags: [{ postTagType: string; tag: string }];
+        cover_url: string;
+        notion_page_url: string;
+        notion_page_created_time: string;
+        notion_page_laseted_edited_time: string;
+      },
+    ];
+  }
+
   useEffect(() => {
     getHomePost();
   }, []);
@@ -89,8 +108,8 @@ const Home = () => {
     },
   );
 
-  const [homePostList, setHomePostList] = useState<TopMarketing[]>();
-  const { data: HotPostData } = useQuery(
+  const [homePostList, setHomePostList] = useState<HomePost[]>();
+  const { data: HomePostData } = useQuery(
     ["HomePostList"],
     () => getHomePost(),
     {
@@ -117,15 +136,6 @@ const Home = () => {
           <DateText>2024. 02</DateText>
         </BrandTitleBox>
         <LankBox>
-          {/* <BrandLankBox lank={1} name="토스 증권" Icon={TossIcon} />
-          <GreyLine />
-          <BrandLankBox lank={2} name="네이버" Icon={NaverIcon} />
-          <GreyLine />
-          <BrandLankBox lank={3} name="현대카드" Icon={HyundaiIcon} />
-          <GreyLine />
-          <BrandLankBox lank={4} name="젠틀몬스터" Icon={GentleIcon} />
-          <GreyLine />  
-          <BrandLankBox lank={5} name="나이키" Icon={NikeIcon} /> */}
           {hotBrand &&
             hotBrand.map((data, index) => (
               <>
@@ -164,45 +174,29 @@ const Home = () => {
 
       <RandomBanner />
 
-      <MarketingContainer>
-        <MarketingTitleBox>
-          <BrandTitleRow>
-            <HomeTitle>
-              크리스마스에 눈이 온다면? 크리스마스 공간 기획
-            </HomeTitle>
-          </BrandTitleRow>
-        </MarketingTitleBox>
-        <MarketingLine>
-          <MarketingBox
-            id={1}
-            imgSrc="../assets/images/exemple.png"
-            type="PLACE"
-            title="더 현대를 밝히는 ‘해리의 꿈의 상점’"
-            expl="유럽 어느 골목을 들어와있는 듯한 착각"
-            read={727}
-            categories={["부티크", "팝업스토어", "콘셉트마케팅"]}
-          />
-          <MarketingBox
-            id={1}
-            imgSrc="../assets/images/exemple.png"
-            type="PLACE"
-            title="신세계 백화점의 
-          ‘MAGIC WINTER FANTASY’"
-            expl="3분을 위한 9개월의 여정"
-            read={1928}
-            categories={["부티크", "팝업스토어", "콘셉트마케팅"]}
-          />
-          <MarketingBox
-            id={1}
-            imgSrc="../assets/images/exemple.png"
-            type="PLACE"
-            title="시몬스테라스의 ‘크리스마스 일루미네이션"
-            expl="동화 속 마을로 단장한 시몬스"
-            read={567}
-            categories={["부티크", "팝업스토어", "콘셉트마케팅"]}
-          />
-        </MarketingLine>
-      </MarketingContainer>
+      {homePostList &&
+        homePostList.map((data, index) => (
+          <MarketingContainer>
+            <MarketingTitleBox>
+              <BrandTitleRow>
+                <HomeTitle>{data.curation_title}</HomeTitle>
+              </BrandTitleRow>
+            </MarketingTitleBox>
+            <MarketingLine>
+              {data.posts.map((post, index) => (
+                <MarketingBox
+                  id={post.id}
+                  imgSrc={post.cover_url}
+                  type="PLACE"
+                  title={post.title}
+                  expl={post.subtitle}
+                  read={post.view_count}
+                  categories={post.postTags.map((list) => list.tag)}
+                />
+              ))}
+            </MarketingLine>
+          </MarketingContainer>
+        ))}
       <Footer />
     </HomeContainer>
   );
