@@ -105,7 +105,7 @@ const Home = () => {
   );
 
   const [homePostList, setHomePostList] = useState<HomePost[]>();
-  const { data: HomePostData } = useQuery(
+  const { data: HomePostData, isLoading } = useQuery(
     ["HomePostList"],
     () => getHomePost(),
     {
@@ -171,7 +171,12 @@ const Home = () => {
 
       <RandomBanner />
 
-      {homePostList &&
+      {isLoading ? (
+        <>
+          <HomeTitle>로딩중...</HomeTitle>
+        </>
+      ) : (
+        homePostList &&
         homePostList.map((data, index) => (
           <MarketingContainer>
             <MarketingTitleBox>
@@ -193,7 +198,8 @@ const Home = () => {
               ))}
             </MarketingLine>
           </MarketingContainer>
-        ))}
+        ))
+      )}
       <Footer />
     </HomeContainer>
   );
