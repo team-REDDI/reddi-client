@@ -6,15 +6,7 @@ import { ReactComponent as GentleIcon } from "../assets/svgs/gentleIcon.svg";
 import { ReactComponent as NikeIcon } from "../assets/svgs/nikeIcon.svg";
 import {
   HomeContainer,
-  ImageContainer,
-  HomeImage,
-  EventContainer,
-  EventText,
-  EventTitle,
-  EventContent,
-  EventButton,
   BrandTitleBox,
-  HomeTitleWeight,
   HomeTitle,
   BrandTitleRow,
   DateText,
@@ -24,11 +16,7 @@ import {
   BrandLankContainer,
   MarketingContainer,
   MarketingLine,
-  Blank,
   MarketingCol,
-  Banner,
-  BannerText,
-  BannerImg,
 } from "../styles/HomeStyle";
 import { BrandLankBox } from "../components/Home/BrandLank";
 import { MarketingBox } from "../components/MarketingBox";
@@ -43,19 +31,57 @@ import { QueryClient, QueryClientProvider, useQuery } from "react-query";
 const queryClient = new QueryClient();
 
 const Home = () => {
+  interface TopBrand {
+    id: number;
+    name: string;
+    view_count: number;
+    brandTags: [brandTagType: string, tag: string];
+    cover_url: string;
+    notion_page_url: string;
+    notion_page_created_time: string;
+    notion_page_laseted_edited_time: string;
+  }
+
+  interface TopMarketing {
+    id: number;
+    brand_id: number;
+    title: string;
+    subtitle: string;
+    description: string;
+    view_count: number;
+    postTags: [postTagType: string, tag: string];
+    cover_url: string;
+    notion_page_url: string;
+    notion_page_created_time: string;
+    notion_page_laseted_edited_time: string;
+  }
+
   useEffect(() => {
-    getHotPost();
     getHomePost();
   }, []);
 
-  const [hotBrandList, setHotBrandList] = useState<{}>();
+  const [hotBrand, setHotBrand] = useState<TopBrand[]>([]);
+
   const { data: HotBrandList } = useQuery(
-    ["HotBrandList"],
+    ["HotBrand"],
     () => getHotBrand({ n: 5 }),
     {
       onSuccess: (data) => {
-        setHotBrandList(data);
-        // console.log(data);
+        setHotBrand(data);
+      },
+      onError: (error) => {
+        console.log(error);
+      },
+    },
+  );
+
+  const [hotMarketing, setHotMarketing] = useState<TopMarketing[]>();
+  const { data: HotMarketing } = useQuery(
+    ["HotBrandList"],
+    () => getHotPost({ n: 6 }),
+    {
+      onSuccess: (data) => {
+        setHotMarketing(data);
       },
       onError: (error) => {
         console.log(error);
@@ -77,15 +103,26 @@ const Home = () => {
           <DateText>2024. 02</DateText>
         </BrandTitleBox>
         <LankBox>
-          <BrandLankBox lank={1} name="토스 증권" Icon={TossIcon} />
+          {/* <BrandLankBox lank={1} name="토스 증권" Icon={TossIcon} />
           <GreyLine />
           <BrandLankBox lank={2} name="네이버" Icon={NaverIcon} />
           <GreyLine />
           <BrandLankBox lank={3} name="현대카드" Icon={HyundaiIcon} />
           <GreyLine />
           <BrandLankBox lank={4} name="젠틀몬스터" Icon={GentleIcon} />
-          <GreyLine />
-          <BrandLankBox lank={5} name="나이키" Icon={NikeIcon} />
+          <GreyLine />  
+          <BrandLankBox lank={5} name="나이키" Icon={NikeIcon} /> */}
+          {hotBrand &&
+            hotBrand.map((data, index) => (
+              <>
+                <BrandLankBox
+                  lank={index + 1}
+                  name={data.name}
+                  Icon={data.cover_url}
+                />
+                {index < 4 ? <GreyLine /> : null}
+              </>
+            ))}
         </LankBox>
       </BrandLankContainer>
 
@@ -96,6 +133,18 @@ const Home = () => {
           </BrandTitleRow>
         </MarketingTitleBox>
         <MarketingCol>
+          {hotMarketing &&
+            hotMarketing.map((data, index) => (
+              <>
+                <MarketingBoxSmall
+                  id={data.id}
+                  lank={index + 1}
+                  imgSrc={data.cover_url}
+                  title={data.title}
+                  expl={data.subtitle}
+                />
+              </>
+            ))}
           <MarketingBoxSmall
             id={1}
             lank={1}

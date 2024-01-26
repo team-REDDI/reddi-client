@@ -1,6 +1,6 @@
 import client from "./client";
 
-export const getHotBrand = async (info: { n: number }) => {
+export const getHotBrand = async (info: { n?: number }) => {
   try {
     const response = await client.get("api/brand/top", {
       params: {
@@ -15,9 +15,13 @@ export const getHotBrand = async (info: { n: number }) => {
   }
 };
 
-export const getHotPost = async () => {
+export const getHotPost = async (info: { n?: number }) => {
   try {
-    const response = await client.get("api/post/top");
+    const response = await client.get("api/post/top", {
+      params: {
+        n: info.n,
+      },
+    });
     console.log("hot marketing data", response.data);
     return response.data.data;
   } catch (error) {
