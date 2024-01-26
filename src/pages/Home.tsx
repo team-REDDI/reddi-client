@@ -89,6 +89,20 @@ const Home = () => {
     },
   );
 
+  const [homePostList, setHomePostList] = useState<TopMarketing[]>();
+  const { data: HotPostData } = useQuery(
+    ["HomePostList"],
+    () => getHomePost(),
+    {
+      onSuccess: (data) => {
+        setHomePostList(data);
+      },
+      onError: (error) => {
+        console.log(error);
+      },
+    },
+  );
+
   return (
     <HomeContainer>
       <NavBar />
@@ -145,48 +159,6 @@ const Home = () => {
                 />
               </>
             ))}
-          <MarketingBoxSmall
-            id={1}
-            lank={1}
-            imgSrc="../assets/images/exemple.png"
-            title="더 현대를 밝히는 ‘해리의 꿈의 상점’"
-            expl="유럽 어느 골목을 들어와있는 듯한 착각"
-          />
-          <MarketingBoxSmall
-            id={1}
-            lank={2}
-            imgSrc="../assets/images/exemple.png"
-            title="더 현대를 밝히는 ‘해리의 꿈의 상점’"
-            expl="유럽 어느 골목을 들어와있는 듯한 착각"
-          />
-          <MarketingBoxSmall
-            id={1}
-            lank={3}
-            imgSrc="../assets/images/exemple.png"
-            title="더 현대를 밝히는 ‘해리의 꿈의 상점’"
-            expl="유럽 어느 골목을 들어와있는 듯한 착각"
-          />
-          <MarketingBoxSmall
-            id={1}
-            lank={4}
-            imgSrc="../assets/images/exemple.png"
-            title="더 현대를 밝히는 ‘해리의 꿈의 상점’"
-            expl="유럽 어느 골목을 들어와있는 듯한 착각"
-          />
-          <MarketingBoxSmall
-            id={1}
-            lank={5}
-            imgSrc="../assets/images/exemple.png"
-            title="더 현대를 밝히는 ‘해리의 꿈의 상점’"
-            expl="유럽 어느 골목을 들어와있는 듯한 착각"
-          />
-          <MarketingBoxSmall
-            id={1}
-            lank={6}
-            imgSrc="../assets/images/exemple.png"
-            title="더 현대를 밝히는 ‘해리의 꿈의 상점’"
-            expl="유럽 어느 골목을 들어와있는 듯한 착각"
-          />
         </MarketingCol>
       </MarketingContainer>
 
