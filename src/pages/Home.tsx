@@ -140,6 +140,7 @@ const Home = () => {
             hotBrand.map((data, index) => (
               <>
                 <BrandLankBox
+                  id={data.id}
                   lank={index + 1}
                   name={data.name}
                   Icon={data.cover_url}

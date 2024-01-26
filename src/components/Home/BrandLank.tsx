@@ -3,17 +3,18 @@ import { colors } from "../../styles/colors";
 import { useNavigate } from "react-router-dom";
 
 interface BrandLankProps {
+  id: number;
   lank: number;
   name: string;
   // Icon: React.FC;
   Icon: string;
 }
 
-export const BrandLankBox = ({ lank, name, Icon }: BrandLankProps) => {
+export const BrandLankBox = ({ id, lank, name, Icon }: BrandLankProps) => {
   const nav = useNavigate();
 
   const goToBrandDetail = () => {
-    nav("/brand/detail/0");
+    nav(`/brand/detail/${id}`);
   };
   return (
     <LankContainer onClick={goToBrandDetail}>
