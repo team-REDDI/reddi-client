@@ -150,7 +150,7 @@ const MarketingDetail = () => {
             </DataColumn>
             <DataColumn>
               <DataType>읽음</DataType>
-              <DataText>486</DataText>
+              <DataText>{marketingDetailInfo?.view_count}</DataText>
             </DataColumn>
             <DataColumn>
               <DataType>작성일자</DataType>
