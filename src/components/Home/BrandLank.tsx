@@ -5,7 +5,8 @@ import { useNavigate } from "react-router-dom";
 interface BrandLankProps {
   lank: number;
   name: string;
-  Icon: React.FC;
+  // Icon: React.FC;
+  Icon: string;
 }
 
 export const BrandLankBox = ({ lank, name, Icon }: BrandLankProps) => {
@@ -19,8 +20,8 @@ export const BrandLankBox = ({ lank, name, Icon }: BrandLankProps) => {
       <LankLine>
         <LankNum>{lank}</LankNum>
         <BrandName>{name}</BrandName>
-        <Icon />
-        {/* <img src={Icon} alt={name} /> */}
+        {/* <Icon /> */}
+        <IconImg src={Icon} alt={name} />
       </LankLine>
     </LankContainer>
   );
@@ -60,4 +61,9 @@ const BrandName = styled.span`
   line-height: 130%; /* 1.95rem */
   letter-spacing: -0.015rem;
   margin-right: 3.01rem;
+`;
+
+const IconImg = styled.img`
+  display: flex;
+  height: 3.125rem;
 `;

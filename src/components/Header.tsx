@@ -11,12 +11,14 @@ type HeaderProps = {
 const Header: React.FC<HeaderProps> = ({ title, subtitle, ImageComponent }) => {
   return (
     <HeaderContainer>
-      <TitleWrapper>
-        <Title>{title} </Title>
-        <DivideBar />
-        <ImageComponent />
-      </TitleWrapper>
-      <SubTitle>{subtitle}</SubTitle>
+      <WidthBox>
+        <TitleWrapper>
+          <Title>{title} </Title>
+          <DivideBar />
+          <ImageComponent />
+        </TitleWrapper>
+        <SubTitle>{subtitle}</SubTitle>
+      </WidthBox>
     </HeaderContainer>
   );
 };
@@ -24,12 +26,22 @@ const Header: React.FC<HeaderProps> = ({ title, subtitle, ImageComponent }) => {
 const HeaderContainer = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 11.25rem 10.6875rem 4.375rem 10.6875rem;
-  gap: 1.12rem;
+  /* padding: 11.25rem 10.6875rem 4.375rem 10.6875rem; */
+  padding-top: 11.25rem;
   width: 100%;
+  height: 21.5rem;
+  align-items: center;
   background-color: black;
   color: white;
   box-sizing: border-box;
+  margin-top: 3.125rem;
+`;
+
+const WidthBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 64rem;
+  gap: 1.12rem;
 `;
 
 const TitleWrapper = styled.div`
