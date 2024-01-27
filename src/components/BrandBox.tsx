@@ -78,6 +78,7 @@ const BrandTagsContainer = styled.div`
   margin-top: 0.5rem;
   gap: 0.34rem;
   height: fit-content;
+  z-index: 99;
 `;
 
 const BrandTag = styled.div`
