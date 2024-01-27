@@ -35,8 +35,8 @@ import { getHomePost, getHotBrand, getHotPost } from "../apis/homeAPI";
 import { QueryClient, QueryClientProvider, useQuery } from "react-query";
 import { findIndustryTag } from "../utils/detailTagFunction";
 import { findTagByType } from "../utils/detailTagFunction";
-import { Skeleton } from "../components/Home/Skeleton";
-
+import { MarketingSkeleton } from "../components/MarketingSkeleton";
+import { HomeSkeleton } from "../components/Home/HomeSkeleton";
 
 const queryClient = new QueryClient();
 
@@ -201,9 +201,9 @@ const Home = () => {
 
       {isLoading ? (
         <>
-          <Skeleton />
-          <Skeleton />
-          <Skeleton />
+          <HomeSkeleton />
+          <HomeSkeleton />
+          <HomeSkeleton />
         </>
       ) : (
         homePostList &&
