@@ -228,7 +228,7 @@ const CategoryButton = styled.button<{ isActive: boolean }>`
   height: 2.035rem;
   justify-content: center;
   align-items: center;
-  border: 0.388px solid #000;
+  border: 0.5px solid #b9b9b9;
   gap: 0.62rem;
   font-size: 1.125rem;
   font-style: normal;
@@ -236,7 +236,7 @@ const CategoryButton = styled.button<{ isActive: boolean }>`
   line-height: 130%;
   margin-right: 0.97rem;
   background-color: ${(props) => (props.isActive ? "#000" : "transparent")};
-  color: ${(props) => (props.isActive ? "#fff" : "#000")};
+  color: ${(props) => (props.isActive ? "#fff" : "#b9b9b9")};
 `;
 
 export default Filter;
