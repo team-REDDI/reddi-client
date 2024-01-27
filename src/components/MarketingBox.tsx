@@ -173,7 +173,7 @@ const StyledBookmarkIcon = styled(BookmarkIcon)<{ isBookmarked: boolean }>`
   top: 0;
   right: 1.1875rem;
   path {
-    fill: ${(props) => (props.isBookmarked ? "#F53B36" : "white")};
-    stroke: ${(props) => (props.isBookmarked ? "#F53B36" : "#F53B36")};
+    fill: ${(props) => (props.isBookmarked ? "#F53B36" : "#B9B9B9")};
+    stroke: ${(props) => (props.isBookmarked ? "#F53B36" : "#B9B9B9")};
   }
 `;
