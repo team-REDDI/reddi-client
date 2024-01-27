@@ -28,8 +28,8 @@ export const MarketingBox = ({
   };
 
   return (
-    <Container onClick={goToMarketingDetail}>
-      <MarketingImg src={imgSrc} />
+    <Container>
+      <MarketingImg src={imgSrc} onClick={goToMarketingDetail} />
       <TypeText>{type}</TypeText>
       <Title>{title}</Title>
       <ExpText>{expl}</ExpText>

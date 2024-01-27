@@ -83,7 +83,7 @@ const Marketing = () => {
     );
 
   const allMarketingBoxes =
-    marketingInfo?.map((marketing: Marketing) => {
+    allMarketingInfo?.map((marketing: Marketing) => {
       const tagType = "산업군";
       const tag = findTagByType(marketing.postTags, tagType) || "Default Value";
 
@@ -104,7 +104,7 @@ const Marketing = () => {
         )
       : marketingBoxes;
 
-  const totalPageNum = 3; //일단 임시로
+  const totalPageNum = 4; //일단 임시로
 
   return (
     <MarketingPageContainer>
