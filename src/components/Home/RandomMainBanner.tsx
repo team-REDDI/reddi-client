@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import {
   EventButton,
   EventContainer,
@@ -10,6 +11,11 @@ import {
 const RandomMainBanner = () => {
   const bannerNumber = Math.floor(Math.random() * 2) + 1;
   const bannerSrc = require(`../../assets/images/home_${bannerNumber}.png`);
+
+  const nav = useNavigate();
+  const goToContents = () => {
+    nav(`/marketing/detail/9`);
+  };
 
   return (
     <ImageContainer>
@@ -37,7 +43,7 @@ const RandomMainBanner = () => {
             </>
           )}
         </EventContent>
-        <EventButton>콘텐츠 보기</EventButton>
+        <EventButton onClick={goToContents}>콘텐츠 보기</EventButton>
       </EventContainer>
     </ImageContainer>
   );
