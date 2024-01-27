@@ -210,46 +210,87 @@ export const Blank = styled.div`
   height: 27.7rem;
 `;
 
-export const SkeletonContainer = styled.div`
-  display: flex;
-  width: 20.3125rem;
-  flex-direction: column;
-`;
-
 export const SkeletonTitle = styled.div`
   display: flex;
   width: 33.25rem;
-  height: 2.25rem;
-  background-color: ${colors.grey_normal};
+  height: 1.875rem;
+  background-color: ${colors.background_gray};
+`;
+
+export const SkeletonContainer = styled.div`
+  display: flex;
+  width: 20.3125rem;
+  height: 25.625rem;
+  border-radius: 0.75rem;
+  flex-direction: column;
 `;
 
 export const SkeletonBox = styled.div`
   display: flex;
-  background-color: ${colors.grey_normal};
+  background-color: ${colors.background_gray};
+  border-radius: 0.75rem 0.75rem 0rem 0rem;
   width: 20.3125rem;
   height: 14.75rem;
   margin-bottom: 1.5rem;
 `;
 
+export const SkeletonTextBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 10.88rem;
+  background-color: #fdfdfd;
+  border-radius: 0rem 0rem 0.75rem 0.75rem;
+  padding-left: 1.5rem;
+`;
+
 export const SkeletonType = styled.div`
   display: flex;
-  background-color: ${colors.grey_normal};
+  background-color: ${colors.background_gray};
   width: 4.625rem;
-  height: 1.3125rem;
-  margin-bottom: 1.5rem;
+  height: 1rem;
+  margin-bottom: 1.12rem;
 `;
 
 export const SkeletonExp1 = styled.div`
   display: flex;
-  background-color: ${colors.grey_normal};
-  width: 18.25rem;
-  height: 1.3125rem;
-  margin-bottom: 0.56rem;
+  background-color: ${colors.background_gray};
+  width: 17.375rem;
+  height: 1.5rem;
+  margin-bottom: 1.13rem;
 `;
 
 export const SkeletonExp2 = styled.div`
   display: flex;
-  background-color: ${colors.grey_normal};
-  width: 20.3125rem;
-  height: 1.3125rem;
+  background-color: ${colors.background_gray};
+  width: 17.375rem;
+  height: 0.9375rem;
+  margin-bottom: 0.75rem;
+`;
+
+export const SkeletonLine = styled.div`
+  display: flex;
+  width: auto;
+  gap: 0.38rem;
+`;
+
+export const SkeletonExp3 = styled.div`
+  display: flex;
+  background-color: ${colors.background_gray};
+  width: 2.75rem;
+  height: 1.75rem;
+`;
+
+export const SkeletonExp4 = styled.div`
+  display: flex;
+  background-color: ${colors.background_gray};
+  width: 4.6875rem;
+  height: 1.75rem;
+`;
+
+export const SkeletonExp5 = styled.div`
+  display: flex;
+  background-color: ${colors.background_gray};
+  width: 5.6875rem;
+  height: 1.75rem;
 `;
