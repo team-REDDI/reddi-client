@@ -210,4 +210,46 @@ export const Blank = styled.div`
   height: 27.7rem;
 `;
 
-export const SkeletonBox = styled.div``;
+export const SkeletonContainer = styled.div`
+  display: flex;
+  width: 20.3125rem;
+  flex-direction: column;
+`;
+
+export const SkeletonTitle = styled.div`
+  display: flex;
+  width: 33.25rem;
+  height: 2.25rem;
+  background-color: ${colors.grey_normal};
+`;
+
+export const SkeletonBox = styled.div`
+  display: flex;
+  background-color: ${colors.grey_normal};
+  width: 20.3125rem;
+  height: 14.75rem;
+  margin-bottom: 1.5rem;
+`;
+
+export const SkeletonType = styled.div`
+  display: flex;
+  background-color: ${colors.grey_normal};
+  width: 4.625rem;
+  height: 1.3125rem;
+  margin-bottom: 1.5rem;
+`;
+
+export const SkeletonExp1 = styled.div`
+  display: flex;
+  background-color: ${colors.grey_normal};
+  width: 18.25rem;
+  height: 1.3125rem;
+  margin-bottom: 0.56rem;
+`;
+
+export const SkeletonExp2 = styled.div`
+  display: flex;
+  background-color: ${colors.grey_normal};
+  width: 20.3125rem;
+  height: 1.3125rem;
+`;

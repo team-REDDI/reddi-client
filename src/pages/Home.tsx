@@ -17,6 +17,12 @@ import {
   MarketingContainer,
   MarketingLine,
   MarketingCol,
+  SkeletonBox,
+  SkeletonTitle,
+  SkeletonExp1,
+  SkeletonExp2,
+  SkeletonContainer,
+  SkeletonType,
 } from "../styles/HomeStyle";
 import { BrandLankBox } from "../components/Home/BrandLank";
 import { MarketingBox } from "../components/MarketingBox";
@@ -27,6 +33,7 @@ import RandomMainBanner from "../components/Home/RandomMainBanner";
 import { useEffect, useState } from "react";
 import { getHomePost, getHotBrand, getHotPost } from "../apis/homeAPI";
 import { QueryClient, QueryClientProvider, useQuery } from "react-query";
+import { Skeleton } from "../components/Home/Skeleton";
 
 const queryClient = new QueryClient();
 
@@ -173,7 +180,9 @@ const Home = () => {
 
       {isLoading ? (
         <>
-          <HomeTitle>로딩중...</HomeTitle>
+          <Skeleton />
+          <Skeleton />
+          <Skeleton />
         </>
       ) : (
         homePostList &&
