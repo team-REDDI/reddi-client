@@ -30,9 +30,9 @@ export const MarketingBox = ({
   return (
     <Container>
       <MarketingImg src={imgSrc} onClick={goToMarketingDetail} />
-      <TypeText>{type}</TypeText>
-      <Title>{title}</Title>
-      <ExpText>{expl}</ExpText>
+      <TypeText onClick={goToMarketingDetail}>{type}</TypeText>
+      <Title onClick={goToMarketingDetail}>{title}</Title>
+      <ExpText onClick={goToMarketingDetail}>{expl}</ExpText>
       <CategoryContainer>
         {categories.map((category, index) => (
           <Category key={index}>{category}</Category>
