@@ -1,0 +1,100 @@
+{
+  "tagsList1": [
+    { "id": 1, "boxId": 1, "contents": "네이밍", "isClicked": false },
+    { "id": 2, "boxId": 1, "contents": "슬로건", "isClicked": false },
+    { "id": 3, "boxId": 1, "contents": "로고", "isClicked": false },
+    { "id": 4, "boxId": 1, "contents": "비전 미션", "isClicked": false },
+    { "id": 5, "boxId": 1, "contents": "브랜드 에센스", "isClicked": false },
+    { "id": 6, "boxId": 1, "contents": "키워드", "isClicked": false },
+    { "id": 7, "boxId": 1, "contents": "메니페스토", "isClicked": false }
+  ],
+
+  "tagsList2": [
+    { "id": 1, "boxId": 2, "contents": "빈티지", "isClicked": false },
+    { "id": 2, "boxId": 2, "contents": "차분함", "isClicked": false },
+    { "id": 3, "boxId": 2, "contents": "따뜻함", "isClicked": false },
+    { "id": 4, "boxId": 2, "contents": "단정함", "isClicked": false },
+    { "id": 5, "boxId": 2, "contents": "유니크", "isClicked": false },
+    { "id": 6, "boxId": 2, "contents": "친근함", "isClicked": false },
+    { "id": 7, "boxId": 2, "contents": "세련됨", "isClicked": false },
+    { "id": 8, "boxId": 2, "contents": "귀여움", "isClicked": false },
+    { "id": 9, "boxId": 2, "contents": "아날로그", "isClicked": false },
+    { "id": 10, "boxId": 2, "contents": "클래식", "isClicked": false },
+    { "id": 11, "boxId": 2, "contents": "심플함", "isClicked": false },
+    { "id": 12, "boxId": 2, "contents": "캐주얼", "isClicked": false },
+    { "id": 13, "boxId": 2, "contents": "스트리트", "isClicked": false },
+    { "id": 14, "boxId": 2, "contents": "영함", "isClicked": false },
+    { "id": 15, "boxId": 2, "contents": "키치함", "isClicked": false },
+    { "id": 16, "boxId": 2, "contents": "힙함", "isClicked": false }
+  ],
+
+  "tagsList3": [
+    { "id": 1, "boxId": 3, "contents": "F&B", "isClicked": false },
+    { "id": 1, "boxId": 3, "contents": "패션", "isClicked": false },
+    { "id": 1, "boxId": 3, "contents": "금융", "isClicked": false },
+    { "id": 1, "boxId": 3, "contents": "뷰티", "isClicked": false }
+  ],
+
+  "tagsList4": [
+    { "id": 1, "boxId": 4, "contents": "MZ세대", "isClicked": false },
+    { "id": 2, "boxId": 4, "contents": "여성", "isClicked": false },
+    { "id": 3, "boxId": 4, "contents": "그린슈머", "isClicked": false },
+    { "id": 4, "boxId": 4, "contents": "헬시 플레저", "isClicked": false },
+    { "id": 5, "boxId": 4, "contents": "갓생러", "isClicked": false },
+    { "id": 6, "boxId": 4, "contents": "직장인", "isClicked": false },
+    { "id": 7, "boxId": 4, "contents": "1・2인가구", "isClicked": false },
+    { "id": 8, "boxId": 4, "contents": "초보 투자자", "isClicked": false },
+    { "id": 9, "boxId": 4, "contents": "사회초년생", "isClicked": false },
+    { "id": 10, "boxId": 4, "contents": "시니어", "isClicked": false }
+  ],
+
+  "tagsList5": [
+    {
+      "id": 1,
+      "boxId": 5,
+      "contents": "펜티 뷰티",
+      "isClicked": false
+    },
+    { "id": 2, "boxId": 5, "contents": "토스", "isClicked": false },
+    { "id": 3, "boxId": 5, "contents": "파타고니아", "isClicked": false },
+    {
+      "id": 4,
+      "boxId": 5,
+      "contents": "논픽션",
+      "isClicked": false
+    },
+    {
+      "id": 5,
+      "boxId": 5,
+      "contents": "트래블월렛",
+      "isClicked": false
+    },
+    { "id": 6, "boxId": 5, "contents": "현대카드", "isClicked": false },
+    { "id": 7, "boxId": 5, "contents": "지구식단", "isClicked": false },
+    {
+      "id": 8,
+      "boxId": 5,
+      "contents": "텅플래닛",
+      "isClicked": false
+    },
+    { "id": 9, "boxId": 5, "contents": "누데이크", "isClicked": false },
+    {
+      "id": 10,
+      "boxId": 5,
+      "contents": "블루보틀",
+      "isClicked": false
+    },
+    {
+      "id": 11,
+      "boxId": 5,
+      "contents": "젝시믹스",
+      "isClicked": false
+    },
+    { "id": 12, "boxId": 5, "contents": "헤라", "isClicked": false },
+    { "id": 13, "boxId": 5, "contents": "크림", "isClicked": false },
+    { "id": 14, "boxId": 5, "contents": "29cm", "isClicked": false },
+    { "id": 15, "boxId": 5, "contents": "뱅크샐러드", "isClicked": false },
+    { "id": 16, "boxId": 5, "contents": "지그재그", "isClicked": false },
+    { "id": 17, "boxId": 5, "contents": "이솝", "isClicked": false }
+  ]
+}

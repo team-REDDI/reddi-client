@@ -17,11 +17,11 @@ const AIResult = () => {
       <AIResultBox>
         <ResultLine>
           <TypeText>네이밍</TypeText>
-          <WantText>뱅크샐러드</WantText>
+          <WantText now={true}>뱅크샐러드</WantText>
         </ResultLine>
         <ResultLine>
           <TypeText>슬로건</TypeText>
-          <WantText>금융을 넘어 건강 자산까지, 한 입에</WantText>
+          <WantText now={true}>금융을 넘어 건강 자산까지, 한 입에</WantText>
         </ResultLine>
       </AIResultBox>
       {/* <ButtonBox>
