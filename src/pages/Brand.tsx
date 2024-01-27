@@ -26,6 +26,7 @@ import {
   UseQueryResult,
 } from "react-query";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { BrandSkeleton } from "../components/BrandSkeleton";
 
 interface Brand {
   id: number;
@@ -114,24 +115,28 @@ const Brand = () => {
           <HomeTitle>브랜드 레퍼런스</HomeTitle>
         </BrandTitleRow>
         <BrandContainer>
-          {filteredBoxes.map(
-            (
-              box: {
-                id: number;
-                imgSrc: string;
-                brandName: string;
-                tags: string[];
-              },
-              index: number,
-            ) => (
-              <BrandBox
-                key={index}
-                id={box.id}
-                imgSrc={box.imgSrc}
-                brandName={box.brandName}
-                tags={box.tags}
-              />
-            ),
+          {isLoading ? (
+            <BrandSkeleton />
+          ) : (
+            filteredBoxes.map(
+              (
+                box: {
+                  id: number;
+                  imgSrc: string;
+                  brandName: string;
+                  tags: string[];
+                },
+                index: number,
+              ) => (
+                <BrandBox
+                  key={index}
+                  id={box.id}
+                  imgSrc={box.imgSrc}
+                  brandName={box.brandName}
+                  tags={box.tags}
+                />
+              ),
+            )
           )}
         </BrandContainer>
       </ReferenceBox>
