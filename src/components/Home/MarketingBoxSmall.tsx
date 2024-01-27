@@ -23,7 +23,7 @@ export const MarketingBoxSmall = ({
     nav(`/marketing/detail/${id}`);
   };
 
-  //글자가 넘어가면 ..표시 되도록
+  //글자가 넘어가면 ...표시 되도록
   const editContent = (content: String) => {
     if (content.length >= 51) {
       return content.substring(0, 51) + "...";

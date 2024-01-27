@@ -30,9 +30,9 @@
 
   "tagsList3": [
     { "id": 1, "boxId": 3, "contents": "F&B", "isClicked": false },
-    { "id": 1, "boxId": 3, "contents": "패션", "isClicked": false },
-    { "id": 1, "boxId": 3, "contents": "금융", "isClicked": false },
-    { "id": 1, "boxId": 3, "contents": "뷰티", "isClicked": false }
+    { "id": 2, "boxId": 3, "contents": "패션", "isClicked": false },
+    { "id": 3, "boxId": 3, "contents": "금융", "isClicked": false },
+    { "id": 4, "boxId": 3, "contents": "뷰티", "isClicked": false }
   ],
 
   "tagsList4": [
