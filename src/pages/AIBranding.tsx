@@ -42,8 +42,10 @@ import { ReactComponent as AddIcon } from "../assets/svgs/Plus.svg";
 import { useEffect, useState } from "react";
 import AIResult from "../components/AIBranding/AIResult";
 import AIBrandingData from "../assets/datas/aiBrandingData.json";
-import { useMutation } from "react-query";
+import { QueryClientProvider, QueryClient, useMutation } from "react-query";
 import { postAIBranding } from "../apis/aibrandingAPI";
+
+const queryClient = new QueryClient();
 
 const AIBranding = () => {
   const [isResult, setIsResult] = useState<boolean>(false);
@@ -62,9 +64,6 @@ const AIBranding = () => {
     isClicked: boolean;
   }
 
-  const [isClicked, setIsClicked] = useState<TagType[]>(
-    AIBrandingData.tagsList1,
-  );
   const [tags1, setTags1] = useState<TagType[]>(AIBrandingData.tagsList1);
   const [tags2, setTags2] = useState<TagType[]>(AIBrandingData.tagsList2);
   const [tags3, setTags3] = useState<TagType[]>(AIBrandingData.tagsList3);
@@ -94,11 +93,6 @@ const AIBranding = () => {
       ),
     );
     console.log(tagList);
-  };
-
-  const handleSubmit = () => {
-    const clickedTags = isClicked.filter((tag) => tag.isClicked);
-    //서버로 전송
   };
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -182,11 +176,12 @@ const AIBranding = () => {
 
   const handleButtonClicked = (boxIndex: number) => {
     if (isNow[4]) {
-      setIsLoading(true);
-      setTimeout(() => {
-        setIsResult(true);
-        setIsLoading(false);
-      }, 1500);
+      // setIsLoading(true);
+      // setTimeout(() => {
+      //   setIsResult(true);
+      //   setIsLoading(false);
+      // }, 1500);
+      handleSubmit();
     } else {
       setCurrentBoxId((prev) => prev + 1);
       const newIsNow = [...isNow];
@@ -208,31 +203,57 @@ const AIBranding = () => {
     window.scrollTo(0, 0);
   }, [isResult]);
 
-  // const goToResult = (i) => () => {
-  //   if (name === userTeamName) {
-  //     alert("본인이 속한 팀은 투표할 수 없습니다.");
-  //     return;
-  //   }
-  //   setProjectId(id);
-  //   setClickedTeamName(name);
-  //   console.log("id:", id);
-  //   voteTeamMutation.mutate({ projectId: id, accessToken: accessToken });
-  // };
+  const [isClicked, setIsClicked] = useState<TagType[]>([]);
+  const handleSubmit = () => {
+    const clickedTags1 = tags1
+      .filter((tag) => tag.isClicked)
+      .map((tag) => tag.contents)
+      .join(", ");
+    const clickedTags2 = tags2
+      .filter((tag) => tag.isClicked)
+      .map((tag) => tag.contents)
+      .join(", ");
+    const clickedTags3 = tags3
+      .filter((tag) => tag.isClicked)
+      .map((tag) => tag.contents)
+      .join(", ");
+    const clickedTags4 = tags4
+      .filter((tag) => tag.isClicked)
+      .map((tag) => tag.contents)
+      .join(", ");
+    const clickedTags5 = tags5
+      .filter((tag) => tag.isClicked)
+      .map((tag) => tag.contents)
+      .join(", ");
 
-  // const aiBrandingMutation = useMutation(postAIBranding, {
-  //   onSuccess: (data) => {
-  //     // console.log(data);
-  //     alert("데모데이 투표가 완료되었습니다.");
-  //     setIsLoading(true);
-  //     setTimeout(() => {
-  //       setIsResult(true);
-  //       setIsLoading(false);
-  //     }, 1500);
-  //   },
-  //   onError: (error) => {
-  //     console.log(error);
-  //   },
-  // });
+    console.log(clickedTags1);
+    console.log(clickedTags2);
+    console.log(clickedTags3);
+    console.log(clickedTags4);
+    console.log(clickedTags5);
+
+    AIBrandingMutation.mutate({
+      element: clickedTags1,
+      atmos: clickedTags2,
+      industry: clickedTags3,
+      target: clickedTags4,
+      similar: clickedTags5,
+    });
+  };
+
+  const AIBrandingMutation = useMutation(postAIBranding, {
+    onSuccess: (data) => {
+      // console.log(data);
+      // setIsLoading(true);
+      // setTimeout(() => {
+      //   setIsResult(true);
+      //   setIsLoading(false);
+      // }, 1500);
+    },
+    onError: (error) => {
+      console.log(error);
+    },
+  });
 
   return (
     <Container>
@@ -465,4 +486,8 @@ const AIBranding = () => {
   );
 };
 
-export default AIBranding;
+export default () => (
+  <QueryClientProvider client={queryClient}>
+    <AIBranding />
+  </QueryClientProvider>
+);
