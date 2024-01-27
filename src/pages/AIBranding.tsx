@@ -41,63 +41,11 @@ import { ReactComponent as SearchIcon } from "../assets/svgs/searchSmall.svg";
 import { ReactComponent as AddIcon } from "../assets/svgs/Plus.svg";
 import { useEffect, useState } from "react";
 import AIResult from "../components/AIBranding/AIResult";
+import AIBrandingData from "../assets/datas/aiBrandingData.json";
+import { useMutation } from "react-query";
+import { postAIBranding } from "../apis/aibrandingAPI";
 
 const AIBranding = () => {
-  const tagsList1 = [
-    //tags1
-    { id: 1, boxId: 1, contents: "네이밍", isClicked: false },
-    { id: 2, boxId: 1, contents: "슬로건", isClicked: false },
-    { id: 3, boxId: 1, contents: "로고", isClicked: false },
-    { id: 4, boxId: 1, contents: "버전 미션", isClicked: false },
-    { id: 5, boxId: 1, contents: "브랜드 에센스", isClicked: false },
-    { id: 6, boxId: 1, contents: "키워드", isClicked: false },
-    { id: 7, boxId: 1, contents: "메니페스토", isClicked: false },
-  ];
-
-  const tagsList2 = [
-    //tags2
-    { id: 1, boxId: 2, contents: "역동적인", isClicked: false },
-    { id: 2, boxId: 2, contents: "엣지있는", isClicked: false },
-    { id: 3, boxId: 2, contents: "즐거운", isClicked: false },
-    { id: 4, boxId: 2, contents: "즐거운", isClicked: false },
-    { id: 5, boxId: 2, contents: "역동적인", isClicked: false },
-    { id: 6, boxId: 2, contents: "키워드", isClicked: false },
-    { id: 7, boxId: 2, contents: "엣지있는", isClicked: false },
-  ];
-
-  const tagsList3 = [
-    //tags3
-    { id: 1, boxId: 3, contents: "금융", isClicked: false },
-    { id: 2, boxId: 3, contents: "F&B", isClicked: false },
-    { id: 3, boxId: 3, contents: "산업군", isClicked: false },
-    { id: 4, boxId: 3, contents: "산업군", isClicked: false },
-    { id: 5, boxId: 3, contents: "역동적인", isClicked: false },
-    { id: 6, boxId: 3, contents: "키워드", isClicked: false },
-    { id: 7, boxId: 3, contents: "엣지있는", isClicked: false },
-  ];
-
-  const tagsList4 = [
-    //tags4
-    { id: 1, boxId: 4, contents: "gen Z", isClicked: false },
-    { id: 2, boxId: 4, contents: "시니어", isClicked: false },
-    { id: 3, boxId: 4, contents: "고객층", isClicked: false },
-    { id: 4, boxId: 4, contents: "고객층", isClicked: false },
-    { id: 5, boxId: 4, contents: "역동적인", isClicked: false },
-    { id: 6, boxId: 4, contents: "키워드", isClicked: false },
-    { id: 7, boxId: 4, contents: "엣지있는", isClicked: false },
-  ];
-
-  const tagsList5 = [
-    //tags5
-    { id: 1, boxId: 5, contents: "토스", isClicked: false },
-    { id: 2, boxId: 5, contents: "카카오톡", isClicked: false },
-    { id: 3, boxId: 5, contents: "고객층", isClicked: false },
-    { id: 4, boxId: 5, contents: "고객층", isClicked: false },
-    { id: 5, boxId: 5, contents: "역동적인", isClicked: false },
-    { id: 6, boxId: 5, contents: "키워드", isClicked: false },
-    { id: 7, boxId: 5, contents: "엣지있는", isClicked: false },
-  ];
-
   const [isResult, setIsResult] = useState<boolean>(false);
   const [isNow, setIsNow] = useState<boolean[]>([
     true,
@@ -114,12 +62,14 @@ const AIBranding = () => {
     isClicked: boolean;
   }
 
-  const [isClicked, setIsClicked] = useState<TagType[]>(tagsList1);
-  const [tags1, setTags1] = useState<TagType[]>(tagsList1);
-  const [tags2, setTags2] = useState<TagType[]>(tagsList2);
-  const [tags3, setTags3] = useState<TagType[]>(tagsList3);
-  const [tags4, setTags4] = useState<TagType[]>(tagsList4);
-  const [tags5, setTags5] = useState<TagType[]>(tagsList5);
+  const [isClicked, setIsClicked] = useState<TagType[]>(
+    AIBrandingData.tagsList1,
+  );
+  const [tags1, setTags1] = useState<TagType[]>(AIBrandingData.tagsList1);
+  const [tags2, setTags2] = useState<TagType[]>(AIBrandingData.tagsList2);
+  const [tags3, setTags3] = useState<TagType[]>(AIBrandingData.tagsList3);
+  const [tags4, setTags4] = useState<TagType[]>(AIBrandingData.tagsList4);
+  const [tags5, setTags5] = useState<TagType[]>(AIBrandingData.tagsList5);
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [currentBoxId, setCurrentBoxId] = useState<number>(1);
@@ -131,6 +81,7 @@ const AIBranding = () => {
   });
 
   type SetListFunction = React.Dispatch<React.SetStateAction<TagType[]>>;
+
   const handleClick = (
     id: number,
     boxIndex: number,
@@ -143,19 +94,6 @@ const AIBranding = () => {
       ),
     );
     console.log(tagList);
-
-    // setCurrentBoxId(boxIndex);
-    // const clickedTagExists = tagList.some((tag) => tag.isClicked);
-
-    // if (clickedTagExists) {
-    //   const newIsNow = [...isNow];
-    //   newIsNow[boxIndex] = true;
-    //   setIsNow(newIsNow);
-    // } else {
-    //   const newIsNow = [...isNow];
-    //   newIsNow[boxIndex] = false;
-    //   setIsNow(newIsNow);
-    // }
   };
 
   const handleSubmit = () => {
@@ -257,17 +195,6 @@ const AIBranding = () => {
     }
   };
 
-  // const createTag = (inputValue:string): void => {
-  //   setTag2((prevLists) => {
-  //     const newTag = {
-  //       id: prevLists.length + 1,
-  //       contents: inputValue,
-  //       isClicked: true,
-  //       boxId: 2,
-  //     }
-  //   })
-  // }
-
   useEffect(() => {
     console.log(isNow);
     console.log(tags2);
@@ -280,6 +207,32 @@ const AIBranding = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [isResult]);
+
+  // const goToResult = (i) => () => {
+  //   if (name === userTeamName) {
+  //     alert("본인이 속한 팀은 투표할 수 없습니다.");
+  //     return;
+  //   }
+  //   setProjectId(id);
+  //   setClickedTeamName(name);
+  //   console.log("id:", id);
+  //   voteTeamMutation.mutate({ projectId: id, accessToken: accessToken });
+  // };
+
+  // const aiBrandingMutation = useMutation(postAIBranding, {
+  //   onSuccess: (data) => {
+  //     // console.log(data);
+  //     alert("데모데이 투표가 완료되었습니다.");
+  //     setIsLoading(true);
+  //     setTimeout(() => {
+  //       setIsResult(true);
+  //       setIsLoading(false);
+  //     }, 1500);
+  //   },
+  //   onError: (error) => {
+  //     console.log(error);
+  //   },
+  // });
 
   return (
     <Container>

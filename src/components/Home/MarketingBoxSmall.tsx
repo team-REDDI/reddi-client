@@ -23,13 +23,20 @@ export const MarketingBoxSmall = ({
     nav(`/marketing/detail/${id}`);
   };
 
+  //글자가 넘어가면 ..표시 되도록
+  const editContent = (content: String) => {
+    if (content.length >= 51) {
+      return content.substring(0, 51) + "...";
+    } else return content;
+  };
+
   return (
     <Container onClick={goToBrandDetail}>
       {lank ? <LankNum>{lank}</LankNum> : null}
       <MarketingImg src={imgSrc} />
       <TextBox>
         <Title>{title}</Title>
-        <ExpText>{expl}</ExpText>
+        <ExpText>{editContent(expl)}</ExpText>
       </TextBox>
     </Container>
   );
@@ -76,6 +83,9 @@ const Title = styled.span`
   line-height: 130%;
   letter-spacing: -0.015rem;
   margin-bottom: 0.75rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 const ExpText = styled.span`

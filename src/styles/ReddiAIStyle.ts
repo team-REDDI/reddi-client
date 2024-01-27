@@ -69,6 +69,7 @@ export const OrderContaniner = styled.div`
   align-items: center;
   gap: 0.7rem;
   background-color: ${colors.black};
+  border-radius: 0.75rem;
 `;
 
 export const OrderBox = styled.div`
@@ -87,7 +88,7 @@ export const OrderNumber = styled.div<{ now?: boolean }>`
   border-radius: 100%;
   font-size: 13px;
   font-weight: 700;
-  color: ${colors.white};
+  color: ${(props) => (props.now ? colors.white : colors.black)};
   justify-content: center;
   align-items: center;
 `;
@@ -114,9 +115,8 @@ export const WantBox = styled.div<{ now?: boolean; index?: number }>`
   padding: 2.62rem 2.38rem;
   box-sizing: border-box;
   gap: 1.5rem;
-  border: 0.3px solid #000;
-  background-color: ${colors.white};
-  box-shadow: 1px 1px 2px 0px rgba(0, 0, 0, 0.25);
+  background-color: ${colors.background_gray};
+  border-radius: 0.75rem;
 
   cursor: pointer;
 `;
@@ -144,7 +144,6 @@ export const WantTags = styled.div<{ isClicked?: boolean }>`
   padding: 0.5rem 1.25rem;
   justify-content: center;
   align-items: center;
-
   border-radius: 4.46rem;
   border: 0.714px solid
     ${(props) => (props.isClicked ? colors.black_CTA : "#8f8f8f")};
@@ -159,14 +158,14 @@ export const WantTagsInputBox = styled.form`
   height: 2.31rem;
   gap: 0.5rem;
   background-color: ${colors.white};
-  width: fit-content;
+  width: 9.125srem;
   padding: 0.5rem 1.25rem;
   border-radius: 6.25rem;
   box-sizing: border-box;
 `;
 
 export const WantTagsInput = styled.input`
-  width: 6.7rem;
+  width: 5.125rem;
   outline: none;
   border: none;
   color: ${colors.black_CTA};
@@ -199,10 +198,10 @@ export const ButtonBox = styled.div`
 export const DeleteButton = styled.div`
   display: flex;
   width: 16.3125rem;
-  height: 2.5rem;
+  height: 2.8125rem;
   justify-content: center;
   align-items: center;
-
+  border-radius: 0.75rem;
   background-color: #eaeaea;
   color: ${colors.black_CTA};
   cursor: pointer;
@@ -212,12 +211,13 @@ export const CompleteButton = styled.div`
   display: flex;
   flex-direction: column;
   width: 16.3125rem;
-  height: 2.5rem;
+  height: 2.8125rem;
   justify-content: center;
   align-items: center;
   gap: 0.446rem;
   background-color: ${colors.black};
   color: ${colors.white};
+  border-radius: 0.75rem;
 `;
 
 export const AIResultContanier = styled.div`
@@ -235,6 +235,8 @@ export const AIResultBox = styled.div`
   width: 100%;
   gap: 1.5rem;
   padding: 1.4375rem 1.875rem;
+  border-radius: 0.75rem;
+  background-color: ${colors.background_gray};
 `;
 
 export const ResultText = styled.div`
