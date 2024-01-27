@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { colors } from "../styles/colors";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { ReactComponent as BookmarkIcon } from "../assets/svgs/marketingBookmark.svg";
 interface MarketingProps {
   id: number;
   imgSrc: string;
@@ -22,6 +23,7 @@ export const MarketingBox = ({
   categories,
 }: MarketingProps) => {
   const [showAllCategories, setShowAllCategories] = useState(false);
+  const [isBookmarked, setIsBookmarked] = useState(false);
 
   const nav = useNavigate();
 
@@ -32,11 +34,18 @@ export const MarketingBox = ({
   const toggleCategories = () => {
     setShowAllCategories(!showAllCategories);
   };
+  const toggleBookmark = () => {
+    setIsBookmarked(!isBookmarked);
+  };
 
   return (
     <Container>
       <MarketingImg src={imgSrc} onClick={goToMarketingDetail} />
       <TextBox>
+        <StyledBookmarkIcon
+          onClick={toggleBookmark}
+          isBookmarked={isBookmarked}
+        />
         <TypeText onClick={goToMarketingDetail}>{type}</TypeText>
         <Title onClick={goToMarketingDetail}>{title}</Title>
         <ExpText onClick={goToMarketingDetail}>{expl}</ExpText>
@@ -76,6 +85,7 @@ const MarketingImg = styled.img`
 
 const TextBox = styled.div`
   display: flex;
+  position: relative;
   padding: 1.25rem;
   flex-direction: column;
   align-items: flex-start;
@@ -157,4 +167,13 @@ const Category = styled.div`
   font-weight: 500;
   line-height: 130%;
   letter-spacing: -0.01rem;
+`;
+const StyledBookmarkIcon = styled(BookmarkIcon)<{ isBookmarked: boolean }>`
+  position: absolute;
+  top: 0;
+  right: 1.1875rem;
+  path {
+    fill: ${(props) => (props.isBookmarked ? "#F53B36" : "white")};
+    stroke: ${(props) => (props.isBookmarked ? "#F53B36" : "#F53B36")};
+  }
 `;

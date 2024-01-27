@@ -9,6 +9,7 @@ import {
   RefBox,
 } from "../styles/brandStyle";
 import { useEffect, useState } from "react";
+import { ReactComponent as BookmarkIcon } from "../assets/svgs/brandBookmark.svg";
 
 interface BrandProps {
   id: number;
@@ -20,6 +21,11 @@ interface BrandProps {
 export const BrandBox = ({ id, imgSrc, brandName, tags }: BrandProps) => {
   const nav = useNavigate();
   const [showAllCategories, setShowAllCategories] = useState(false);
+  const [isBookmarked, setIsBookmarked] = useState(false);
+
+  const toggleBookmark = () => {
+    setIsBookmarked(!isBookmarked);
+  };
 
   const goToBrandDetail = () => {
     nav(`/brand/detail/${id}`);
@@ -47,6 +53,10 @@ export const BrandBox = ({ id, imgSrc, brandName, tags }: BrandProps) => {
         onClick={goToBrandDetail}
       />
       <BrandTextBox>
+        <StyledBookmarkIcon
+          onClick={toggleBookmark}
+          isBookmarked={isBookmarked}
+        />
         <BrandNameText onClick={goToBrandDetail}>{brandName}</BrandNameText>
         <BrandTagsContainer onClick={toggleCategories}>
           {tags
@@ -102,4 +112,14 @@ const PlusButton = styled.button`
   border-radius: 0.25rem;
   color: ${colors.red};
   background-color: ${colors.light_red};
+`;
+
+const StyledBookmarkIcon = styled(BookmarkIcon)<{ isBookmarked: boolean }>`
+  position: absolute;
+  top: 0;
+  right: 0;
+  path {
+    fill: ${(props) => (props.isBookmarked ? "#B9B9B9" : "white")};
+    stroke: ${(props) => (props.isBookmarked ? "#B9B9B9" : "#B9B9B9")};
+  }
 `;

@@ -30,9 +30,11 @@ export const BrandLogoImg = styled.img`
 `;
 
 export const BrandTextBox = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   margin-left: 1.87rem;
+  width: 21.375rem;
 `;
 
 export const BrandNameText = styled.span`
