@@ -60,6 +60,7 @@ export const MarketingTitle = styled.div`
   color: ${colors.white};
   font-size: 3rem;
   font-weight: 700;
+  width: 870px;
 `;
 
 export const DataTable = styled.div`
