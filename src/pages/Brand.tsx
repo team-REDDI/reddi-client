@@ -98,7 +98,7 @@ const Brand = () => {
     setSearchParams({ page: page.toString() });
   };
 
-  const totalPageNum = 3; //일단 임시로
+  const totalPageNum = 4; //일단 임시로
 
   return (
     <BrandPageContainer>
