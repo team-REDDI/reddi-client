@@ -38,6 +38,7 @@ import {
   Blank,
 } from "../styles/ReddiAIStyle";
 import { ReactComponent as SearchIcon } from "../assets/svgs/searchSmall.svg";
+import { ReactComponent as AddIcon } from "../assets/svgs/Plus.svg";
 import { useEffect, useState } from "react";
 import AIResult from "../components/AIBranding/AIResult";
 
@@ -395,9 +396,9 @@ const AIBranding = () => {
                     ))}
 
                     <WantTagsInputBox onSubmit={onSubmit}>
-                      <SearchIcon />
+                      <AddIcon />
                       <WantTagsInput
-                        placeholder="검색하기"
+                        placeholder="직접추가하기"
                         name="input2"
                         value={inputValues.input2}
                         onChange={onChange}
@@ -424,9 +425,9 @@ const AIBranding = () => {
                       </WantTags>
                     ))}
                     <WantTagsInputBox onSubmit={onSubmit}>
-                      <SearchIcon />
+                      <AddIcon />
                       <WantTagsInput
-                        placeholder="검색하기"
+                        placeholder="직접추가하기"
                         name="input3"
                         value={inputValues.input3}
                         onChange={onChange}
@@ -453,9 +454,9 @@ const AIBranding = () => {
                       </WantTags>
                     ))}
                     <WantTagsInputBox onSubmit={onSubmit}>
-                      <SearchIcon />
+                      <AddIcon />
                       <WantTagsInput
-                        placeholder="검색하기"
+                        placeholder="직접추가하기"
                         name="input4"
                         value={inputValues.input4}
                         onChange={onChange}
@@ -482,9 +483,9 @@ const AIBranding = () => {
                       </WantTags>
                     ))}
                     <WantTagsInputBox onSubmit={onSubmit}>
-                      <SearchIcon />
+                      <AddIcon />
                       <WantTagsInput
-                        placeholder="검색하기"
+                        placeholder="직접추가하기"
                         name="input5"
                         value={inputValues.input5}
                         onChange={onChange}
@@ -495,19 +496,6 @@ const AIBranding = () => {
               ) : null}
             </TagsContainer>
             <ButtonBox>
-              {/* {isNow[1] ? (
-                <DeleteButton
-                  onClick={() => {
-                    setCurrentBoxId((prev) => prev - 1);
-                    const newIsNow = [...isNow];
-                    newIsNow[currentBoxId] = false;
-                    setIsNow(newIsNow);
-                  }}
-                >
-                  이전
-                </DeleteButton>
-              ) : null} */}
-
               <CompleteButton
                 onClick={() => {
                   handleButtonClicked(currentBoxId);
