@@ -15,7 +15,8 @@ export const RefBox = styled.div`
   display: flex;
   width: 31.25rem;
   /* width: 50%; */
-  height: 9.0625rem;
+  /* height: 9.0625rem; */
+  height: fit-content;
   padding: 1.56rem 2.25rem;
   align-items: center;
   justify-content: flex-start;

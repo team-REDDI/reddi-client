@@ -123,8 +123,9 @@ const PlusButton = styled.button`
   padding: 0.25rem 0.5rem;
   justify-content: center;
   align-items: center;
+  border-radius: 0.25rem;
   color: ${colors.red};
-  background-color: ${colors.light_red};
+  background-color: ${colors.white};
 `;
 
 const ExpText = styled.span`
@@ -144,14 +145,19 @@ const CategoryContainer = styled.div`
   margin-top: 0.5rem;
   flex-wrap: wrap;
   gap: 0.34rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 const Category = styled.div`
   display: flex;
   justify-content: center;
+  gap: 0.5rem;
+  border-radius: 0.25rem;
   align-items: center;
   color: ${colors.red};
-  background-color: ${colors.light_red};
+  background-color: ${colors.white};
   padding: 0.25rem 0.5rem;
   font-size: 1rem;
   font-style: normal;

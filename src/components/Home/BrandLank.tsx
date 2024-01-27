@@ -61,6 +61,8 @@ const LankLine = styled.div`
 
 const LankInfo = styled.div`
   display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 const LankNum = styled.span`
   color: ${colors.black};

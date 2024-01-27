@@ -179,23 +179,23 @@ const SelectedFilters = styled.div`
   display: flex;
   flex-wrap: wrap;
   min-height: 2.5rem;
-  padding: 1.335rem 1.56rem;
+  padding: 1.875rem;
   align-items: center;
   gap: 0.5rem;
-  background: ${colors.light_red};
-  border-bottom: 1px solid ${colors.red};
-  /* padding-left: 1.75rem; */
+  border-radius: 0.75rem;
+  border: 1.2px solid #ddd;
+  background: #fff;
   box-sizing: border-box;
 `;
 
 const FilterTag = styled.div`
   display: flex;
-  height: 2.035rem;
-  padding: 0.25rem 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.75rem;
   justify-content: center;
   align-items: center;
-  color: white;
-  background-color: ${colors.red};
+  color: ${colors.red};
+  background-color: ${colors.light_red};
   font-size: 1.125rem;
   font-style: normal;
   font-weight: 500;
@@ -205,7 +205,7 @@ const FilterTag = styled.div`
 const RemoveButton = styled.button`
   border: 0;
   background-color: transparent;
-  color: white;
+  color: ${colors.red};
   font-size: 1.125rem;
   font-style: normal;
   font-weight: 500;
@@ -221,6 +221,7 @@ const ButtonsContainer = styled.div`
 
 const CategoryButton = styled.button<{ isActive: boolean }>`
   width: fit-content;
+  border-radius: 0.75rem;
   cursor: pointer;
   display: flex;
   padding: 0.19381rem 0.77519rem;
