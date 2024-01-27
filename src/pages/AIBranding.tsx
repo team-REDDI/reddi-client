@@ -42,6 +42,8 @@ import { ReactComponent as AddIcon } from "../assets/svgs/Plus.svg";
 import { useEffect, useState } from "react";
 import AIResult from "../components/AIBranding/AIResult";
 import AIBrandingData from "../assets/datas/aiBrandingData.json";
+import { useMutation } from "react-query";
+import { postAIBranding } from "../apis/aibrandingAPI";
 
 const AIBranding = () => {
   const [isResult, setIsResult] = useState<boolean>(false);
@@ -193,17 +195,6 @@ const AIBranding = () => {
     }
   };
 
-  // const createTag = (inputValue:string): void => {
-  //   setTag2((prevLists) => {
-  //     const newTag = {
-  //       id: prevLists.length + 1,
-  //       contents: inputValue,
-  //       isClicked: true,
-  //       boxId: 2,
-  //     }
-  //   })
-  // }
-
   useEffect(() => {
     console.log(isNow);
     console.log(tags2);
@@ -216,6 +207,32 @@ const AIBranding = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [isResult]);
+
+  // const goToResult = (i) => () => {
+  //   if (name === userTeamName) {
+  //     alert("본인이 속한 팀은 투표할 수 없습니다.");
+  //     return;
+  //   }
+  //   setProjectId(id);
+  //   setClickedTeamName(name);
+  //   console.log("id:", id);
+  //   voteTeamMutation.mutate({ projectId: id, accessToken: accessToken });
+  // };
+
+  // const aiBrandingMutation = useMutation(postAIBranding, {
+  //   onSuccess: (data) => {
+  //     // console.log(data);
+  //     alert("데모데이 투표가 완료되었습니다.");
+  //     setIsLoading(true);
+  //     setTimeout(() => {
+  //       setIsResult(true);
+  //       setIsLoading(false);
+  //     }, 1500);
+  //   },
+  //   onError: (error) => {
+  //     console.log(error);
+  //   },
+  // });
 
   return (
     <Container>

@@ -33,13 +33,6 @@ export const MarketingBox = ({
     setShowAllCategories(!showAllCategories);
   };
 
-  //글자가 넘어가면 ..표시 되도록
-  const editContent = (content: String) => {
-    if (content.length >= 0) {
-      return content.substring(0, 19) + "..";
-    } else return;
-  };
-
   return (
     <Container>
       <MarketingImg src={imgSrc} onClick={goToMarketingDetail} />
