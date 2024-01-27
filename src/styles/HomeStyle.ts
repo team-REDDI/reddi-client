@@ -209,3 +209,5 @@ export const Blank = styled.div`
   display: flex;
   height: 27.7rem;
 `;
+
+export const SkeletonBox = styled.div``;
