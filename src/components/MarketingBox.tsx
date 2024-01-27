@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { colors } from "../styles/colors";
 import { useNavigate } from "react-router-dom";
-
+import { useState } from "react";
 interface MarketingProps {
   id: number;
   imgSrc: string;
@@ -21,22 +21,33 @@ export const MarketingBox = ({
   read,
   categories,
 }: MarketingProps) => {
+  const [showAllCategories, setShowAllCategories] = useState(false);
+
   const nav = useNavigate();
 
   const goToMarketingDetail = () => {
     nav(`/marketing/detail/${id}`);
   };
 
+  const toggleCategories = () => {
+    setShowAllCategories(!showAllCategories);
+  };
+
   return (
     <Container>
       <MarketingImg src={imgSrc} onClick={goToMarketingDetail} />
-      <TypeText>{type}</TypeText>
-      <Title>{title}</Title>
-      <ExpText>{expl}</ExpText>
-      <CategoryContainer>
-        {categories.map((category, index) => (
-          <Category key={index}>{category}</Category>
-        ))}
+      <TypeText onClick={goToMarketingDetail}>{type}</TypeText>
+      <Title onClick={goToMarketingDetail}>{title}</Title>
+      <ExpText onClick={goToMarketingDetail}>{expl}</ExpText>
+      <CategoryContainer onClick={toggleCategories}>
+        {categories
+          .slice(0, showAllCategories ? categories.length : 3)
+          .map((category, index) => (
+            <Category key={index}>{category}</Category>
+          ))}
+        {categories.length > 3 && (
+          <PlusButton>{showAllCategories ? "x" : "+"}</PlusButton>
+        )}
       </CategoryContainer>
     </Container>
   );
@@ -79,6 +90,20 @@ const Title = styled.span`
   margin-bottom: 0.75rem;
 `;
 
+const PlusButton = styled.button`
+  cursor: pointer;
+  border: none;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 130%;
+  display: flex;
+  padding: 0.25rem 0.5rem;
+  justify-content: center;
+  align-items: center;
+  color: ${colors.red};
+  background-color: ${colors.light_red};
+`;
 const ExpText = styled.span`
   color: ${colors.grey_600};
   font-size: 1rem;

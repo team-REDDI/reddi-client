@@ -83,11 +83,11 @@ const CustomCheckbox = styled.div<{ checked: boolean }>`
   border: 0.3px solid #000;
   &:after {
     content: "✓";
-    font-size: 1rem;
+    font-size: 1.5rem;
     color: #fff;
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 55%;
+    left: 55%;
     transform: translate(-50%, -50%);
     visibility: ${(props) => (props.checked ? "visible" : "hidden")};
   }
