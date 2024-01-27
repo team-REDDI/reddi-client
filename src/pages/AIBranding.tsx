@@ -176,11 +176,11 @@ const AIBranding = () => {
 
   const handleButtonClicked = (boxIndex: number) => {
     if (isNow[4]) {
-      // setIsLoading(true);
-      // setTimeout(() => {
-      //   setIsResult(true);
-      //   setIsLoading(false);
-      // }, 1500);
+      setIsLoading(true);
+      setTimeout(() => {
+        setIsResult(true);
+        setIsLoading(false);
+      }, 1500);
       handleSubmit();
     } else {
       setCurrentBoxId((prev) => prev + 1);
