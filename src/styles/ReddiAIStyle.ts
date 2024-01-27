@@ -166,7 +166,7 @@ export const WantTagsInputBox = styled.form`
 `;
 
 export const WantTagsInput = styled.input`
-  width: 3.5rem;
+  width: 6.7rem;
   outline: none;
   border: none;
   color: ${colors.black_CTA};
