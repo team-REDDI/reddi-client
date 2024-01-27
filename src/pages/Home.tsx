@@ -33,16 +33,23 @@ import RandomMainBanner from "../components/Home/RandomMainBanner";
 import { useEffect, useState } from "react";
 import { getHomePost, getHotBrand, getHotPost } from "../apis/homeAPI";
 import { QueryClient, QueryClientProvider, useQuery } from "react-query";
+import { findIndustryTag } from "../utils/detailTagFunction";
+import { findTagByType } from "../utils/detailTagFunction";
 import { Skeleton } from "../components/Home/Skeleton";
+
 
 const queryClient = new QueryClient();
 
 const Home = () => {
+  interface BrandTag {
+    brandTagType: string;
+    tag: string;
+  }
   interface TopBrand {
     id: number;
     name: string;
     view_count: number;
-    brandTags: [brandTagType: string, tag: string];
+    brandTags: BrandTag[];
     cover_url: string;
     notion_page_url: string;
     notion_page_created_time: string;
@@ -97,6 +104,14 @@ const Home = () => {
     },
   );
 
+  const industryTags = hotBrand.map((brand) => {
+    const industryTag = brand.brandTags.find(
+      (tag: BrandTag) => tag.brandTagType === "산업군",
+    );
+    console.log("industry Tag", industryTag);
+    return industryTag ? industryTag.tag : null;
+  });
+
   const [hotMarketing, setHotMarketing] = useState<TopMarketing[]>();
   const { data: HotMarketing } = useQuery(
     ["HotBrandList"],
@@ -140,17 +155,23 @@ const Home = () => {
         </BrandTitleBox>
         <LankBox>
           {hotBrand &&
-            hotBrand.map((data, index) => (
-              <>
-                <BrandLankBox
-                  id={data.id}
-                  lank={index + 1}
-                  name={data.name}
-                  Icon={data.cover_url}
-                />
-                {index < 4 ? <GreyLine /> : null}
-              </>
-            ))}
+            hotBrand.map((data, index) => {
+              const industryTag =
+                data.brandTags.find((tag) => tag.brandTagType === "산업군")
+                  ?.tag || "Unknown";
+              return (
+                <>
+                  <BrandLankBox
+                    id={data.id}
+                    lank={index + 1}
+                    name={data.name}
+                    Icon={data.cover_url}
+                    industry={industryTag}
+                  />
+                  {index < 4 ? <GreyLine /> : null}
+                </>
+              );
+            })}
         </LankBox>
       </BrandLankContainer>
 
@@ -198,7 +219,7 @@ const Home = () => {
                 <MarketingBox
                   id={post.id}
                   imgSrc={post.cover_url}
-                  type="PLACE"
+                  type={findTagByType(post.postTags, "산업")}
                   title={post.title}
                   expl={post.subtitle}
                   read={post.view_count}
