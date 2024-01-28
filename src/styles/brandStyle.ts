@@ -38,7 +38,8 @@ export const BrandTextBox = styled.div`
   width: 21.375rem;
 `;
 
-export const BrandNameText = styled.span`
+export const BrandNameText = styled.div`
+  width: 21.375rem;
   color: ${colors.black};
   font-size: 1.5rem;
   font-weight: 700;

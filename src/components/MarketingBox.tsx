@@ -24,7 +24,7 @@ export const MarketingBox = ({
   categories,
   bookmarkOff,
 }: MarketingProps) => {
-  const [showAllCategories, setShowAllCategories] = useState(false);
+  const [showAllCategories, setShowAllCategories] = useState(true);
   const [isBookmarked, setIsBookmarked] = useState(false);
 
   const nav = useNavigate();
@@ -156,10 +156,15 @@ const ExpText = styled.span`
 const CategoryContainer = styled.div<{ showAll: boolean }>`
   display: flex;
   margin-top: 0.5rem;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   gap: 0.34rem;
   height: 1.8175rem;
   overflow: auto;
+  width: 100%;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
   z-index: 2;
 `;
 
@@ -177,6 +182,7 @@ const Category = styled.div`
   font-weight: 500;
   line-height: 130%;
   letter-spacing: -0.01rem;
+  white-space: nowrap;
 `;
 const StyledBookmarkIcon = styled(BookmarkIcon)<{ isBookmarked: boolean }>`
   position: absolute;
