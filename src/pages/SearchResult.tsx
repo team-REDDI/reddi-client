@@ -27,12 +27,14 @@ const SearchResult = () => {
   }, [inputValue]);
 
   interface BrandList {
+    id: number;
     name: string;
     brandTags: [{ brandTagType: string; tag: string }];
     coverUrl: string;
   }
 
   interface MarketingList {
+    id: number;
     title: string;
     subtitle: string;
     postTags: [{ postTagType: string; tag: string }];
@@ -84,7 +86,7 @@ const SearchResult = () => {
               {MarketingResult &&
                 MarketingResult.map((data, index) => (
                   <MarketingBox
-                    id={index}
+                    id={data.id}
                     imgSrc={data.coverUrl}
                     type={
                       data.postTags.find((tags) => tags.postTagType === "산업")
@@ -112,7 +114,7 @@ const SearchResult = () => {
                   imgSrc={data.coverUrl}
                   brandName={data.name}
                   tags={data.brandTags.map((tags) => tags.tag)}
-                  id={index}
+                  id={data.id}
                   bookmarkOff={true}
                 />
               ))}
