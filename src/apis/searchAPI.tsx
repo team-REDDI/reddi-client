@@ -31,3 +31,14 @@ export const getPostSearchResult = async (info: {
     throw error;
   }
 };
+
+export const getHotPostSearch = async () => {
+  try {
+    const response = await client.get("api/search/hot-post");
+    console.log("marketing hot data:", response.data);
+    return response.data.data.posts;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
