@@ -13,7 +13,9 @@ import {
 import { MarketingBox } from "../components/MarketingBox";
 import { BrandBox } from "../components/BrandBox";
 import { useSearchParams } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { getBrandSearchResult, getPostSearchResult } from "../apis/searchAPI";
+import { QueryClient, QueryClientProvider, useQuery } from "react-query";
 
 const SearchResult = () => {
   const [params, setParams] = useSearchParams();
@@ -27,6 +29,49 @@ const SearchResult = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  interface BrandList {
+    name: string;
+    brandTags: [{ brandTagType: string; tag: string }];
+    coverUrl: string;
+  }
+
+  interface MarketingList {
+    title: string;
+    subtitle: string;
+    postTags: [{ postTagType: string; tag: string }];
+    coverUrl: string;
+    notionPageCreatedTime: string;
+    notionPageLasetedEditedTime: string;
+  }
+
+  const [BrandResult, setBrandResult] = useState<BrandList[]>();
+  const { data: BrandData } = useQuery(
+    ["BrandResultList"],
+    () => getBrandSearchResult({ keyword: inputValue, size: 100 }),
+    {
+      onSuccess: (data) => {
+        setBrandResult(data);
+      },
+      onError: (error) => {
+        console.log(error);
+      },
+    },
+  );
+
+  const [MarketingResult, setMarketingResult] = useState<MarketingList[]>();
+  const { data: PostData } = useQuery(
+    ["MarketingResultList"],
+    () => getPostSearchResult({ keyword: inputValue, size: 100 }),
+    {
+      onSuccess: (data) => {
+        setMarketingResult(data);
+      },
+      onError: (error) => {
+        console.log(error);
+      },
+    },
+  );
+
   return (
     <ResultContainer>
       <NavBar />
@@ -34,67 +79,42 @@ const SearchResult = () => {
         <ResultTitle>'{inputValue}' 검색 결과</ResultTitle>
         <MarketingResultBox>
           <ResultText>
-            ‘{inputValue}’이(가) 본문/제목에 언급된 마케팅 콘텐츠입니다. (3)
+            ‘{inputValue}’이(가) 본문/제목에 언급된 마케팅 콘텐츠입니다. (
+            {MarketingResult?.length})
           </ResultText>
           <MarketingsBox>
-            <MarketingBox
-              id={1}
-              imgSrc="../assets/images/exemple.png"
-              type="PLACE"
-              title="더 현대를 밝히는 ‘해리의 꿈의 상점’"
-              expl="유럽 어느 골목을 들어와있는 듯한 착각"
-              read={727}
-              categories={["부티크", "팝업스토어", "콘셉트마케팅"]}
-            />
-            <MarketingBox
-              id={1}
-              imgSrc="../assets/images/exemple.png"
-              type="PLACE"
-              title="신세계 백화점의 ‘MAGIC WINTER FANTASY’"
-              expl="3분을 위한 9개월의 여정"
-              read={1928}
-              categories={["부티크", "팝업스토어", "콘셉트마케팅"]}
-            />
-            <MarketingBox
-              id={1}
-              imgSrc="../assets/images/exemple.png"
-              type="PLACE"
-              title="시몬스테라스의 ‘크리스마스 일루미네이션"
-              expl="동화 속 마을로 단장한 시몬스"
-              read={567}
-              categories={["부티크", "팝업스토어", "콘셉트마케팅"]}
-            />
+            {MarketingResult &&
+              MarketingResult.map((data, index) => (
+                <MarketingBox
+                  id={index}
+                  imgSrc={data.coverUrl}
+                  type={
+                    data.postTags.find((tags) => tags.postTagType === "산업")
+                      ?.tag || "Unknown"
+                  }
+                  title={data.title}
+                  expl={data.subtitle}
+                  read={727}
+                  categories={data.postTags.map((tags) => tags.tag)}
+                />
+              ))}
           </MarketingsBox>
         </MarketingResultBox>
         <BrandResultBox>
           <ResultText>
-            ‘{inputValue}’이(가) 본문/제목에 언급된 브랜드입니다. (4)
+            ‘{inputValue}’이(가) 본문/제목에 언급된 브랜드입니다. (
+            {BrandResult?.length})
           </ResultText>
           <BrandsBox>
-            <BrandBox
-              imgSrc=""
-              brandName="토스증권"
-              tags={["IT/금융"]}
-              id={1}
-            />
-            <BrandBox
-              imgSrc=""
-              brandName="토스증권"
-              tags={["IT/금융"]}
-              id={1}
-            />
-            <BrandBox
-              imgSrc=""
-              brandName="토스증권"
-              tags={["IT/금융"]}
-              id={1}
-            />
-            <BrandBox
-              imgSrc=""
-              brandName="토스증권"
-              tags={["IT/금융"]}
-              id={1}
-            />
+            {BrandResult &&
+              BrandResult.map((data, index) => (
+                <BrandBox
+                  imgSrc={data.coverUrl}
+                  brandName={data.name}
+                  tags={data.brandTags.map((tags) => tags.tag)}
+                  id={index}
+                />
+              ))}
           </BrandsBox>
         </BrandResultBox>
       </ResultBox>
@@ -103,4 +123,10 @@ const SearchResult = () => {
   );
 };
 
-export default SearchResult;
+const queryClient = new QueryClient();
+
+export default () => (
+  <QueryClientProvider client={queryClient}>
+    <SearchResult />
+  </QueryClientProvider>
+);

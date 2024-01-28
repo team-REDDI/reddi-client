@@ -37,11 +37,11 @@ export const SearchBar: React.FC<SearchBarProps> = (props) => {
       e.preventDefault();
       goToResult();
       //입력한 값이 없을 때 alert 추가
-      // if (inputValue.trim() === "") {
-      //   alert("입력해주세요.");
-      // } else {
-      //   setInputValue("");
-      // }
+      if (inputValue.trim() === "") {
+        alert("입력해주세요.");
+      } else {
+        setInputValue("");
+      }
     },
     [inputValue, goToResult],
   );
