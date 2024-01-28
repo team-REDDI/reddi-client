@@ -14,7 +14,8 @@ const RandomMainBanner = () => {
 
   const nav = useNavigate();
   const goToContents = () => {
-    nav(`/marketing/detail/9`);
+    if (bannerNumber === 1) nav(`/marketing/detail/6`);
+    else nav(`/marketing/detail/9`);
   };
 
   return (
