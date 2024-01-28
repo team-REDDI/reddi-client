@@ -24,7 +24,7 @@ export const MarketingBox = ({
   categories,
   bookmarkOff,
 }: MarketingProps) => {
-  const [showAllCategories, setShowAllCategories] = useState(false);
+  const [showAllCategories, setShowAllCategories] = useState(true);
   const [isBookmarked, setIsBookmarked] = useState(false);
 
   const nav = useNavigate();
@@ -53,7 +53,10 @@ export const MarketingBox = ({
         <TypeText onClick={goToMarketingDetail}>{type}</TypeText>
         <Title onClick={goToMarketingDetail}>{title}</Title>
         <ExpText onClick={goToMarketingDetail}>{expl}</ExpText>
-        <CategoryContainer onClick={toggleCategories}>
+        <CategoryContainer
+          onClick={toggleCategories}
+          showAll={showAllCategories}
+        >
           {categories
             .slice(0, showAllCategories ? categories.length : 3)
             .map((category, index) => (
@@ -72,8 +75,9 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   /* width: calc(33.333% - 1.5rem); */
+  overflow: hidden;
   width: 20.3125rem;
-  height: fit-content;
+  height: 25.875rem;
   align-items: flex-start;
   cursor: pointer;
 `;
@@ -95,7 +99,9 @@ const TextBox = styled.div`
   align-items: flex-start;
   gap: 0.625rem;
   width: 20.3125rem;
-  height: fit-content;
+  overflow: visible;
+  height: 11.125rem;
+  /* height: auto; */
   border-radius: 0rem 0rem 0.75rem 0.75rem;
   background-color: #fafafa;
 `;
@@ -147,14 +153,19 @@ const ExpText = styled.span`
   white-space: nowrap;
 `;
 
-const CategoryContainer = styled.div`
+const CategoryContainer = styled.div<{ showAll: boolean }>`
   display: flex;
   margin-top: 0.5rem;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   gap: 0.34rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  height: 1.8175rem;
+  overflow: auto;
+  width: 100%;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  z-index: 2;
 `;
 
 const Category = styled.div`
@@ -171,6 +182,7 @@ const Category = styled.div`
   font-weight: 500;
   line-height: 130%;
   letter-spacing: -0.01rem;
+  white-space: nowrap;
 `;
 const StyledBookmarkIcon = styled(BookmarkIcon)<{ isBookmarked: boolean }>`
   position: absolute;

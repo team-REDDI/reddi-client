@@ -27,7 +27,7 @@ export const BrandBox = ({
   bookmarkOff,
 }: BrandProps) => {
   const nav = useNavigate();
-  const [showAllCategories, setShowAllCategories] = useState(false);
+  const [showAllCategories, setShowAllCategories] = useState(true);
   const [isBookmarked, setIsBookmarked] = useState(false);
 
   const toggleBookmark = () => {
@@ -60,13 +60,13 @@ export const BrandBox = ({
         onClick={goToBrandDetail}
       />
       <BrandTextBox>
+        <BrandNameText onClick={goToBrandDetail}>{brandName}</BrandNameText>
         {bookmarkOff ? null : (
           <StyledBookmarkIcon
             onClick={toggleBookmark}
             isBookmarked={isBookmarked}
           />
         )}
-        <BrandNameText onClick={goToBrandDetail}>{brandName}</BrandNameText>
         <BrandTagsContainer onClick={toggleCategories}>
           {tags
             .slice(0, showAllCategories ? tags.length : 3)
@@ -83,10 +83,13 @@ export const BrandBox = ({
 };
 const BrandTagsContainer = styled.div`
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: row;
+  flex-wrap: nowrap;
   margin-top: 0.5rem;
   gap: 0.34rem;
-  height: fit-content;
+  height: 2.312rem;
+  overflow-x: auto;
+  overflow-y: hidden;
   z-index: 99;
 `;
 
@@ -97,6 +100,8 @@ const BrandTag = styled.div`
   border-radius: 0.25rem;
   font-size: 1rem;
   font-weight: 500;
+  width: fit-content;
+  white-space: nowrap;
 `;
 
 const BrandImage = styled.img<{ isLandscape: boolean }>`
@@ -128,6 +133,7 @@ const StyledBookmarkIcon = styled(BookmarkIcon)<{ isBookmarked: boolean }>`
   position: absolute;
   top: 0;
   right: 0;
+
   path {
     fill: ${(props) => (props.isBookmarked ? "#B9B9B9" : "white")};
     stroke: ${(props) => (props.isBookmarked ? "#B9B9B9" : "#B9B9B9")};
