@@ -97,8 +97,8 @@ const Container = styled.div`
   display: flex;
   align-items: flex-start;
   /* top: 40.625rem; */
-  top: 36rem;
-  right: 3.38rem;
+  top: 70%;
+  right: 2.38rem;
 `;
 
 const FloatingBox = styled.div`
