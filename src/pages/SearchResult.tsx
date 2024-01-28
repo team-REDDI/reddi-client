@@ -24,9 +24,7 @@ const SearchResult = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
-
-  useEffect(() => {}, [inputValue]);
+  }, [inputValue]);
 
   interface BrandList {
     name: string;
