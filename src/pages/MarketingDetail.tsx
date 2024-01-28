@@ -179,15 +179,19 @@ const MarketingDetail = () => {
           },
         )}
       </ExplBox>
+
       <MarketingTags>
-        {marketingDetailInfo?.postTags.map(
-          (tag: { tag: string }, index: number) => (
-            <FilterTag key={index} weight={800}>
-              {tag.tag}
-            </FilterTag>
-          ),
-        )}
+        <TagBox>
+          {marketingDetailInfo?.postTags.map(
+            (tag: { tag: string }, index: number) => (
+              <FilterTag key={index} weight={800}>
+                {tag.tag}
+              </FilterTag>
+            ),
+          )}{" "}
+        </TagBox>
       </MarketingTags>
+
       <Footer />
     </MarketingDetailContainer>
   );
