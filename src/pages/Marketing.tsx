@@ -174,7 +174,7 @@ const ReferenceBox = styled.div`
   padding-left: 10.69rem;
   padding-right: 10.69rem; */
 `;
-const MarketingLines = styled.div`
+export const MarketingLines = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   /* width: 100%; */

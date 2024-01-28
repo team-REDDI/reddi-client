@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Link, NavLink } from "react-router-dom";
 import { ReactComponent as ReddiLogo } from "../assets/svgs/ReddiLogo.svg";
 import { useState, useEffect } from "react";
-import { SearchBar } from "./SearchBar";
+import { SearchBar } from "./Search/SearchBar";
 import SignUp from "./SignUp";
 import Login from "./Login";
 import { colors } from "../styles/colors";

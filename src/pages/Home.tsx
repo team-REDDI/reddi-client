@@ -45,6 +45,12 @@ const Home = () => {
     brandTagType: string;
     tag: string;
   }
+
+  interface PostTag {
+    postTagType: string;
+    tag: string;
+  }
+
   interface TopBrand {
     id: number;
     name: string;
@@ -63,7 +69,7 @@ const Home = () => {
     subtitle: string;
     description: string;
     view_count: number;
-    postTags: [postTagType: string, tag: string];
+    postTags: PostTag[];
     cover_url: string;
     notion_page_url: string;
     notion_page_created_time: string;
@@ -80,7 +86,7 @@ const Home = () => {
         subtitle: string;
         descriptioin: string;
         view_count: number;
-        postTags: [{ postTagType: string; tag: string }];
+        postTags: PostTag[];
         cover_url: string;
         notion_page_url: string;
         notion_page_created_time: string;
