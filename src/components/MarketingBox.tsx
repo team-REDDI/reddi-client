@@ -11,6 +11,7 @@ interface MarketingProps {
   expl: string;
   read: number;
   categories: string[];
+  bookmarkOff?: boolean;
 }
 
 export const MarketingBox = ({
@@ -21,6 +22,7 @@ export const MarketingBox = ({
   expl,
   read,
   categories,
+  bookmarkOff,
 }: MarketingProps) => {
   const [showAllCategories, setShowAllCategories] = useState(false);
   const [isBookmarked, setIsBookmarked] = useState(false);
@@ -42,10 +44,12 @@ export const MarketingBox = ({
     <Container>
       <MarketingImg src={imgSrc} onClick={goToMarketingDetail} />
       <TextBox>
-        <StyledBookmarkIcon
-          onClick={toggleBookmark}
-          isBookmarked={isBookmarked}
-        />
+        {bookmarkOff ? null : (
+          <StyledBookmarkIcon
+            onClick={toggleBookmark}
+            isBookmarked={isBookmarked}
+          />
+        )}
         <TypeText onClick={goToMarketingDetail}>{type}</TypeText>
         <Title onClick={goToMarketingDetail}>{title}</Title>
         <ExpText onClick={goToMarketingDetail}>{expl}</ExpText>

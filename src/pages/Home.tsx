@@ -230,6 +230,7 @@ const Home = () => {
                   expl={post.subtitle}
                   read={post.view_count}
                   categories={post.postTags.map((list) => list.tag)}
+                  bookmarkOff={true}
                 />
               ))}
             </MarketingLine>
