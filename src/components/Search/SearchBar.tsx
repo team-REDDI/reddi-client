@@ -6,11 +6,14 @@ import { MarketingBoxSmall } from "../Home/MarketingBoxSmall";
 import dropdownDataMarketing from "../../assets/datas/dropDownDataMarketing.json";
 import dropdownDataBrand from "../../assets/datas/dropDownDataBrand.json";
 import { useNavigate } from "react-router-dom";
-
+import { getHotPostSearch } from "../../apis/searchAPI";
+import { QueryClientProvider, useQuery } from "react-query";
+import { QueryClient } from "@tanstack/react-query";
 type SearchBarProps = {
   show: boolean;
   toggleSearchBar: () => void;
 };
+const queryClient = new QueryClient();
 
 export const SearchBar: React.FC<SearchBarProps> = (props) => {
   const [wordList, setWordList] = useState<string>();
@@ -20,6 +23,12 @@ export const SearchBar: React.FC<SearchBarProps> = (props) => {
   const nav = useNavigate();
   const [searchBarOpen, setSearchBarOpen] = useState<boolean>(false);
 
+  const {
+    data: hotPosts,
+    isLoading,
+    isError,
+  } = useQuery("hotPosts", getHotPostSearch);
+  console.log(hotPosts);
   const goToResult = useCallback(() => {
     nav({
       pathname: "/search/result",
@@ -78,20 +87,24 @@ export const SearchBar: React.FC<SearchBarProps> = (props) => {
         <ReferenceBox>
           <SearchTitle>인기 마케팅 레퍼런스</SearchTitle>
           <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-            <MarketingBoxSmall
-              id={1}
-              lank={1}
-              imgSrc="../assets/images/exemple.png"
-              title="더 현대를 밝히는 ‘해리의 꿈의 상점’"
-              expl="유럽 어느 골목을 들어와있는 듯한 착각"
-            />
-            <MarketingBoxSmall
-              id={2}
-              lank={2}
-              imgSrc="../assets/images/exemple.png"
-              title="더 현대를 밝히는 ‘해리의 꿈의 상점’"
-              expl="유럽 어느 골목을 들어와있는 듯한 착각"
-            />
+            {hotPosts && hotPosts.length > 0 && (
+              <MarketingBoxSmall
+                id={hotPosts[0].id}
+                lank={1}
+                imgSrc={hotPosts[0].coverUrl}
+                title={hotPosts[0].title}
+                expl={hotPosts[0].subtitle}
+              />
+            )}
+            {hotPosts && hotPosts.length > 0 && (
+              <MarketingBoxSmall
+                id={hotPosts[1].id}
+                lank={2}
+                imgSrc={hotPosts[1].coverUrl}
+                title={hotPosts[1].title}
+                expl={hotPosts[1].subtitle}
+              />
+            )}
           </div>
         </ReferenceBox>
       </SearchListBox>
