@@ -8,7 +8,7 @@ export const getBrandSearchResult = async (info: {
     const response = await client.get("api/search/", {
       params: { keyword: info.keyword, size: info.size },
     });
-    console.log("Brand Search Result", response.data);
+    console.log("Brand Search Result", response.data.data.brands);
     return response.data.data.brands;
   } catch (error) {
     console.error(error);
@@ -24,7 +24,7 @@ export const getPostSearchResult = async (info: {
     const response = await client.get("api/search/", {
       params: { keyword: info.keyword, size: info.size },
     });
-    console.log("Marketing Search Result", response.data);
+    console.log("Marketing Search Result", response.data.data.posts);
     return response.data.data.posts;
   } catch (error) {
     console.error(error);

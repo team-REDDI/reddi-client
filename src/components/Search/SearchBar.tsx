@@ -35,12 +35,12 @@ export const SearchBar: React.FC<SearchBarProps> = (props) => {
   const onSubmit = useCallback(
     (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      goToResult();
+
       //입력한 값이 없을 때 alert 추가
       if (inputValue.trim() === "") {
-        alert("입력해주세요.");
+        alert("내용을 입력해주세요.");
       } else {
-        setInputValue("");
+        goToResult();
       }
     },
     [inputValue, goToResult],
