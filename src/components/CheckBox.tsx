@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { ReactComponent as CheckBox } from "../assets/svgs/checkedBox.svg";
 
 interface Item {
   name: string;
@@ -15,7 +16,6 @@ interface CheckboxGroupProps {
 interface StyledLabelProps {
   width: string;
 }
-
 const CheckboxGroup: React.FC<CheckboxGroupProps> = ({
   items,
   selectedFilters,
@@ -32,7 +32,9 @@ const CheckboxGroup: React.FC<CheckboxGroupProps> = ({
             onChange={(e) => onSelect(item, e.target.checked)}
             id={`checkbox-${item.value}`}
           />
-          <CustomCheckbox checked={selectedFilters.has(item.value)} />
+          <CustomCheckbox checked={selectedFilters.has(item.value)}>
+            {selectedFilters.has(item.value) && <CheckBox />}
+          </CustomCheckbox>
           {item.name}
         </StyledLabel>
       ))}
@@ -68,7 +70,6 @@ const CheckBoxInput = styled.input`
   display: none;
 
   &:checked + div {
-    background-color: #000;
     &:after {
       visibility: visible;
     }
@@ -82,15 +83,28 @@ const CustomCheckbox = styled.div<{ checked: boolean }>`
   margin-right: 1.25rem;
   position: relative;
   border: 0.3px solid #000;
-  &:after {
-    content: "✓";
-    font-size: 1.5rem;
-    color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    z-index: 1;
+    display: ${(props) => (props.checked ? "block" : "none")};
+    width: 100%;
+    height: 100%;
+  }
+
+  :before {
+    content: "";
     position: absolute;
-    top: 55%;
-    left: 55%;
-    transform: translate(-50%, -50%);
-    visibility: ${(props) => (props.checked ? "visible" : "hidden")};
+    top: 0;
+    left: 0;
+    z-index: 0;
+    display: ${(props) => (props.checked ? "none" : "block")};
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: #fff;
   }
 `;
 
