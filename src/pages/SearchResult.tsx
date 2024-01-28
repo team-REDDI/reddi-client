@@ -16,18 +16,17 @@ import { useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getBrandSearchResult, getPostSearchResult } from "../apis/searchAPI";
 import { QueryClient, QueryClientProvider, useQuery } from "react-query";
+import { MarketingLines } from "./Marketing";
 
 const SearchResult = () => {
   const [params, setParams] = useSearchParams();
   const inputValue = params.get("input");
 
   useEffect(() => {
-    // updateSearchResult(inputValue);
-  }, [inputValue]);
-
-  useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  useEffect(() => {}, [inputValue]);
 
   interface BrandList {
     name: string;
@@ -46,7 +45,7 @@ const SearchResult = () => {
 
   const [BrandResult, setBrandResult] = useState<BrandList[]>();
   const { data: BrandData } = useQuery(
-    ["BrandResultList"],
+    ["BrandResult", inputValue],
     () => getBrandSearchResult({ keyword: inputValue, size: 100 }),
     {
       onSuccess: (data) => {
@@ -60,7 +59,7 @@ const SearchResult = () => {
 
   const [MarketingResult, setMarketingResult] = useState<MarketingList[]>();
   const { data: PostData } = useQuery(
-    ["MarketingResultList"],
+    ["MarketingResult", inputValue],
     () => getPostSearchResult({ keyword: inputValue, size: 100 }),
     {
       onSuccess: (data) => {
@@ -83,21 +82,23 @@ const SearchResult = () => {
             {MarketingResult?.length})
           </ResultText>
           <MarketingsBox>
-            {MarketingResult &&
-              MarketingResult.map((data, index) => (
-                <MarketingBox
-                  id={index}
-                  imgSrc={data.coverUrl}
-                  type={
-                    data.postTags.find((tags) => tags.postTagType === "산업")
-                      ?.tag || "Unknown"
-                  }
-                  title={data.title}
-                  expl={data.subtitle}
-                  read={727}
-                  categories={data.postTags.map((tags) => tags.tag)}
-                />
-              ))}
+            <MarketingLines>
+              {MarketingResult &&
+                MarketingResult.map((data, index) => (
+                  <MarketingBox
+                    id={index}
+                    imgSrc={data.coverUrl}
+                    type={
+                      data.postTags.find((tags) => tags.postTagType === "산업")
+                        ?.tag || "Unknown"
+                    }
+                    title={data.title}
+                    expl={data.subtitle}
+                    read={727}
+                    categories={data.postTags.map((tags) => tags.tag)}
+                  />
+                ))}
+            </MarketingLines>
           </MarketingsBox>
         </MarketingResultBox>
         <BrandResultBox>

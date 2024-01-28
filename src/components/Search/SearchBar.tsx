@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import { colors } from "../styles/colors";
+import { colors } from "../../styles/colors";
 import { useCallback, useEffect, useState } from "react";
-import { ReactComponent as SearchIcon } from "../assets/svgs/searchIcon.svg";
-import { MarketingBoxSmall } from "./Home/MarketingBoxSmall";
-import dropdownDataMarketing from "../assets/datas/dropDownDataMarketing.json";
-import dropdownDataBrand from "../assets/datas/dropDownDataBrand.json";
+import { ReactComponent as SearchIcon } from "../../assets/svgs/searchIcon.svg";
+import { MarketingBoxSmall } from "../Home/MarketingBoxSmall";
+import dropdownDataMarketing from "../../assets/datas/dropDownDataMarketing.json";
+import dropdownDataBrand from "../../assets/datas/dropDownDataBrand.json";
 import { useNavigate } from "react-router-dom";
 
 type SearchBarProps = {
@@ -108,7 +108,7 @@ const SearchContainer = styled.div<{
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.7);
-  z-index: 1;
+  z-index: 990;
   transform: translateY(${(props) => (props.show ? "0%" : "-100%")});
   transition: transform 10.3s ease-in;
 `;
@@ -120,7 +120,7 @@ const SearchInputContainer = styled.div<{
   width: 100%;
   height: 13.75rem;
   background-color: ${colors.black_CTA};
-  z-index: 99;
+  z-index: 999;
   transform: translateY(${(props) => (props.show ? "0%" : "-100%")});
   transition: transform 10.3s ease-in;
   justify-content: center;
@@ -178,7 +178,7 @@ const SearchListBox = styled.div<{
   width: 100%;
   height: 25.25rem;
   background-color: ${colors.white};
-  z-index: 99;
+  z-index: 999;
   transform: translateY(${(props) => (props.show ? "0%" : "-100%")});
   transition: transform 10.3s ease-in;
 `;
