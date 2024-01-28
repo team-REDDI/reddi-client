@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { colors } from "./colors";
+import { ReactComponent as ReddiAILogo } from "../assets/svgs/reddiAILogo.svg";
 
 export const Container = styled.div`
   display: flex;
@@ -25,14 +26,23 @@ export const ReddiAITitleBox = styled.div`
 
 export const ReddiAILine = styled.div`
   display: flex;
+  align-items: baseline;
 `;
 
-export const ReddiAI = styled.span`
+export const ReddiAI = styled.div`
   color: ${colors.red};
   font-size: 2.25rem;
   font-weight: 700;
   line-height: 130%;
   letter-spacing: -0.0225rem;
+`;
+
+export const ReddiAIIcon = styled(ReddiAILogo)`
+  display: flex;
+  width: 6.2075rem;
+  height: 1.86894rem;
+  margin-right: 0.35rem;
+  line-height: 130%;
 `;
 
 export const ReddiAITitle = styled.span`
@@ -41,6 +51,7 @@ export const ReddiAITitle = styled.span`
   font-weight: 700;
   line-height: 130%;
   letter-spacing: -0.0225rem;
+  font-family: "SUIT-Regular";
 `;
 
 export const ReddiAIExp = styled.span`

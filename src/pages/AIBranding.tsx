@@ -36,8 +36,8 @@ import {
   WantTagsInputBox,
   WantText,
   Blank,
+  ReddiAIIcon,
 } from "../styles/ReddiAIStyle";
-import { ReactComponent as SearchIcon } from "../assets/svgs/searchSmall.svg";
 import { ReactComponent as AddIcon } from "../assets/svgs/Plus.svg";
 import { useEffect, useState } from "react";
 import AIResult from "../components/AIBranding/AIResult";
@@ -279,7 +279,8 @@ const AIBranding = () => {
       <ReddiAIContainer>
         <ReddiAITitleBox>
           <ReddiAILine>
-            <ReddiAI>Reddi AI</ReddiAI>
+            <ReddiAIIcon />
+            <ReddiAI>AI</ReddiAI>
             <ReddiAITitle>로 만드는 나만의 브랜딩</ReddiAITitle>
           </ReddiAILine>
           <ReddiAIExp>
