@@ -100,7 +100,9 @@ const Marketing = () => {
   const filteredBoxes =
     selectedFilters.size > 0
       ? allMarketingBoxes.filter((box) =>
-          box.categories.some((category) => selectedFilters.has(category)),
+          Array.from(selectedFilters).every((filter) =>
+            box.categories.includes(filter),
+          ),
         )
       : marketingBoxes;
 
