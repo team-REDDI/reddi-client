@@ -15,6 +15,7 @@ export const ImageContainer = styled.div`
   background-color: rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;
+  margin-top: 3.125rem;
 `;
 
 export const HomeImage = styled.img`
