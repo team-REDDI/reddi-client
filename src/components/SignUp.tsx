@@ -185,10 +185,13 @@ const InfoSmallText = styled.div`
 `;
 
 const Sliders = styled.div`
+  position: absolute;
   display: flex;
   align-items: center;
   gap: 1.56rem;
   margin-top: 1.13rem;
+  bottom: 3.94rem;
+  left: 7.91rem;
 `;
 const LeftSliderIcon = styled(LeftSlider)`
   cursor: pointer;
