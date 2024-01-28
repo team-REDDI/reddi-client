@@ -16,9 +16,16 @@ interface BrandProps {
   imgSrc: string;
   brandName: string;
   tags: string[];
+  bookmarkOff?: boolean;
 }
 
-export const BrandBox = ({ id, imgSrc, brandName, tags }: BrandProps) => {
+export const BrandBox = ({
+  id,
+  imgSrc,
+  brandName,
+  tags,
+  bookmarkOff,
+}: BrandProps) => {
   const nav = useNavigate();
   const [showAllCategories, setShowAllCategories] = useState(false);
   const [isBookmarked, setIsBookmarked] = useState(false);
@@ -53,10 +60,12 @@ export const BrandBox = ({ id, imgSrc, brandName, tags }: BrandProps) => {
         onClick={goToBrandDetail}
       />
       <BrandTextBox>
-        <StyledBookmarkIcon
-          onClick={toggleBookmark}
-          isBookmarked={isBookmarked}
-        />
+        {bookmarkOff ? null : (
+          <StyledBookmarkIcon
+            onClick={toggleBookmark}
+            isBookmarked={isBookmarked}
+          />
+        )}
         <BrandNameText onClick={goToBrandDetail}>{brandName}</BrandNameText>
         <BrandTagsContainer onClick={toggleCategories}>
           {tags

@@ -113,6 +113,7 @@ const SearchResult = () => {
                   brandName={data.name}
                   tags={data.brandTags.map((tags) => tags.tag)}
                   id={index}
+                  bookmarkOff={true}
                 />
               ))}
           </BrandsBox>
