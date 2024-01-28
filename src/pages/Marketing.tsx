@@ -111,7 +111,7 @@ const Marketing = () => {
       <NavBar />
       <Header
         title="마케팅"
-        subtitle="마케팅 레퍼런스들을 보여주는 페이지입니다. (짧은 페이지 설명)"
+        subtitle="좋은 마케팅이 있었기에 좋은 브랜드가 될 수 있었다. 고객에게 매력적으로 다가갈 수 있었던 브랜드의 마케팅 레퍼런스를 레디에서 만나보세요."
         ImageComponent={MarketingSVG}
       />
       <Filter dropdownItems={dropdownDataMarketing} pageType="marketing" />

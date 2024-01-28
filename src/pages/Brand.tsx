@@ -106,7 +106,7 @@ const Brand = () => {
       <NavBar />
       <Header
         title="브랜드"
-        subtitle="브랜드 레퍼런스들을 보여주는 페이지입니다. (짧은 페이지 설명)"
+        subtitle="좋은 브랜드들만의 첫 단추를 잘 끼우는 방법. 브랜드의 강렬한 이미지를 결정짓는 브랜딩 레퍼런스를 레디에서 만나보세요."
         ImageComponent={BrandSVG}
       />
       <Filter dropdownItems={dropdownDataBrand} pageType="brand" />
