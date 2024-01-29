@@ -24,7 +24,7 @@ export const MarketingBox = ({
   categories,
   bookmarkOff,
 }: MarketingProps) => {
-  const [showAllCategories, setShowAllCategories] = useState(true);
+  const [showAllCategories, setShowAllCategories] = useState(false);
   const [isBookmarked, setIsBookmarked] = useState(false);
 
   const nav = useNavigate();
