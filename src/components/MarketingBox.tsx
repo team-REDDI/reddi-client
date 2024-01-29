@@ -40,15 +40,15 @@ export const MarketingBox = ({
     setIsBookmarked(!isBookmarked);
   };
 
-  const maxTotalLength = 14.5;
-  const totalLength = categories.reduce(
-    (acc, category) => acc + category.length,
-    0,
-  );
+  //최대 길이 정해서 그것보다 작은만큼 표시하도록 함
+  //근데 문제점이 뭐냐면,,, gap까지 고려를 못해주고 글자수만 비교해서 ㅠㅠ 약간 미묘한 문제가 있음..
+  const maxTotalLength = 14;
 
   let sumLength = 0;
+  let tagNum = 0;
   const selectedCategories = categories.filter((category) => {
     sumLength += category.length;
+    tagNum++;
     return sumLength <= maxTotalLength;
   });
 
@@ -77,7 +77,7 @@ export const MarketingBox = ({
           .map((category, index) => (
             <Category key={index}>{category}</Category>
           ))}
-        {categories.length != selectedCategories.length &&
+        {categories.length > selectedCategories.length &&
           (showAllCategories ? null : <PlusButton>+</PlusButton>)}
       </CategoryContainer>
     </ExpendedContainer>
@@ -190,7 +190,7 @@ const CategoryContainer = styled.div<{ showAll: boolean }>`
   border-radius: 0rem 0rem 0.75rem 0.75rem;
   background-color: #fafafa;
   position: absolute;
-  top: 22.8125rem;
+  top: 22.7rem;
   padding: 0 1.25rem 1.25rem 1.25rem;
   /* overflow-x: auto;
   overflow-y: hidden;

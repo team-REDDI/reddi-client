@@ -27,7 +27,7 @@ export const BrandBox = ({
   bookmarkOff,
 }: BrandProps) => {
   const nav = useNavigate();
-  const [showAllCategories, setShowAllCategories] = useState(true);
+  const [showAllCategories, setShowAllCategories] = useState(false);
   const [isBookmarked, setIsBookmarked] = useState(false);
 
   const toggleBookmark = () => {
@@ -51,6 +51,16 @@ export const BrandBox = ({
     };
   }, [imgSrc]);
 
+  const maxTotalLength = 11;
+
+  let sumLength = 0;
+  let tagNum = 0;
+  const selectedTags = tags.filter((tag) => {
+    sumLength += tag.length;
+    tagNum++;
+    return sumLength <= maxTotalLength;
+  });
+
   return (
     <RefBox>
       <BrandImage
@@ -69,13 +79,12 @@ export const BrandBox = ({
         )}
         <BrandTagsContainer onClick={toggleCategories}>
           {tags
-            .slice(0, showAllCategories ? tags.length : 3)
+            .slice(0, showAllCategories ? tags.length : selectedTags.length)
             .map((category, index) => (
               <BrandTag key={index}>{category}</BrandTag>
             ))}
-          {tags.length > 3 && (
-            <PlusButton>{showAllCategories ? "x" : "+"}</PlusButton>
-          )}
+          {tags.length > selectedTags.length &&
+            (showAllCategories ? null : <PlusButton>+</PlusButton>)}
         </BrandTagsContainer>
       </BrandTextBox>
     </RefBox>
@@ -84,12 +93,11 @@ export const BrandBox = ({
 const BrandTagsContainer = styled.div`
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
-  margin-top: 0.5rem;
+  flex-wrap: wrap;
   gap: 0.34rem;
   height: 2.312rem;
-  overflow-x: auto;
-  overflow-y: hidden;
+  /* overflow-x: auto;
+  overflow-y: hidden; */
   z-index: 99;
 `;
 
@@ -113,6 +121,7 @@ const BrandImage = styled.img<{ isLandscape: boolean }>`
   object-fit: cover;
   object-position: center;
 `;
+
 const PlusButton = styled.button`
   cursor: pointer;
   border: none;

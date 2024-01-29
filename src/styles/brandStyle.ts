@@ -22,7 +22,7 @@ export const RefBox = styled.div`
   justify-content: flex-start;
   box-sizing: border-box;
   cursor: pointer;
-  position: relative; 
+  position: relative;
 `;
 
 export const BrandLogoImg = styled.img`
@@ -34,8 +34,9 @@ export const BrandTextBox = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  margin-left: 1.87rem;
+  margin-left: 1.5rem;
   width: 21.375rem;
+  gap: 0.75rem;
 `;
 
 export const BrandNameText = styled.div`
@@ -45,7 +46,6 @@ export const BrandNameText = styled.div`
   font-weight: 700;
   line-height: 130%;
   letter-spacing: -0.015rem;
-  margin-bottom: 0.19rem;
 `;
 
 export const BrandLocation = styled.span`
@@ -62,8 +62,7 @@ export const BrandTags = styled.div`
   padding: 0.25rem 0.5rem;
   justify-content: center;
   align-items: center;
-  margin-right: 0.5rem;
-  color: var(--red, var(--red, #f53b36));
+  color: ${colors.red};
   background-color: ${colors.light_red};
   font-size: 1rem;
   font-weight: 500;
@@ -198,7 +197,7 @@ export const BrandExpTitle = styled.div<{ first?: boolean }>`
   line-height: 130%;
   letter-spacing: -0.01125rem;
   margin-bottom: 1.88rem;
-  margin-top: ${(props) => (props.first ? '0' : '1.88rem')};
+  margin-top: ${(props) => (props.first ? "0" : "1.88rem")};
 `;
 export const BrandExpText = styled.div`
   /* color: #5f5f5f; */
