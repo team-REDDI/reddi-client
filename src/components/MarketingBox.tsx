@@ -40,44 +40,67 @@ export const MarketingBox = ({
     setIsBookmarked(!isBookmarked);
   };
 
+  const maxTotalLength = 14.5;
+  const totalLength = categories.reduce(
+    (acc, category) => acc + category.length,
+    0,
+  );
+
+  let sumLength = 0;
+  const selectedCategories = categories.filter((category) => {
+    sumLength += category.length;
+    return sumLength <= maxTotalLength;
+  });
+
   return (
-    <Container>
-      <MarketingImg src={imgSrc} onClick={goToMarketingDetail} />
-      <TextBox>
-        {bookmarkOff ? null : (
-          <StyledBookmarkIcon
-            onClick={toggleBookmark}
-            isBookmarked={isBookmarked}
-          />
-        )}
-        <TypeText onClick={goToMarketingDetail}>{type}</TypeText>
-        <Title onClick={goToMarketingDetail}>{title}</Title>
-        <ExpText onClick={goToMarketingDetail}>{expl}</ExpText>
-        <CategoryContainer
-          onClick={toggleCategories}
-          showAll={showAllCategories}
-        >
-          {categories
-            .slice(0, showAllCategories ? categories.length : 3)
-            .map((category, index) => (
-              <Category key={index}>{category}</Category>
-            ))}
-          {categories.length > 3 && (
-            <PlusButton>{showAllCategories ? "x" : "+"}</PlusButton>
+    <ExpendedContainer>
+      <Container>
+        <MarketingImg src={imgSrc} onClick={goToMarketingDetail} />
+        <TextBox>
+          {bookmarkOff ? null : (
+            <StyledBookmarkIcon
+              onClick={toggleBookmark}
+              isBookmarked={isBookmarked}
+            />
           )}
-        </CategoryContainer>
-      </TextBox>
-    </Container>
+          <TypeText onClick={goToMarketingDetail}>{type}</TypeText>
+          <Title onClick={goToMarketingDetail}>{title}</Title>
+          <ExpText onClick={goToMarketingDetail}>{expl}</ExpText>
+        </TextBox>
+      </Container>
+      <CategoryContainer onClick={toggleCategories} showAll={showAllCategories}>
+        {categories
+          .slice(
+            0,
+            showAllCategories ? categories.length : selectedCategories.length,
+          )
+          .map((category, index) => (
+            <Category key={index}>{category}</Category>
+          ))}
+        {categories.length != selectedCategories.length &&
+          (showAllCategories ? null : <PlusButton>+</PlusButton>)}
+      </CategoryContainer>
+    </ExpendedContainer>
   );
 };
+
+const ExpendedContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  position: relative;
+  margin-bottom: 4.3rem;
+`;
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   /* width: calc(33.333% - 1.5rem); */
   overflow: hidden;
+  flex-wrap: wrap;
   width: 20.3125rem;
-  height: 25.875rem;
+  height: auto;
+  /* height: 25.875rem; */
   align-items: flex-start;
   cursor: pointer;
 `;
@@ -99,10 +122,10 @@ const TextBox = styled.div`
   align-items: flex-start;
   gap: 0.625rem;
   width: 20.3125rem;
-  overflow: visible;
-  height: 11.125rem;
-  /* height: auto; */
-  border-radius: 0rem 0rem 0.75rem 0.75rem;
+  /* overflow: auto; */
+  /* height: 11.125rem; */
+  height: fit-content;
+  /* border-radius: 0rem 0rem 0.75rem 0.75rem; */
   background-color: #fafafa;
 `;
 
@@ -155,17 +178,26 @@ const ExpText = styled.span`
 
 const CategoryContainer = styled.div<{ showAll: boolean }>`
   display: flex;
-  margin-top: 0.5rem;
-  /* flex-wrap: wrap; */
+  /* margin-top: 0.5rem; */
+  flex-wrap: wrap;
   gap: 0.34rem;
-  height: 1.8175rem;
-  overflow: auto;
+  /* height: 1.8175rem; */
+  height: auto;
   width: 100%;
   flex-direction: row;
-  flex-wrap: nowrap;
-  overflow-x: auto;
-  overflow-y: hidden;
+  flex-wrap: wrap;
   z-index: 2;
+  border-radius: 0rem 0rem 0.75rem 0.75rem;
+  background-color: #fafafa;
+  position: absolute;
+  top: 22.8125rem;
+  padding: 0 1.25rem 1.25rem 1.25rem;
+  /* overflow-x: auto;
+  overflow-y: hidden;
+
+  &::-webkit-scrollbar {
+    display: none;
+  } */
 `;
 
 const Category = styled.div`
@@ -184,6 +216,7 @@ const Category = styled.div`
   letter-spacing: -0.01rem;
   white-space: nowrap;
 `;
+
 const StyledBookmarkIcon = styled(BookmarkIcon)<{ isBookmarked: boolean }>`
   position: absolute;
   top: 0;
