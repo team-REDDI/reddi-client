@@ -15,8 +15,8 @@ export const postAIBranding = async (info: {
       targets: info.target,
       similarServices: info.similar,
     });
-    console.log("AIBrandingResult", response.data);
-    return response.data.data;
+    // console.log("AIBrandingResult", response.data.result);
+    return response.data.data.result;
   } catch (error) {
     console.error(error);
     throw error;

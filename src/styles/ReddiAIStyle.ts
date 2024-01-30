@@ -261,7 +261,6 @@ export const ResultText = styled.div`
 export const ResultLine = styled.div`
   display: flex;
   width: fit-content;
-  gap: 3.12rem;
 `;
 
 export const TypeText = styled.span`
@@ -271,7 +270,8 @@ export const TypeText = styled.span`
   font-weight: 500;
   line-height: 150%;
   letter-spacing: -0.00875rem;
-  width: 2.4rem;
+  width: 5.7rem;
+  margin-right: 2.12rem;
 `;
 
 export const LoadingContainer = styled.div`

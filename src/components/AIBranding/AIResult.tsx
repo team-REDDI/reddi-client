@@ -10,19 +10,22 @@ import {
 } from "../../styles/ReddiAIStyle";
 import { ResultText } from "../../styles/searchStyle";
 
-const AIResult = () => {
+interface AIResultProps {
+  resultData: [string, string][];
+}
+
+const AIResult = ({ resultData }: AIResultProps) => {
   return (
     <AIResultContanier>
       <ResultText>Reddi AI가 추천하는 홍길동님의 브랜드에요.</ResultText>
       <AIResultBox>
-        <ResultLine>
-          <TypeText>네이밍</TypeText>
-          <WantText now={true}>뱅크샐러드</WantText>
-        </ResultLine>
-        <ResultLine>
-          <TypeText>슬로건</TypeText>
-          <WantText now={true}>금융을 넘어 건강 자산까지, 한 입에</WantText>
-        </ResultLine>
+        {resultData &&
+          Object.entries(resultData).map(([key, value]) => (
+            <ResultLine>
+              <TypeText>{key}</TypeText>
+              <WantText now={true}>{value}</WantText>
+            </ResultLine>
+          ))}
       </AIResultBox>
       {/* <ButtonBox>
         <DeleteButton>다시 생성하기</DeleteButton>
