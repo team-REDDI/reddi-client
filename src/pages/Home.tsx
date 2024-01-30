@@ -208,8 +208,6 @@ const Home = () => {
       {isLoading ? (
         <>
           <HomeSkeleton />
-          <HomeSkeleton />
-          <HomeSkeleton />
         </>
       ) : (
         homePostList &&
