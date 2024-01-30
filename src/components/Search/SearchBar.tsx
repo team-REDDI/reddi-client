@@ -6,15 +6,15 @@ import { MarketingBoxSmall } from "../Home/MarketingBoxSmall";
 import dropdownDataMarketing from "../../assets/datas/dropDownDataMarketing.json";
 import dropdownDataBrand from "../../assets/datas/dropDownDataBrand.json";
 import { useNavigate } from "react-router-dom";
-import { getHotPostSearch } from "../../apis/searchAPI";
+import { getHotKeyword, getHotPostSearch } from "../../apis/searchAPI";
 import { QueryClientProvider, useQuery } from "react-query";
 import { QueryClient } from "@tanstack/react-query";
 type SearchBarProps = {
   show: boolean;
   toggleSearchBar: () => void;
 };
-const queryClient = new QueryClient();
 
+const queryClient = new QueryClient();
 export const SearchBar: React.FC<SearchBarProps> = (props) => {
   const [wordList, setWordList] = useState<string>();
   useEffect(() => {}, [props.show]);
@@ -29,6 +29,26 @@ export const SearchBar: React.FC<SearchBarProps> = (props) => {
     isError,
   } = useQuery("hotPosts", getHotPostSearch);
   console.log(hotPosts);
+
+  interface KeywordType {
+    keyword: string;
+    count: number;
+  }
+
+  const [keywordsData, setKeywordsData] = useState<KeywordType[]>();
+  const { data: hotKeywords } = useQuery("hotKeywords", getHotKeyword, {
+    onSuccess: (data) => {
+      setKeywordsData(data);
+    },
+    onError: (error) => {
+      console.log(error);
+    },
+  });
+
+  // useEffect(() => {
+  //   console.log("키", keywordsData);
+  // }, [keywordsData]);
+
   const goToResult = useCallback(() => {
     nav({
       pathname: "/search/result",
@@ -74,12 +94,15 @@ export const SearchBar: React.FC<SearchBarProps> = (props) => {
         <WordsListBox>
           <SearchTitle>인기 검색어</SearchTitle>
           <WordsList>
-            {Object.values(dropdownDataBrand)
-              .flat()
-              .map((item) => (
-                <WordBox onClick={() => setInputValue(item.value)}>
-                  <Word>{item.value}</Word>
-                  <WordNum>91</WordNum>
+            {keywordsData &&
+              keywordsData.length > 0 &&
+              keywordsData.map((item, index) => (
+                <WordBox
+                  key={index}
+                  onClick={() => setInputValue(item.keyword)}
+                >
+                  <Word>{item.keyword}</Word>
+                  <WordNum>{item.count}</WordNum>
                 </WordBox>
               ))}
           </WordsList>
