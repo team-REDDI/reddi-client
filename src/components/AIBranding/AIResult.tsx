@@ -1,3 +1,4 @@
+import styled from "styled-components";
 import {
   AIResultBox,
   AIResultContanier,
@@ -9,6 +10,7 @@ import {
   WantText,
 } from "../../styles/ReddiAIStyle";
 import { ResultText } from "../../styles/searchStyle";
+import { colors } from "../../styles/colors";
 
 interface AIResultProps {
   resultData: [string, string][];
@@ -23,7 +25,7 @@ const AIResult = ({ resultData }: AIResultProps) => {
           Object.entries(resultData).map(([key, value]) => (
             <ResultLine>
               <TypeText>{key}</TypeText>
-              <WantText now={true}>{value}</WantText>
+              <ValueText>{value}</ValueText>
             </ResultLine>
           ))}
       </AIResultBox>
@@ -36,3 +38,14 @@ const AIResult = ({ resultData }: AIResultProps) => {
 };
 
 export default AIResult;
+
+const ValueText = styled.div`
+  color: ${colors.black_CTA};
+  width: 52.5rem;
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 130%;
+  letter-spacing: -0.01125rem;
+  box-sizing: border-box;
+`;
