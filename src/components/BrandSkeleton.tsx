@@ -52,6 +52,6 @@ const BrandSkeletonBox = styled.div`
   align-items: flex-start;
   gap: 0.625rem;
   border-radius: 0.75rem;
-  border: 0.5px solid #eaeaea;
+  /* border: 0.5px solid #eaeaea; */
   background: ${colors.background_gray};
 `;
