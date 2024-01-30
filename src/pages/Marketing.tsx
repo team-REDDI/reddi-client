@@ -131,12 +131,6 @@ const Marketing = () => {
               <MarketingSkeleton />
               <MarketingSkeleton />
               <MarketingSkeleton />
-              <MarketingSkeleton />
-              <MarketingSkeleton />
-              <MarketingSkeleton />
-              <MarketingSkeleton />
-              <MarketingSkeleton />
-              <MarketingSkeleton />
             </>
           ) : (
             filteredBoxes.map((box, index) => (
