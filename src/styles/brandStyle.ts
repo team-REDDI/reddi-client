@@ -7,7 +7,7 @@ export const BrandContainer = styled.div`
   grid-template-columns: repeat(2, 1fr);
   justify-content: flex-start;
   align-items: flex-start;
-  margin-top: 5.03rem;
+  margin-top: 2.5rem;
   gap: 3.12rem 1.5rem;
 `;
 
