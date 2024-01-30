@@ -42,7 +42,12 @@ import { ReactComponent as AddIcon } from "../assets/svgs/Plus.svg";
 import { useEffect, useState } from "react";
 import AIResult from "../components/AIBranding/AIResult";
 import AIBrandingData from "../assets/datas/aiBrandingData.json";
-import { QueryClientProvider, QueryClient, useMutation } from "react-query";
+import {
+  QueryClientProvider,
+  QueryClient,
+  useMutation,
+  Mutation,
+} from "react-query";
 import { postAIBranding } from "../apis/aibrandingAPI";
 
 const queryClient = new QueryClient();
@@ -70,7 +75,7 @@ const AIBranding = () => {
   const [tags4, setTags4] = useState<TagType[]>(AIBrandingData.tagsList4);
   const [tags5, setTags5] = useState<TagType[]>(AIBrandingData.tagsList5);
 
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  // const [isLoading, setIsLoading] = useState<boolean>(false);
   const [currentBoxId, setCurrentBoxId] = useState<number>(1);
   const [inputValues, setInputValues] = useState({
     input2: "",
@@ -92,7 +97,7 @@ const AIBranding = () => {
         tag.id === id ? { ...tag, isClicked: !tag.isClicked } : tag,
       ),
     );
-    console.log(tagList);
+    // console.log(tagList);
   };
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -176,11 +181,11 @@ const AIBranding = () => {
 
   const handleButtonClicked = (boxIndex: number) => {
     if (isNow[4]) {
-      setIsLoading(true);
-      setTimeout(() => {
-        setIsResult(true);
-        setIsLoading(false);
-      }, 1500);
+      // setIsLoading(true);
+      // setTimeout(() => {
+      //   setIsResult(true);
+      //   setIsLoading(false);
+      // }, 1500);
       handleSubmit();
     } else {
       setCurrentBoxId((prev) => prev + 1);
@@ -189,11 +194,6 @@ const AIBranding = () => {
       setIsNow(newIsNow);
     }
   };
-
-  useEffect(() => {
-    console.log(isNow);
-    console.log(tags2);
-  }, [isNow]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -226,11 +226,11 @@ const AIBranding = () => {
       .map((tag) => tag.contents)
       .join(", ");
 
-    console.log(clickedTags1);
-    console.log(clickedTags2);
-    console.log(clickedTags3);
-    console.log(clickedTags4);
-    console.log(clickedTags5);
+    // console.log(clickedTags1);
+    // console.log(clickedTags2);
+    // console.log(clickedTags3);
+    // console.log(clickedTags4);
+    // console.log(clickedTags5);
 
     AIBrandingMutation.mutate({
       element: clickedTags1,
@@ -241,19 +241,22 @@ const AIBranding = () => {
     });
   };
 
+  const [brandingResult, setBrandingResult] = useState<[string, string][]>();
+
   const AIBrandingMutation = useMutation(postAIBranding, {
     onSuccess: (data) => {
-      // console.log(data);
-      // setIsLoading(true);
-      // setTimeout(() => {
-      //   setIsResult(true);
-      //   setIsLoading(false);
-      // }, 1500);
+      setBrandingResult(data);
+      setIsResult(true);
     },
     onError: (error) => {
       console.log(error);
     },
   });
+  const { isLoading, isError, data } = AIBrandingMutation;
+
+  useEffect(() => {
+    console.log("brandingResult", brandingResult);
+  }, [brandingResult]);
 
   return (
     <Container>
@@ -290,10 +293,11 @@ const AIBranding = () => {
 
         {isResult ? (
           <>
-            <AIResult />
+            {brandingResult && <AIResult resultData={brandingResult} />}
             <ButtonBox>
               <DeleteButton
                 onClick={() => {
+                  setIsResult(false);
                   window.location.reload();
                 }}
               >
