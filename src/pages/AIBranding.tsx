@@ -181,11 +181,6 @@ const AIBranding = () => {
 
   const handleButtonClicked = (boxIndex: number) => {
     if (isNow[4]) {
-      // setIsLoading(true);
-      // setTimeout(() => {
-      //   setIsResult(true);
-      //   setIsLoading(false);
-      // }, 1500);
       handleSubmit();
     } else {
       setCurrentBoxId((prev) => prev + 1);
@@ -197,6 +192,7 @@ const AIBranding = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    setIsResult(false);
   }, []);
 
   useEffect(() => {
