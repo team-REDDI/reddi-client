@@ -41,7 +41,7 @@ export default AIResult;
 
 const ValueText = styled.div`
   color: ${colors.black_CTA};
-  width: 54.8rem;
+  width: 52.5rem;
   font-size: 1.125rem;
   font-style: normal;
   font-weight: 500;
