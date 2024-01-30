@@ -230,7 +230,7 @@ const WordsListBox = styled.div`
 const WordsList = styled.div`
   display: flex;
   width: 28.5rem;
-  height: 13.75rem;
+  /* height: 13.75rem; */
   flex-wrap: wrap;
   gap: 1.5rem 3.12rem;
   overflow-y: auto;
@@ -243,6 +243,7 @@ const WordsList = styled.div`
 const WordBox = styled.div`
   display: flex;
   justify-content: start;
+  height: 1.3125rem;
 
   cursor: pointer;
 `;
