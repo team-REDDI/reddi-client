@@ -14,7 +14,7 @@ import { MarketingBox } from "../components/MarketingBox";
 import { BrandBox } from "../components/BrandBox";
 import { useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getBrandSearchResult, getPostSearchResult } from "../apis/searchAPI";
+import { getSearchResult } from "../apis/searchAPI";
 import { QueryClient, QueryClientProvider, useQuery } from "react-query";
 import { MarketingLines } from "./Marketing";
 
@@ -25,6 +25,11 @@ const SearchResult = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [inputValue]);
+
+  interface ResultList {
+    brands: BrandList[];
+    posts: MarketingList[];
+  }
 
   interface BrandList {
     id: number;
@@ -43,13 +48,15 @@ const SearchResult = () => {
     notionPageLasetedEditedTime: string;
   }
 
+  const [resultData, setResultData] = useState<ResultList>();
   const [BrandResult, setBrandResult] = useState<BrandList[]>();
-  const { data: BrandData } = useQuery(
-    ["BrandResult", inputValue],
-    () => getBrandSearchResult({ keyword: inputValue, size: 100 }),
+  const [MarketingResult, setMarketingResult] = useState<MarketingList[]>();
+  const { data: ResultData } = useQuery(
+    ["resultData", inputValue],
+    () => getSearchResult({ keyword: inputValue, size: 100 }),
     {
       onSuccess: (data) => {
-        setBrandResult(data);
+        setResultData(data);
       },
       onError: (error) => {
         console.log(error);
@@ -57,19 +64,12 @@ const SearchResult = () => {
     },
   );
 
-  const [MarketingResult, setMarketingResult] = useState<MarketingList[]>();
-  const { data: PostData } = useQuery(
-    ["MarketingResult", inputValue],
-    () => getPostSearchResult({ keyword: inputValue, size: 100 }),
-    {
-      onSuccess: (data) => {
-        setMarketingResult(data);
-      },
-      onError: (error) => {
-        console.log(error);
-      },
-    },
-  );
+  useEffect(() => {
+    if (resultData) {
+      setBrandResult(resultData.brands);
+      setMarketingResult(resultData.posts);
+    }
+  }, [resultData?.brands, resultData?.posts]);
 
   return (
     <ResultContainer>
