@@ -20,6 +20,7 @@ import { useState, useEffect } from "react";
 import { getMarketingList } from "../apis/marketing";
 import { findTagByType } from "../utils/detailTagFunction";
 import { useSearchParams } from "react-router-dom";
+import { MarketingSkeleton } from "../components/MarketingSkeleton";
 
 interface Marketing {
   id: number;
@@ -56,10 +57,13 @@ const Marketing = () => {
     setSearchParams({ page: page.toString() });
   };
 
-  const { data: marketingInfo }: UseQueryResult<Marketing[], unknown> =
-    useQuery(["marketingInfo", currentPage - 1], () =>
-      getMarketingList({ page: currentPage - 1, size: 9 }),
-    );
+  const {
+    data: marketingInfo,
+    isLoading,
+  }: UseQueryResult<Marketing[], unknown> = useQuery(
+    ["marketingInfo", currentPage - 1],
+    () => getMarketingList({ page: currentPage - 1, size: 9 }),
+  );
 
   const marketingBoxes =
     marketingInfo?.map((marketing: Marketing) => {
@@ -122,18 +126,32 @@ const Marketing = () => {
           <HomeTitle>마케팅 레퍼런스</HomeTitle>
         </BrandTitleRow>
         <MarketingLines>
-          {filteredBoxes.map((box, index) => (
-            <MarketingBox
-              id={box.id}
-              key={index}
-              imgSrc={box.imgSrc}
-              type={box.type}
-              title={box.title}
-              expl={box.expl}
-              read={box.read}
-              categories={box.categories}
-            />
-          ))}
+          {isLoading ? (
+            <>
+              <MarketingSkeleton />
+              <MarketingSkeleton />
+              <MarketingSkeleton />
+              <MarketingSkeleton />
+              <MarketingSkeleton />
+              <MarketingSkeleton />
+              <MarketingSkeleton />
+              <MarketingSkeleton />
+              <MarketingSkeleton />
+            </>
+          ) : (
+            filteredBoxes.map((box, index) => (
+              <MarketingBox
+                id={box.id}
+                key={index}
+                imgSrc={box.imgSrc}
+                type={box.type}
+                title={box.title}
+                expl={box.expl}
+                read={box.read}
+                categories={box.categories}
+              />
+            ))
+          )}
         </MarketingLines>
       </ReferenceBox>
       <PageButtonContainer>
