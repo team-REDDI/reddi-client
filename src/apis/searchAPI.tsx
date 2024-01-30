@@ -1,6 +1,6 @@
 import client from "./client";
 
-export const getBrandSearchResult = async (info: {
+export const getSearchResult = async (info: {
   keyword: string | null;
   size: number;
 }) => {
@@ -8,24 +8,8 @@ export const getBrandSearchResult = async (info: {
     const response = await client.get("api/search/", {
       params: { keyword: info.keyword, size: info.size },
     });
-    console.log("Brand Search Result", response.data.data.brands);
-    return response.data.data.brands;
-  } catch (error) {
-    console.error(error);
-    throw error;
-  }
-};
-
-export const getPostSearchResult = async (info: {
-  keyword: string | null;
-  size: number;
-}) => {
-  try {
-    const response = await client.get("api/search/", {
-      params: { keyword: info.keyword, size: info.size },
-    });
-    console.log("Marketing Search Result", response.data.data.posts);
-    return response.data.data.posts;
+    console.log("Search Result", response.data.data);
+    return response.data.data;
   } catch (error) {
     console.error(error);
     throw error;
