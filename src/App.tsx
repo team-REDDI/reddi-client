@@ -15,6 +15,7 @@ import {
   QueryClientProvider,
   useQuery,
 } from "@tanstack/react-query";
+import GoogleAuthCallback from "./components/Auth/googleAuthCallback";
 const queryClient = new QueryClient();
 
 function App() {
@@ -31,6 +32,10 @@ function App() {
               <Route
                 path="/marketing/detail/:id"
                 element={<MarketingDetail />}
+              />
+              <Route
+                path="/auth/google/callback"
+                element={<GoogleAuthCallback />}
               />
               <Route path="/brand" element={<Brand />} />
               <Route path="/brand/detail/0" element={<BrandDetail />} />

@@ -10,14 +10,29 @@ import {
 } from "../styles/mypageStyle";
 import Footer from "../components/Footer";
 import Tab from "../components/Mypage/tab";
+import { useRecoilState } from "recoil";
+import { isLoginState, userDataState } from "../utils/atom";
+import Login from "../components/Login";
+
 const Mypage = () => {
+  const [isLogin, setIsLogin] = useRecoilState(isLoginState);
+  const [userData, setUserData] = useRecoilState(userDataState);
+
+  if (!isLogin) {
+    return (
+      <div>
+        <NavBar />
+        로그인하세요
+      </div>
+    );
+  }
   return (
     <Container>
       <NavBar />
       <MyPageContainer>
         <ProfileContainer>
-          <ProfileImage></ProfileImage>
-          <ProfileNameText>이레디</ProfileNameText>
+          <ProfileImage src={userData.profileImageUrl}></ProfileImage>
+          <ProfileNameText>{userData.name}</ProfileNameText>
           <ProfileIdText>readyornot</ProfileIdText>
         </ProfileContainer>
         <Tab />

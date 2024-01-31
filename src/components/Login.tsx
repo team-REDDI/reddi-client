@@ -4,6 +4,9 @@ import { useEffect, useState } from "react";
 import { ReactComponent as ReddiLogo } from "../assets/svgs/ReddiLogo_red.svg";
 import { ReactComponent as GoogleLogo } from "../assets/svgs/googleLogo.svg";
 import { ReactComponent as CloseIcon } from "../assets/svgs/closeButton.svg";
+import { getGoogleAuthURL } from "../apis/loginAPI";
+import GoogleAuthCallback from "./Auth/googleAuthCallback";
+import { useLoaderData, useLocation } from "react-router-dom";
 
 type LoginProps = {
   show: boolean;
@@ -11,6 +14,16 @@ type LoginProps = {
 };
 type ShowLoginProps = {
   show: boolean;
+};
+
+const handleGoogleLogin = async () => {
+  try {
+    const data = await getGoogleAuthURL();
+    window.location.href = data.url;
+    console.log("url:", data.url);
+  } catch (error) {
+    console.error("Google 로그인 URL을 가져오는데 실패:", error);
+  }
 };
 
 const Login: React.FC<LoginProps & { onSwitchSignUp: () => void }> = (
@@ -36,7 +49,7 @@ const Login: React.FC<LoginProps & { onSwitchSignUp: () => void }> = (
         </CloseButton>
         <InfoSection>
           <ReddiLogo />
-          <GoogleLoginBtn>
+          <GoogleLoginBtn onClick={handleGoogleLogin}>
             <GoogleLogo />
             구글 계정으로 로그인
           </GoogleLoginBtn>
@@ -114,6 +127,7 @@ const GoogleLoginBtn = styled.button`
   letter-spacing: -0.0075rem;
   margin-top: 2rem;
   margin-bottom: 1.5rem;
+  cursor: pointer;
 `;
 const SignUpText = styled.div`
   color: #ccc;
