@@ -6,6 +6,8 @@ import { SearchBar } from "./Search/SearchBar";
 import SignUp from "./SignUp";
 import Login from "./Login";
 import { colors } from "../styles/colors";
+import { accessTokenState, isLoginState, userDataState } from "../utils/atom";
+import { useRecoilState } from "recoil";
 interface NavigationWrapperProps {
   isTransparent: boolean;
 }
@@ -15,7 +17,9 @@ const NavBar = () => {
   const [isSignUp, setIsSignUp] = useState<boolean>(false);
   const [isLogin, setIsLogin] = useState<boolean>(false);
   const [isTransparent, setIsTransparent] = useState(false);
-
+  const [isLoginUser, setIsLoginUser] = useRecoilState(isLoginState);
+  const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
+  const [userData, setUserData] = useRecoilState(userDataState);
   const handleScroll = () => {
     if (window.scrollY > 449) {
       setIsTransparent(true);
@@ -68,6 +72,16 @@ const NavBar = () => {
       setSearchBar(false);
     }
   };
+  const handleLogout = () => {
+    setIsLoginUser(false);
+    setAccessToken("");
+    setUserData({
+      userId: 0,
+      name: "name",
+      email: "email",
+      profileImageUrl: "url",
+    });
+  };
 
   return (
     <>
@@ -87,12 +101,20 @@ const NavBar = () => {
             <SearchBarLink onClick={toggleSearchBar} isActive={isSearchBar}>
               검색
             </SearchBarLink>
-            <SignUpLink onClick={toggleLogin} isActive={isLogin}>
-              로그인
-            </SignUpLink>
-            <SignUpLink onClick={toggleSignUp} isActive={isSignUp}>
-              회원가입
-            </SignUpLink>
+            {isLoginUser ? (
+              <SignUpLink onClick={handleLogout} isActive={false}>
+                로그아웃
+              </SignUpLink>
+            ) : (
+              <>
+                <SignUpLink onClick={toggleLogin} isActive={isLogin}>
+                  로그인
+                </SignUpLink>
+                <SignUpLink onClick={toggleSignUp} isActive={isSignUp}>
+                  회원가입
+                </SignUpLink>
+              </>
+            )}
           </NavSection>
         </NavLinks>
       </NavigationWrapper>
