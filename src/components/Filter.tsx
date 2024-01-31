@@ -224,7 +224,7 @@ const CategoryButton = styled.button<{ isActive: boolean }>`
   border-radius: 0.75rem;
   cursor: pointer;
   display: flex;
-  padding: 0.19381rem 0.77519rem;
+  padding: 0.5rem 1.25rem;
   height: 2.035rem;
   justify-content: center;
   align-items: center;
