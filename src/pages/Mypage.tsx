@@ -11,22 +11,42 @@ import {
 import Footer from "../components/Footer";
 import Tab from "../components/Mypage/tab";
 import { useRecoilState } from "recoil";
-import { isLoginState, userDataState } from "../utils/atom";
+import { accessTokenState, isLoginState, userDataState } from "../utils/atom";
 import Login from "../components/Login";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactComponent as LoginImage } from "../assets/svgs/loginImage.svg";
 import { colors } from "../styles/colors";
+import { getBookmarkedBrand, getBookmarkedMarketing } from "../apis/mypageAPI";
 
 const queryClient = new QueryClient();
 
 const Mypage = () => {
+  const [accessToken] = useRecoilState(accessTokenState);
   const [isLogin, setIsLogin] = useRecoilState(isLoginState);
   const [userData, setUserData] = useRecoilState(userDataState);
   const [showLogin, setShowLogin] = useState(false);
+  const [bookmarkCount, setBookmarkCount] = useState(0);
+
+  useEffect(() => {
+    const fetchCounts = async () => {
+      try {
+        const marketingData = await getBookmarkedMarketing(accessToken);
+        const brandData = await getBookmarkedBrand(accessToken);
+        const totalBookmarks =
+          (marketingData?.length || 0) + (brandData?.length || 0);
+        setBookmarkCount(totalBookmarks);
+      } catch (error) {
+        console.error("Error fetching bookmark counts:", error);
+      }
+    };
+    fetchCounts();
+  }, [accessToken]);
+
   const handleLoginClick = () => {
     setShowLogin(true);
   };
+
   if (!isLogin) {
     return (
       <div>
@@ -38,7 +58,7 @@ const Mypage = () => {
               <ProfileNameText>이레디</ProfileNameText>
               <ProfileIdText>readyornot</ProfileIdText>
             </ProfileContainer>
-            <Tab />
+            <Tab bookmarkCount={0} />
           </MyPageContainer>
           <Footer />
           <LoginMessage>
@@ -64,9 +84,9 @@ const Mypage = () => {
         <ProfileContainer>
           <ProfileImage src={userData.profileImageUrl}></ProfileImage>
           <ProfileNameText>{userData.name}</ProfileNameText>
-          <ProfileIdText>readyornot</ProfileIdText>
+          <ProfileIdText>{userData.email}</ProfileIdText>
         </ProfileContainer>
-        <Tab />
+        <Tab bookmarkCount={bookmarkCount} />
       </MyPageContainer>
       <Footer />
     </Container>

@@ -3,6 +3,9 @@ import styled from "styled-components";
 import { colors } from "../../styles/colors";
 import { BookmarkedContent } from "./bookmarkedContents";
 import { CreatedContents } from "./createdContents";
+interface TabProps {
+  bookmarkCount: number;
+}
 
 const TabMenu = styled.ul`
   justify-content: center;
@@ -36,11 +39,11 @@ const Desc = styled.div`
   text-align: center;
 `;
 
-const Tab = () => {
+const Tab: React.FC<TabProps> = ({ bookmarkCount }) => {
   const [currentTab, clickTab] = useState(0);
 
   const menuArr = [
-    { name: "북마크(56)", content: <BookmarkedContent /> },
+    { name: `북마크(${bookmarkCount})`, content: <BookmarkedContent /> },
     {
       name: "REDDIAI로 생성한 브랜드 (12)",
       content: <CreatedContents />,
