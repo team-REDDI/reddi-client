@@ -36,6 +36,7 @@ export const BrandTextBox = styled.div`
   flex-direction: column;
   margin-left: 1.5rem;
   width: 21.375rem;
+  text-align: start;
   gap: 0.75rem;
 `;
 
