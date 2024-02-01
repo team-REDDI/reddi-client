@@ -24,15 +24,15 @@ const AIBox = ({ id, name, elements, accessToken }: AIBoxProps) => {
     setIdValue(id);
   };
 
-  if (isPrompt) {
-    return (
-      <AIPrompt
-        toggleAIPrompt={toggleAIPrompt}
-        id={idValue}
-        accessToken={accessToken}
-      />
-    );
-  }
+  // if (isPrompt) {
+  //   return (
+  //     <AIPrompt
+  //       toggleAIPrompt={toggleAIPrompt}
+  //       id={idValue}
+  //       accessToken={accessToken}
+  //     />
+  //   );
+  // }
 
   const maxTotalLength = 12;
   let sumLength = 0;
@@ -56,13 +56,13 @@ const AIBox = ({ id, name, elements, accessToken }: AIBoxProps) => {
         </OptionsContainer>
         <AIBoxButton onClick={handleClick}>프롬프트 불러오기</AIBoxButton>
       </Box>
-      {/* {isPrompt && (
+      {isPrompt && (
         <AIPrompt
-          show={isPrompt}
           toggleAIPrompt={toggleAIPrompt}
           id={idValue}
+          accessToken={accessToken}
         />
-      )} */}
+      )}
     </>
   );
 };

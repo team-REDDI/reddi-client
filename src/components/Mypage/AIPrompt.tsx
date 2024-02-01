@@ -46,7 +46,6 @@ export const AIPrompt = ({ toggleAIPrompt, id, accessToken }: PromptProps) => {
   if (isError || !createdData) {
     return <div>Error fetching data</div>;
   }
-  console.log("c", createdData);
 
   return (
     <PromptContanier>
