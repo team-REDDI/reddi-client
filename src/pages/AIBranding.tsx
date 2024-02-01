@@ -195,6 +195,14 @@ const AIBranding = () => {
     }
   };
 
+  const [everyClicked, setEveryClicked] = useState<boolean>(false);
+  const clickEverything = () => {
+    if (everyClicked)
+      setTags1(tags1.map((tag) => ({ ...tag, isClicked: false })));
+    else setTags1(tags1.map((tag) => ({ ...tag, isClicked: true })));
+    setEveryClicked(!everyClicked);
+  };
+
   useEffect(() => {
     window.scrollTo(0, 0);
     setIsResult(false);
@@ -227,11 +235,7 @@ const AIBranding = () => {
       .map((tag) => tag.contents)
       .join(", ");
 
-    // console.log(clickedTags1);
-    // console.log(clickedTags2);
-    // console.log(clickedTags3);
-    // console.log(clickedTags4);
-    // console.log(clickedTags5);
+    console.log(clickedTags1);
 
     AIBrandingMutation.mutate({
       info: {
@@ -244,7 +248,6 @@ const AIBranding = () => {
       accessToken: accessToken,
     });
   };
-
   const [brandingResult, setBrandingResult] = useState<[string, string][]>();
 
   const AIBrandingMutation = useMutation(postAIBranding, {
@@ -358,6 +361,13 @@ const AIBranding = () => {
                       {tag.contents}
                     </WantTags>
                   ))}
+                  <WantTags
+                    key={0}
+                    isClicked={everyClicked}
+                    onClick={clickEverything}
+                  >
+                    모두 선택
+                  </WantTags>
                 </TagsBox>
               </WantBox>
 

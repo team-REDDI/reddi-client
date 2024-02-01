@@ -109,7 +109,7 @@ const PromptBox = styled.div`
   display: flex;
   position: relative;
   flex-direction: column;
-  padding: 3.125rem 3.875rem;
+  padding: 4.125rem 3.875rem;
   align-items: flex-start;
   gap: 2rem;
   background-color: ${colors.white};
@@ -117,6 +117,7 @@ const PromptBox = styled.div`
   height: 40rem;
   margin-bottom: 3.125rem;
   overflow: auto;
+  border-radius: 0.3125rem;
 `;
 
 const ResultBox = styled.div`
@@ -176,7 +177,7 @@ const AIResultBox = styled.div`
 
 const ValueText = styled.div`
   color: ${colors.black_CTA};
-  width: 30.3rem;
+  width: 29.8rem;
   font-size: 0.975rem;
   font-style: normal;
   font-weight: 500;
