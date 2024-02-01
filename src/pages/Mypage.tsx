@@ -14,6 +14,9 @@ import { useRecoilState } from "recoil";
 import { isLoginState, userDataState } from "../utils/atom";
 import Login from "../components/Login";
 import { useState } from "react";
+import { QueryClient, QueryClientProvider } from "react-query";
+
+const queryClient = new QueryClient();
 
 const Mypage = () => {
   const [isLogin, setIsLogin] = useRecoilState(isLoginState);
@@ -66,7 +69,7 @@ const Mypage = () => {
     </Container>
   );
 };
-export default Mypage;
+
 const ContainerNotLogin = styled.div`
   display: flex;
   flex-direction: column;
@@ -118,3 +121,9 @@ const LoginBtn = styled.button`
   letter-spacing: -0.01125rem;
   cursor: pointer;
 `;
+
+export default () => (
+  <QueryClientProvider client={queryClient}>
+    <Mypage />
+  </QueryClientProvider>
+);
