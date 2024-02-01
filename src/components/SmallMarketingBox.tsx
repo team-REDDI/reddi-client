@@ -58,6 +58,8 @@ const MarketingImg = styled.img`
   height: 6.25rem;
   margin-bottom: 1.5rem;
   margin-right: 1.5rem;
+  object-fit: cover;
+  object-position: center;
 `;
 const TitleWrapper = styled.div`
   display: flex;
