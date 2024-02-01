@@ -61,6 +61,7 @@ const MarketingImg = styled.img`
   object-fit: cover;
   object-position: center;
 `;
+
 const TitleWrapper = styled.div`
   display: flex;
   flex-direction: column;

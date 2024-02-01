@@ -1,68 +1,102 @@
 import styled from "styled-components";
 import { colors } from "../../styles/colors";
 import {
-  AIResultBox,
   AIResultContanier,
   ReddiAIContainer,
-  ResultLine,
   TagsBox,
   TagsContainer,
-  TypeText,
   WantBox,
   WantTags,
   WantText,
 } from "../../styles/ReddiAIStyle";
 import { ReactComponent as CloseIcon } from "../../assets/svgs/closeButton.svg";
-type PromptProps = {
-  show: boolean;
-  toggleAIPrompt: () => void;
-};
+import { useRecoilState } from "recoil";
+import { useEffect, useState } from "react";
+import { useQuery } from "react-query";
+import { getCreatedAIPrompt } from "../../apis/mypageAPI";
 
-export const AIPrompt = ({ show, toggleAIPrompt }: PromptProps) => {
+interface PromptProps {
+  toggleAIPrompt: () => void;
+  id: number;
+  accessToken: string;
+}
+
+export const AIPrompt = ({ toggleAIPrompt, id, accessToken }: PromptProps) => {
+  interface CreatedList {
+    prompt: PromptList;
+    result: ResultList;
+  }
+
+  interface PromptList {
+    elements?: string;
+    atmospheres?: string;
+    industries?: string;
+    targets?: string;
+    similarServices?: string;
+  }
+
+  interface ResultList {
+    [key: string]: string;
+  }
+
+  const {
+    data: createdData,
+    isLoading,
+    isError,
+  } = useQuery(["createdData", accessToken, id], () =>
+    getCreatedAIPrompt(accessToken, id),
+  );
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (isError || !createdData) {
+    return <div>Error fetching data</div>;
+  }
+  console.log("c", createdData);
+
   return (
     <PromptContanier>
       <ReddiAIContainer>
         <PromptBox>
           <CloseButton onClick={toggleAIPrompt} />
           <PromptTitle>생성한 브랜드명</PromptTitle>
-          <PromptSubTitle>생성한 브랜드 요소</PromptSubTitle>
-          <AIResultBox>
-            {/* {resultData &&
-          Object.entries(resultData).map(([key, value]) => (
-            <ResultLine>
-              <TypeText>{key}</TypeText>
-              <ValueText>{value}</ValueText>
-            </ResultLine>
-          ))} */}
-            <ResultLine>
-              <TypeText>네이밍</TypeText>
-              <ValueText>Z-Fin</ValueText>
-            </ResultLine>
-            <ResultLine>
-              <TypeText>네이밍 이유</TypeText>
-              <ValueText>
-                Z-Fin은 즐거운 분위기와 역동적인 금융 서비스를 제공하기 위해
-                만들어졌습니다. 산업군인 금융과 F&B를 융합하여 차별화된 브랜드
-                경험을 제공합니다.
-              </ValueText>
-            </ResultLine>
-            <ResultLine>
-              <TypeText>슬로건</TypeText>
-              <ValueText>Enjoy Your Financial Journey</ValueText>
-            </ResultLine>
-            <ResultLine>
-              <TypeText>버전 미션</TypeText>
-              <ValueText>
-                Z-Fin은 첨단 기술과 창의적인 아이디어로 어려움을 도전하는
-                솔루션을 개발하여 gen Z, 시니어, 20대 고객들의 금융 경험을
-                혁신하고자 합니다.
-              </ValueText>
-            </ResultLine>
-          </AIResultBox>
-          {/* <ButtonBox>
-        <DeleteButton>다시 생성하기</DeleteButton>
-        <CompleteButton>저장하기</CompleteButton>
-      </ButtonBox> */}
+          <ResultBox>
+            <PromptSubTitle>브랜드 생성 결과</PromptSubTitle>
+            <AIResultBox>
+              {createdData.result &&
+                Object.entries(createdData.result).map(
+                  ([key, value], index) => (
+                    <ResultLine key={index}>
+                      <TypeText>{key}</TypeText>
+                      <ValueText>{value as string}</ValueText>
+                    </ResultLine>
+                  ),
+                )}
+            </AIResultBox>
+          </ResultBox>
+          <ResultBox>
+            <PromptSubTitle>선택한 브랜드 태그</PromptSubTitle>
+            <ResultBox>
+              <TagBox>
+                {createdData.prompt &&
+                  Object.entries(createdData.prompt).map(
+                    ([key, value], index) => (
+                      <ResultLine key={index}>
+                        {(value as string)
+                          .split(",")
+                          .map((item: string, itemIndex: number) => (
+                            <PromptTag key={`${index}-${itemIndex}`}>
+                              {item.trim()}
+                            </PromptTag>
+                          ))}
+                      </ResultLine>
+                    ),
+                  )}
+              </TagBox>
+            </ResultBox>
+          </ResultBox>
         </PromptBox>
       </ReddiAIContainer>
     </PromptContanier>
@@ -87,9 +121,35 @@ const PromptBox = styled.div`
   display: flex;
   position: relative;
   flex-direction: column;
-  height: fit-content;
-  padding: 3.5rem 3rem;
+  padding: 4.125rem 3.875rem;
+  align-items: flex-start;
+  gap: 3rem;
   background-color: ${colors.white};
+  width: 48rem;
+  height: 40rem;
+`;
+
+const ResultBox = styled.div`
+  display: flex;
+  width: 100%;
+  height: 10.43rem;
+  flex-direction: column;
+`;
+
+const ResultLine = styled.div`
+  display: flex;
+  width: fit-content;
+`;
+
+const TypeText = styled.span`
+  color: #a5a5a5;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%;
+  letter-spacing: -0.00875rem;
+  width: 5.7rem;
+  margin-right: 2.12rem;
 `;
 
 const PromptTitle = styled.div`
@@ -99,7 +159,6 @@ const PromptTitle = styled.div`
   font-weight: 700;
   line-height: 130%; /* 2.925rem */
   letter-spacing: -0.0225rem;
-  margin-bottom: 3.81rem;
 `;
 
 const PromptSubTitle = styled.div`
@@ -109,12 +168,28 @@ const PromptSubTitle = styled.div`
   font-weight: 700;
   line-height: 130%; /* 1.95rem */
   letter-spacing: -0.015rem;
-  margin-bottom: 2.06rem;
+  margin-bottom: 1.25rem;
+`;
+
+const AIResultBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 7.25rem;
+  gap: 1.5rem;
+  padding: 1.4375rem 1.875rem;
+  border-radius: 0.75rem;
+  background-color: ${colors.background_gray};
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const ValueText = styled.div`
   color: ${colors.black_CTA};
-  width: 52.5rem;
+  width: 27rem;
   font-size: 1.125rem;
   font-style: normal;
   font-weight: 500;
@@ -132,4 +207,36 @@ const CloseButton = styled(CloseIcon)`
   width: 1.25rem;
   height: 1.25rem;
   cursor: pointer;
+`;
+
+const TagBox = styled.div`
+  display: flex;
+  width: 100%;
+  padding: 1.5rem;
+  align-items: flex-start;
+  gap: 0.625rem;
+  border-radius: 0.75rem;
+  border: 1.2px solid #ddd;
+  background: ${colors.white};
+  flex-wrap: wrap;
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`;
+
+const PromptTag = styled.div`
+  display: flex;
+  padding: 0.5rem 1rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 4.46rem;
+  background: #2e2e2e;
+  color: ${colors.white};
+  font-size: 1.125rem;
+  font-weight: 500;
+  line-height: 130%;
+  letter-spacing: -0.01125rem;
 `;

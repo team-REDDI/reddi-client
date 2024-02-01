@@ -11,15 +11,20 @@ import {
 } from "../../styles/ReddiAIStyle";
 import { ResultText } from "../../styles/searchStyle";
 import { colors } from "../../styles/colors";
+import { userDataState } from "../../utils/atom";
+import { useRecoilState } from "recoil";
 
 interface AIResultProps {
   resultData: [string, string][];
 }
 
 const AIResult = ({ resultData }: AIResultProps) => {
+  const [userData] = useRecoilState(userDataState);
   return (
     <AIResultContanier>
-      <ResultText>Reddi AI가 추천하는 홍길동님의 브랜드에요.</ResultText>
+      <ResultText>
+        Reddi AI가 추천하는 {userData.name}님의 브랜드에요.
+      </ResultText>
       <AIResultBox>
         {resultData &&
           Object.entries(resultData).map(([key, value]) => (

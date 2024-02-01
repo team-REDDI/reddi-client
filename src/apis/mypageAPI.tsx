@@ -50,3 +50,24 @@ export const getCreatedAIBrand = async (accessToken: string) => {
     throw error;
   }
 };
+
+export const getCreatedAIPrompt = async (
+  accessToken: string,
+  promptId: number,
+) => {
+  try {
+    const response = await client.get("/api/chat-gpt/prompt", {
+      params: { id: promptId },
+      headers: {
+        accept: "*/*",
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+
+    console.log(response.data);
+    return response.data.data;
+  } catch (error) {
+    console.error("Error fetching created AI brand:", error);
+    throw error;
+  }
+};
