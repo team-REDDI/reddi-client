@@ -49,10 +49,13 @@ import {
   Mutation,
 } from "react-query";
 import { postAIBranding } from "../apis/aibrandingAPI";
+import { useRecoilState } from "recoil";
+import { accessTokenState } from "../utils/atom";
 
 const queryClient = new QueryClient();
 
 const AIBranding = () => {
+  const [accessToken] = useRecoilState(accessTokenState);
   const [isResult, setIsResult] = useState<boolean>(false);
   const [isNow, setIsNow] = useState<boolean[]>([
     true,
@@ -229,11 +232,14 @@ const AIBranding = () => {
     // console.log(clickedTags5);
 
     AIBrandingMutation.mutate({
-      element: clickedTags1,
-      atmos: clickedTags2,
-      industry: clickedTags3,
-      target: clickedTags4,
-      similar: clickedTags5,
+      info: {
+        element: clickedTags1,
+        atmos: clickedTags2,
+        industry: clickedTags3,
+        target: clickedTags4,
+        similar: clickedTags5,
+      },
+      accessToken: accessToken,
     });
   };
 
