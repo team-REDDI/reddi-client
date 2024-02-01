@@ -39,7 +39,7 @@ export const getCreatedAIBrand = async (accessToken: string) => {
     const response = await client.get("/api/chat-gpt/", {
       headers: {
         accept: "*/*",
-        // Authorization: `Bearer ${accessToken}`,
+        Authorization: `Bearer ${accessToken}`,
       },
     });
 
