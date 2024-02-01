@@ -39,44 +39,6 @@ interface Brand {
   notion_page_last_edited_time: string;
 }
 
-const dummyBrandBoxes = [
-  {
-    imgSrc: "/image.jpg", //나중에 이미지 여기다 넣으면 됨
-    brandName: "토스증권",
-    location: "대기업, 서울",
-    tags: ["뷰티", "금융"],
-    id: 2,
-  },
-  {
-    imgSrc: "/image.jpg",
-    brandName: "토스증권",
-    location: "대기업, 서울",
-    tags: ["금융", "블루"],
-    id: 2,
-  },
-  {
-    imgSrc: "/image.jpg",
-    brandName: "토스증권",
-    location: "대기업, 서울",
-    tags: ["금융", "블루"],
-    id: 2,
-  },
-  {
-    imgSrc: "/image.jpg",
-    brandName: "토스증권",
-    location: "대기업, 서울",
-    tags: ["뷰티", "세련된"],
-    id: 2,
-  },
-  {
-    imgSrc: "/image.jpg",
-    brandName: "토스증권",
-    location: "대기업, 서울",
-    tags: ["뷰티", "깔끔한"],
-    id: 2,
-  },
-];
-
 export const BookmarkedContent = () => {
   const [accessToken] = useRecoilState(accessTokenState);
   const [marketingLists, setMarketingLists] = useState([]);
@@ -126,24 +88,16 @@ export const BookmarkedContent = () => {
       </BoxContainer>
       <TitleText>브랜드</TitleText>
       <BoxContainer>
-        {brandLists.map((box: Brand, index: number) => (
-          <BrandBox
-            key={index}
-            id={box.id}
-            imgSrc={box.cover_url}
-            brandName={box.name}
-            tags={box.brandTags.map((tag) => tag.tag)}
-          />
-        ))}
-        {dummyBrandBoxes.map((box, index) => (
-          <BrandBox
-            id={box.id}
-            key={index}
-            imgSrc={box.imgSrc}
-            brandName={box.brandName}
-            tags={box.tags}
-          />
-        ))}
+        {brandLists &&
+          brandLists.map((box: Brand, index: number) => (
+            <BrandBox
+              key={index}
+              id={box.id}
+              imgSrc={box.cover_url}
+              brandName={box.name}
+              tags={box.brandTags.map((tag) => tag.tag)}
+            />
+          ))}
       </BoxContainer>
     </div>
   );
