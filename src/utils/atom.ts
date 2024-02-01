@@ -31,3 +31,11 @@ export const filteredMarketing = atom<Set<string>>({
   });
 
  
+  export const bookmarkedMarketingIdsState = atom<number[]>({
+    key: 'bookmarkedMarketingIdsState', 
+    default: [], 
+  });  
+  export const bookmarkedBrandIdsState = atom<number[]>({
+    key: 'bookmarkedBrandIdsState', 
+    default: [], 
+  });

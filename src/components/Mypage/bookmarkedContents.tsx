@@ -91,6 +91,7 @@ export const BookmarkedContent = () => {
         {brandLists &&
           brandLists.map((box: Brand, index: number) => (
             <BrandBox
+              bookmarkOff={true}
               key={index}
               id={box.id}
               imgSrc={box.cover_url}
