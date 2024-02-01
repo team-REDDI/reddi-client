@@ -10,7 +10,11 @@ import {
   putMarketingToggleBookmark,
 } from "../apis/bookmarkAPI";
 import { useRecoilState } from "recoil";
-import { accessTokenState, bookmarkedMarketingIdsState } from "../utils/atom";
+import {
+  accessTokenState,
+  bookmarkedBrandIdsState,
+  bookmarkedMarketingIdsState,
+} from "../utils/atom";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Login from "./Login";
 
@@ -27,6 +31,9 @@ const BookmarkFloating = () => {
   const [bookmarkedMarketingIds, setBookmarkedMarketingIds] = useRecoilState(
     bookmarkedMarketingIdsState,
   );
+  const [bookmarkedBrandIds, setBookmarkedBrandIds] = useRecoilState(
+    bookmarkedBrandIdsState,
+  );
   const location = useLocation();
 
   const { id } = useParams();
@@ -39,6 +46,13 @@ const BookmarkFloating = () => {
       SetIsBookmarkClicked(isBookmarked);
     }
   }, [bookmarkedMarketingIds, brandId]);
+
+  useEffect(() => {
+    if (location.pathname.includes("brand")) {
+      const isBookmarked = bookmarkedBrandIds.includes(brandId);
+      SetIsBookmarkClicked(isBookmarked);
+    }
+  }, [bookmarkedBrandIds, brandId]);
 
   const BookMarkClicked = async () => {
     if (!accessToken) {
