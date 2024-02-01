@@ -96,7 +96,6 @@ const SearchResult = () => {
                     expl={data.subtitle}
                     read={727}
                     categories={data.postTags.map((tags) => tags.tag)}
-                    bookmarkOff={true}
                   />
                 ))}
             </MarketingLines>
@@ -115,7 +114,6 @@ const SearchResult = () => {
                   brandName={data.name}
                   tags={data.brandTags.map((tags) => tags.tag)}
                   id={data.id}
-                  bookmarkOff={true}
                 />
               ))}
           </BrandsBox>

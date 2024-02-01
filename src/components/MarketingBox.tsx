@@ -221,7 +221,7 @@ const Category = styled.div`
 
 const StyledBookmarkIcon = styled(BookmarkIcon)<{ isBookmarked: boolean }>`
   position: absolute;
-  top: 0;
+  top: -0.15rem;
   right: 1.1875rem;
   path {
     fill: ${(props) => (props.isBookmarked ? "#F53B36" : "#D0D0D0")};
