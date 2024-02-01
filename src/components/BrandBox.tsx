@@ -17,6 +17,7 @@ interface BrandProps {
   brandName: string;
   tags: string[];
   bookmarkOff?: boolean;
+  isBookmarked?: boolean;
 }
 
 export const BrandBox = ({
@@ -25,14 +26,15 @@ export const BrandBox = ({
   brandName,
   tags,
   bookmarkOff,
+  isBookmarked,
 }: BrandProps) => {
   const nav = useNavigate();
   const [showAllCategories, setShowAllCategories] = useState(false);
-  const [isBookmarked, setIsBookmarked] = useState(false);
+  // const [isBookmarked, setIsBookmarked] = useState(false);
 
-  const toggleBookmark = () => {
-    setIsBookmarked(!isBookmarked);
-  };
+  // const toggleBookmark = () => {
+  //   setIsBookmarked(!isBookmarked);
+  // };
 
   const goToBrandDetail = () => {
     nav(`/brand/detail/${id}`);
@@ -73,8 +75,8 @@ export const BrandBox = ({
         <BrandNameText onClick={goToBrandDetail}>{brandName}</BrandNameText>
         {bookmarkOff ? null : (
           <StyledBookmarkIcon
-            onClick={toggleBookmark}
-            isBookmarked={isBookmarked}
+            // onClick={toggleBookmark}
+            isBookmarked={isBookmarked ?? false}
           />
         )}
         <BrandTagsContainer onClick={toggleCategories}>
