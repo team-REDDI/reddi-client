@@ -15,6 +15,8 @@ import { isLoginState, userDataState } from "../utils/atom";
 import Login from "../components/Login";
 import { useState } from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactComponent as LoginImage } from "../assets/svgs/loginImage.svg";
+import { colors } from "../styles/colors";
 
 const queryClient = new QueryClient();
 
@@ -32,7 +34,7 @@ const Mypage = () => {
           <NavBar />
           <MyPageContainer>
             <ProfileContainer>
-              <ProfileImage></ProfileImage>
+              {/* <ProfileImage></ProfileImage> */}
               <ProfileNameText>이레디</ProfileNameText>
               <ProfileIdText>readyornot</ProfileIdText>
             </ProfileContainer>
@@ -41,7 +43,8 @@ const Mypage = () => {
           <Footer />
           <LoginMessage>
             <LoginText>로그인을 하셔야 서비스 이용이 가능합니다</LoginText>
-            <LoginBtn onClick={handleLoginClick}>로그인하러 가기</LoginBtn>
+            <LoginImage />
+            <LoginBtn onClick={handleLoginClick}>로그인하기</LoginBtn>
             {showLogin && (
               <Login
                 show={showLogin}
@@ -107,13 +110,14 @@ const LoginText = styled.div`
 `;
 const LoginBtn = styled.button`
   display: flex;
-  padding: 0.5rem 1.25rem;
+  flex-direction: column;
+  width: 16.72031rem;
+  padding: 0.76875rem 0rem;
   justify-content: center;
   align-items: center;
-  border-radius: 0.75rem;
-  border: 0.5px solid var(--light-gray-text, #b9b9b9);
-  background: #fff;
-  color: var(--light-gray-text, #b9b9b9);
+  border-radius: 0.76875rem;
+  background: #000;
+  color: ${colors.white};
   font-size: 1.125rem;
   font-style: normal;
   font-weight: 500;
