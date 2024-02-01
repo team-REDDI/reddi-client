@@ -43,7 +43,7 @@ export const getCreatedAIBrand = async (accessToken: string) => {
       },
     });
 
-    console.log(response.data);
+    console.log("생성된 AI brand: ", response.data);
     return response.data.data;
   } catch (error) {
     console.error("Error fetching created AI brand:", error);

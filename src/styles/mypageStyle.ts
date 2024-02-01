@@ -6,6 +6,7 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   margin-top: 3.125rem;
+  z-index: 100;
 `;
 
 export const MyPageContainer = styled.div`

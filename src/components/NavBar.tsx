@@ -82,6 +82,10 @@ const NavBar = () => {
       email: "email",
       profileImageUrl: "url",
     });
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("userData");
+    localStorage.setItem("isLogin", "false");
+    window.location.reload();
   };
 
   return (

@@ -10,6 +10,7 @@ import { ReactComponent as RightSlider } from "../assets/svgs/rightSlider.svg";
 import { ReactComponent as GoogleLogo } from "../assets/svgs/googleLogo.svg";
 import { ReactComponent as CloseIcon } from "../assets/svgs/closeButton.svg";
 import { ReactComponent as RLogoIcon } from "../assets/svgs/RIcon.svg";
+import { getGoogleAuthURL } from "../apis/loginAPI";
 
 type SignUpProps = {
   show: boolean;
@@ -18,6 +19,16 @@ type SignUpProps = {
 
 type ShowSignUpProps = {
   show: boolean;
+};
+
+const handleGoogleLogin = async () => {
+  try {
+    const data = await getGoogleAuthURL();
+    window.location.href = data.url;
+    console.log("url:", data.url);
+  } catch (error) {
+    console.error("Google 로그인 URL을 가져오는데 실패:", error);
+  }
 };
 
 const SignUp: React.FC<SignUpProps & { onSwitchLogin: () => void }> = (
@@ -97,7 +108,7 @@ const SignUp: React.FC<SignUpProps & { onSwitchLogin: () => void }> = (
               아이디, 비밀번호, 이름, 휴대번호를 입력하지 않고도 간편하게 시작할
               수 있어요!
             </SignUpSmallText>
-            <GoogleSignBtn>
+            <GoogleSignBtn onClick={handleGoogleLogin}>
               <GoogleLogo />
               구글 계정으로 시작하기
             </GoogleSignBtn>
@@ -123,7 +134,6 @@ const SignUpContainer = styled.div<ShowSignUpProps>`
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, 0.7);
-  z-index: 1;
   transform: translateY(${(props) => (props.show ? "0%" : "-100%")});
   transition: transform 10.3s ease-in;
   z-index: 200;
@@ -136,7 +146,7 @@ const SignUpWrapper = styled.div<ShowSignUpProps>`
   gap: 4.69rem;
   background-color: ${colors.white};
   z-index: 99;
-  transform: translateY(${(props) => (props.show ? "0%" : "-100%")});
+  transform: translateY(${(props) => (props.show ? "0" : "-100%")});
   transition: transform 10.3s ease-in;
   justify-content: center;
   align-items: center;
@@ -263,6 +273,7 @@ const GoogleSignBtn = styled.button`
   letter-spacing: -0.0075rem;
   margin-top: 2rem;
   margin-bottom: 1.5rem;
+  cursor: pointer;
 `;
 const LoginText = styled.div`
   color: #ccc;

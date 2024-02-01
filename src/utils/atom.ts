@@ -5,6 +5,7 @@ export const filteredMarketing = atom<Set<string>>({
   default: new Set(),
 });
 
+
 export const filteredBrand = atom<Set<string>>({
   key: "filteredBrand",
   default: new Set(),
@@ -29,3 +30,15 @@ export const userDataState = atom({
     profileImageUrl: "url",
   },
 });
+
+  
+  export const bookmarkedMarketingIdsState = atom<number[]>({
+    key: 'bookmarkedMarketingIdsState', 
+    default: [], 
+  });  
+  
+  export const bookmarkedBrandIdsState = atom<number[]>({
+    key: 'bookmarkedBrandIdsState', 
+    default: [], 
+  });
+

@@ -16,8 +16,12 @@ import {
 import { useState, useEffect } from "react";
 import { BrandBox } from "../components/BrandBox";
 import { ReactComponent as BrandSVG } from "../assets/svgs/BrandSVG.svg";
-import { useRecoilValue } from "recoil";
-import { filteredBrand } from "../utils/atom";
+import { useRecoilState, useRecoilValue } from "recoil";
+import {
+  accessTokenState,
+  bookmarkedBrandIdsState,
+  filteredBrand,
+} from "../utils/atom";
 import { getBrandList } from "../apis/brand";
 import {
   QueryClient,
@@ -27,6 +31,7 @@ import {
 } from "react-query";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { BrandSkeleton } from "../components/BrandSkeleton";
+import { getBookmarkedBrand } from "../apis/mypageAPI";
 
 interface Brand {
   id: number;
@@ -45,16 +50,39 @@ const queryClient = new QueryClient();
 
 const Brand = () => {
   const navigate = useNavigate();
+  const [accessToken] = useRecoilState(accessTokenState);
   const selectedFilters = useRecoilValue(filteredBrand);
-  const [searchParams, setSearchParams] = useSearchParams();
 
+  const [searchParams, setSearchParams] = useSearchParams();
   const pageFromUrl = Number(searchParams.get("page")) || 1;
   const [currentPage, setCurrentPage] = useState(pageFromUrl);
+
+  const [bookmarkedBrandIds, setBookmarkedBrandIds] = useRecoilState(
+    bookmarkedBrandIdsState,
+  );
 
   useEffect(() => {
     setCurrentPage(pageFromUrl);
     window.scrollTo(0, 0);
   }, [pageFromUrl]);
+
+  useEffect(() => {
+    const fetchBookmarkedBrands = async () => {
+      try {
+        const data = await getBookmarkedBrand(accessToken);
+
+        // data가 undefined인 경우에 대한 체크 추가
+        if (data) {
+          const ids = data.map((post: any) => post.id);
+          setBookmarkedBrandIds(ids);
+          console.log("bookmarkedMarketingIds:", ids);
+        }
+      } catch (error) {
+        console.error("Error fetching bookmarked marketing posts:", error);
+      }
+    };
+    fetchBookmarkedBrands();
+  }, [accessToken]);
 
   const {
     data: brandInfo,
@@ -129,6 +157,7 @@ const Brand = () => {
                 index: number,
               ) => (
                 <BrandBox
+                  isBookmarked={bookmarkedBrandIds.includes(box.id)}
                   key={index}
                   id={box.id}
                   imgSrc={box.imgSrc}
