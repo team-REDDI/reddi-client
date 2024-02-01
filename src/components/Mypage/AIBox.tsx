@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { colors } from "../../styles/colors";
+import { useState } from "react";
+import { AIPrompt } from "./AIPrompt";
 
 interface AIBoxProps {
   title: string;
@@ -7,17 +9,28 @@ interface AIBoxProps {
 }
 
 const AIBox = ({ title, options }: AIBoxProps) => {
+  const [isPrompt, setIsPrompt] = useState<boolean>(false);
+
+  const toggleAIPrompt = () => {
+    setIsPrompt(!isPrompt);
+  };
+
   return (
-    <Box>
-      <Title>{title}</Title>
-      <ExplText>생성한 브랜드 요소</ExplText>
-      <OptionsContainer>
-        {options.map((option, index) => (
-          <Option key={index}>{option}</Option>
-        ))}
-      </OptionsContainer>
-      <AIBoxButton>프롬프트 불러오기</AIBoxButton>
-    </Box>
+    <>
+      <Box>
+        <Title>{title}</Title>
+        <ExplText>생성한 브랜드 요소</ExplText>
+        <OptionsContainer>
+          {options.map((option, index) => (
+            <Option key={index}>{option}</Option>
+          ))}
+        </OptionsContainer>
+        <AIBoxButton onClick={() => setIsPrompt(true)}>
+          프롬프트 불러오기
+        </AIBoxButton>
+      </Box>
+      {isPrompt && <AIPrompt show={isPrompt} toggleAIPrompt={toggleAIPrompt} />}
+    </>
   );
 };
 

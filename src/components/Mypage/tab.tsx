@@ -36,7 +36,7 @@ const TabMenu = styled.ul`
 `;
 
 const Desc = styled.div`
-  text-align: center;
+  /* text-align: center; */
 `;
 
 const Tab: React.FC<TabProps> = ({ bookmarkCount }) => {
