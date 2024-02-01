@@ -39,39 +39,25 @@ export const AIPrompt = ({ toggleAIPrompt, id, accessToken }: PromptProps) => {
   }
 
   interface ResultList {
-    result: [string, string][];
+    [key: string]: string;
   }
 
-  // const [accessToken] = useRecoilState(accessTokenState);
-  const [createdData, setCreatedData] = useState<CreatedList | null>(null);
-  const [promptData, setPromptData] = useState<PromptList>();
-  const [resultData, setResultData] = useState<ResultList>();
-  const { data: CreatedData } = useQuery(
-    ["createdData", accessToken],
-    () => getCreatedAIPrompt(accessToken, id),
-    {
-      onSuccess: (data) => {
-        // console.log(data);
-        setCreatedData(data);
-      },
-      onError: (error) => {
-        console.log(error);
-      },
-    },
+  const {
+    data: createdData,
+    isLoading,
+    isError,
+  } = useQuery(["createdData", accessToken, id], () =>
+    getCreatedAIPrompt(accessToken, id),
   );
 
-  useEffect(() => {
-    // console.log("c", createdData);
-    if (createdData) {
-      setPromptData(createdData.prompt);
-      setResultData(createdData.result);
-    }
-  }, [createdData]);
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
-  useEffect(() => {
-    console.log("prompt", promptData);
-    console.log("result", resultData);
-  }, [promptData, resultData]);
+  if (isError || !createdData) {
+    return <div>Error fetching data</div>;
+  }
+  console.log("c", createdData);
 
   return (
     <PromptContanier>
@@ -81,11 +67,21 @@ export const AIPrompt = ({ toggleAIPrompt, id, accessToken }: PromptProps) => {
           <PromptTitle>생성한 브랜드명</PromptTitle>
           <PromptSubTitle>생성한 브랜드 요소</PromptSubTitle>
           <AIResultBox>
-            {resultData &&
-              Object.entries(resultData).map(([key, value]) => (
-                <ResultLine>
+            {createdData.result &&
+              Object.entries(createdData.result).map(([key, value], index) => (
+                <ResultLine key={index}>
                   <TypeText>{key}</TypeText>
-                  <ValueText>{value}</ValueText>
+                  <ValueText>{value as string}</ValueText>
+                </ResultLine>
+              ))}
+            {createdData.prompt &&
+              Object.entries(createdData.prompt).map(([key, value], index) => (
+                <ResultLine key={index}>
+                  {(value as string)
+                    .split(",")
+                    .map((item: string, itemIndex: number) => (
+                      <div key={`${index}-${itemIndex}`}>{item.trim()}</div>
+                    ))}
                 </ResultLine>
               ))}
           </AIResultBox>
