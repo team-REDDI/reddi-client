@@ -31,7 +31,7 @@ export const putMarketingToggleBookmark = async (
 ) => {
   try {
     const response = await client.put(
-      `/api/brand/bookmark/toggle?postId=${postId}`,
+      `/api/post/bookmark/toggle?postId=${postId}`,
       {},
       {
         headers: {

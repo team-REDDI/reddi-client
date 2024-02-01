@@ -23,20 +23,17 @@ const BookmarkFloating = () => {
 
   const { id } = useParams();
   const brandId = Number(id);
+  console.log(location.pathname);
   const BookMarkClicked = async () => {
-    if (location.pathname.includes("/brand/detail/")) {
-      const isBookmarkClicked = await putBrandToggleBookmark(
-        brandId,
-        accessToken,
-      );
-    } else if (location.pathname.includes("/marketing/detail/")) {
-      const isBookmarkClicked = await putMarketingToggleBookmark(
-        brandId,
-        accessToken,
-      );
+    let bookmarkResult = false;
+
+    if (location.pathname.includes("brand")) {
+      bookmarkResult = await putBrandToggleBookmark(brandId, accessToken);
+    } else if (location.pathname.includes("marketing")) {
+      bookmarkResult = await putMarketingToggleBookmark(brandId, accessToken);
     }
-    console.log(isBookmarkClicked);
-    SetIsBookmarkClicked(isBookmarkClicked);
+    console.log(bookmarkResult);
+    SetIsBookmarkClicked(bookmarkResult);
     setIsBookmarkBubbleOn(true); // 북마크 상태 변경 후 버블 표시
 
     if (isBookmarkClicked === false) setIsBookmarkBubbleOn(true);
