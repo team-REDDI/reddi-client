@@ -1,14 +1,6 @@
 import styled from "styled-components";
 import { colors } from "../../styles/colors";
-import {
-  AIResultContanier,
-  ReddiAIContainer,
-  TagsBox,
-  TagsContainer,
-  WantBox,
-  WantTags,
-  WantText,
-} from "../../styles/ReddiAIStyle";
+import { ReddiAIContainer } from "../../styles/ReddiAIStyle";
 import { ReactComponent as CloseIcon } from "../../assets/svgs/closeButton.svg";
 import { useRecoilState } from "recoil";
 import { useEffect, useState } from "react";
@@ -82,17 +74,14 @@ export const AIPrompt = ({ toggleAIPrompt, id, accessToken }: PromptProps) => {
               <TagBox>
                 {createdData.prompt &&
                   Object.entries(createdData.prompt).map(
-                    ([key, value], index) => (
-                      <ResultLine key={index}>
-                        {(value as string)
-                          .split(",")
-                          .map((item: string, itemIndex: number) => (
-                            <PromptTag key={`${index}-${itemIndex}`}>
-                              {item.trim()}
-                            </PromptTag>
-                          ))}
-                      </ResultLine>
-                    ),
+                    ([key, value], index) =>
+                      (value as string)
+                        .split(",")
+                        .map((item: string, itemIndex: number) => (
+                          <PromptTag key={`${index}-${itemIndex}`}>
+                            {item.trim()}
+                          </PromptTag>
+                        )),
                   )}
               </TagBox>
             </ResultBox>
@@ -121,49 +110,54 @@ const PromptBox = styled.div`
   display: flex;
   position: relative;
   flex-direction: column;
-  padding: 4.125rem 3.875rem;
+  padding: 3.125rem 3.875rem;
   align-items: flex-start;
-  gap: 3rem;
+  gap: 2rem;
   background-color: ${colors.white};
   width: 48rem;
   height: 40rem;
+  margin-bottom: 3.125rem;
+  overflow: auto;
 `;
 
 const ResultBox = styled.div`
   display: flex;
   width: 100%;
-  height: 10.43rem;
+  /* height: 12.43rem; */
   flex-direction: column;
 `;
 
 const ResultLine = styled.div`
   display: flex;
   width: fit-content;
+  gap: 0.625rem;
 `;
 
 const TypeText = styled.span`
   color: #a5a5a5;
-  font-size: 0.875rem;
+  font-size: 0.825rem;
   font-style: normal;
   font-weight: 500;
   line-height: 150%;
   letter-spacing: -0.00875rem;
-  width: 5.7rem;
-  margin-right: 2.12rem;
+  width: 4.5rem;
+  margin-right: 1.12rem;
 `;
 
 const PromptTitle = styled.div`
   color: ${colors.red};
-  font-size: 2.25rem;
+  font-size: 1.7rem;
   font-style: normal;
   font-weight: 700;
   line-height: 130%; /* 2.925rem */
   letter-spacing: -0.0225rem;
+  width: 100%;
+  text-align: center;
 `;
 
 const PromptSubTitle = styled.div`
   color: ${colors.black_CTA};
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-style: normal;
   font-weight: 700;
   line-height: 130%; /* 1.95rem */
@@ -175,22 +169,16 @@ const AIResultBox = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 7.25rem;
   gap: 1.5rem;
   padding: 1.4375rem 1.875rem;
   border-radius: 0.75rem;
   background-color: ${colors.background_gray};
-  overflow-y: auto;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
 `;
 
 const ValueText = styled.div`
   color: ${colors.black_CTA};
-  width: 27rem;
-  font-size: 1.125rem;
+  width: 30.3rem;
+  font-size: 0.975rem;
   font-style: normal;
   font-weight: 500;
   line-height: 130%;
@@ -200,8 +188,8 @@ const ValueText = styled.div`
 
 const CloseButton = styled(CloseIcon)`
   position: absolute;
-  top: 1.75rem;
-  right: 1.63rem;
+  top: 1.7rem;
+  right: 1.8rem;
   background: transparent;
   border: none;
   width: 1.25rem;
@@ -235,7 +223,7 @@ const PromptTag = styled.div`
   border-radius: 4.46rem;
   background: #2e2e2e;
   color: ${colors.white};
-  font-size: 1.125rem;
+  font-size: 0.975rem;
   font-weight: 500;
   line-height: 130%;
   letter-spacing: -0.01125rem;
