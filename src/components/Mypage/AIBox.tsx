@@ -20,7 +20,7 @@ const AIBox = ({ id, name, elements }: AIBoxProps) => {
   return (
     <>
       <Box key={id}>
-        <Title>{name}</Title>
+        <Title>{name ? name : "-"}</Title>
         <ExplText>생성한 브랜드 요소</ExplText>
         <OptionsContainer>
           {elements.slice(0, 3).map((option, index) => (
