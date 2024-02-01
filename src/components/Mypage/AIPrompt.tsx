@@ -1,13 +1,10 @@
 import styled from "styled-components";
 import { colors } from "../../styles/colors";
 import {
-  AIResultBox,
   AIResultContanier,
   ReddiAIContainer,
-  ResultLine,
   TagsBox,
   TagsContainer,
-  TypeText,
   WantBox,
   WantTags,
   WantText,
@@ -65,26 +62,41 @@ export const AIPrompt = ({ toggleAIPrompt, id, accessToken }: PromptProps) => {
         <PromptBox>
           <CloseButton onClick={toggleAIPrompt} />
           <PromptTitle>생성한 브랜드명</PromptTitle>
-          <PromptSubTitle>생성한 브랜드 요소</PromptSubTitle>
-          <AIResultBox>
-            {createdData.result &&
-              Object.entries(createdData.result).map(([key, value], index) => (
-                <ResultLine key={index}>
-                  <TypeText>{key}</TypeText>
-                  <ValueText>{value as string}</ValueText>
-                </ResultLine>
-              ))}
-            {createdData.prompt &&
-              Object.entries(createdData.prompt).map(([key, value], index) => (
-                <ResultLine key={index}>
-                  {(value as string)
-                    .split(",")
-                    .map((item: string, itemIndex: number) => (
-                      <div key={`${index}-${itemIndex}`}>{item.trim()}</div>
-                    ))}
-                </ResultLine>
-              ))}
-          </AIResultBox>
+          <ResultBox>
+            <PromptSubTitle>브랜드 생성 결과</PromptSubTitle>
+            <AIResultBox>
+              {createdData.result &&
+                Object.entries(createdData.result).map(
+                  ([key, value], index) => (
+                    <ResultLine key={index}>
+                      <TypeText>{key}</TypeText>
+                      <ValueText>{value as string}</ValueText>
+                    </ResultLine>
+                  ),
+                )}
+            </AIResultBox>
+          </ResultBox>
+          <ResultBox>
+            <PromptSubTitle>선택한 브랜드 태그</PromptSubTitle>
+            <ResultBox>
+              <TagBox>
+                {createdData.prompt &&
+                  Object.entries(createdData.prompt).map(
+                    ([key, value], index) => (
+                      <ResultLine key={index}>
+                        {(value as string)
+                          .split(",")
+                          .map((item: string, itemIndex: number) => (
+                            <PromptTag key={`${index}-${itemIndex}`}>
+                              {item.trim()}
+                            </PromptTag>
+                          ))}
+                      </ResultLine>
+                    ),
+                  )}
+              </TagBox>
+            </ResultBox>
+          </ResultBox>
         </PromptBox>
       </ReddiAIContainer>
     </PromptContanier>
@@ -109,9 +121,35 @@ const PromptBox = styled.div`
   display: flex;
   position: relative;
   flex-direction: column;
-  height: fit-content;
-  padding: 3.5rem 3rem;
+  padding: 4.125rem 3.875rem;
+  align-items: flex-start;
+  gap: 3rem;
   background-color: ${colors.white};
+  width: 48rem;
+  height: 40rem;
+`;
+
+const ResultBox = styled.div`
+  display: flex;
+  width: 100%;
+  height: 10.43rem;
+  flex-direction: column;
+`;
+
+const ResultLine = styled.div`
+  display: flex;
+  width: fit-content;
+`;
+
+const TypeText = styled.span`
+  color: #a5a5a5;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%;
+  letter-spacing: -0.00875rem;
+  width: 5.7rem;
+  margin-right: 2.12rem;
 `;
 
 const PromptTitle = styled.div`
@@ -121,7 +159,6 @@ const PromptTitle = styled.div`
   font-weight: 700;
   line-height: 130%; /* 2.925rem */
   letter-spacing: -0.0225rem;
-  margin-bottom: 3.81rem;
 `;
 
 const PromptSubTitle = styled.div`
@@ -131,12 +168,28 @@ const PromptSubTitle = styled.div`
   font-weight: 700;
   line-height: 130%; /* 1.95rem */
   letter-spacing: -0.015rem;
-  margin-bottom: 2.06rem;
+  margin-bottom: 1.25rem;
+`;
+
+const AIResultBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 7.25rem;
+  gap: 1.5rem;
+  padding: 1.4375rem 1.875rem;
+  border-radius: 0.75rem;
+  background-color: ${colors.background_gray};
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const ValueText = styled.div`
   color: ${colors.black_CTA};
-  width: 52.5rem;
+  width: 27rem;
   font-size: 1.125rem;
   font-style: normal;
   font-weight: 500;
@@ -154,4 +207,36 @@ const CloseButton = styled(CloseIcon)`
   width: 1.25rem;
   height: 1.25rem;
   cursor: pointer;
+`;
+
+const TagBox = styled.div`
+  display: flex;
+  width: 100%;
+  padding: 1.5rem;
+  align-items: flex-start;
+  gap: 0.625rem;
+  border-radius: 0.75rem;
+  border: 1.2px solid #ddd;
+  background: ${colors.white};
+  flex-wrap: wrap;
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`;
+
+const PromptTag = styled.div`
+  display: flex;
+  padding: 0.5rem 1rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 4.46rem;
+  background: #2e2e2e;
+  color: ${colors.white};
+  font-size: 1.125rem;
+  font-weight: 500;
+  line-height: 130%;
+  letter-spacing: -0.01125rem;
 `;
