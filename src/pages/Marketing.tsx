@@ -6,8 +6,12 @@ import { BrandTitleRow, HomeTitle, MarketingLine } from "../styles/HomeStyle";
 import { MarketingBox } from "../components/MarketingBox";
 import dropdownDataMarketing from "../assets/datas/dropDownDataMarketing.json";
 import Footer from "../components/Footer";
-import { filteredMarketing } from "../utils/atom";
-import { useRecoilValue } from "recoil";
+import {
+  accessTokenState,
+  bookmarkedMarketingIdsState,
+  filteredMarketing,
+} from "../utils/atom";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { ReactComponent as MarketingSVG } from "../assets/svgs/MarketingSVG.svg";
 
 import {
@@ -21,6 +25,7 @@ import { getMarketingList } from "../apis/marketing";
 import { findTagByType } from "../utils/detailTagFunction";
 import { useSearchParams } from "react-router-dom";
 import { MarketingSkeleton } from "../components/MarketingSkeleton";
+import { getBookmarkedMarketing } from "../apis/mypageAPI";
 
 interface Marketing {
   id: number;
@@ -42,10 +47,14 @@ interface Marketing {
 const queryClient = new QueryClient();
 
 const Marketing = () => {
+  const [accessToken] = useRecoilState(accessTokenState);
   const selectedFilters = useRecoilValue(filteredMarketing);
   const [searchParams, setSearchParams] = useSearchParams();
   const pageFromUrl = Number(searchParams.get("page")) || 1;
   const [currentPage, setCurrentPage] = useState(pageFromUrl);
+  const [bookmarkedMarketingIds, setBookmarkedMarketingIds] = useRecoilState(
+    bookmarkedMarketingIdsState,
+  );
 
   useEffect(() => {
     setCurrentPage(pageFromUrl);
@@ -57,6 +66,23 @@ const Marketing = () => {
     setSearchParams({ page: page.toString() });
   };
 
+  useEffect(() => {
+    const fetchBookmarkedPosts = async () => {
+      try {
+        const data = await getBookmarkedMarketing(accessToken);
+
+        // data가 undefined인 경우에 대한 체크 추가
+        if (data) {
+          const ids = data.map((post: any) => post.id);
+          setBookmarkedMarketingIds(ids);
+          console.log("bookmarkedMarketingIds:", ids);
+        }
+      } catch (error) {
+        console.error("Error fetching bookmarked marketing posts:", error);
+      }
+    };
+    fetchBookmarkedPosts();
+  }, [accessToken]);
   const {
     data: marketingInfo,
     isLoading,
@@ -143,6 +169,7 @@ const Marketing = () => {
                 expl={box.expl}
                 read={box.read}
                 categories={box.categories}
+                isBookmarked={bookmarkedMarketingIds.includes(box.id)}
               />
             ))
           )}

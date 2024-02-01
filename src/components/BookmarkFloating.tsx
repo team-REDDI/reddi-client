@@ -10,21 +10,43 @@ import {
   putMarketingToggleBookmark,
 } from "../apis/bookmarkAPI";
 import { useRecoilState } from "recoil";
-import { accessTokenState } from "../utils/atom";
-import { useLocation, useParams } from "react-router-dom";
+import { accessTokenState, bookmarkedMarketingIdsState } from "../utils/atom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import Login from "./Login";
 
 const BookmarkFloating = () => {
   const [isBookmarkClicked, SetIsBookmarkClicked] = useState<boolean>(false);
   const [isShareClicked, SetIsShareClicked] = useState<boolean>(false);
   const [isBookmarkBubbleOn, setIsBookmarkBubbleOn] = useState<boolean>(false);
+  const [bookmarkBubble, setBookmarkBubble] = useState({
+    show: false,
+    message: "",
+  });
   const [isShareBubbleOn, setIsShareBubbleOn] = useState<boolean>(false);
   const [accessToken] = useRecoilState(accessTokenState);
+  const [bookmarkedMarketingIds, setBookmarkedMarketingIds] = useRecoilState(
+    bookmarkedMarketingIdsState,
+  );
   const location = useLocation();
 
   const { id } = useParams();
   const brandId = Number(id);
   console.log(location.pathname);
+
+  useEffect(() => {
+    if (location.pathname.includes("marketing")) {
+      const isBookmarked = bookmarkedMarketingIds.includes(brandId);
+      SetIsBookmarkClicked(isBookmarked);
+    }
+  }, [bookmarkedMarketingIds, brandId]);
+
   const BookMarkClicked = async () => {
+    if (!accessToken) {
+      alert("북마크 기능은 로그인 이후에 가능합니다.");
+
+      return;
+    }
+
     let bookmarkResult = false;
 
     if (location.pathname.includes("brand")) {
@@ -32,7 +54,12 @@ const BookmarkFloating = () => {
     } else if (location.pathname.includes("marketing")) {
       bookmarkResult = await putMarketingToggleBookmark(brandId, accessToken);
     }
+
     console.log(bookmarkResult);
+    const message = bookmarkResult
+      ? "마이페이지에 저장되었습니다"
+      : "마이페이지에서 제거되었습니다";
+    setBookmarkBubble({ show: true, message });
     SetIsBookmarkClicked(bookmarkResult);
     setIsBookmarkBubbleOn(true); // 북마크 상태 변경 후 버블 표시
 
@@ -41,6 +68,19 @@ const BookmarkFloating = () => {
 
   const ShareClicked = () => {
     SetIsShareClicked(!isShareClicked);
+    if (!isShareClicked) {
+      const url = window.location.href;
+
+      // url 복사하기
+      navigator.clipboard
+        .writeText(url)
+        .then(() => {
+          setIsShareBubbleOn(true);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+    }
     if (isShareClicked === false) setIsShareBubbleOn(true);
   };
 
@@ -74,7 +114,7 @@ const BookmarkFloating = () => {
           {isBookmarkBubbleOn && (
             <BubbleBox>
               <BubbleLine>
-                <BubbleText>마이페이지에 저장되었습니다</BubbleText>
+                <BubbleText>{bookmarkBubble.message}</BubbleText>
               </BubbleLine>
               <BubbleArrow />
             </BubbleBox>
