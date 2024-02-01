@@ -33,13 +33,23 @@ const AIBox = ({ id, name, elements, accessToken }: AIBoxProps) => {
       />
     );
   }
+
+  const maxTotalLength = 12;
+  let sumLength = 0;
+  let tagNum = 0;
+  const selectedElements = elements.filter((element) => {
+    sumLength += element.length;
+    tagNum++;
+    return sumLength <= maxTotalLength;
+  });
+
   return (
     <>
       <Box key={id}>
         <Title>{name ? name : "-"}</Title>
         <ExplText>생성한 브랜드 요소</ExplText>
         <OptionsContainer>
-          {elements.slice(0, 3).map((option, id) => (
+          {selectedElements.map((option, id) => (
             <Option key={id}>{option}</Option>
           ))}
           <PlusButton>+</PlusButton>
