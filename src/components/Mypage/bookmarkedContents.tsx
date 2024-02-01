@@ -3,7 +3,10 @@ import { colors } from "../../styles/colors";
 import { SmallMarketingBox } from "../SmallMarketingBox";
 import { BrandBox } from "../BrandBox";
 import styled from "styled-components";
-import { getBookmarkedMarketing } from "../../apis/mypageAPI";
+import {
+  getBookmarkedBrand,
+  getBookmarkedMarketing,
+} from "../../apis/mypageAPI";
 import { useRecoilState } from "recoil";
 import { accessTokenState } from "../../utils/atom";
 import { useEffect, useState } from "react";
@@ -16,6 +19,18 @@ interface Marketing {
   description: string;
   postTags: {
     postTagType: string;
+    tag: string;
+  }[];
+  cover_url: string;
+  notion_page_url: string;
+  notion_page_created_time: string;
+  notion_page_last_edited_time: string;
+}
+interface Brand {
+  id: number;
+  name: string;
+  brandTags: {
+    brandTagType: string;
     tag: string;
   }[];
   cover_url: string;
@@ -65,6 +80,7 @@ const dummyBrandBoxes = [
 export const BookmarkedContent = () => {
   const [accessToken] = useRecoilState(accessTokenState);
   const [marketingLists, setMarketingLists] = useState([]);
+  const [brandLists, setBrandLists] = useState([]);
 
   useEffect(() => {
     const fetchMarketingLists = async () => {
@@ -76,10 +92,21 @@ export const BookmarkedContent = () => {
       }
     };
 
+    const fetchBrandLists = async () => {
+      try {
+        const data = await getBookmarkedBrand(accessToken);
+        setBrandLists(data);
+      } catch (error) {
+        console.error("Error fetching brand lists:", error);
+      }
+    };
+
+    fetchBrandLists();
     fetchMarketingLists();
   }, [accessToken]);
 
   console.log("marketingLists: ", marketingLists);
+  console.log("brand Lists: ", brandLists);
   return (
     <div>
       <TitleText>마케팅</TitleText>
@@ -99,6 +126,15 @@ export const BookmarkedContent = () => {
       </BoxContainer>
       <TitleText>브랜드</TitleText>
       <BoxContainer>
+        {brandLists.map((box: Brand, index: number) => (
+          <BrandBox
+            key={index}
+            id={box.id}
+            imgSrc={box.cover_url}
+            brandName={box.name}
+            tags={box.brandTags.map((tag) => tag.tag)}
+          />
+        ))}
         {dummyBrandBoxes.map((box, index) => (
           <BrandBox
             id={box.id}
