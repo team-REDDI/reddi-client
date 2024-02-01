@@ -16,6 +16,8 @@ import {
   useQuery,
 } from "@tanstack/react-query";
 import GoogleAuthCallback from "./components/Auth/googleAuthCallback";
+import { GetLocalStorage } from "./utils/getLocalStorage";
+
 const queryClient = new QueryClient();
 
 function App() {
@@ -25,6 +27,7 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <RecoilRoot>
           <BrowserRouter>
+            <GetLocalStorage />
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/marketing" element={<Marketing />} />

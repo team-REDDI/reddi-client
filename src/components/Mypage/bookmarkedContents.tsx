@@ -10,6 +10,7 @@ import {
 import { useRecoilState } from "recoil";
 import { accessTokenState } from "../../utils/atom";
 import { useEffect, useState } from "react";
+import { useQuery } from "react-query";
 interface Marketing {
   id: number;
   name: string;
@@ -41,40 +42,29 @@ interface Brand {
 
 export const BookmarkedContent = () => {
   const [accessToken] = useRecoilState(accessTokenState);
-  const [marketingLists, setMarketingLists] = useState([]);
-  const [brandLists, setBrandLists] = useState([]);
 
-  useEffect(() => {
-    const fetchMarketingLists = async () => {
-      try {
-        const data = await getBookmarkedMarketing(accessToken);
-        setMarketingLists(data);
-      } catch (error) {
-        console.error("Error fetching marketing lists:", error);
-      }
-    };
+  const { data: marketingData } = useQuery(
+    ["bookmarkedMarketing", accessToken],
+    () => getBookmarkedMarketing(accessToken),
+    {
+      enabled: !!accessToken,
+    },
+  );
 
-    const fetchBrandLists = async () => {
-      try {
-        const data = await getBookmarkedBrand(accessToken);
-        setBrandLists(data);
-      } catch (error) {
-        console.error("Error fetching brand lists:", error);
-      }
-    };
+  const { data: brandData } = useQuery(
+    ["bookmarkedBrand", accessToken],
+    () => getBookmarkedBrand(accessToken),
+    {
+      enabled: !!accessToken,
+    },
+  );
 
-    fetchBrandLists();
-    fetchMarketingLists();
-  }, [accessToken]);
-
-  console.log("marketingLists: ", marketingLists);
-  console.log("brand Lists: ", brandLists);
   return (
     <div>
       <TitleText>마케팅</TitleText>
       <BoxContainer>
-        {marketingLists &&
-          marketingLists.map((marketing: Marketing) => (
+        {marketingData &&
+          marketingData.map((marketing: Marketing) => (
             <SmallMarketingBox
               id={marketing.id}
               imgSrc={marketing.cover_url}
@@ -88,8 +78,8 @@ export const BookmarkedContent = () => {
       </BoxContainer>
       <TitleText>브랜드</TitleText>
       <BoxContainer>
-        {brandLists &&
-          brandLists.map((box: Brand, index: number) => (
+        {brandData &&
+          brandData.map((box: Brand, index: number) => (
             <BrandBox
               bookmarkOff={true}
               key={index}

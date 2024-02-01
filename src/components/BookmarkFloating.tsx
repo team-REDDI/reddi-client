@@ -28,6 +28,7 @@ const BookmarkFloating = () => {
   });
   const [isShareBubbleOn, setIsShareBubbleOn] = useState<boolean>(false);
   const [accessToken] = useRecoilState(accessTokenState);
+
   const [bookmarkedMarketingIds, setBookmarkedMarketingIds] = useRecoilState(
     bookmarkedMarketingIdsState,
   );
@@ -57,7 +58,6 @@ const BookmarkFloating = () => {
   const BookMarkClicked = async () => {
     if (!accessToken) {
       alert("북마크 기능은 로그인 이후에 가능합니다.");
-
       return;
     }
 

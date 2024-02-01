@@ -19,7 +19,7 @@ export const filteredMarketing = atom<Set<string>>({
     key: "isLoginState",
     default: false,
   });
-  
+
   export const userDataState = atom({
     key: 'userDataState',
     default: {
@@ -30,11 +30,11 @@ export const filteredMarketing = atom<Set<string>>({
     },
   });
 
- 
   export const bookmarkedMarketingIdsState = atom<number[]>({
     key: 'bookmarkedMarketingIdsState', 
     default: [], 
   });  
+  
   export const bookmarkedBrandIdsState = atom<number[]>({
     key: 'bookmarkedBrandIdsState', 
     default: [], 
