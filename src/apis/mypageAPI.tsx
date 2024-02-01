@@ -16,6 +16,7 @@ export const getBookmarkedMarketing = async (accessToken: string) => {
     throw error;
   }
 };
+
 export const getBookmarkedBrand = async (accessToken: string) => {
   try {
     const response = await client.get("/api/brand/bookmark", {
@@ -29,6 +30,23 @@ export const getBookmarkedBrand = async (accessToken: string) => {
     return response.data.data;
   } catch (error) {
     console.error("Error fetching bookmarked posts:", error);
+    throw error;
+  }
+};
+
+export const getCreatedAIBrand = async (accessToken: string) => {
+  try {
+    const response = await client.get("/api/chat-gpt/", {
+      headers: {
+        accept: "*/*",
+        Authorization: `Bearer ${accessToken}`,
+      },
+    });
+
+    console.log(response.data);
+    return response.data.data;
+  } catch (error) {
+    console.error("Error fetching created AI brand:", error);
     throw error;
   }
 };
