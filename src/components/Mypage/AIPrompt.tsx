@@ -17,33 +17,32 @@ import { useRecoilState } from "recoil";
 import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { getCreatedAIPrompt } from "../../apis/mypageAPI";
-import { accessTokenState } from "../../utils/atom";
 
-type PromptProps = {
-  show: boolean;
+interface PromptProps {
   toggleAIPrompt: () => void;
   id: number;
-};
+  accessToken: string;
+}
 
-export const AIPrompt = ({ show, toggleAIPrompt, id }: PromptProps) => {
+export const AIPrompt = ({ toggleAIPrompt, id, accessToken }: PromptProps) => {
   interface CreatedList {
     prompt: PromptList;
     result: ResultList;
   }
 
   interface PromptList {
-    elements: string;
-    atmospheres: string;
-    industries: string;
-    targets: string;
-    similarServices: string;
+    elements?: string;
+    atmospheres?: string;
+    industries?: string;
+    targets?: string;
+    similarServices?: string;
   }
 
   interface ResultList {
-    result: { [key: string]: string };
+    result: [string, string][];
   }
 
-  const [accessToken] = useRecoilState(accessTokenState);
+  // const [accessToken] = useRecoilState(accessTokenState);
   const [createdData, setCreatedData] = useState<CreatedList | null>(null);
   const [promptData, setPromptData] = useState<PromptList>();
   const [resultData, setResultData] = useState<ResultList>();
@@ -52,7 +51,7 @@ export const AIPrompt = ({ show, toggleAIPrompt, id }: PromptProps) => {
     () => getCreatedAIPrompt(accessToken, id),
     {
       onSuccess: (data) => {
-        console.log(data);
+        // console.log(data);
         setCreatedData(data);
       },
       onError: (error) => {
@@ -67,7 +66,12 @@ export const AIPrompt = ({ show, toggleAIPrompt, id }: PromptProps) => {
       setPromptData(createdData.prompt);
       setResultData(createdData.result);
     }
-  }, [createdData?.prompt, createdData?.result]);
+  }, [createdData]);
+
+  useEffect(() => {
+    console.log("prompt", promptData);
+    console.log("result", resultData);
+  }, [promptData, resultData]);
 
   return (
     <PromptContanier>

@@ -37,12 +37,13 @@ export const CreatedContents = () => {
     <div>
       <BoxContainer>
         {brandedData &&
-          brandedData.map((brand) => (
+          Object.values(brandedData).map((brand) => (
             <AIBox
               key={brand.id}
               id={brand.id}
               name={brand.name}
-              elements={brand.elements}
+              elements={Array.isArray(brand.elements) ? brand.elements : []}
+              accessToken={accessToken}
             />
           ))}
       </BoxContainer>
