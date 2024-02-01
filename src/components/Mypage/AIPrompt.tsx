@@ -35,8 +35,28 @@ export const AIPrompt = ({ show, toggleAIPrompt }: PromptProps) => {
             </ResultLine>
           ))} */}
             <ResultLine>
+              <TypeText>네이밍</TypeText>
+              <ValueText>Z-Fin</ValueText>
+            </ResultLine>
+            <ResultLine>
+              <TypeText>네이밍 이유</TypeText>
+              <ValueText>
+                Z-Fin은 즐거운 분위기와 역동적인 금융 서비스를 제공하기 위해
+                만들어졌습니다. 산업군인 금융과 F&B를 융합하여 차별화된 브랜드
+                경험을 제공합니다.
+              </ValueText>
+            </ResultLine>
+            <ResultLine>
               <TypeText>슬로건</TypeText>
-              <ValueText>화이팅</ValueText>
+              <ValueText>Enjoy Your Financial Journey</ValueText>
+            </ResultLine>
+            <ResultLine>
+              <TypeText>버전 미션</TypeText>
+              <ValueText>
+                Z-Fin은 첨단 기술과 창의적인 아이디어로 어려움을 도전하는
+                솔루션을 개발하여 gen Z, 시니어, 20대 고객들의 금융 경험을
+                혁신하고자 합니다.
+              </ValueText>
             </ResultLine>
           </AIResultBox>
           {/* <ButtonBox>
