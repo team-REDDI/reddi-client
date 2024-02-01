@@ -10,3 +10,24 @@ export const filteredMarketing = atom<Set<string>>({
     default: new Set(),
   });
 
+  export const accessTokenState = atom({
+    key: 'accessTokenState',
+    default: ''
+  });
+  
+  export const isLoginState = atom({
+    key: "isLoginState",
+    default: false,
+  });
+  
+  export const userDataState = atom({
+    key: 'userDataState',
+    default: {
+      userId: 0,
+      name: "name",
+      email: "email",
+      profileImageUrl: "url",
+    },
+  });
+
+ 

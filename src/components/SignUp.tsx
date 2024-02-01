@@ -126,6 +126,7 @@ const SignUpContainer = styled.div<ShowSignUpProps>`
   z-index: 1;
   transform: translateY(${(props) => (props.show ? "0%" : "-100%")});
   transition: transform 10.3s ease-in;
+  z-index: 200;
 `;
 
 const SignUpWrapper = styled.div<ShowSignUpProps>`

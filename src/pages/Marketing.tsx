@@ -89,7 +89,7 @@ const Marketing = () => {
   const allMarketingBoxes =
     allMarketingInfo?.map((marketing: Marketing) => {
       const tagType = "산업군";
-      const tag = findTagByType(marketing.postTags, tagType) || "Default Value";
+      const tag = findTagByType(marketing.postTags, "산업");
 
       return {
         id: marketing.id,

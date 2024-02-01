@@ -20,13 +20,16 @@ export const ProfileContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-items: center;
+  align-items: center;
 `;
 
-export const ProfileImage = styled.div`
+export const ProfileImage = styled.img`
   width: 5.89756rem;
   height: 5.89756rem;
   border-radius: 50%;
   background-color: #d9d9d9;
+  object-fit: cover;
+  object-position: center;
 `;
 
 export const ProfileNameText = styled.div`
