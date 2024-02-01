@@ -49,10 +49,15 @@ import {
   Mutation,
 } from "react-query";
 import { postAIBranding } from "../apis/aibrandingAPI";
+import { useRecoilState } from "recoil";
+import { accessTokenState, isLoginState } from "../utils/atom";
+import NotLoginAIBranding from "../components/NotLoginAIBranding";
 
 const queryClient = new QueryClient();
 
 const AIBranding = () => {
+  const [accessToken] = useRecoilState(accessTokenState);
+  const [isLogin, setIsLogin] = useRecoilState(isLoginState);
   const [isResult, setIsResult] = useState<boolean>(false);
   const [isNow, setIsNow] = useState<boolean[]>([
     true,
@@ -229,11 +234,14 @@ const AIBranding = () => {
     // console.log(clickedTags5);
 
     AIBrandingMutation.mutate({
-      element: clickedTags1,
-      atmos: clickedTags2,
-      industry: clickedTags3,
-      target: clickedTags4,
-      similar: clickedTags5,
+      info: {
+        element: clickedTags1,
+        atmos: clickedTags2,
+        industry: clickedTags3,
+        target: clickedTags4,
+        similar: clickedTags5,
+      },
+      accessToken: accessToken,
     });
   };
 
@@ -253,6 +261,7 @@ const AIBranding = () => {
   useEffect(() => {
     console.log("brandingResult", brandingResult);
   }, [brandingResult]);
+  if (!isLogin) return <NotLoginAIBranding />;
 
   return (
     <Container>
