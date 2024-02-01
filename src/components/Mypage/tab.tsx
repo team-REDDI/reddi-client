@@ -5,6 +5,7 @@ import { BookmarkedContent } from "./bookmarkedContents";
 import { CreatedContents } from "./createdContents";
 interface TabProps {
   bookmarkCount: number;
+  promptCount: number;
 }
 
 const TabMenu = styled.ul`
@@ -39,13 +40,13 @@ const Desc = styled.div`
   /* text-align: center; */
 `;
 
-const Tab: React.FC<TabProps> = ({ bookmarkCount }) => {
+const Tab: React.FC<TabProps> = ({ bookmarkCount, promptCount }) => {
   const [currentTab, clickTab] = useState(0);
 
   const menuArr = [
     { name: `북마크(${bookmarkCount})`, content: <BookmarkedContent /> },
     {
-      name: "REDDIAI로 생성한 브랜드 (12)",
+      name: `REDDIAI로 생성한 브랜드 (${promptCount})`,
       content: <CreatedContents />,
     },
   ];

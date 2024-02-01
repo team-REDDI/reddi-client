@@ -18,7 +18,11 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactComponent as LoginImage } from "../assets/svgs/loginImage.svg";
 import { ReactComponent as ReddiLogo } from "../assets/svgs/notLoginLogo.svg";
 import { colors } from "../styles/colors";
-import { getBookmarkedBrand, getBookmarkedMarketing } from "../apis/mypageAPI";
+import {
+  getBookmarkedBrand,
+  getBookmarkedMarketing,
+  getCreatedAIBrand,
+} from "../apis/mypageAPI";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +32,7 @@ const Mypage = () => {
   const [userData, setUserData] = useRecoilState(userDataState);
   const [showLogin, setShowLogin] = useState(false);
   const [bookmarkCount, setBookmarkCount] = useState(0);
+  const [promptCount, setPromptCount] = useState(0);
 
   useEffect(() => {
     const fetchCounts = async () => {
@@ -37,6 +42,8 @@ const Mypage = () => {
         const totalBookmarks =
           (marketingData?.length || 0) + (brandData?.length || 0);
         setBookmarkCount(totalBookmarks);
+        const createdData = await getCreatedAIBrand(accessToken);
+        setPromptCount(createdData.length);
       } catch (error) {
         console.error("Error fetching bookmark counts:", error);
       }
@@ -57,7 +64,7 @@ const Mypage = () => {
             <ProfileNameText>이레디</ProfileNameText>
             <ProfileIdText>readyornot</ProfileIdText>
           </ProfileContainer>
-          <Tab bookmarkCount={0} />
+          <Tab bookmarkCount={0} promptCount={0} />
         </MyPageContainer>
         <Footer />
 
@@ -88,7 +95,7 @@ const Mypage = () => {
           <ProfileNameText>{userData.name}</ProfileNameText>
           <ProfileIdText>{userData.email}</ProfileIdText>
         </ProfileContainer>
-        <Tab bookmarkCount={bookmarkCount} />
+        <Tab bookmarkCount={bookmarkCount} promptCount={promptCount} />
       </MyPageContainer>
       <Footer />
     </Container>

@@ -25,6 +25,7 @@ export const CreatedContents = () => {
     () => getCreatedAIBrand(accessToken),
     {
       onSuccess: (data) => {
+        console.log(accessToken);
         setCreatedData(data);
       },
       onError: (error) => {
@@ -32,6 +33,7 @@ export const CreatedContents = () => {
       },
     },
   );
+
   return (
     <div>
       <BoxContainer>
