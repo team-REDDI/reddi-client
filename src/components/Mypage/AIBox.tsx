@@ -12,6 +12,7 @@ interface AIBoxProps {
 
 const AIBox = ({ id, name, elements }: AIBoxProps) => {
   const [isPrompt, setIsPrompt] = useState<boolean>(false);
+  const [idValue, setIdValue] = useState<number>(0);
 
   const toggleAIPrompt = () => {
     setIsPrompt(!isPrompt);
@@ -28,11 +29,22 @@ const AIBox = ({ id, name, elements }: AIBoxProps) => {
           ))}
           <PlusButton>+</PlusButton>
         </OptionsContainer>
-        <AIBoxButton onClick={() => setIsPrompt(true)}>
+        <AIBoxButton
+          onClick={() => {
+            setIsPrompt(true);
+            setIdValue(id);
+          }}
+        >
           프롬프트 불러오기
         </AIBoxButton>
       </Box>
-      {isPrompt && <AIPrompt show={isPrompt} toggleAIPrompt={toggleAIPrompt} />}
+      {isPrompt && (
+        <AIPrompt
+          show={isPrompt}
+          toggleAIPrompt={toggleAIPrompt}
+          id={idValue}
+        />
+      )}
     </>
   );
 };

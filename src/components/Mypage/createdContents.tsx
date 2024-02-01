@@ -19,14 +19,13 @@ export const CreatedContents = () => {
   }
 
   const [accessToken] = useRecoilState(accessTokenState);
-  const [createdData, setCreatedData] = useState<AIBoxProps[]>();
+  const [brandedData, setBrandedData] = useState<AIBoxProps[]>([]);
   const { data: CreatedData } = useQuery(
     ["createdData", accessToken],
     () => getCreatedAIBrand(accessToken),
     {
       onSuccess: (data) => {
-        console.log(accessToken);
-        setCreatedData(data);
+        setBrandedData(data);
       },
       onError: (error) => {
         console.log(error);
@@ -37,9 +36,14 @@ export const CreatedContents = () => {
   return (
     <div>
       <BoxContainer>
-        {createdData &&
-          createdData.map((brand) => (
-            <AIBox id={brand.id} name={brand.name} elements={brand.elements} />
+        {brandedData &&
+          brandedData.map((brand) => (
+            <AIBox
+              key={brand.id}
+              id={brand.id}
+              name={brand.name}
+              elements={brand.elements}
+            />
           ))}
       </BoxContainer>
     </div>

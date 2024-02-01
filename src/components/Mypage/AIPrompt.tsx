@@ -13,12 +13,62 @@ import {
   WantText,
 } from "../../styles/ReddiAIStyle";
 import { ReactComponent as CloseIcon } from "../../assets/svgs/closeButton.svg";
+import { useRecoilState } from "recoil";
+import { useEffect, useState } from "react";
+import { useQuery } from "react-query";
+import { getCreatedAIPrompt } from "../../apis/mypageAPI";
+import { accessTokenState } from "../../utils/atom";
+
 type PromptProps = {
   show: boolean;
   toggleAIPrompt: () => void;
+  id: number;
 };
 
-export const AIPrompt = ({ show, toggleAIPrompt }: PromptProps) => {
+export const AIPrompt = ({ show, toggleAIPrompt, id }: PromptProps) => {
+  interface CreatedList {
+    prompt: PromptList;
+    result: ResultList;
+  }
+
+  interface PromptList {
+    elements: string;
+    atmospheres: string;
+    industries: string;
+    targets: string;
+    similarServices: string;
+  }
+
+  interface ResultList {
+    result: { [key: string]: string };
+  }
+
+  const [accessToken] = useRecoilState(accessTokenState);
+  const [createdData, setCreatedData] = useState<CreatedList | null>(null);
+  const [promptData, setPromptData] = useState<PromptList>();
+  const [resultData, setResultData] = useState<ResultList>();
+  const { data: CreatedData } = useQuery(
+    ["createdData", accessToken],
+    () => getCreatedAIPrompt(accessToken, id),
+    {
+      onSuccess: (data) => {
+        console.log(data);
+        setCreatedData(data);
+      },
+      onError: (error) => {
+        console.log(error);
+      },
+    },
+  );
+
+  useEffect(() => {
+    // console.log("c", createdData);
+    if (createdData) {
+      setPromptData(createdData.prompt);
+      setResultData(createdData.result);
+    }
+  }, [createdData?.prompt, createdData?.result]);
+
   return (
     <PromptContanier>
       <ReddiAIContainer>
@@ -27,42 +77,14 @@ export const AIPrompt = ({ show, toggleAIPrompt }: PromptProps) => {
           <PromptTitle>생성한 브랜드명</PromptTitle>
           <PromptSubTitle>생성한 브랜드 요소</PromptSubTitle>
           <AIResultBox>
-            {/* {resultData &&
-          Object.entries(resultData).map(([key, value]) => (
-            <ResultLine>
-              <TypeText>{key}</TypeText>
-              <ValueText>{value}</ValueText>
-            </ResultLine>
-          ))} */}
-            <ResultLine>
-              <TypeText>네이밍</TypeText>
-              <ValueText>Z-Fin</ValueText>
-            </ResultLine>
-            <ResultLine>
-              <TypeText>네이밍 이유</TypeText>
-              <ValueText>
-                Z-Fin은 즐거운 분위기와 역동적인 금융 서비스를 제공하기 위해
-                만들어졌습니다. 산업군인 금융과 F&B를 융합하여 차별화된 브랜드
-                경험을 제공합니다.
-              </ValueText>
-            </ResultLine>
-            <ResultLine>
-              <TypeText>슬로건</TypeText>
-              <ValueText>Enjoy Your Financial Journey</ValueText>
-            </ResultLine>
-            <ResultLine>
-              <TypeText>버전 미션</TypeText>
-              <ValueText>
-                Z-Fin은 첨단 기술과 창의적인 아이디어로 어려움을 도전하는
-                솔루션을 개발하여 gen Z, 시니어, 20대 고객들의 금융 경험을
-                혁신하고자 합니다.
-              </ValueText>
-            </ResultLine>
+            {resultData &&
+              Object.entries(resultData).map(([key, value]) => (
+                <ResultLine>
+                  <TypeText>{key}</TypeText>
+                  <ValueText>{value}</ValueText>
+                </ResultLine>
+              ))}
           </AIResultBox>
-          {/* <ButtonBox>
-        <DeleteButton>다시 생성하기</DeleteButton>
-        <CompleteButton>저장하기</CompleteButton>
-      </ButtonBox> */}
         </PromptBox>
       </ReddiAIContainer>
     </PromptContanier>
