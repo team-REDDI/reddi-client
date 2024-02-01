@@ -3,7 +3,26 @@ import { colors } from "../../styles/colors";
 import { SmallMarketingBox } from "../SmallMarketingBox";
 import { BrandBox } from "../BrandBox";
 import styled from "styled-components";
-
+import { getBookmarkedMarketing } from "../../apis/mypageAPI";
+import { useRecoilState } from "recoil";
+import { accessTokenState } from "../../utils/atom";
+import { useEffect, useState } from "react";
+interface Marketing {
+  id: number;
+  name: string;
+  brand_id: number;
+  title: string;
+  subtitle: string;
+  description: string;
+  postTags: {
+    postTagType: string;
+    tag: string;
+  }[];
+  cover_url: string;
+  notion_page_url: string;
+  notion_page_created_time: string;
+  notion_page_last_edited_time: string;
+}
 const dummyMarketingBoxes = [
   {
     imgSrc: "../assets/images/exemple.png",
@@ -70,11 +89,40 @@ const dummyBrandBoxes = [
 ];
 
 export const BookmarkedContent = () => {
+  const [accessToken] = useRecoilState(accessTokenState);
+  const [marketingLists, setMarketingLists] = useState([]);
+
+  useEffect(() => {
+    const fetchMarketingLists = async () => {
+      try {
+        const data = await getBookmarkedMarketing(accessToken);
+        setMarketingLists(data);
+      } catch (error) {
+        console.error("Error fetching marketing lists:", error);
+      }
+    };
+
+    fetchMarketingLists();
+  }, [accessToken]);
+
+  console.log("marketingLists: ", marketingLists);
   return (
     <div>
       <TitleText>마케팅</TitleText>
       <BoxContainer>
-        {dummyMarketingBoxes.map((box, index) => (
+        {marketingLists &&
+          marketingLists.map((marketing: Marketing) => (
+            <SmallMarketingBox
+              id={marketing.id}
+              imgSrc={marketing.cover_url}
+              type="PLACE"
+              title={marketing.title}
+              expl={marketing.subtitle}
+              read={1} //화면에 안 나오기 때문에 그냥 임시 값 넣었음
+              categories={marketing.postTags.map((tag) => tag.tag)}
+            />
+          ))}
+        {/* {dummyMarketingBoxes.map((box, index) => (
           <SmallMarketingBox
             key={index}
             imgSrc={box.imgSrc}
@@ -84,7 +132,7 @@ export const BookmarkedContent = () => {
             read={box.read}
             categories={box.categories}
           />
-        ))}
+        ))} */}
       </BoxContainer>
       <TitleText>브랜드</TitleText>
       <BoxContainer>

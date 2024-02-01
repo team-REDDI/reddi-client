@@ -3,6 +3,7 @@ import { colors } from "../styles/colors";
 import { useNavigate } from "react-router-dom";
 
 interface MarketingProps {
+  id: number;
   imgSrc: string;
   type: string;
   title: string;
@@ -12,6 +13,7 @@ interface MarketingProps {
 }
 
 export const SmallMarketingBox = ({
+  id,
   imgSrc,
   type,
   title,
@@ -21,10 +23,9 @@ export const SmallMarketingBox = ({
 }: MarketingProps) => {
   const nav = useNavigate();
 
-  const goToBrandDetail = () => {
-    nav("/marketing/detail/0");
+  const goToMarketingDetail = () => {
+    nav(`/marketing/detail/${id}`);
   };
-
   //글자가 넘어가면 ..표시 되도록
   const editContent = (content: String) => {
     if (content.length >= 0) {
@@ -33,8 +34,8 @@ export const SmallMarketingBox = ({
   };
 
   return (
-    <Container onClick={goToBrandDetail}>
-      <MarketingImg src={require("../assets/images/exemple.png")} />
+    <Container onClick={goToMarketingDetail}>
+      <MarketingImg src={imgSrc} />
       <TitleWrapper>
         <Title>{title}</Title>
         <ExpText>{editContent(expl)}</ExpText>
