@@ -111,7 +111,7 @@ const MarketingDetail = () => {
         }
       case "image":
         if (content.image && content.image.file && content.image.file.url) {
-          console.log("image: ", content.image.file.url);
+          // console.log("image: ", content.image.file.url);
           return (
             // <img
             //   key={index}
@@ -188,7 +188,7 @@ const MarketingDetail = () => {
                 {tag.tag}
               </FilterTag>
             ),
-          )}{" "}
+          )}
         </TagBox>
       </MarketingTags>
 

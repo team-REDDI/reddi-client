@@ -8,7 +8,7 @@ export const getBrandList = async (params: { page: number; size: number }) => {
         size: params.size,
       },
     });
-    console.log("brand list data", response.data);
+    // console.log("brand list data", response.data);
     return response.data.data.content;
   } catch (error) {
     console.error(error);
@@ -23,7 +23,7 @@ export const getBrandDetail = async (pageId: number) => {
         id: pageId,
       },
     });
-    console.log(response.data);
+    // console.log(response.data);
     return response.data.data.content;
   } catch (error) {
     console.error("Error:", error);

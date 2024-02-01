@@ -16,7 +16,7 @@ export const putBrandToggleBookmark = async (
       },
     );
 
-    console.log("Bookmark Toggle Response : ", response.data);
+    // console.log("Bookmark Toggle Response : ", response.data);
 
     return response.data.data.is_bookmarked;
   } catch (error) {
@@ -40,7 +40,7 @@ export const putMarketingToggleBookmark = async (
       },
     );
 
-    console.log("Bookmark Toggle Response : ", response.data);
+    // console.log("Bookmark Toggle Response : ", response.data);
 
     return response.data.data.is_bookmarked;
   } catch (error) {

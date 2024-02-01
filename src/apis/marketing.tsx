@@ -11,7 +11,7 @@ export const getMarketingList = async (params: {
         size: params.size,
       },
     });
-    console.log("marketing list data", response.data);
+    // console.log("marketing list data", response.data);
     return response.data.data.content;
   } catch (error) {
     console.error(error);
@@ -26,7 +26,7 @@ export const getMarketingDetail = async (pageId: number) => {
         id: pageId,
       },
     });
-    console.log(response.data);
+    // console.log(response.data);
     return response.data.data.content;
   } catch (error) {
     console.error("Error:", error);
@@ -42,7 +42,7 @@ export const getMarketingDetailInfo = async (pageId: number) => {
         id: pageId,
       },
     });
-    console.log("DETAIL", response.data);
+    // console.log("DETAIL", response.data);
     return response.data.data.post;
   } catch (error) {
     console.error("Error:", error);

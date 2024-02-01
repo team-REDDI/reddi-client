@@ -235,7 +235,7 @@ const AIBranding = () => {
       .map((tag) => tag.contents)
       .join(", ");
 
-    console.log(clickedTags1);
+    // console.log(clickedTags1);
 
     AIBrandingMutation.mutate({
       info: {
@@ -262,7 +262,7 @@ const AIBranding = () => {
   const { isLoading, isError, data } = AIBrandingMutation;
 
   useEffect(() => {
-    console.log("brandingResult", brandingResult);
+    // console.log("brandingResult", brandingResult);
   }, [brandingResult]);
   if (!isLogin) return <NotLoginAIBranding />;
 

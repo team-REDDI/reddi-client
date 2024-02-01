@@ -28,7 +28,7 @@ export const SearchBar: React.FC<SearchBarProps> = (props) => {
     isLoading,
     isError,
   } = useQuery("hotPosts", getHotPostSearch);
-  console.log(hotPosts);
+  // console.log(hotPosts);
 
   interface KeywordType {
     keyword: string;
