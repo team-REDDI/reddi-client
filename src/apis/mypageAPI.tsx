@@ -39,11 +39,11 @@ export const getCreatedAIBrand = async (accessToken: string) => {
     const response = await client.get("/api/chat-gpt/", {
       headers: {
         accept: "*/*",
-        Authorization: `Bearer ${accessToken}`,
+        // Authorization: `Bearer ${accessToken}`,
       },
     });
 
-    console.log(response.data);
+    console.log("생성된 AI brand: ", response.data);
     return response.data.data;
   } catch (error) {
     console.error("Error fetching created AI brand:", error);

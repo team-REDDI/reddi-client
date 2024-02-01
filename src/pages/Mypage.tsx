@@ -102,7 +102,8 @@ const ContainerNotLogin = styled.div`
   height: 100%;
   flex-direction: column;
   align-items: center;
-  z-index: 999;
+  justify-content: center;
+  z-index: 100;
   background-color: rgba(0, 0, 0, 0.7);
 `;
 
