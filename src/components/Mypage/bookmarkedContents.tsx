@@ -23,32 +23,6 @@ interface Marketing {
   notion_page_created_time: string;
   notion_page_last_edited_time: string;
 }
-const dummyMarketingBoxes = [
-  {
-    imgSrc: "../assets/images/exemple.png",
-    type: "PLACE",
-    title: "더 현대를 밝히는 ‘해리의 꿈의 상점’",
-    expl: "유럽 어느 골목을 들어와있는 듯한 착각",
-    read: 727,
-    categories: ["부티크", "팝업스토어", "콘텐츠 마케팅"],
-  },
-  {
-    imgSrc: "../assets/images/exemple.png",
-    type: "PLACE",
-    title: "신세계 백화점의 ‘MAGIC WINTER FANTASY’",
-    expl: "3분을 위한 9개월의 여정",
-    read: 567,
-    categories: ["부티크", "팝업스토어", "10대"],
-  },
-  {
-    imgSrc: "../assets/images/exemple.png",
-    type: "PLACE",
-    title: "신세계 백화점의 ‘MAGIC WINTER FANTASY’",
-    expl: "3분을 위한 9개월의 여정",
-    read: 567,
-    categories: ["부티크", "팝업스토어", "10대"],
-  },
-];
 
 const dummyBrandBoxes = [
   {
@@ -122,17 +96,6 @@ export const BookmarkedContent = () => {
               categories={marketing.postTags.map((tag) => tag.tag)}
             />
           ))}
-        {/* {dummyMarketingBoxes.map((box, index) => (
-          <SmallMarketingBox
-            key={index}
-            imgSrc={box.imgSrc}
-            type={box.type}
-            title={box.title}
-            expl={box.expl}
-            read={box.read}
-            categories={box.categories}
-          />
-        ))} */}
       </BoxContainer>
       <TitleText>브랜드</TitleText>
       <BoxContainer>
