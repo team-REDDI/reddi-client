@@ -16,6 +16,7 @@ import Login from "../components/Login";
 import { useEffect, useState } from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactComponent as LoginImage } from "../assets/svgs/loginImage.svg";
+import { ReactComponent as ReddiLogo } from "../assets/svgs/notLoginLogo.svg";
 import { colors } from "../styles/colors";
 import { getBookmarkedBrand, getBookmarkedMarketing } from "../apis/mypageAPI";
 
@@ -49,19 +50,20 @@ const Mypage = () => {
 
   if (!isLogin) {
     return (
-      <div>
+      <Container>
+        <NavBar />
+        <MyPageContainer>
+          <ProfileContainer>
+            <ProfileNameText>이레디</ProfileNameText>
+            <ProfileIdText>readyornot</ProfileIdText>
+          </ProfileContainer>
+          <Tab bookmarkCount={0} />
+        </MyPageContainer>
+        <Footer />
+
         <ContainerNotLogin>
-          <NavBar />
-          <MyPageContainer>
-            <ProfileContainer>
-              {/* <ProfileImage></ProfileImage> */}
-              <ProfileNameText>이레디</ProfileNameText>
-              <ProfileIdText>readyornot</ProfileIdText>
-            </ProfileContainer>
-            <Tab bookmarkCount={0} />
-          </MyPageContainer>
-          <Footer />
           <LoginMessage>
+            <ReddiLogo />
             <LoginText>로그인을 하셔야 서비스 이용이 가능합니다</LoginText>
             <LoginImage />
             <LoginBtn onClick={handleLoginClick}>로그인하기</LoginBtn>
@@ -74,7 +76,7 @@ const Mypage = () => {
             )}
           </LoginMessage>
         </ContainerNotLogin>
-      </div>
+      </Container>
     );
   }
   return (
@@ -94,16 +96,16 @@ const Mypage = () => {
 };
 
 const ContainerNotLogin = styled.div`
+  position: fixed;
   display: flex;
+  width: 100%;
+  height: 100%;
   flex-direction: column;
   align-items: center;
-
-  background: linear-gradient(
-    0deg,
-    rgba(0, 0, 0, 0.3) 0%,
-    rgba(0, 0, 0, 0.7) 100%
-  );
+  z-index: 999;
+  background-color: rgba(0, 0, 0, 0.7);
 `;
+
 const LoginMessage = styled.div`
   display: flex;
   flex-direction: column;
@@ -116,7 +118,6 @@ const LoginMessage = styled.div`
   transform: translate(-50%, -50%);
   width: 47.5625rem;
   height: 29.3125rem;
-  z-index: 100;
   text-align: center;
   gap: 2rem;
 `;
@@ -128,7 +129,7 @@ const LoginText = styled.div`
   line-height: 130%; /* 1.4625rem */
   letter-spacing: -0.01125rem;
 `;
-const LoginBtn = styled.button`
+const LoginBtn = styled.div`
   display: flex;
   flex-direction: column;
   width: 16.72031rem;

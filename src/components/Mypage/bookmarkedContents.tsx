@@ -100,6 +100,7 @@ const BoxContainer = styled.div`
   margin-bottom: 6.25rem;
 `;
 const TitleText = styled.div`
+  width: 64rem;
   font-size: 1.5rem;
   font-style: normal;
   font-weight: 700;

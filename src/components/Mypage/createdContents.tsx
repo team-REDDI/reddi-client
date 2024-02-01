@@ -1,42 +1,44 @@
 // reddiAI 를 통해 생성된 컨텐츠들
 import styled from "styled-components";
 import AIBox from "./AIBox";
-
-const createdBrandData = [
-  {
-    id: 1,
-    title: "뱅크샐러드",
-    options: ["네이밍", "로고", "슬로건", "비전미션"],
-  },
-  {
-    id: 2,
-    title: "생성한 브랜드2",
-    options: ["네이밍", "로고", "슬로건"],
-  },
-  {
-    id: 3,
-    title: "생성한 브랜드3",
-    options: ["네이밍", "로고", "비전미션", "슬로건"],
-  },
-  {
-    id: 4,
-    title: "생성한 브랜드4",
-    options: ["네이밍", "로고"],
-  },
-  {
-    id: 4,
-    title: "생성한 브랜드5",
-    options: ["네이밍", "로고", "로고", "로고", "로고", "로고", "로고"],
-  },
-];
+import { useQuery } from "react-query";
+import { getCreatedAIBrand } from "../../apis/mypageAPI";
+import {
+  accessTokenState,
+  isLoginState,
+  userDataState,
+} from "../../utils/atom";
+import { useState } from "react";
+import { useRecoilState } from "recoil";
 
 export const CreatedContents = () => {
+  interface AIBoxProps {
+    id: number;
+    name?: string;
+    elements: string[];
+  }
+
+  const [accessToken] = useRecoilState(accessTokenState);
+  const [createdData, setCreatedData] = useState<AIBoxProps[]>();
+  const { data: CreatedData } = useQuery(
+    ["createdData", accessToken],
+    () => getCreatedAIBrand(accessToken),
+    {
+      onSuccess: (data) => {
+        setCreatedData(data);
+      },
+      onError: (error) => {
+        console.log(error);
+      },
+    },
+  );
   return (
     <div>
       <BoxContainer>
-        {createdBrandData.map((brand) => (
-          <AIBox key={brand.id} title={brand.title} options={brand.options} />
-        ))}
+        {createdData &&
+          createdData.map((brand) => (
+            <AIBox id={brand.id} name={brand.name} elements={brand.elements} />
+          ))}
       </BoxContainer>
     </div>
   );

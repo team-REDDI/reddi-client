@@ -42,6 +42,7 @@ const NavBar = () => {
       setIsSignUp(false);
     }
   };
+
   const toggleSignUp = () => {
     setIsSignUp(!isSignUp);
     if (isLogin) {

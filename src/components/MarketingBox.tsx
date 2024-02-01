@@ -150,7 +150,7 @@ const Title = styled.span`
   white-space: nowrap;
 `;
 
-const PlusButton = styled.button`
+export const PlusButton = styled.button`
   cursor: pointer;
   border: none;
   font-size: 1rem;

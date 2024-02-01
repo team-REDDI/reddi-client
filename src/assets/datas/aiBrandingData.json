@@ -2,11 +2,10 @@
   "tagsList1": [
     { "id": 1, "boxId": 1, "contents": "네이밍", "isClicked": false },
     { "id": 2, "boxId": 1, "contents": "슬로건", "isClicked": false },
-    { "id": 3, "boxId": 1, "contents": "로고", "isClicked": false },
-    { "id": 4, "boxId": 1, "contents": "비전 미션", "isClicked": false },
-    { "id": 5, "boxId": 1, "contents": "브랜드 에센스", "isClicked": false },
-    { "id": 6, "boxId": 1, "contents": "키워드", "isClicked": false },
-    { "id": 7, "boxId": 1, "contents": "메니페스토", "isClicked": false }
+    { "id": 3, "boxId": 1, "contents": "비전 미션", "isClicked": false },
+    { "id": 4, "boxId": 1, "contents": "브랜드 에센스", "isClicked": false },
+    { "id": 5, "boxId": 1, "contents": "키워드", "isClicked": false },
+    { "id": 6, "boxId": 1, "contents": "메니페스토", "isClicked": false }
   ],
 
   "tagsList2": [
