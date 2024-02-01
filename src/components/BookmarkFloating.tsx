@@ -5,15 +5,40 @@ import { ReactComponent as Share } from "../assets/svgs/Share.svg";
 import { ReactComponent as BookmarkClickedIcon } from "../assets/svgs/BookmarkClicked.svg";
 import { ReactComponent as ShareClickedIcon } from "../assets/svgs/ShardClicked.svg";
 import { useEffect, useState } from "react";
+import {
+  putBrandToggleBookmark,
+  putMarketingToggleBookmark,
+} from "../apis/bookmarkAPI";
+import { useRecoilState } from "recoil";
+import { accessTokenState } from "../utils/atom";
+import { useLocation, useParams } from "react-router-dom";
 
 const BookmarkFloating = () => {
   const [isBookmarkClicked, SetIsBookmarkClicked] = useState<boolean>(false);
   const [isShareClicked, SetIsShareClicked] = useState<boolean>(false);
   const [isBookmarkBubbleOn, setIsBookmarkBubbleOn] = useState<boolean>(false);
   const [isShareBubbleOn, setIsShareBubbleOn] = useState<boolean>(false);
+  const [accessToken] = useRecoilState(accessTokenState);
+  const location = useLocation();
 
-  const BookMarkClicked = () => {
-    SetIsBookmarkClicked(!isBookmarkClicked);
+  const { id } = useParams();
+  const brandId = Number(id);
+  const BookMarkClicked = async () => {
+    if (location.pathname.includes("/brand/detail/")) {
+      const isBookmarkClicked = await putBrandToggleBookmark(
+        brandId,
+        accessToken,
+      );
+    } else if (location.pathname.includes("/marketing/detail/")) {
+      const isBookmarkClicked = await putMarketingToggleBookmark(
+        brandId,
+        accessToken,
+      );
+    }
+    console.log(isBookmarkClicked);
+    SetIsBookmarkClicked(isBookmarkClicked);
+    setIsBookmarkBubbleOn(true); // 북마크 상태 변경 후 버블 표시
+
     if (isBookmarkClicked === false) setIsBookmarkBubbleOn(true);
   };
 
