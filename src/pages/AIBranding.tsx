@@ -50,12 +50,14 @@ import {
 } from "react-query";
 import { postAIBranding } from "../apis/aibrandingAPI";
 import { useRecoilState } from "recoil";
-import { accessTokenState } from "../utils/atom";
+import { accessTokenState, isLoginState } from "../utils/atom";
+import NotLoginAIBranding from "../components/NotLoginAIBranding";
 
 const queryClient = new QueryClient();
 
 const AIBranding = () => {
   const [accessToken] = useRecoilState(accessTokenState);
+  const [isLogin, setIsLogin] = useRecoilState(isLoginState);
   const [isResult, setIsResult] = useState<boolean>(false);
   const [isNow, setIsNow] = useState<boolean[]>([
     true,
@@ -259,6 +261,7 @@ const AIBranding = () => {
   useEffect(() => {
     console.log("brandingResult", brandingResult);
   }, [brandingResult]);
+  if (!isLogin) return <NotLoginAIBranding />;
 
   return (
     <Container>
