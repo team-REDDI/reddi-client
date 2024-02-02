@@ -48,7 +48,7 @@ import {
   useMutation,
   Mutation,
 } from "react-query";
-import { postAIBranding } from "../apis/aibrandingAPI";
+import { postAIBranding, putAIBranding } from "../apis/aibrandingAPI";
 import { useRecoilState } from "recoil";
 import { accessTokenState, isLoginState } from "../utils/atom";
 import NotLoginAIBranding from "../components/NotLoginAIBranding";
@@ -66,6 +66,7 @@ const AIBranding = () => {
     false,
     false,
   ]);
+  const [createdID, setCreatedID] = useState(null);
 
   interface TagType {
     id: number;
@@ -252,14 +253,26 @@ const AIBranding = () => {
 
   const AIBrandingMutation = useMutation(postAIBranding, {
     onSuccess: (data) => {
-      setBrandingResult(data);
+      setCreatedID(data.id);
+      setBrandingResult(data.result);
       setIsResult(true);
+      console.log("ID:", createdID);
+      console.log("RESULT:", brandingResult);
     },
     onError: (error) => {
       console.log(error);
     },
   });
   const { isLoading, isError, data } = AIBrandingMutation;
+
+  const handleSaveClick = async () => {
+    if (createdID && accessToken) {
+      try {
+        const data = await putAIBranding(createdID, accessToken);
+        alert("생성한 AI 브랜드가 저장되었습니다. 마이페이지에서 확인해보세요");
+      } catch (error) {}
+    }
+  };
 
   useEffect(() => {
     // console.log("brandingResult", brandingResult);
@@ -311,7 +324,9 @@ const AIBranding = () => {
               >
                 다시 생성하기
               </DeleteButton>
-              <CompleteButton>저장하기</CompleteButton>
+              <CompleteButton onClick={handleSaveClick}>
+                저장하기
+              </CompleteButton>
             </ButtonBox>
             <Blank />
           </>
