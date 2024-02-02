@@ -2,8 +2,6 @@ import styled from "styled-components";
 import { colors } from "../../styles/colors";
 import { useState } from "react";
 import { AIPrompt } from "./AIPrompt";
-import { PlusButton } from "../MarketingBox";
-
 interface AIBoxProps {
   id: number;
   name?: string;
@@ -108,6 +106,7 @@ const Option = styled.span`
   background-color: ${colors.light_red};
   color: ${colors.red};
   display: inline-block;
+  border-radius: 0.25rem;
 `;
 
 const AIBoxButton = styled.button`
@@ -126,6 +125,22 @@ const AIBoxButton = styled.button`
   outline: none;
   background-color: black;
   color: ${colors.white};
+  border-radius: 0.75rem;
+`;
+const PlusButton = styled.button`
+  cursor: pointer;
+  border: none;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 130%;
+  display: flex;
+  padding: 0.25rem 0.5rem;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.25rem;
+  color: ${colors.red};
+  background-color: ${colors.white};
 `;
 
 export default AIBox;
