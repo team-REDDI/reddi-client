@@ -7,6 +7,7 @@ import {
   ProfileImage,
   ProfileNameText,
   ProfileIdText,
+  Container2,
 } from "../styles/mypageStyle";
 import Footer from "../components/Footer";
 import Tab from "../components/Mypage/tab";
@@ -57,7 +58,7 @@ const Mypage = () => {
 
   if (!isLogin) {
     return (
-      <Container>
+      <Container2>
         <NavBar />
         <MyPageContainer>
           <ProfileContainer>
@@ -83,7 +84,7 @@ const Mypage = () => {
             )}
           </LoginMessage>
         </ContainerNotLogin>
-      </Container>
+      </Container2>
     );
   }
   return (

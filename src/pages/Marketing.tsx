@@ -75,7 +75,7 @@ const Marketing = () => {
         if (data) {
           const ids = data.map((post: any) => post.id);
           setBookmarkedMarketingIds(ids);
-          console.log("bookmarkedMarketingIds:", ids);
+          // console.log("bookmarkedMarketingIds:", ids);
         }
       } catch (error) {
         console.error("Error fetching bookmarked marketing posts:", error);

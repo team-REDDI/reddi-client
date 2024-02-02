@@ -123,6 +123,7 @@ const OverflowBox = styled.div`
   width: 48rem;
   height: 36rem;
   overflow: auto;
+  border-radius: 0.3125rem;
 `;
 
 const ResultBox = styled.div`
@@ -182,7 +183,7 @@ const AIResultBox = styled.div`
 
 const ValueText = styled.div`
   color: ${colors.black_CTA};
-  width: 30.3rem;
+  width: 29.8rem;
   font-size: 0.975rem;
   font-style: normal;
   font-weight: 500;

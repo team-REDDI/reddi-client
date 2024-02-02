@@ -10,7 +10,7 @@ export const getGoogleAuthURL = async () => {
     const response = await client.get(
       `api/auth/google-auth-url?redirectUri=${encodeURIComponent(redirectUri)}`,
     );
-    console.log("response.data");
+    // console.log("response.data");
     return response.data;
   } catch (error) {
     console.error(error);
@@ -29,7 +29,7 @@ export const googleCallback = async (code: string) => {
       code: code,
       redirectUri: redirectUri,
     });
-    console.log("response.data", response.data);
+    // console.log("response.data", response.data);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -43,6 +43,6 @@ export const loginUserInfo = async (accessToken: string) => {
       Authorization: `Bearer ${accessToken}`,
     },
   });
-  console.log("Login User:", response.data);
+  // console.log("Login User:", response.data);
   return response.data;
 };

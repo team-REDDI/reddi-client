@@ -25,7 +25,7 @@ const GoogleAuthCallback: React.FC = () => {
       localStorage.setItem("accessToken", accessToken);
 
       const userInfo = await loginUserInfo(data.data.accessToken);
-      console.log("userData:", userInfo);
+      // console.log("userData:", userInfo);
       localStorage.setItem("userData", JSON.stringify(userInfo.data));
       setUserData({
         userId: userInfo.data.userInfo,

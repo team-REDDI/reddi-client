@@ -114,7 +114,7 @@ const Home = () => {
     const industryTag = brand.brandTags.find(
       (tag: BrandTag) => tag.brandTagType === "산업군",
     );
-    console.log("industry Tag", industryTag);
+    // console.log("industry Tag", industryTag);
     return industryTag ? industryTag.tag : null;
   });
 
@@ -157,7 +157,7 @@ const Home = () => {
           <BrandTitleRow>
             <HomeTitle>HOT 브랜드 순위</HomeTitle>
           </BrandTitleRow>
-          <DateText>2024. 02</DateText>
+          {/* <DateText>2024. 02</DateText> */}
         </BrandTitleBox>
         <LankBox>
           {hotBrand &&

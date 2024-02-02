@@ -51,7 +51,11 @@ export const FilterTag = styled.div<{ weight?: number }>`
   border: 1px solid ${colors.black_CTA};
   color: ${colors.white};
   background-color: ${colors.black_CTA};
-  font-size: 1.25rem;
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 130%; /* 1.4625rem */
+  letter-spacing: -0.01125rem;
   text-align: center;
   font-weight: ${(props) => (props.weight ? props.weight : 500)};
 `;
@@ -111,7 +115,14 @@ export const MarketingDetailTitle = styled.div`
   letter-spacing: -0.015rem;
   /* margin-top: 2.5rem; */
 `;
-
+export const MarketingExplainHeading2 = styled.div`
+  color: ${colors.black};
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 130%;
+  letter-spacing: -0.01125rem;
+`
 export const BrandImage = styled.img`
   display: flex;
   width: 60%;
@@ -120,9 +131,11 @@ export const BrandImage = styled.img`
 
 export const MarketingExplain = styled.span`
   color: ${colors.grey_900};
-  font-size: 1.25rem;
+  font-size: 0.875rem;
+  font-style: normal;
   font-weight: 500;
-  line-height: 170%;
+  line-height: 150%; /* 1.3125rem */
+  letter-spacing: -0.00875rem;
   /* margin: 1.87rem 0 2.5rem 0; */
 `;
 

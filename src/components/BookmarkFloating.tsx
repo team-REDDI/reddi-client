@@ -39,7 +39,7 @@ const BookmarkFloating = () => {
 
   const { id } = useParams();
   const brandId = Number(id);
-  console.log(location.pathname);
+  // console.log(location.pathname);
 
   useEffect(() => {
     if (location.pathname.includes("marketing")) {
@@ -69,7 +69,7 @@ const BookmarkFloating = () => {
       bookmarkResult = await putMarketingToggleBookmark(brandId, accessToken);
     }
 
-    console.log(bookmarkResult);
+    // console.log(bookmarkResult);
     const message = bookmarkResult
       ? "마이페이지에 저장되었습니다"
       : "마이페이지에서 제거되었습니다";

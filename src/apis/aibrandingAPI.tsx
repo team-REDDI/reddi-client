@@ -30,7 +30,7 @@ export const postAIBranding = async ({
         },
       },
     );
-    console.log("AIBrandingResult", response.data.result);
+    // console.log("AIBrandingResult", response.data.result);
     return response.data.data.result;
   } catch (error) {
     console.error(error);
