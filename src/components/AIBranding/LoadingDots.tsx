@@ -15,7 +15,7 @@ const LoadingDots: React.FC = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentDot((currentDot + 1) % 7);
-    }, 85);
+    }, 100);
 
     return () => {
       clearInterval(interval); // 컴포넌트가 언마운트될 때 인터벌을 정리

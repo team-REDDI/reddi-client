@@ -75,7 +75,7 @@ const AIBranding = () => {
     if (isBookmarkBubbleOn === true) {
       const timer = setTimeout(() => {
         setIsBookmarkBubbleOn(false);
-      }, 6000);
+      }, 4000);
 
       return () => clearTimeout(timer);
     }
@@ -574,7 +574,7 @@ const BubbleBox = styled.div`
   align-items: center;
   margin-top: 0.7rem;
   margin-right: 0.37rem;
-  width: 14.3125rem;
+  width: 16.3125rem;
 `;
 
 const BubbleLine = styled.div`
