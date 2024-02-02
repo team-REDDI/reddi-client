@@ -121,7 +121,7 @@ const GoogleLoginBtn = styled.button`
   flex-shrink: 0;
   background-color: ${colors.black_CTA};
   color: ${colors.white};
-  font-size: 0.75rem;
+  font-size: 0.89688rem;
   font-style: normal;
   font-weight: 500;
   line-height: 150%;
@@ -129,11 +129,12 @@ const GoogleLoginBtn = styled.button`
   margin-top: 2rem;
   margin-bottom: 1.5rem;
   cursor: pointer;
+  border-radius: 0.76875rem;
 `;
 const SignUpText = styled.div`
-  color: #ccc;
+  color: #9a9a9a;
   text-align: center;
-  font-size: 0.625rem;
+  font-size: 0.75rem;
   font-style: normal;
   font-weight: 500;
   line-height: 150%;
