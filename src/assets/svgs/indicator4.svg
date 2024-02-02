@@ -1,8 +1,6 @@
 <svg width="126" height="126" viewBox="0 0 126 126" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g id="Animation=Frame 3">
-<circle id="Ellipse 1" cx="22.208" cy="39.4998" r="5.875" fill="#F53B36"/>
-<circle id="Ellipse 3" cx="77.0415" cy="62.9998" r="5.875" fill="#F53B36"/>
-<circle id="Ellipse 2" cx="49.6248" cy="51.2498" r="5.875" fill="#F53B36"/>
-<circle id="Ellipse 4" cx="104.458" cy="62.9998" r="5.875" fill="#F53B36"/>
-</g>
+<circle cx="21.8752" cy="51.2498" r="5.875" fill="#F53B36"/>
+<circle cx="76.7085" cy="51.2498" r="5.875" fill="#F53B36"/>
+<circle cx="49.292" cy="39.4998" r="5.875" fill="#F53B36"/>
+<circle cx="104.125" cy="62.9998" r="5.875" fill="#F53B36"/>
 </svg>

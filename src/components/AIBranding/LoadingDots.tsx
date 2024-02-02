@@ -1,37 +1,29 @@
-// import { useSpring, animated } from 'react-spring';
+import { useEffect, useState } from "react";
+import { ReactComponent as Dots1 } from "../../assets/svgs/indicator.svg";
+import { ReactComponent as Dots2 } from "../../assets/svgs/indicator2.svg";
+import { ReactComponent as Dots3 } from "../../assets/svgs/indicator3.svg";
+import { ReactComponent as Dots4 } from "../../assets/svgs/indicator4.svg";
+import { ReactComponent as Dots5 } from "../../assets/svgs/indicator5.svg";
+import { ReactComponent as Dots6 } from "../../assets/svgs/indicator6.svg";
+import { ReactComponent as Dots7 } from "../../assets/svgs/indicator7.svg";
 
-const LoadingDots = () => {};
+//indicator용
+const LoadingDots: React.FC = () => {
+  const [currentDot, setCurrentDot] = useState(0);
+  const Dots = [Dots1, Dots2, Dots3, Dots4, Dots5, Dots6, Dots7];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentDot((currentDot + 1) % 7);
+    }, 85);
+
+    return () => {
+      clearInterval(interval); // 컴포넌트가 언마운트될 때 인터벌을 정리
+    };
+  }, [currentDot]);
+
+  const CurrentDot = Dots[currentDot];
+  return <CurrentDot />;
+};
+
 export default LoadingDots;
-// const LoadingDots = ({ timing = 0, size, color }) => {
-//   const styles = useSpring({
-//     loop: { reverse: true },
-//     from: { opacity: 1 },
-//     to: { opacity: 0 },
-//     delay: timing,
-//     config: { duration: 500 }
-//   });
-
-//   return (
-//     <animated.div style={{
-//       ...styles,
-//       width: size,
-//       height: size,
-//       borderRadius: 50,
-//       backgroundColor: color || '#000',
-//     }} />
-//   );
-// };
-
-// const LoadingDots = ({ size = 5, color }) => {
-//   return (
-//     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', transform: 'translateY(-3px)' }}>
-//       <AnimationDot size={size} color={color} />
-//       <div style={{ marginHorizontal: 3 }}>
-//         <AnimationDot timing={300} size={size} color={color} />
-//       </div>
-//       <AnimationDot timing={500} size={size} color={color} />
-//     </div>
-//   );
-// };
-
-// export default LoadingDots;

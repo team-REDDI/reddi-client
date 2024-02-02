@@ -10,7 +10,6 @@ import {
   DeleteButton,
   LoadingBox,
   LoadingContainer,
-  LoadingDots,
   LoadingImg,
   LoadingImgBox,
   LoadingText,
@@ -55,6 +54,7 @@ import { useRecoilState } from "recoil";
 import { accessTokenState, isLoginState } from "../utils/atom";
 import NotLoginAIBranding from "../components/NotLoginAIBranding";
 import { colors } from "../styles/colors";
+import LoadingDots from "../components/AIBranding/LoadingDots";
 
 const queryClient = new QueryClient();
 
@@ -316,9 +316,10 @@ const AIBranding = () => {
               </LoadingTitle>
               <LoadingText>잠시만 기다려주세요!</LoadingText>
               <LoadingImg src={require("../assets/images/Loading.png")} />
-              <LoadingDots
+              {/* <LoadingDots
                 src={require("../assets/images/Loading-Animation.png")}
-              />
+              /> */}
+              <LoadingDots />
             </LoadingImgBox>
           </LoadingBox>
         </LoadingContainer>
