@@ -8,6 +8,13 @@ export const Container = styled.div`
   margin-top: 3.125rem;
   z-index: 100;
 `;
+export const Container2 = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* margin-top: 3.125rem; */
+  z-index: 100;
+`;
 
 export const MyPageContainer = styled.div`
   display: flex;
