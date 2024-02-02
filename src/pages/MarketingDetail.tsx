@@ -14,6 +14,7 @@ import {
   ImageContainer,
   MarketingTags,
   MarketingDetailTitle,
+  MarketingExplainHeading2,
 } from "../styles/marketingStyle";
 
 import styled from "styled-components";
@@ -92,9 +93,10 @@ const MarketingDetail = () => {
         );
       case "heading_2":
         return (
-          <MarketingExplain key={index}>
+          <MarketingExplainHeading2 key={index}>
+            ggg
             {content.heading_2?.rich_text[0].plain_text}
-          </MarketingExplain>
+          </MarketingExplainHeading2>
         );
       case "paragraph":
         if (content.paragraph && content.paragraph.rich_text.length > 0) {
