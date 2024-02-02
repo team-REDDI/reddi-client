@@ -202,8 +202,17 @@ export const ButtonBox = styled.div`
   justify-content: flex-end;
   gap: 0.75rem;
   margin-top: 2.06rem;
-  margin-bottom: 3rem;
+  /* margin-bottom: 3rem; */
   cursor: pointer;
+`;
+
+
+export const ButtonBox2 = styled.div`
+  display: flex;
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  margin-bottom: 3rem;
 `;
 
 export const DeleteButton = styled.div`
