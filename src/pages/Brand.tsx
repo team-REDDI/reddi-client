@@ -127,7 +127,8 @@ const Brand = () => {
     setSearchParams({ page: page.toString() });
   };
 
-  const totalPageNum = 4; //일단 임시로
+  const totalPageNum = selectedFilters.size > 0 ? 1 : 4;
+  // 필터링 걸린 경우 페이지 1로 설정
 
   return (
     <BrandPageContainer>

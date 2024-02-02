@@ -136,7 +136,8 @@ const Marketing = () => {
         )
       : marketingBoxes;
 
-  const totalPageNum = 4; //일단 임시로
+  const totalPageNum = selectedFilters.size > 0 ? 1 : 4;
+  // 필터링 걸린 경우 페이지 1로 설정
 
   return (
     <MarketingPageContainer>
@@ -212,8 +213,8 @@ const ReferenceBox = styled.div`
   width: 64rem;
   box-sizing: border-box;
   /* width: 100%;
-  padding-left: 10.69rem;
-  padding-right: 10.69rem; */
+    padding-left: 10.69rem;
+    padding-right: 10.69rem; */
 `;
 export const MarketingLines = styled.div`
   display: grid;
