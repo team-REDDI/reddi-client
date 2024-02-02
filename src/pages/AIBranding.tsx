@@ -1,5 +1,6 @@
 import Footer from "../components/Footer";
 import NavBar from "../components/NavBar";
+import styled from "styled-components";
 import {
   AIResultBox,
   AIResultContanier,
@@ -37,6 +38,7 @@ import {
   WantText,
   Blank,
   ReddiAIIcon,
+  ButtonBox2,
 } from "../styles/ReddiAIStyle";
 import { ReactComponent as AddIcon } from "../assets/svgs/Plus.svg";
 import { useEffect, useState } from "react";
@@ -52,6 +54,7 @@ import { postAIBranding, putAIBranding } from "../apis/aibrandingAPI";
 import { useRecoilState } from "recoil";
 import { accessTokenState, isLoginState } from "../utils/atom";
 import NotLoginAIBranding from "../components/NotLoginAIBranding";
+import { colors } from "../styles/colors";
 
 const queryClient = new QueryClient();
 
@@ -59,6 +62,25 @@ const AIBranding = () => {
   const [accessToken] = useRecoilState(accessTokenState);
   const [isLogin, setIsLogin] = useRecoilState(isLoginState);
   const [isResult, setIsResult] = useState<boolean>(false);
+  const [isSaved, setIsSaved] = useState<boolean>(false);
+  const [isBookmarkBubbleOn, setIsBookmarkBubbleOn] = useState<boolean>(false);
+
+  //버블 기능
+
+  useEffect(() => {
+    setIsBookmarkBubbleOn(true);
+  }, [isResult]);
+
+  useEffect(() => {
+    if (isBookmarkBubbleOn === true) {
+      const timer = setTimeout(() => {
+        setIsBookmarkBubbleOn(false);
+      }, 6000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [isBookmarkBubbleOn]);
+
   const [isNow, setIsNow] = useState<boolean[]>([
     true,
     false,
@@ -269,7 +291,9 @@ const AIBranding = () => {
     if (createdID && accessToken) {
       try {
         const data = await putAIBranding(createdID, accessToken);
-        alert("생성한 AI 브랜드가 저장되었습니다. 마이페이지에서 확인해보세요");
+        setIsSaved(true);
+        setIsBookmarkBubbleOn(true);
+        // alert("생성한 AI 브랜드가 저장되었습니다. 마이페이지에서 확인해보세요");
       } catch (error) {}
     }
   };
@@ -315,6 +339,7 @@ const AIBranding = () => {
         {isResult ? (
           <>
             {brandingResult && <AIResult resultData={brandingResult} />}
+
             <ButtonBox>
               <DeleteButton
                 onClick={() => {
@@ -328,6 +353,20 @@ const AIBranding = () => {
                 저장하기
               </CompleteButton>
             </ButtonBox>
+            <ButtonBox2>
+              {isBookmarkBubbleOn && (
+                <BubbleBox>
+                  <BubbleArrow />
+                  <BubbleLine>
+                    <BubbleText>
+                      {isSaved
+                        ? "마이페이지에 저장되었습니다."
+                        : "마이페이지에 저장해보세요."}
+                    </BubbleText>
+                  </BubbleLine>
+                </BubbleBox>
+              )}
+            </ButtonBox2>
             <Blank />
           </>
         ) : (
@@ -403,7 +442,6 @@ const AIBranding = () => {
                         {tag.contents}
                       </WantTags>
                     ))}
-
                     <WantTagsInputBox onSubmit={onSubmit}>
                       <AddIcon />
                       <WantTagsInput
@@ -516,6 +554,7 @@ const AIBranding = () => {
           </>
         )}
       </ReddiAIContainer>
+
       <Footer />
     </Container>
   );
@@ -526,3 +565,36 @@ export default () => (
     <AIBranding />
   </QueryClientProvider>
 );
+
+const BubbleBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0.7rem;
+  margin-right: 0.37rem;
+  width: 14.3125rem;
+`;
+
+const BubbleLine = styled.div`
+  display: inline-flex;
+  flex-direction: row;
+  padding: 0.25rem 1.25rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.625rem;
+  background-color: ${colors.black_CTA};
+`;
+
+const BubbleArrow = styled.div`
+  border-bottom: 0.7rem solid ${colors.black_CTA};
+  border-left: 0.5rem solid transparent;
+`;
+const BubbleText = styled.div`
+  color: ${colors.white};
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%;
+  letter-spacing: -0.0075rem;
+`;
