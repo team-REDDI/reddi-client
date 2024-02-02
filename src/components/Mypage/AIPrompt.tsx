@@ -118,12 +118,13 @@ const OverflowBox = styled.div`
   position: relative;
   flex-direction: column;
   align-items: flex-start;
-  padding: 2rem 3.875rem;
+  padding: 0rem 3.875rem;
   gap: 2rem;
   width: 48rem;
   height: 36rem;
   overflow: auto;
   border-radius: 0.3125rem;
+  margin-top: 2rem;
 `;
 
 const ResultBox = styled.div`
