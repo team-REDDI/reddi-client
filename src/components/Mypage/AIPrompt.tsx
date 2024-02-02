@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { colors } from "../../styles/colors";
-import { ReddiAIContainer } from "../../styles/ReddiAIStyle";
 import { ReactComponent as CloseIcon } from "../../assets/svgs/closeButton.svg";
 import { useRecoilState } from "recoil";
 import { useEffect, useState } from "react";
@@ -49,10 +48,10 @@ export const AIPrompt = ({ toggleAIPrompt, id, accessToken }: PromptProps) => {
 
   return (
     <PromptContanier>
-      <ReddiAIContainer>
-        <PromptBox>
-          <CloseButton onClick={toggleAIPrompt} />
-          <PromptTitle>생성한 브랜드명</PromptTitle>
+      <PromptBox>
+        <CloseButton onClick={toggleAIPrompt} />
+        <PromptTitle>생성한 브랜드명</PromptTitle>
+        <OverflowBox>
           <ResultBox>
             <PromptSubTitle>브랜드 생성 결과</PromptSubTitle>
             <AIResultBox>
@@ -69,24 +68,21 @@ export const AIPrompt = ({ toggleAIPrompt, id, accessToken }: PromptProps) => {
           </ResultBox>
           <ResultBox>
             <PromptSubTitle>선택한 브랜드 태그</PromptSubTitle>
-            <ResultBox>
-              <TagBox>
-                {createdData.prompt &&
-                  Object.entries(createdData.prompt).map(
-                    ([key, value], index) =>
-                      (value as string)
-                        .split(",")
-                        .map((item: string, itemIndex: number) => (
-                          <PromptTag key={`${index}-${itemIndex}`}>
-                            {item.trim()}
-                          </PromptTag>
-                        )),
-                  )}
-              </TagBox>
-            </ResultBox>
+            <TagBox>
+              {createdData.prompt &&
+                Object.entries(createdData.prompt).map(([key, value], index) =>
+                  (value as string)
+                    .split(",")
+                    .map((item: string, itemIndex: number) => (
+                      <PromptTag key={`${index}-${itemIndex}`}>
+                        {item.trim()}
+                      </PromptTag>
+                    )),
+                )}
+            </TagBox>
           </ResultBox>
-        </PromptBox>
-      </ReddiAIContainer>
+        </OverflowBox>
+      </PromptBox>
     </PromptContanier>
   );
 };
@@ -109,13 +105,23 @@ const PromptBox = styled.div`
   display: flex;
   position: relative;
   flex-direction: column;
-  padding: 4.125rem 3.875rem;
   align-items: flex-start;
-  gap: 2rem;
+  padding: 3.125rem 0;
   background-color: ${colors.white};
   width: 48rem;
   height: 40rem;
   margin-bottom: 3.125rem;
+`;
+
+const OverflowBox = styled.div`
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 2rem 3.875rem;
+  gap: 2rem;
+  width: 48rem;
+  height: 36rem;
   overflow: auto;
   border-radius: 0.3125rem;
 `;
