@@ -9,13 +9,17 @@ import { getCreatedAIPrompt } from "../../apis/mypageAPI";
 interface PromptProps {
   toggleAIPrompt: () => void;
   id: number;
+
   accessToken: string;
+  name: string;
 }
 
-export const AIPrompt = (
-  { toggleAIPrompt, id, accessToken }: PromptProps,
-  name: string,
-) => {
+export const AIPrompt = ({
+  toggleAIPrompt,
+  id,
+  accessToken,
+  name,
+}: PromptProps) => {
   interface CreatedList {
     prompt: PromptList;
     result: ResultList;
