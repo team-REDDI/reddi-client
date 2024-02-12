@@ -50,7 +50,7 @@ export const AIPrompt = ({ toggleAIPrompt, id, accessToken }: PromptProps) => {
     <PromptContanier>
       <PromptBox>
         <CloseButton onClick={toggleAIPrompt} />
-        <PromptTitle>생성한 브랜드명</PromptTitle>
+        <PromptTitle>생성한 브랜드</PromptTitle>
         <OverflowBox>
           <ResultBox>
             <PromptSubTitle>브랜드 생성 결과</PromptSubTitle>
