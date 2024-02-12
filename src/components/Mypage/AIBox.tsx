@@ -52,7 +52,9 @@ const AIBox = ({ id, name, elements, accessToken }: AIBoxProps) => {
           ))}
           <PlusButton>+</PlusButton>
         </OptionsContainer>
-        <AIBoxButton onClick={handleClick}>프롬프트 불러오기</AIBoxButton>
+        <AIBoxButton onClick={handleClick} name={name ? name : "-"}>
+          프롬프트 불러오기
+        </AIBoxButton>
       </Box>
       {isPrompt && (
         <AIPrompt

@@ -12,7 +12,10 @@ interface PromptProps {
   accessToken: string;
 }
 
-export const AIPrompt = ({ toggleAIPrompt, id, accessToken }: PromptProps) => {
+export const AIPrompt = (
+  { toggleAIPrompt, id, accessToken }: PromptProps,
+  name: string,
+) => {
   interface CreatedList {
     prompt: PromptList;
     result: ResultList;
@@ -50,7 +53,7 @@ export const AIPrompt = ({ toggleAIPrompt, id, accessToken }: PromptProps) => {
     <PromptContanier>
       <PromptBox>
         <CloseButton onClick={toggleAIPrompt} />
-        <PromptTitle>생성한 브랜드</PromptTitle>
+        <PromptTitle>{name}</PromptTitle>
         <OverflowBox>
           <ResultBox>
             <PromptSubTitle>브랜드 생성 결과</PromptSubTitle>
