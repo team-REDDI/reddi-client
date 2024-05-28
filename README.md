@@ -1,6 +1,7 @@
 # <a href="https://www.reddi.kr/"><img src="https://github.com/team-Reddi/reddi-client/assets/52371699/cb7ff8a0-930e-4522-9795-7378fa0ec027" align="left" width="100"></a> **Reddi**
 **원하는 것 다 모아둔 브랜딩만을 위한 공간, 브랜딩 아카이빙 서비스**
 
+<br />
 # Tech Stack
 ## Front-end
 <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black"><img src="https://img.shields.io/badge/typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=white"><img src="https://img.shields.io/badge/reactquery-FF4154?style=for-the-badge&logo=reactquery&logoColor=white"><img src="https://img.shields.io/badge/recoil-3578E5?style=for-the-badge&logo=recoil&logoColor=white"><img src="https://img.shields.io/badge/styledcomponents-DB7093?style=for-the-badge&logo=styledcomponents&logoColor=white">
